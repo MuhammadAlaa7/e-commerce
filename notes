@@ -1,0 +1,15 @@
+1. The app is divided into 5 main sections 
+    - app configuration
+    - auth design
+    - e-commerce design 
+    - auth backend  
+    - e-commerce backend 
+
+2. Any Text Form Field placed in a Row it must wrapped with expanded 
+3. If There any text in a row wrap it with expanded to prevent the overflow 
+4. Wrap any check box with sizedBox and give it width and height = 20 to remove the default space around it
+5. If you want to center some contents in a column wrap them with sized box and give its width width.infinity
+
+
+1. there is two types of navigation bar : 1. navigation bar     2. navigation destination 
+2.
