@@ -79,24 +79,17 @@ class AuthenticationRepository extends GetxController {
       log('Logged in successfully');
       return userCredential;
     } on FirebaseAuthException catch (e) {
-      
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
-     
-
       throw CustomFirebaseException(e.code).message;
     } on FormatException catch (e) {
-     
       throw const CustomFormatException();
     } on PlatformException catch (e) {
-    
       throw CustomPlatformException(e.code).message;
     } catch (e) {
-    
       throw 'Something went wrong, please try again later!';
     }
   }
-
 
   /// [EmailAndPasswordAuthentication] - Register with email and password
 
@@ -119,8 +112,6 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-
-
   /// [EmailVerification] - Mail Verification
 
   Future<void> sendEmailVerification() async {
@@ -139,13 +130,35 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+
+
+  /// [EmailVerification] - forget password & reset password
+
+  Future<void> sendPasswordResetEmail(String email ) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email );
+    } on FirebaseAuthException catch (e) {
+      throw CustomFireBaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const CustomFormatException();
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong , please try again later!';
+    }
+  }
+
+
+
+
 // ******************* log out user ****************** \\
 
   Future<void> logOut() async {
     try {
       await GoogleSignIn().signOut();
       await GoogleSignIn().disconnect();
-      
 
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
@@ -162,26 +175,23 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-
-/// *************************** Social Authentication  *************************** \\
+  /// *************************** Social Authentication  *************************** \\
 
 // [Google Authentication] - Sign In with Google
   Future<UserCredential> signInWithGoogle() async {
     try {
-      
-        // trigger the google authentication flow >>> This opens a dialog for the user to sign in with their Google account.
-      final GoogleSignInAccount? googleUserAccount = await GoogleSignIn().signIn();
+      // trigger the google authentication flow >>> This opens a dialog for the user to sign in with their Google account.
+      final GoogleSignInAccount? googleUserAccount =
+          await GoogleSignIn().signIn();
       // Obtain the auth details from the request   [ google account ]
       final GoogleSignInAuthentication? googleAuth =
           await googleUserAccount?.authentication;
-      // Create a new credential  
+      // Create a new credential
 
-      // keep user 
-      
-
+      // keep user
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken, 
+        accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
       // Once signed in, return the UserCredential
@@ -199,14 +209,10 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-
+ 
 
 
 }
-
-
-
-
 
 // >>>>> here we don't use the custom exception classes we built , we use the
 // default exception classes by flutter and it is okay  <<<
