@@ -28,7 +28,27 @@ String get fullName => '$firstName $lastName';
 // Helper function to format the phone number 
 String get formattedPhoneNumber => CFormatter.formatPhoneNumber(phoneNumber);
 
-// Helper funciton to create an empty user model 
+
+// static function to split full name into first name and last name
+
+static List<String> nameSplitter(String fullName) => fullName.split(' ');
+
+
+/// static function to generate a username from the full name
+/// 
+  static String generateUsername(String fullName){
+
+     List<String> nameParts = nameSplitter(fullName);
+     String firstName = nameParts[0];
+     String lastName =   nameParts.length > 1 ? nameParts[1] : '';
+
+     return firstName + lastName;
+  }
+
+
+
+
+// Helper function to create an empty user model 
   static UserModel empty() => UserModel(
     id: '',
     firstName: '',

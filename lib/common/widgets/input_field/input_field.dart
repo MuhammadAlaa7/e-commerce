@@ -17,18 +17,25 @@ class InputField extends StatelessWidget {
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+
   @override
   Widget build(BuildContext context) {
+     final text = controller?.text ?? '';
     return TextFormField(
       obscureText: obscureText,
       controller: controller,
       validator: validator,
+      onChanged: (value){
+        
+return ;
+      },
       decoration: InputDecoration(
-          labelText: label,
-          prefixIcon: Icon(
-            prefixIcon,
-          ),
-          suffixIcon: suffixIcon,),
+        labelText: label,
+        prefixIcon: Icon(
+          prefixIcon,
+        ),
+        suffixIcon: suffixIcon,
+      ),
     );
   }
 }

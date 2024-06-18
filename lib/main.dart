@@ -16,7 +16,7 @@ void main() async {
       WidgetsFlutterBinding.ensureInitialized();
 
   //* Initialize Hive
-  //  to get the directory where the application can store its documents. 
+  //  to get the directory where the application can store its documents.
   //This directory is specific to each application and is used to store
   // files that are not meant to be shared with other applications.
   final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
@@ -32,7 +32,7 @@ void main() async {
     (FirebaseApp firebaseResult) => Get.put(AuthenticationRepository()),
   );
 
- 
+
   runApp(const StoreApp());
 }
 

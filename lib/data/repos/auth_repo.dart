@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/features/auth/controllers/onboarding/onboarding_cubit.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
@@ -78,22 +79,20 @@ class AuthenticationRepository extends GetxController {
       log('Logged in successfully');
       return userCredential;
     } on FirebaseAuthException catch (e) {
-      log('FirebaseAuthException caught: ${e.code}');
-      log('Error message: ${CustomFireBaseAuthException(e.code).message}');
+      
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
-      log('FirebaseException caught: ${e.code}');
-      log('Error message: ${CustomFirebaseException(e.code).message}');
+     
+
       throw CustomFirebaseException(e.code).message;
     } on FormatException catch (e) {
-      log('FormatException caught: ${e.message}');
+     
       throw const CustomFormatException();
     } on PlatformException catch (e) {
-      log('PlatformException caught: ${e.code}');
-      log('Error message: ${CustomPlatformException(e.code).message}');
+    
       throw CustomPlatformException(e.code).message;
     } catch (e) {
-      log('Unknown exception caught: $e');
+    
       throw 'Something went wrong, please try again later!';
     }
   }
@@ -144,6 +143,10 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> logOut() async {
     try {
+      await GoogleSignIn().signOut();
+      await GoogleSignIn().disconnect();
+      
+
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
@@ -158,6 +161,47 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong , please try again later!';
     }
   }
+
+
+/// *************************** Social Authentication  *************************** \\
+
+// [Google Authentication] - Sign In with Google
+  Future<UserCredential> signInWithGoogle() async {
+    try {
+      
+        // trigger the google authentication flow >>> This opens a dialog for the user to sign in with their Google account.
+      final GoogleSignInAccount? googleUserAccount = await GoogleSignIn().signIn();
+      // Obtain the auth details from the request   [ google account ]
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUserAccount?.authentication;
+      // Create a new credential  
+
+      // keep user 
+      
+
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, 
+        idToken: googleAuth?.idToken,
+      );
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw CustomFireBaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const CustomFormatException();
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong , please try again later!';
+    }
+  }
+
+
+
+
 }
 
 

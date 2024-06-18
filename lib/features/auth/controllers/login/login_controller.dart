@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/data/repos/auth_repo.dart';
+import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/manager/network_manger.dart';
 import 'package:store/utils/popups/full_screen_loader.dart';
@@ -13,16 +14,20 @@ class LogInController extends GetxController {
 
   @override
   void onInit() {
-
 /* 
 first : get the email and password from the hive box if it is not null [not the first time ] and if it is true
 second : set the value of the remember_me to the value from the hive box to true if it is true in hive and false if it has nothing [null]
  */
-// null here means that the user is in the first time opening the app so the hive box is empty 
-    email.text = box.get('remember_me') == true && box.get('remember_me') != null ?  box.get('remember_me_email') : '';
-    password.text = box.get('remember_me') == true && box.get('remember_me') != null
-            ? box.get('remember_me_password') : '';
-            rememberMe.value = box.get('remember_me') ?? false;
+// null here means that the user is in the first time opening the app so the hive box is empty
+    email.text =
+        box.get('remember_me') == true && box.get('remember_me') != null
+            ? box.get('remember_me_email')
+            : '';
+    password.text =
+        box.get('remember_me') == true && box.get('remember_me') != null
+            ? box.get('remember_me_password')
+            : '';
+    rememberMe.value = box.get('remember_me') ?? false;
     super.onInit();
   }
 
@@ -38,7 +43,9 @@ second : set the value of the remember_me to the value from the hive box to true
   final loginFormKey = GlobalKey<FormState>();
 
   final RxBool hidePassword = true.obs;
-   RxBool rememberMe = false.obs;
+  RxBool rememberMe = false.obs;
+
+  final userController = Get.put(UserController());
 
   // Login the user
 
@@ -81,8 +88,7 @@ second : set the value of the remember_me to the value from the hive box to true
         box.put('remember_me_email', email.text.trim());
         box.put('remember_me_password', password.text.trim());
         box.put('remember_me', rememberMe.value);
-      }
-      else {
+      } else {
         // save email and password in the hive storage for later use
         box.put('remember_me_email', '');
         box.put('remember_me_password', '');
@@ -105,8 +111,46 @@ second : set the value of the remember_me to the value from the hive box to true
       CFullScreenLoader.closeLoadingDialog();
       log('Error caught: $e'); // Debugging line
 
-
       // show error
     }
   }
+
+  /// -------------------------- [Google Sign In ] --------------------------
+
+  Future<void> googleSignIn() async {
+    try {
+      // start loading
+      CFullScreenLoader.openLoadingDialog(
+          'Logging you in ...', CImages.docerAnimation);
+
+      // check internet connection
+      final isConnected = await NetworkManager.instance.isConnected();
+      log('Network connected: $isConnected'); // Debugging line
+      if (!isConnected) {
+        CFullScreenLoader.closeLoadingDialog();
+        CLoaders.errorSnackBar(
+            title: 'Error', message: 'No internet connection');
+        return;
+      }
+
+      // Google Authentication
+      final userCredential =
+          await AuthenticationRepository.instance.signInWithGoogle();
+
+      //  save user record
+      await userController.saveUserRecord(userCredential);
+
+/// stop loading  
+      CFullScreenLoader.closeLoadingDialog();
+
+      // redirect to home page
+
+      AuthenticationRepository.instance.redirectScreen();
+
+    } catch (e) {
+      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+    }
+  }
+
+  /// -------------------------- [Facebook Sign In ] --------------------------
 }
