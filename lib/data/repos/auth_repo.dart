@@ -23,7 +23,11 @@ import '../../features/auth/screens/onboarding_screen/onboarding_screen.dart';
 class AuthenticationRepository extends GetxController {
   // * find the instance of the AuthenticationRepository that provided in the getx system to use it
   static AuthenticationRepository get instance => Get.find();
+
   final _auth = FirebaseAuth.instance;
+
+  // Get authenticated user
+  User? get currentAuthUser => _auth.currentUser;
 
   final box = Hive.box('storage');
 
@@ -34,7 +38,7 @@ class AuthenticationRepository extends GetxController {
   }
 
   void redirectScreen() {
-    final user = _auth.currentUser;
+    final user = currentAuthUser;
     if (user != null) {
       if (user.emailVerified) {
         log('********************** user is verified ******************');
@@ -82,7 +86,7 @@ class AuthenticationRepository extends GetxController {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw CustomFirebaseException(e.code).message;
-    } on FormatException catch (e) {
+    } on FormatException catch (_) {
       throw const CustomFormatException();
     } on PlatformException catch (e) {
       throw CustomPlatformException(e.code).message;
@@ -157,11 +161,13 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> logOut() async {
     try {
-      await GoogleSignIn().signOut();
-      await GoogleSignIn().disconnect();
-
-      await FirebaseAuth.instance.signOut();
-      Get.offAll(() => const LoginScreen());
+       FirebaseAuth.instance.signOut();
+    
+       GoogleSignIn().signOut();
+       GoogleSignIn().disconnect();
+       Get.offAll(() => const LoginScreen());
+     
+     
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

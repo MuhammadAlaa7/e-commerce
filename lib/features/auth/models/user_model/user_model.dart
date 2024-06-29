@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store/utils/formatter/formatter.dart';
 
 class UserModel {
@@ -70,4 +71,38 @@ static List<String> nameSplitter(String fullName) => fullName.split(' ');
     'profilePicture': profilePicture,
   };
 
+
+// convert json to model
+  factory UserModel.fromJson(DocumentSnapshot<Map<String, dynamic>> jsonDocument) {
+
+ if(jsonDocument.data() != null){   
+
+
+      final data = jsonDocument.data()!; 
+    
+    return UserModel(
+    // the id is not from data , it is outside the data itself like [ firstName and email ]
+    id: jsonDocument.id,
+    firstName: data['firstName'] ?? '',
+    lastName: data['lastName'] ?? '',
+    username: data['username'] ?? '',
+    email: data ['email'] ?? '',
+    phoneNumber: data['phoneNumber'] ?? '',
+    profilePicture: data['profilePicture'] ?? '',
+  );
 }
+else {
+  // if the data is null , return an empty model
+  return UserModel.empty();
+}
+
+
+
+}
+
+
+}
+
+
+
+

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/common/widgets/loaders/shimmer_effect.dart';
 import 'package:store/common/widgets/products/cart/cart_counter_icon.dart';
+import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/features/shop/screens/cart/cart_screen.dart';
 import 'package:store/utils/constants/text_strings.dart';
 import 'package:store/utils/helper/helper_functions.dart';
@@ -13,6 +16,7 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     return CustomAppBar(
       showBackArrow: false,
       title: Column(
@@ -24,11 +28,28 @@ class HomeAppBar extends StatelessWidget {
                   color: Colors.grey[400],
                 ),
           ),
-          Text(
-            CTexts.homeAppBarSubTitle,
-            style: Theme.of(context).textTheme.headlineSmall!.apply(
-                  color: Colors.white,
-                ),
+          Obx(
+            (){
+              
+            
+                if(controller.profileLoading.value == true){
+                  return const CustomShimmerEffect(
+                    width: 150,
+                    height: 40,
+
+                  );
+                }
+                else {
+              return Text(
+              controller.user.value.fullName , 
+                style: Theme.of(context).textTheme.headlineSmall!.apply(
+                      color: Colors.white,
+                    ),
+              );
+                }
+
+       
+            }
           ),
         ],
       ),
