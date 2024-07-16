@@ -20,14 +20,12 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final text = controller?.text ?? '';
     return TextFormField(
       obscureText: obscureText,
       controller: controller,
       validator: validator,
-      onChanged: (value){
-        
-return ;
+      onChanged: (value) {
+        return;
       },
       decoration: InputDecoration(
         labelText: label,

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/models/user_model/user_model.dart';
+import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/utils/exceptions/firebase_exceptions.dart';
 import 'package:store/utils/exceptions/format_exceptions.dart';
 import 'package:store/utils/exceptions/platform_exceptions.dart';
@@ -92,13 +93,14 @@ class UserRepository extends GetxController {
 ///---------------------------------   ?????? --------------------------------
 
 
-  ///* update any field in specific users collection
-
+  ///* update any field in specific users collection like name , email , phone number etc
+  /// * not updating all fields
   Future<void> updateSingleField(Map<String, dynamic> json) async {
 
 
     try {
-              await _db.collection('users').doc().update(json);
+       final userId = Get.find<UserController>().user.value.id;
+              await _db.collection('users').doc(userId).update(json);
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

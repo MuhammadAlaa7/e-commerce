@@ -21,7 +21,7 @@ class AddNewAddressScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              const InputField(label: 'Name', prefixIcon: Iconsax.user),
+              const InputField(label: 'Name', prefixIcon: Iconsax.user ,),
               const SizedBox(
                 height: CSizes.spaceBetweenInputFields,
               ),

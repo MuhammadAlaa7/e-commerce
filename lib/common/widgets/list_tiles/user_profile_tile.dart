@@ -7,7 +7,10 @@ class UserProfileTile extends StatelessWidget {
   const UserProfileTile({
     super.key,
     required this.onPressed,
+    required this.title,
+    required this.subTitle,
   });
+  final String title, subTitle;
 
   final void Function()? onPressed;
   @override
@@ -20,14 +23,14 @@ class UserProfileTile extends StatelessWidget {
         image: CImages.userProfile,
       ),
       title: Text(
-        'Muhammad Alaa',
+        title,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: Colors.white),
       ),
       subtitle: Text(
-        'alaaklug@gmail.com',
+        subTitle,
         style:
             Theme.of(context).textTheme.labelLarge!.apply(color: Colors.white),
       ),

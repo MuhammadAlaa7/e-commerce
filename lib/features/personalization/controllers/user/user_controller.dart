@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/user_repo.dart';
@@ -19,38 +17,36 @@ class UserController extends GetxController {
     fetchUserRecord();
   }
 
-// Fetch user record from firebase
+  // Fetch user record from Firebase
   Future<void> fetchUserRecord() async {
-    try { 
+    try {
       profileLoading.value = true;
-      // await Future.delayed(const Duration(seconds: 7));
       final user = await userRepository.fetchUserDataFromFirebase();
-     // this.user(user);
-        this.user.value = user ;
+      this.user.value = user;
     } catch (e) {
       user(UserModel.empty());
-     // CLoaders.warningSnackBar(title: 'no data retrieved', message: e.toString());
+      CLoaders.warningSnackBar(
+          title: 'No data retrieved', message: e.toString());
     } finally {
       profileLoading.value = false;
     }
   }
 
-  /// Save user record from any Registration provider  like [ Google , Facebook , Apple ]
-
+  // Save user record from any registration provider like Google, Facebook, Apple
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
       if (userCredential != null) {
-        // convert name to first and last name
+        // Convert name to first and last name
         final nameParts =
             UserModel.nameSplitter(userCredential.user!.displayName ?? '');
         final username =
             UserModel.generateUsername(userCredential.user!.displayName ?? '');
 
-        // map data to user model
+        // Map data to user model
         UserModel user = UserModel(
           id: userCredential.user!.uid,
           firstName: nameParts[0],
-          // the last name is the rest of the name
+          // The last name is the rest of the name
           lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
           username: username,
           email: userCredential.user!.email ?? '',
@@ -58,13 +54,13 @@ class UserController extends GetxController {
           profilePicture: userCredential.user!.photoURL ?? '',
         );
 
-        // save user data
+        // Save user data
         await UserRepository.instance.saveUserDataToFirebase(user);
       }
     } catch (e) {
       CLoaders.warningSnackBar(
         title: 'Data not saved',
-        message: '''Something went wrong while saving you information. 
+        message: '''Something went wrong while saving your information. 
             You can re-save your data in your profile.''',
       );
     }
