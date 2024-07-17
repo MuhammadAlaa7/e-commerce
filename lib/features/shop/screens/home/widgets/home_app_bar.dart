@@ -32,14 +32,14 @@ class HomeAppBar extends StatelessWidget {
             (){
               
             
-                if(controller.profileLoading.value == true){
-                  return const CustomShimmerEffect(
-                    width: 150,
-                    height: 40,
+                // if(controller.profileLoading.value == true){
+                //   return const CustomShimmerEffect(
+                //     width: 150,
+                //     height: 40,
 
-                  );
-                }
-                else {
+                //   );
+                // }
+                // else {
               return Text(
               controller.user.value.fullName , 
                 style: Theme.of(context).textTheme.headlineSmall!.apply(
@@ -49,7 +49,7 @@ class HomeAppBar extends StatelessWidget {
                 }
 
        
-            }
+          //  }
           ),
         ],
       ),

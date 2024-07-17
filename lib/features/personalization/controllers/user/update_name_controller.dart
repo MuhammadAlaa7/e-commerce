@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
-import 'package:store/features/personalization/screens/settings/settings_screen.dart';
-import 'package:store/features/shop/screens/home/home_screen.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/manager/network_manger.dart';
 import 'package:store/utils/popups/full_screen_loader.dart';
@@ -58,12 +56,23 @@ class UpdateNameController extends GetxController {
         'firstName': firstName.text.trim(),
         'lastName': lastName.text.trim()
       };
+
       await userRepository.updateSingleField(name);
 
       // After updating the name in Firebase, update it also in the user model in user controller
       userController.user.value.firstName = firstName.text.trim();
       userController.user.value.lastName = lastName.text.trim();
+      userController.user.update((value) {});
 
+
+/* 
+why you need to update the user values manually here ?
+by this line :  userController.user.update((value) {});
+because : 
+Primitive Types: For primitive types like int, double, String, etc., changes are automatically detected and UI updates are triggered.
+Complex Objects: For complex objects (like UserModel), changes within the object’s properties need to be explicitly signaled if the object reference itself doesn’t change.
+Complex objects require explicit signaling (using update()) to notify the reactive system of internal changes.
+ */
       /// Remove loader
       CFullScreenLoader.closeLoadingDialog();
       // Show success message

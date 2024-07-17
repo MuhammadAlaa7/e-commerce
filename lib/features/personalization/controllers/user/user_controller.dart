@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
 import 'package:store/data/repos/auth_repo.dart';
@@ -44,7 +45,6 @@ class UserController extends GetxController {
       this.user.value = user;
     } catch (e) {
       user(UserModel.empty());
-   
     } finally {
       profileLoading.value = false;
     }
@@ -130,6 +130,8 @@ class UserController extends GetxController {
           log('>>>>>>>>>>>>>>>> the provider is google');
           await auth.signInWithGoogle();
           await auth.deleteAccount();
+          GoogleSignIn().signOut();
+          GoogleSignIn().disconnect();
           CFullScreenLoader.closeLoadingDialog();
           Get.offAll(() => const LoginScreen());
         } else if (provider == 'password') {
