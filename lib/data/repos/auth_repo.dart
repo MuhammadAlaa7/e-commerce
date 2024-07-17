@@ -8,6 +8,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/controllers/onboarding/onboarding_cubit.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
 import 'package:store/nvaigation_menu.dart';
@@ -215,12 +216,50 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
- 
+ // [re-authenticate ]  -- re-authenticate user
 
 
+  Future<void> reAuthenticateUserWithEmailAndPassword(String email, String password) async {
+    try {
+      // create a new credential
+      AuthCredential userCredential = EmailAuthProvider.credential(email: email, password: password);
+
+      // re-authenticate the user
+      await _auth.currentUser?.reauthenticateWithCredential(userCredential);
+
+    } on FirebaseAuthException catch (e) {
+      throw CustomFireBaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const CustomFormatException();
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong , please try again later!';
+    }
+  }
+
+// [delete account]  -- remove user auth and firebase account 
+  Future<void> deleteAccount() async {
+    try {
+          UserRepository.instance.removeUserData(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    }  on FirebaseAuthException catch (e) {
+      throw CustomFireBaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const CustomFormatException();
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong , please try again later!';
+    }
+  }
 }
 
-// >>>>> here we don't use the custom exception classes we built , we use the
+//? >>>>> here we don't use the custom exception classes we built , we use the
 // default exception classes by flutter and it is okay  <<<
 
 // //* this function is used to register a user with email and password and give you a user credential

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
+import 'package:store/features/personalization/screens/settings/settings_screen.dart';
 import 'package:store/features/shop/screens/home/home_screen.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/manager/network_manger.dart';
@@ -24,7 +25,6 @@ class UpdateNameController extends GetxController {
     super.onInit();
     initializeNames();
   }
-
 
   void initializeNames() {
     firstName.text = userController.user.value.firstName;
@@ -71,8 +71,15 @@ class UpdateNameController extends GetxController {
           title: 'Congratulations',
           message: 'Your name has been updated successfully');
 
+      Get.offUntil(
+        MaterialPageRoute(builder: (_) => const ProfileScreen()),
+        (route) => route.isFirst,
+      );
       // Go back to user profile screen
-      Get.off(() => const ProfileScreen());
+      // Get.offAll(() => const HomeScreen());
+      // Get.to(() => const SettingsScreen());
+      // Get.to(() => const ProfileScreen());
+      //  Navigator.of(Get.context!).pop();
     } catch (e) {
       CFullScreenLoader.closeLoadingDialog();
       CLoaders.errorSnackBar(title: 'Oops', message: e.toString());

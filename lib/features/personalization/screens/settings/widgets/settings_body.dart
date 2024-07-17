@@ -1,29 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
-import 'package:store/features/personalization/screens/settings/widgets/account_settings_section.dart';
-import 'package:store/features/personalization/screens/settings/widgets/app_settings_section.dart';
-import 'package:store/features/personalization/screens/settings/widgets/settings_header.dart';
 import 'package:store/utils/constants/sizes.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // * Header
-            SettingsHeader(),
-            //* Body
-            SettingsBody(),
-          ],
-        ),
-      ),
-    );
-  }
-}
+import 'account_settings_section.dart';
+import 'app_settings_section.dart';
 
 class SettingsBody extends StatelessWidget {
   const SettingsBody({super.key});

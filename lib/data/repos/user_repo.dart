@@ -16,7 +16,7 @@ class UserRepository extends GetxController {
 
   // instance from firebase store database
   final _db = FirebaseFirestore.instance;
-
+final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid ;
   /// -------- Methods ---------------
 
   //*************************** save user data to firebase ***********************
@@ -46,7 +46,7 @@ class UserRepository extends GetxController {
     try {
       final documentSnapshot = await _db
           .collection('users')
-          .doc(AuthenticationRepository.instance.currentAuthUser?.uid)
+          .doc(currentUserId)
           .get();
 
       if (documentSnapshot.exists) {
@@ -99,8 +99,8 @@ class UserRepository extends GetxController {
 
 
     try {
-       final userId = Get.find<UserController>().user.value.id;
-              await _db.collection('users').doc(userId).update(json);
+     //  final userId = Get.find<UserController>().user.value.id;
+              await _db.collection('users').doc(currentUserId).update(json);
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -120,7 +120,7 @@ class UserRepository extends GetxController {
 
 
   //*************************** Delete user from firebase ***********************
-  Future<void> deleteUser(String userId) async {
+  Future<void> removeUserData(String userId) async {
     try {
      await _db.collection('users').doc(userId).delete();
 

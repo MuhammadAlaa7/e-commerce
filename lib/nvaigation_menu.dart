@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/features/personalization/screens/settings/settings.dart';
+import 'package:store/features/personalization/screens/settings/settings_screen.dart';
 import 'package:store/features/shop/screens/home/home_screen.dart';
 import 'package:store/features/shop/screens/store/store_screen.dart';
 import 'package:store/features/shop/screens/wishlist/wishlist_screen.dart';

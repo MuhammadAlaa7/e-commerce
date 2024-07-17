@@ -31,9 +31,9 @@ class SettingsHeader extends StatelessWidget {
 
           // * user profile card
           Obx(
-           ()=>  UserProfileTile(
-              title : userController.user.value.fullName, 
-              subTitle:  userController.user.value.email,
+            () => UserProfileTile(
+              title: userController.user.value.fullName,
+              subTitle: userController.user.value.email,
               onPressed: () {
                 CHelperFunctions.goTo(context, const ProfileScreen());
               },

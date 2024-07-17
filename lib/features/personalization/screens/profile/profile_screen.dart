@@ -58,7 +58,9 @@ class ProfileScreen extends StatelessWidget {
                 height: CSizes.spaceBetweenItems,
               ),
               CustomTextButton(
-                  label: 'Delete Account', onPressed: () {}, color: Colors.red),
+                  label: 'Delete Account', onPressed: () {
+                    UserController.instance.deleteAccountWarningPopup();
+                  }, color: Colors.red),
               const SizedBox(
                 height: CSizes.spaceBetweenSections * 2,
               ),
