@@ -7,13 +7,15 @@ class CustomOutlinedButton extends StatelessWidget {
     super.key,
     required this.label,
     this.onPressed,
+    this.width = double.infinity, 
   });
   final String label;
+  final double width ; 
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: width,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.all(16),

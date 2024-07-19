@@ -6,8 +6,8 @@ import 'package:store/common/widgets/input_field/input_field.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/validators/custom_validator.dart';
 
-import '../../../../common/widgets/app_bar/custom_app_bar.dart';
-import '../../controllers/user/update_name_controller.dart';
+import '../../../../../common/widgets/app_bar/custom_app_bar.dart';
+import '../../../controllers/user/update_name_controller.dart';
 
 class ChangeNameScreen extends StatelessWidget {
   const ChangeNameScreen({super.key});

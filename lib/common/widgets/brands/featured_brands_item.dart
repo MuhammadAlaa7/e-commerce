@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/common/widgets/images/circular_image.dart';
+import 'package:store/common/widgets/images/custom_circular_image.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/enums.dart';
@@ -13,13 +13,13 @@ class FeaturedBrandCard extends StatelessWidget {
     required this.brandTitle,
     required this.brandImage,
     this.showBorder = false,
-    this.onTap ,
+    this.onTap,
   });
 
   final String brandTitle;
   final String brandImage;
   final bool showBorder;
-  final void Function()? onTap ; 
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class FeaturedBrandCard extends StatelessWidget {
           children: [
             // * icon
             Flexible(
-              child: CircularImage(
+              child: CustomCircularImage(
                 image: brandImage,
                 imageColor: CHelperFunctions.isDarkMode(context)
                     ? Colors.white

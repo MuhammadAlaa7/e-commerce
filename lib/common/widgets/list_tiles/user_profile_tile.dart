@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/images/circular_image.dart';
+import 'package:store/common/widgets/images/custom_circular_image.dart';
 import 'package:store/utils/constants/image_strings.dart';
 
 class UserProfileTile extends StatelessWidget {
@@ -16,7 +16,7 @@ class UserProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const CircularImage(
+      leading: const CustomCircularImage(
         height: 50,
         width: 50,
         padding: 0,

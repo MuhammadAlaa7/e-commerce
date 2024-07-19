@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(CSizes.md),
           child: Column(
             children: [
-              // * User picture
+              // * User Profile picture
 
               const UserPictureSection(),
 

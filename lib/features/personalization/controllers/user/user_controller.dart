@@ -4,12 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
+import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/models/user_model/user_model.dart';
-import 'package:store/features/personalization/screens/profile/re_auth_user_login_form_screen.dart';
+import 'package:store/features/personalization/screens/profile/widgets/re_auth_user_login_form.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/manager/network_manger.dart';
@@ -42,7 +44,7 @@ class UserController extends GetxController {
     try {
       profileLoading.value = true;
       final user = await userRepository.fetchUserDataFromFirebase();
-      this.user.value = user;
+      this.user(user);
     } catch (e) {
       user(UserModel.empty());
     } finally {
@@ -53,27 +55,33 @@ class UserController extends GetxController {
   // Save user record from any registration provider like Google, Facebook, Apple
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
-      if (userCredential != null) {
-        // Convert name to first and last name
-        final nameParts =
-            UserModel.nameSplitter(userCredential.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredential.user!.displayName ?? '');
+      // first refresh the user data to check if the user is already stored in the database
+      await fetchUserRecord();
 
-        // Map data to user model
-        UserModel user = UserModel(
-          id: userCredential.user!.uid,
-          firstName: nameParts[0],
-          // The last name is the rest of the name
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-          username: username,
-          email: userCredential.user!.email ?? '',
-          phoneNumber: userCredential.user!.phoneNumber ?? '',
-          profilePicture: userCredential.user!.photoURL ?? '',
-        );
+      // if the user is not already stored in the database, save it
+      if (user.value.id.isEmpty) {
+        if (userCredential != null) {
+          // Convert name to first and last name
+          final nameParts =
+              UserModel.nameSplitter(userCredential.user!.displayName ?? '');
+          final username = UserModel.generateUsername(
+              userCredential.user!.displayName ?? '');
 
-        // Save user data
-        await UserRepository.instance.saveUserDataToFirebase(user);
+          // Map data to user model
+          UserModel user = UserModel(
+            id: userCredential.user!.uid,
+            firstName: nameParts[0],
+            // The last name is the rest of the name
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            username: username,
+            email: userCredential.user!.email ?? '',
+            phoneNumber: userCredential.user!.phoneNumber ?? '',
+            profilePicture: userCredential.user!.photoURL ?? '',
+          );
+          // Save user data
+          await UserRepository.instance.saveUserDataToFirebase(user);
+        }
       }
     } catch (e) {
       CLoaders.warningSnackBar(
@@ -84,7 +92,9 @@ class UserController extends GetxController {
     }
   }
 
-// delete user account warning popup
+  /// ------------------------------------------------------ Delete Account ------------------------------------------------------
+
+//[ 1 ] - delete user account warning popup
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
       contentPadding: const EdgeInsets.all(CSizes.md),
@@ -92,6 +102,7 @@ class UserController extends GetxController {
       middleText:
           'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
       confirm: DefaultButton(
+        width: 120,
         label: 'Delete',
         onPressed: () async => deleteUserAccount(),
         style: ElevatedButton.styleFrom(
@@ -99,13 +110,13 @@ class UserController extends GetxController {
           side: const BorderSide(color: Colors.red),
         ),
       ),
-      confirmTextColor: Colors.white,
-      cancel:
-          CustomOutlinedButton(label: 'Cancel', onPressed: () => Get.back()),
+      //confirmTextColor: Colors.white,
+      cancel: CustomOutlinedButton(
+          width: 120, label: 'Cancel', onPressed: () => Get.back()),
     );
   }
 
-// Delete user account   -- this will be triggered from the warning popup confirm button
+// [ 2 ] - Delete user account   -- this will be triggered from the warning popup confirm button
   void deleteUserAccount() async {
     try {
       // start loading
@@ -113,9 +124,10 @@ class UserController extends GetxController {
           'Processing...', CImages.docerAnimation);
 
       // first re-authenticate user
-      final auth = AuthenticationRepository.instance;
+      final authRepo = AuthenticationRepository.instance;
 
-      final provider = auth.currentAuthUser!.providerData
+      /// return the id of the first provider used to sign in
+      final provider = authRepo.currentAuthUser!.providerData
           .map((provider) => provider.providerId)
           .first;
       /*
@@ -127,9 +139,8 @@ class UserController extends GetxController {
       if (provider.isNotEmpty) {
         // re verify auth email
         if (provider == 'google.com') {
-          log('>>>>>>>>>>>>>>>> the provider is google');
-          await auth.signInWithGoogle();
-          await auth.deleteAccount();
+          await authRepo.signInWithGoogle();
+          await authRepo.deleteAccount();
           GoogleSignIn().signOut();
           GoogleSignIn().disconnect();
           CFullScreenLoader.closeLoadingDialog();
@@ -138,6 +149,9 @@ class UserController extends GetxController {
           CFullScreenLoader.closeLoadingDialog();
           Get.to(() => const ReAuthUserLoginForm());
         }
+      } else {
+        CFullScreenLoader.closeLoadingDialog();
+        CLoaders.errorSnackBar(title: 'Oops!', message: 'Something went wrong');
       }
     } catch (e) {
       CFullScreenLoader.closeLoadingDialog();
@@ -145,7 +159,9 @@ class UserController extends GetxController {
     }
   }
 
-// re-authenticate user with email and password
+// [ 3 ] - re-authenticate user with email and password
+// the mail role of this function is to get the user email and password from the re-auth form
+//and send it to the re-auth function in the auth repo
   void reAuthenticateUserWithEmailAndPassword() async {
     try {
       // start loading
@@ -177,6 +193,49 @@ class UserController extends GetxController {
       Get.offAll(() => const LoginScreen());
     } catch (e) {
       CFullScreenLoader.closeLoadingDialog();
+      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+    }
+  }
+
+// ----------- images -----------
+
+// upload user profile image
+
+  uploadUserProfileImage() async {
+    try {
+      // open image picker dialog to select image from the gallery
+      final image = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 70,
+        maxHeight: 512,
+        maxWidth: 512,
+      );
+      if (image != null) {
+        // upload image
+        // get the image url from the firebase storage after you take the image selected from the gallery and upload it to the path 'users/images/profile/' in the firebase storage
+        // it's up to you to choose the name of the path
+        final imageUrl = await UserRepository.instance
+            .uploadImage('users/images/profile/', image);
+
+        //* until now we have uploaded the image to the firebase storage and got the url of the image
+        //* we need to update the user profile picture in the server
+        // convert this url to a json to be sent to the server
+        Map<String, dynamic> json = {
+          'profilePicture': imageUrl,
+        };
+
+        // update the profile picture in the current user data in the server
+        await UserRepository.instance.updateSingleField(json);
+
+        // update the profile picture in the current user model
+        user.value.profilePicture = imageUrl;
+        // show a success message to the user
+        user.refresh();
+        CLoaders.successSnackBar(
+            title: 'Congratulations!',
+            message: 'Your profile picture has been updated successfully');
+      }
+    } catch (e) {
       CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }

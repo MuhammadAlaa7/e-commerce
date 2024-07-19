@@ -30,7 +30,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
     return Scaffold(
       body: screens[currentIndex],
 
-     
       // ** -- Bottom Navigation Menu
 
       bottomNavigationBar: NavigationBar(
@@ -45,8 +44,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
         elevation: 0,
         backgroundColor: isDark ? CColors.dark : Colors.white,
         indicatorColor: isDark
-            ? Colors.white.withOpacity(0.1)
-            : Colors.black.withOpacity(0.1),
+            ? Colors.white.withOpacity(0.2)
+            : Colors.black.withOpacity(0.2),
         onDestinationSelected: (index) {
           setState(
             () {
@@ -57,7 +56,6 @@ class _NavigationMenuState extends State<NavigationMenu> {
       ),
     );
   }
-
 }
 
 // * -- Another way to implement bottom navigation menu

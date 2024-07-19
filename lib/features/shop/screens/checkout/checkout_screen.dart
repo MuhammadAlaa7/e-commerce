@@ -8,7 +8,7 @@ import 'package:store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_amount_section.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_payment_section.dart';
-import 'package:store/nvaigation_menu.dart';
+import 'package:store/navigation_menu.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';

@@ -58,6 +58,7 @@ static List<String> nameSplitter(String fullName) => fullName.split(' ');
     email: '',
     phoneNumber: '',
     profilePicture: '',
+    
   );
 
 

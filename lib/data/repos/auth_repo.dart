@@ -11,7 +11,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/controllers/onboarding/onboarding_cubit.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
-import 'package:store/nvaigation_menu.dart';
+import 'package:store/navigation_menu.dart';
 import 'package:store/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:store/utils/exceptions/firebase_exceptions.dart';
 import 'package:store/utils/exceptions/format_exceptions.dart';

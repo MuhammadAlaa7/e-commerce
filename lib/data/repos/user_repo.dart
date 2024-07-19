@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/models/user_model/user_model.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
@@ -16,7 +20,8 @@ class UserRepository extends GetxController {
 
   // instance from firebase store database
   final _db = FirebaseFirestore.instance;
-final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid ;
+  final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid;
+
   /// -------- Methods ---------------
 
   //*************************** save user data to firebase ***********************
@@ -39,15 +44,11 @@ final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid ;
     }
   }
 
-
-
   //*************************** fetch user data from firebase ***********************
   Future<UserModel> fetchUserDataFromFirebase() async {
     try {
-      final documentSnapshot = await _db
-          .collection('users')
-          .doc(currentUserId)
-          .get();
+      final documentSnapshot =
+          await _db.collection('users').doc(currentUserId).get();
 
       if (documentSnapshot.exists) {
         return UserModel.fromJson(documentSnapshot);
@@ -88,19 +89,14 @@ final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid ;
     }
   }
 
-
-
-///---------------------------------   ?????? --------------------------------
-
+  ///---------------------------------   ?????? --------------------------------
 
   ///* update any field in specific users collection like name , email , phone number etc
   /// * not updating all fields
   Future<void> updateSingleField(Map<String, dynamic> json) async {
-
-
     try {
-     //  final userId = Get.find<UserController>().user.value.id;
-              await _db.collection('users').doc(currentUserId).update(json);
+      //  final userId = Get.find<UserController>().user.value.id;
+      await _db.collection('users').doc(currentUserId).update(json);
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -112,19 +108,12 @@ final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid ;
     } catch (e) {
       throw 'Something went wrong , please try again later!';
     }
-
   }
-
-
-
-
 
   //*************************** Delete user from firebase ***********************
   Future<void> removeUserData(String userId) async {
     try {
-     await _db.collection('users').doc(userId).delete();
-
-   
+      await _db.collection('users').doc(userId).delete();
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -138,5 +127,33 @@ final currentUserId = AuthenticationRepository.instance.currentAuthUser?.uid ;
     }
   }
 
+// -------------------  images -------------------
 
+// [1] - upload any image to firebase
+//* this function takes the image and uploads it to firebase and returns the url of the image too
+  Future<String> uploadImage(String path, XFile image) async {
+
+    try {
+          // opening a ref with a unique name to point to the image
+          final imageRef = FirebaseStorage.instance.ref(path).child(image.name);
+          // upload image 
+          await imageRef.putFile(File(image.path)) ;
+          // get the url of the image to send it to the user data to update the profile picture field
+          final imageUrl = await imageRef.getDownloadURL();
+          
+          return imageUrl;
+
+       } on FirebaseAuthException catch (e) {
+      throw CustomFireBaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const CustomFormatException();
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong , please try again later!';
+    }
+
+  }
 }
