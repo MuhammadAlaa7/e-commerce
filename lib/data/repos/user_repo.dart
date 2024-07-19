@@ -132,18 +132,21 @@ class UserRepository extends GetxController {
 // [1] - upload any image to firebase
 //* this function takes the image and uploads it to firebase and returns the url of the image too
   Future<String> uploadImage(String path, XFile image) async {
-
     try {
-          // opening a ref with a unique name to point to the image
-          final imageRef = FirebaseStorage.instance.ref(path).child(image.name);
-          // upload image 
-          await imageRef.putFile(File(image.path)) ;
-          // get the url of the image to send it to the user data to update the profile picture field
-          final imageUrl = await imageRef.getDownloadURL();
-          
-          return imageUrl;
+      // opening a ref with a unique name to point to the image
+      // a reference in Firebase Storage allows you to locate and interact with files in your Firebase Storage.
+      // a pointer to locate the image location in the firebase storage
+      // You create a reference to specify where you want to store or access a file.
+      // .child(image.name) attach the image's file name (e.g., "profile_pic.jpg") to the path, resulting in a reference to user_images/profile_pic.jpg.
+      final imageRef = FirebaseStorage.instance.ref(path).child(image.name);
+      // upload image
+      //File(image.path) converts the XFile to a File object which is required by the putFile method.
+      await imageRef.putFile(File(image.path));
+      // get the url of the image to send it to the user data to update the profile picture field
+      final imageUrl = await imageRef.getDownloadURL();
 
-       } on FirebaseAuthException catch (e) {
+      return imageUrl;
+    } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw CustomFirebaseException(e.code).message;
@@ -154,6 +157,5 @@ class UserRepository extends GetxController {
     } catch (e) {
       throw 'Something went wrong , please try again later!';
     }
-
   }
 }

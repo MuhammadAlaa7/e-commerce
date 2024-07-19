@@ -28,29 +28,24 @@ class HomeAppBar extends StatelessWidget {
                   color: Colors.grey[400],
                 ),
           ),
-          Obx(
-            (){
-              
-            
-                // if(controller.profileLoading.value == true){
-                //   return const CustomShimmerEffect(
-                //     width: 150,
-                //     height: 40,
-
-                //   );
-                // }
-                // else {
+          Obx(() {
+            if (controller.profileLoading.value == true) {
+              return CustomShimmerEffect(
+                width: MediaQuery.of(context).size.width - 40,
+                height: 40,
+              );
+            } else {
               return Text(
-              controller.user.value.fullName , 
+                controller.user.value.fullName,
                 style: Theme.of(context).textTheme.headlineSmall!.apply(
                       color: Colors.white,
                     ),
               );
-                }
+            }
+          }
 
-       
-          //  }
-          ),
+              //  }
+              ),
         ],
       ),
       actions: [

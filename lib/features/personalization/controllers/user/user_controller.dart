@@ -203,6 +203,8 @@ class UserController extends GetxController {
 
   uploadUserProfileImage() async {
     try {
+      // start loading
+      profileLoading.value = true;
       // open image picker dialog to select image from the gallery
       final image = await ImagePicker().pickImage(
         source: ImageSource.gallery,
@@ -210,8 +212,12 @@ class UserController extends GetxController {
         maxHeight: 512,
         maxWidth: 512,
       );
+      // if (image == null) {
+
+      // }
       if (image != null) {
-        // upload image
+        // if there is an image selected
+        // upload the image
         // get the image url from the firebase storage after you take the image selected from the gallery and upload it to the path 'users/images/profile/' in the firebase storage
         // it's up to you to choose the name of the path
         final imageUrl = await UserRepository.instance
@@ -231,9 +237,14 @@ class UserController extends GetxController {
         user.value.profilePicture = imageUrl;
         // show a success message to the user
         user.refresh();
+        profileLoading.value = false;
         CLoaders.successSnackBar(
             title: 'Congratulations!',
             message: 'Your profile picture has been updated successfully');
+      } else {
+        // if there is no image selected , remove the loader  and by default it will show the previous image.
+        profileLoading.value = false;
+      
       }
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
