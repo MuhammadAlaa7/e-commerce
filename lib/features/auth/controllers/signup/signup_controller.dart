@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
-import 'package:store/features/auth/models/user_model/user_model.dart';
+import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/manager/network_manger.dart';

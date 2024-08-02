@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/data/repos/auth_repo.dart';
+import 'package:store/features/auth/screens/login_screen/login_screen.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/manager/network_manger.dart';
@@ -140,13 +141,12 @@ second : set the value of the remember_me to the value from the hive box to true
       //  save user record
       await userController.saveUserRecord(userCredential);
 
-/// stop loading  
+      /// stop loading
       CFullScreenLoader.closeLoadingDialog();
 
       // redirect to home page
 
       AuthenticationRepository.instance.redirectScreen();
-
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
     }

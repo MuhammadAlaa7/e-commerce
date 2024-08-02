@@ -11,20 +11,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-        
-          FirebaseAuth.instance.signOut();
-          GoogleSignIn().signOut();
-          GoogleSignIn().disconnect();
-
-        
-          Get.offAll(() => const LoginScreen());
-        },
-      ),
-      body:const  SingleChildScrollView(
+    return const Scaffold(
+    
+      body:SingleChildScrollView(
         child: Column(
           children: [
             // * blue container header with curved edges

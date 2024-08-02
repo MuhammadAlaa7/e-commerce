@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,7 @@ import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
-import 'package:store/features/auth/controllers/login/login_controller.dart';
-import 'package:store/features/auth/models/user_model/user_model.dart';
+import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/personalization/screens/profile/widgets/re_auth_user_login_form.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
@@ -78,6 +76,7 @@ class UserController extends GetxController {
             email: userCredential.user!.email ?? '',
             phoneNumber: userCredential.user!.phoneNumber ?? '',
             profilePicture: userCredential.user!.photoURL ?? '',
+            
           );
           // Save user data
           await UserRepository.instance.saveUserDataToFirebase(user);
@@ -250,4 +249,34 @@ class UserController extends GetxController {
       CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
+
+
+
+// log out the user
+
+  Future<void> logOut() async {
+    try {
+      // start loader
+      CFullScreenLoader.openLoadingDialog(
+          'Logging you out ...', CImages.docerAnimation);
+
+      // check internet connection
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        CFullScreenLoader.closeLoadingDialog();
+        CLoaders.errorSnackBar(
+            title: 'Error', message: 'No internet connection');
+        return;
+      }
+      // logout
+      await AuthenticationRepository.instance.logOut();
+      // stop loader
+      CFullScreenLoader.closeLoadingDialog();
+      Get.offAll(() => const LoginScreen());
+    } catch (e) {
+      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+    }
+  }
+
+
 }

@@ -32,19 +32,21 @@ class CImages {
       'assets/images/animations/sammy-line-man-receives-a-mail.png';
   static String verifyIllustration =
       'assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif';
-      static String loaderAnimation = 'assets/images/animations/loader-animation.json';
-      static String docerAnimation = 'assets/images/animations/141594-animation-of-docer.json';
-      static String successAnimation = 'assets/images/animations/success-animation.json';
-                                        
-
+  static String loaderAnimation =
+      'assets/images/animations/loader-animation.json';
+  static String docerAnimation =
+      'assets/images/animations/141594-animation-of-docer.json';
+  static String successAnimation =
+      'assets/images/animations/success-animation.json';
 
 // -- categories images
 
-  static const shoes = "assets/icons/categories/icons8-shoes-64.png";
+  static const shoesIcon = "assets/icons/categories/icons8-shoes-64.png";
   static const sportIcon = "assets/icons/categories/icons8-bowling-64.png";
   static const clothIcon =
       "assets/icons/categories/icons8-tailors-dummy-64.png";
-  static const cosmetics = "assets/icons/categories/icons8-cosmetics-64.png";
+  static const cosmeticsIcon =
+      "assets/icons/categories/icons8-cosmetics-64.png";
   static const animalIcon = "assets/icons/categories/icons8-dog-heart-64.png";
   static const toyIcon = "assets/icons/categories/icons8-wooden-toy-car-50.png";
   static const furnitureIcon =
@@ -80,7 +82,6 @@ class CImages {
   static const redShoes = "assets/images/products/NikeAirJOrdonWhiteRed.png";
   static const jacket = "assets/images/products/product-jacket.png";
 
-
 // -- payment methods logos
 
   static const payPal = "assets/icons/payment_methods/paypal.png";
@@ -93,14 +94,9 @@ class CImages {
 
   static const creditCard = "assets/icons/payment_methods/credit-card.png";
 
-  static const successfulPayment = "assets/icons/payment_methods/successful_payment_icon.png";
+  static const successfulPayment =
+      "assets/icons/payment_methods/successful_payment_icon.png";
   static const googlePay = "assets/icons/payment_methods/google-pay.png";
   static const payStack = "assets/icons/payment_methods/paystack.png";
   static const payTm = "assets/icons/payment_methods/paytm.png";
-  
-
-
-
-
-
 }
