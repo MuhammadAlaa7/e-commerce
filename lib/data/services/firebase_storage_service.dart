@@ -71,4 +71,28 @@ class CustomFirebaseStorageService extends GetxController {
     }
   }
 
+  Future<List<String>> uploadImageFileListFromAssets(
+      List<String> imagePaths, String storagePath) async {
+    List<String> downloadUrls = [];
+
+    for (String imagePath in imagePaths) {
+      try {
+        final byteData = await rootBundle.load(imagePath);
+        final imageData = byteData.buffer.asUint8List();
+        final downloadUrl = await uploadImageData(
+            storagePath, imageData, imagePath.split('/').last);
+        downloadUrls.add(downloadUrl);
+      } catch (e) {
+        // Handle exceptions gracefully
+        print('Error uploading image: $e');
+      }
+    }
+
+    return downloadUrls;
+  }
+ 
+
+
+
+
 }

@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store/features/personalization/models/address_model.dart';
 import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/shop/models/cart_item_model.dart';
@@ -10,6 +11,54 @@ import 'package:store/utils/constants/image_strings.dart';
 import 'features/shop/models/banner_model.dart';
 
 class DummyData {
+
+  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+  static Future<void>  
+ uploadDummyData() async {
+    // Sample dummy data
+    final productsData = [
+      {
+        'Id': '1',
+        'IsFeatured': true,
+        'Name': 'Nike',
+        'ProductsCount': 265,
+        'CategoryId': '',
+        'Description': 'Green Nike sports shoe',
+        'Images': [
+                      'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2FNikeAirJOrdonWhiteRed.png?alt=media&token=123092ce-71ba-4d19-8696-391a23026a83',
+                      'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fnike-shoes.png?alt=media&token=35e6141d-d410-4eb5-a6bc-ce9fae757748',
+                      'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fproduct-jacket.png?alt=media&token=294480b4-ba85-4dc2-8e66-38d03759f547',
+          
+          ],
+        'Price': 135,
+        'ProductAttributes': [
+          {
+            'Name': 'Color',
+            'Values': ['Green', 'Black', 'Red'],
+          },
+          {
+            'Name': 'Size',
+            'Values': ['EU 39'],
+          },
+        ],
+      },
+      // ... more products
+    ];
+
+    // Create a batch to improve performance
+    final batch = FirebaseFirestore.instance.batch();
+
+    for (final productData in productsData) {
+      final productRef = _firestore.collection('Products').doc();
+      batch.set(productRef, productData);
+    }
+
+    await batch.commit();
+  }
+
+
   // Banners ---
 
   // static final List<BannerModel> banners = [

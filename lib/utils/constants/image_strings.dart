@@ -81,6 +81,8 @@ class CImages {
 
   static const redShoes = "assets/images/products/NikeAirJOrdonWhiteRed.png";
   static const jacket = "assets/images/products/product-jacket.png";
+  static const nikeShoes = "assets/images/products/nike-shoes.png";
+  static const nikeShoes2 = "assets/images/products/NikeWildhorse.png";
 
 // -- payment methods logos
 
