@@ -47,7 +47,7 @@ class RoundedImage extends StatelessWidget {
           borderRadius: applyBorderRadius
               ? BorderRadius.circular(CSizes.md)
               : BorderRadius.zero,
-         child: imageUrl.isNotEmpty ? isNetworkImage 
+         child: isNetworkImage 
             ? CachedNetworkImage(
                 imageUrl: imageUrl,
                  fit: BoxFit.contain,
@@ -66,7 +66,7 @@ class RoundedImage extends StatelessWidget {
                 image: AssetImage(imageUrl),
                fit: BoxFit.contain,
               
-              ) : Icon(Icons.error , size: 30,),
+              ),
         ),
       ),
     );
