@@ -3,14 +3,16 @@ import 'package:store/common/widgets/brands/brand_show_case.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 
 class CategoryTap extends StatelessWidget {
   const CategoryTap({
     super.key,
+    required this.categoryTap,
   });
-
+final CategoryModel categoryTap ; 
   @override
   Widget build(BuildContext context) {
     return ListView(

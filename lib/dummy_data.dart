@@ -1,4 +1,4 @@
-import 'package:store/app_routes.dart';
+
 import 'package:store/features/personalization/models/address_model.dart';
 import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/shop/models/cart_item_model.dart';
@@ -12,43 +12,43 @@ import 'features/shop/models/banner_model.dart';
 class DummyData {
   // Banners ---
 
-  static final List<BannerModel> banners = [
-    BannerModel(
-      imageUrl: CImages.banner1,
-      targetScreen: AppRoutes.order,
-      active: false,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner2,
-      targetScreen: AppRoutes.cart,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner3,
-      targetScreen: AppRoutes.favorites,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner4,
-      targetScreen: AppRoutes.search,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner5,
-      targetScreen: AppRoutes.settings,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner6,
-      targetScreen: AppRoutes.userAddress,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner7,
-      targetScreen: AppRoutes.checkout,
-      active: false,
-    ),
-  ];
+  // static final List<BannerModel> banners = [
+  //   BannerModel(
+  //     imageUrl: CImages.banner1,
+  //     targetScreen: AppRoutes.order,
+  //     active: false,
+  //   ),
+  //   BannerModel(
+  //     imageUrl: CImages.banner2,
+  //     targetScreen: AppRoutes.cart,
+  //     active: true,
+  //   ),
+  //   BannerModel(
+  //     imageUrl: CImages.banner3,
+  //     targetScreen: AppRoutes.favorites,
+  //     active: true,
+  //   ),
+  //   BannerModel(
+  //     imageUrl: CImages.banner4,
+  //     targetScreen: AppRoutes.search,
+  //     active: true,
+  //   ),
+  //   BannerModel(
+  //     imageUrl: CImages.banner5,
+  //     targetScreen: AppRoutes.settings,
+  //     active: true,
+  //   ),
+  //   BannerModel(
+  //     imageUrl: CImages.banner6,
+  //     targetScreen: AppRoutes.userAddress,
+  //     active: true,
+  //   ),
+  //   BannerModel(
+  //     imageUrl: CImages.banner7,
+  //     targetScreen: AppRoutes.checkout,
+  //     active: false,
+  //   ),
+  // ];
 
 // single user --
 

@@ -24,12 +24,7 @@ class HomeBody extends StatelessWidget {
         children: [
           // * -- banner section
           const HomeBannerSection(
-            banners: [
-              RoundedImage(imageUrl: CImages.banner1),
-              RoundedImage(imageUrl: CImages.banner2),
-              RoundedImage(imageUrl: CImages.banner3),
-              RoundedImage(imageUrl: CImages.banner4)
-            ],
+           
           ),
 
           const SizedBox(height: CSizes.spaceBetweenSections),

@@ -4,6 +4,7 @@ import 'package:store/common/widgets/custom_shapes/containers/searched_container
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/common/widgets/brands/featured_brands_item.dart';
+import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/screens/brands/all_brands_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_tap.dart';
 import 'package:store/utils/constants/colors.dart';
@@ -17,8 +18,9 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final featuredCategories = CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: featuredCategories.length,
       child: Scaffold(
         appBar: storeAppBar(context),
         body: NestedScrollView(
@@ -77,27 +79,20 @@ class StoreScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                bottom: const CustomTapBar(
-                  tabs: [
-                    Tab(text: 'Sports'),
-                    Tab(text: 'Furniture'),
-                    Tab(text: 'Electronics'),
-                    Tab(text: 'Cloths'),
-                    Tab(text: 'Cosmetics'),
-                  ],
+                bottom: CustomTapBar(
+                  tabs: featuredCategories
+                      .map((category) => Tab(
+                            text: category.name,
+                          ))
+                      .toList(),
                 ),
               ),
             ];
           },
           // * The View Of The Tab Bar Above
-          body: const TabBarView(
-            children: [
-              CategoryTap(),
-              CategoryTap(),
-              CategoryTap(),
-              CategoryTap(),
-              CategoryTap(),
-            ],
+          body:  TabBarView(
+            children: featuredCategories.map((category) => CategoryTap(categoryTap: category) ).toList(),
+            
           ),
         ),
       ),
