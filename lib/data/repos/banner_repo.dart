@@ -22,7 +22,7 @@ class BannerRepository extends GetxController{
       try {
 
         // get all the documents from the collection < banners >
-        final snapshot = await _db.collection('banners').where('active' , isEqualTo: true).get();
+        final snapshot = await _db.collection('Banners').where('active' , isEqualTo: true).get();
         // map through the documents and convert them to a list of banners model
         final banners = snapshot.docs
             .map((document) => BannerModel.fromJson(document))

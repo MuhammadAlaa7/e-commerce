@@ -101,4 +101,20 @@ class CImages {
   static const googlePay = "assets/icons/payment_methods/google-pay.png";
   static const payStack = "assets/icons/payment_methods/paystack.png";
   static const payTm = "assets/icons/payment_methods/paytm.png";
+
+
+
+// ----- brands images ----
+
+  static const acerLogo = "assets/icons/brands/acer_logo.png";
+  static const adidasLogo = "assets/icons/brands/adidas-logo.png";
+  static const appleLogo = "assets/icons/brands/apple-logo.png";
+  static const hermanMillerLogo = "assets/icons/brands/herman-miller-logo.png";
+  static const ikeaLogo = "assets/icons/brands/ikea_logo.png";
+  static const jordanLogo = "assets/icons/brands/jordan-logo.png";
+  static const kenwoodLogo = "assets/icons/brands/kenwood-logo.png";
+  static const nikeLogo = "assets/icons/brands/nike.png";
+  static const pumaLogo = "assets/icons/brands/puma-logo.png";
+  static const zaraLogo = "assets/icons/brands/zara-logo.png";
+  
 }

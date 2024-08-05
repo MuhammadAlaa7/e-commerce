@@ -1,103 +1,91 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store/features/personalization/models/address_model.dart';
 import 'package:store/features/personalization/models/user_model.dart';
+import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/features/shop/models/cart_item_model.dart';
 import 'package:store/features/shop/models/cart_model.dart';
 import 'package:store/features/shop/models/category_model.dart';
-import 'package:store/features/shop/models/order_model.dart';
+import 'package:store/routes/app_routes.dart';
+import 'package:store/routes/routes.dart';
 import 'package:store/utils/constants/image_strings.dart';
 
 import 'features/shop/models/banner_model.dart';
 
 class DummyData {
-
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+//   static Future<void>
+//  uploadDummyData() async {
+//     // Sample dummy data
+//     final productsData = [
+//       {
+//         'Id': '1',
+//         'IsFeatured': true,
+//         'Name': 'Nike',
+//         'ProductsCount': 265,
+//         'CategoryId': '',
+//         'Description': 'Green Nike sports shoe',
+//         'Images': [
+//                       'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2FNikeAirJOrdonWhiteRed.png?alt=media&token=123092ce-71ba-4d19-8696-391a23026a83',
+//                       'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fnike-shoes.png?alt=media&token=35e6141d-d410-4eb5-a6bc-ce9fae757748',
+//                       'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fproduct-jacket.png?alt=media&token=294480b4-ba85-4dc2-8e66-38d03759f547',
 
-  static Future<void>  
- uploadDummyData() async {
-    // Sample dummy data
-    final productsData = [
-      {
-        'Id': '1',
-        'IsFeatured': true,
-        'Name': 'Nike',
-        'ProductsCount': 265,
-        'CategoryId': '',
-        'Description': 'Green Nike sports shoe',
-        'Images': [
-                      'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2FNikeAirJOrdonWhiteRed.png?alt=media&token=123092ce-71ba-4d19-8696-391a23026a83',
-                      'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fnike-shoes.png?alt=media&token=35e6141d-d410-4eb5-a6bc-ce9fae757748',
-                      'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fproduct-jacket.png?alt=media&token=294480b4-ba85-4dc2-8e66-38d03759f547',
-          
-          ],
-        'Price': 135,
-        'ProductAttributes': [
-          {
-            'Name': 'Color',
-            'Values': ['Green', 'Black', 'Red'],
-          },
-          {
-            'Name': 'Size',
-            'Values': ['EU 39'],
-          },
-        ],
-      },
-      // ... more products
-    ];
+//           ],
+//         'Price': 135,
+//         'ProductAttributes': [
+//           {
+//             'Name': 'Color',
+//             'Values': ['Green', 'Black', 'Red'],
+//           },
+//           {
+//             'Name': 'Size',
+//             'Values': ['EU 39'],
+//           },
+//         ],
+//       },
+//       // ... more products
+//     ];
 
-    // Create a batch to improve performance
-    final batch = FirebaseFirestore.instance.batch();
+//     // Create a batch to improve performance
+//     final batch = FirebaseFirestore.instance.batch();
 
-    for (final productData in productsData) {
-      final productRef = _firestore.collection('Products').doc();
-      batch.set(productRef, productData);
-    }
+//     for (final productData in productsData) {
+//       final productRef = _firestore.collection('Products').doc();
+//       batch.set(productRef, productData);
+//     }
 
-    await batch.commit();
-  }
-
+//     await batch.commit();
+//   }
 
   // Banners ---
 
-  // static final List<BannerModel> banners = [
-  //   BannerModel(
-  //     imageUrl: CImages.banner1,
-  //     targetScreen: AppRoutes.order,
-  //     active: false,
-  //   ),
-  //   BannerModel(
-  //     imageUrl: CImages.banner2,
-  //     targetScreen: AppRoutes.cart,
-  //     active: true,
-  //   ),
-  //   BannerModel(
-  //     imageUrl: CImages.banner3,
-  //     targetScreen: AppRoutes.favorites,
-  //     active: true,
-  //   ),
-  //   BannerModel(
-  //     imageUrl: CImages.banner4,
-  //     targetScreen: AppRoutes.search,
-  //     active: true,
-  //   ),
-  //   BannerModel(
-  //     imageUrl: CImages.banner5,
-  //     targetScreen: AppRoutes.settings,
-  //     active: true,
-  //   ),
-  //   BannerModel(
-  //     imageUrl: CImages.banner6,
-  //     targetScreen: AppRoutes.userAddress,
-  //     active: true,
-  //   ),
-  //   BannerModel(
-  //     imageUrl: CImages.banner7,
-  //     targetScreen: AppRoutes.checkout,
-  //     active: false,
-  //   ),
-  // ];
+  static final List<BannerModel> banners = [
+    BannerModel(
+      imageUrl: CImages.banner1,
+      targetScreen: Routes.store,
+      active: false,
+    ),
+    BannerModel(
+      imageUrl: CImages.banner2,
+      targetScreen: Routes.cart,
+      active: true,
+    ),
+    BannerModel(
+      imageUrl: CImages.banner3,
+      targetScreen: Routes.settings,
+      active: true,
+    ),
+    BannerModel(
+      imageUrl: CImages.banner4,
+      targetScreen: Routes.userProfile,
+      active: true,
+    ),
+    BannerModel(
+      imageUrl: CImages.banner5,
+      targetScreen: Routes.forgetPassword,
+      active: true,
+    ),
+  ];
 
 // single user --
 
@@ -179,7 +167,6 @@ class DummyData {
   //       items: items),
   // ];
 
-  /// list of all categories
   /// List of all Categories
   static final List<CategoryModel> categories = [
     CategoryModel(
@@ -226,7 +213,11 @@ class DummyData {
         image: CImages.jewelryIcon,
         name: 'Jewelry',
         isFeatured: true),
+  ];
 
+// list of all sub categories ---
+
+  static final List<CategoryModel> subCategories = [
     ///subcategories
     CategoryModel(
         id: '8',
@@ -281,4 +272,75 @@ class DummyData {
         parentId: '2',
         isFeatured: false),
   ];
+
+
+
+
+// --------------- all brands --------------
+static final List<BrandModel> brands = [
+    BrandModel(
+        id: '1',
+        image: CImages.nikeLogo,
+        name: 'Nike',
+        productsCount: 265,
+        isFeatured: true),
+    BrandModel(
+        id: '2',
+        image: CImages.adidasLogo,
+        name: 'Adidas',
+        productsCount: 95,
+        isFeatured: true),
+    BrandModel(
+        id: '8',
+        image: CImages.kenwoodLogo,
+        name: 'Kenwood',
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '9',
+        image: CImages.ikeaLogo,
+        name: 'IKEA',
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '5',
+        image: CImages.appleLogo,
+        name: 'Apple',
+        productsCount: 16,
+        isFeatured: true),
+    BrandModel(
+        id: '10',
+        image: CImages.acerLogo,
+        name: 'Acer',
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '3',
+        image: CImages.jordanLogo,
+        name: 'Jordan',
+        productsCount: 36,
+        isFeatured: true),
+    BrandModel(
+        id: '4',
+        image: CImages.pumaLogo,
+        name: 'Puma',
+        productsCount: 65,
+        isFeatured: true),
+    BrandModel(
+        id: '6',
+        image: CImages.zaraLogo,
+        name: 'ZARA',
+        productsCount: 36,
+        isFeatured: true),
+    BrandModel(
+        id: '7',
+        image: CImages.electronicsIcon,
+        name: 'Samsung',
+        productsCount: 36,
+        isFeatured: false),
+  ];
+
+
+
+
 }

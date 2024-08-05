@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/data/services/firebase_storage_service.dart';
+import 'package:store/dummy_data.dart';
 import 'package:store/utils/constants/image_strings.dart';
 
 class ServicesController extends GetxController {
@@ -19,8 +20,48 @@ List<String> imagePaths = [
   ];
 
 
+Future<void> uploadBannerWithImages() async {
+  try {
+    print('Uploading banners...');
+    await storageService.uploadBannersWithImages(DummyData.banners);
+    print('Banners uploaded successfully!');
+  } catch (e) {
+    print('Error uploading banners: $e');
+  }
+}
+
+
+Future<void> uploadCategoriesWithImages() async {
+  try {
+    print('Uploading categories...');
+    await storageService.uploadCategoriesWithImages(DummyData.categories);
+    print('categories uploaded successfully!');
+  } catch (e) {
+    print('Error uploading categories: $e');
+  }
+}
+
+
+
+// Future<void> uploadListBannersToFireStore() async {
+//  try{
+//   print('Uploading banners...');
+//   await storageService.uploadBanners(DummyData.banners);
+//   print('Banners uploaded successfully!');
+//  }catch(e){
+//   print('Error uploading banners: $e');
+//  }
+// }
+
+
+
+
+
+
+
 Future<void> uploadImagesToFireStore() async {
   try {
+    print('Uploading images...fffffffffffff');
       List<String> imageUrls = await storageService
           .uploadImageFileListFromAssets(imagePaths, 'images/');
       print(imageUrls); // List of download URLs
