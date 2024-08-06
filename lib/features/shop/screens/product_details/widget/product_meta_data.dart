@@ -66,7 +66,7 @@ class ProductMetaData extends StatelessWidget {
             const SizedBox(width: 10),
             const BrandTitleWithVerifiedIcon(
               title: 'Nike',
-              textSize: TextSize.medium,
+              textSize: TextSizes.medium,
             ),
           ],
         ),

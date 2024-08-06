@@ -5,6 +5,7 @@ import 'package:store/common/widgets/custom_shapes/primary_header_container.dart
 import 'package:store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:store/common/widgets/loaders/shimmer_effect.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
+import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
@@ -39,6 +40,9 @@ class SettingsHeader extends StatelessWidget {
                     radius: 30,
                   )
                 : UserProfileTile(
+                    image: userController.user.value.profilePicture.isNotEmpty
+                        ? userController.user.value.profilePicture
+                        : CImages.userProfileImage1,
                     title: userController.user.value.fullName,
                     subTitle: userController.user.value.email,
                     onPressed: () {

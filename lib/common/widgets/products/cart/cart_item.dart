@@ -20,7 +20,7 @@ class CartItem extends StatelessWidget {
         RoundedImage(
           height: 60,
           width: 60,
-          imageUrl: CImages.redShoes,
+          imageUrl: CImages.productImage55,
           backgroundColor: isDark ? CColors.darkGrey : CColors.lightGrey,
         ),
         const SizedBox(width: CSizes.md),

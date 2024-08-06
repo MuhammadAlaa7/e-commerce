@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,6 +45,7 @@ class UserController extends GetxController {
       profileLoading.value = true;
       final user = await userRepository.fetchUserDataFromFirebase();
       this.user(user);
+      log('user is here >>>> : ${user.firstName}');
     } catch (e) {
       user(UserModel.empty());
     } finally {
@@ -76,6 +79,8 @@ class UserController extends GetxController {
             email: userCredential.user!.email ?? '',
             phoneNumber: userCredential.user!.phoneNumber ?? '',
             profilePicture: userCredential.user!.photoURL ?? '',
+
+          
             
           );
           // Save user data

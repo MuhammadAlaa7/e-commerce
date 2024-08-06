@@ -9,18 +9,20 @@ class UserProfileTile extends StatelessWidget {
     required this.onPressed,
     required this.title,
     required this.subTitle,
+    required this.image,
   });
-  final String title, subTitle;
+  final String title, subTitle , image;
 
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const CustomCircularImage(
+      leading:  CustomCircularImage(
         height: 50,
         width: 50,
         padding: 0,
-        image: CImages.userProfile,
+        image: image,
+        isNetworkImage: image.isNotEmpty,  // see , if the image is not empty so it is a network  , if empty it is a local image
       ),
       title: Text(
         title,

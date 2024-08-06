@@ -30,7 +30,7 @@ class BillingPaymentSection extends StatelessWidget {
               child: Image(
                 fit: BoxFit.contain,
                 image: AssetImage(
-                  CImages.payPal,
+                  CImages.paypal,
                 ),
               ),
             ),

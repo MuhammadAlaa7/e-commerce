@@ -92,6 +92,7 @@ When a variable is marked as observable, any changes to its value will automatic
         email: email.text.trim(),
         phoneNumber: phoneNumber.text.trim(),
         profilePicture: '',
+       
       );
 
       await UserRepository.instance.saveUserDataToFirebase(newUser);

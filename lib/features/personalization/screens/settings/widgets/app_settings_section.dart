@@ -28,11 +28,14 @@ class AppAccountSection extends StatelessWidget {
           title: 'Load Data',
           subTitle: 'Upload data to you Cloud Storage',
           onTap: () {
-        //   controller.uploadImagesToFireStore();
-          // DummyData.uploadDummyData();
-        //  controller.uploadListBannersToFireStore();
-        //controller.uploadBannerWithImages();
-        controller.uploadCategoriesWithImages();
+            //   controller.uploadImagesToFireStore();
+            // DummyData.uploadDummyData();
+            //  controller.uploadListBannersToFireStore();
+            //controller.uploadBannerWithImages();
+            // controller.uploadCategoriesWithImages();
+            // controller.uploadBrandsWithImages();
+            // controller.uploadBrandCategory();
+            controller.uploadProductCategory();
           },
         ),
         SettingsMenuTile(

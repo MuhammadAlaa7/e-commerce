@@ -41,7 +41,7 @@ class VerifyEmailController extends GetxController {
   // Navigate to success screen
   void navigateToSuccessScreen() {
     Get.offAll(() => SuccessScreen(
-          image: CImages.successAnimation,
+          image: CImages.staticSuccessIllustration,
           title: CTexts.yourAccountCreatedTitle,
           subTitle: CTexts.yourAccountCreatedSubTitle,
           onPressed: () => AuthenticationRepository.instance.redirectScreen(),

@@ -6,7 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store/features/shop/models/banner_model.dart';
+import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/features/shop/models/category_model.dart';
+import 'package:store/features/shop/models/product_category_model.dart';
+
+import '../../features/shop/models/brand_category_model.dart';
 
 class CustomFirebaseStorageService extends GetxController {
   static CustomFirebaseStorageService get instance => Get.find();
@@ -14,8 +18,6 @@ class CustomFirebaseStorageService extends GetxController {
   final firebaseStorage = FirebaseStorage.instance;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-
 
 // * -------------------- Upload all banners , store their images first in the storage and then create banner document in firestore ------------------- *
   Future<void> uploadBannersWithImages(List<BannerModel> banners) async {
@@ -38,9 +40,61 @@ class CustomFirebaseStorageService extends GetxController {
     }
   }
 
+// * -------------------- Upload all brands , store their images first in the storage and then create banner document in firestore ------------------- *
 
-  Future<void> 
- uploadCategoriesWithImages(List<CategoryModel> categories) async {
+  Future<void> uploadBrandsWithImages(List<BrandModel> brands) async {
+    for (final brand in brands) {
+      
+      // Upload image to Firebase Storage
+      final imageData = await rootBundle.load(brand.image);
+      final bytes = imageData.buffer.asUint8List();
+      final storageRef = firebaseStorage.ref('brand_images/${brand.id}');
+      final uploadTask = await storageRef.putData(bytes);
+      final imageUrl = await uploadTask.ref.getDownloadURL();
+
+      // Create brand document in Firestore
+      final brandRef = _firestore.collection('Brands').doc(brand.id);
+      await brandRef.set({
+        'name': brand.name,
+        'image': imageUrl,
+        'productsCount': brand.productsCount,
+        'isFeatured': brand.isFeatured,
+      });
+    }
+  }
+
+// * -------------------- Upload all brand category models relationship , store their images first in the storage and then create banner document in firestore ------------------- *
+ Future<void> 
+ uploadBrandCategories(List<BrandCategoryModel> brandCategories) async {
+    final batch = _firestore.batch();
+
+    for (final brandCategory in brandCategories) {
+      final brandCategoryRef = _firestore.collection('BrandCategories').doc();
+      batch.set(brandCategoryRef, brandCategory.toJson());
+    }
+
+    await batch.commit();
+  }
+
+// * -------------------- Upload all brand product category models relationship , store their images first in the storage and then create banner document in firestore ------------------- *
+ Future<void> 
+ uploadProductCategories(List<ProductCategoryModel> productCategories) async {
+    final batch = _firestore.batch();
+
+    for (final productCategory in productCategories) {
+      final productCategoryRef = _firestore.collection('ProductCategories').doc();
+      batch.set(productCategoryRef, productCategory.toJson());
+    }
+
+    await batch.commit();
+  }
+
+
+
+
+  
+  Future<void> uploadCategoriesWithImages(
+      List<CategoryModel> categories) async {
     for (final category in categories) {
       // Upload image to Firebase Storage
       final imageData = await rootBundle.load(category.image);
@@ -60,14 +114,7 @@ class CustomFirebaseStorageService extends GetxController {
     }
   }
 
-
-
-
-
-
-
-Future<void>  
- uploadBanners(List<BannerModel> banners) async {
+  Future<void> uploadBanners(List<BannerModel> banners) async {
     final batch = _firestore.batch(); // Use batch for efficient writes
 
     for (final banner in banners) {
@@ -77,11 +124,6 @@ Future<void>
 
     await batch.commit();
   }
-
-
-
-
-
 
 // upload local assets from IDE
 // returns a Uint8List containing image data
@@ -118,9 +160,6 @@ Future<void>
       }
     }
   }
-
-
-
 
   // upload image on cloud firebase storage
   // returns the download url of the uploaded image
@@ -163,9 +202,4 @@ Future<void>
 
     return downloadUrls;
   }
- 
-
-
-
-
 }

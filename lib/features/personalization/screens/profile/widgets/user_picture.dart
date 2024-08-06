@@ -24,7 +24,7 @@ class UserPictureSection extends StatelessWidget {
               final networkImage = userController.user.value.profilePicture;
               // check if there is a picture in the user , if not show the default image
               final image =
-                  networkImage.isNotEmpty ? networkImage : CImages.userProfile;
+                  networkImage.isNotEmpty ? networkImage : CImages.user;
 
               return userController.profileLoading.value
                   ? const CustomShimmerEffect(

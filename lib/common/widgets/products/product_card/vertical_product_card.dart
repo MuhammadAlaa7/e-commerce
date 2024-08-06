@@ -50,7 +50,7 @@ class VerticalProductCard extends StatelessWidget {
                   // * --  thumbnail image
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: RoundedImage(imageUrl: CImages.redShoes),
+                    child: RoundedImage(imageUrl: CImages.productImage66),
                   ),
 
                   // * -- sale

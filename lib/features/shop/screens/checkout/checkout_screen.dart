@@ -85,7 +85,7 @@ class CheckoutScreen extends StatelessWidget {
             SuccessScreen(
               title: 'Payment Success !',
               subTitle: 'Your item will be shipped soon !',
-              image: CImages.successfulPayment,
+              image: CImages.paymentSuccessfulAnimation,
               onPressed: () {
                 CHelperFunctions.goAndReplaceAll(
                   context,

@@ -7,41 +7,62 @@ import 'package:store/utils/constants/image_strings.dart';
 class ServicesController extends GetxController {
   static ServicesController get to => Get.find();
 
-final storageService = Get.put(CustomFirebaseStorageService());
+  final storageService = Get.put(CustomFirebaseStorageService());
 
-
-List<String> imagePaths = [
-    CImages.redShoes,
-    CImages.jacket,
-    CImages.nikeShoes,
-    CImages.nikeShoes2,
-   
-    // ... other image paths
-  ];
-
-
-Future<void> uploadBannerWithImages() async {
-  try {
-    print('Uploading banners...');
-    await storageService.uploadBannersWithImages(DummyData.banners);
-    print('Banners uploaded successfully!');
-  } catch (e) {
-    print('Error uploading banners: $e');
+// * upload banners
+  Future<void> uploadBannerWithImages() async {
+    try {
+      print('Uploading banners...');
+      await storageService.uploadBannersWithImages(DummyData.banners);
+      print('Banners uploaded successfully!');
+    } catch (e) {
+      print('Error uploading banners: $e');
+    }
   }
-}
 
-
-Future<void> uploadCategoriesWithImages() async {
-  try {
-    print('Uploading categories...');
-    await storageService.uploadCategoriesWithImages(DummyData.categories);
-    print('categories uploaded successfully!');
-  } catch (e) {
-    print('Error uploading categories: $e');
+// * upload brands
+  Future<void> uploadBrandsWithImages() async {
+    try {
+      print('Uploading brands...');
+      await storageService.uploadBrandsWithImages(DummyData.brands);
+      print('brands  uploaded successfully!');
+    } catch (e) {
+      print('Error uploading brands: $e');
+    }
   }
-}
 
+// * upload brands category relationship
+  Future<void> uploadBrandCategory() async {
+    try {
+      print('Uploading brand category ...');
+      await storageService.uploadBrandCategories(DummyData.brandCategory);
+      print('brand category uploaded successfully!');
+    } catch (e) {
+      print('Error uploading brand category: $e');
+    }
+  }
 
+// * upload product category relationship
+  Future<void> uploadProductCategory() async {
+    try {
+      print('Uploading product category ...');
+      await storageService.uploadProductCategories(DummyData.productCategories);
+      print(' product category uploaded successfully!');
+    } catch (e) {
+      print('Error uploading product category: $e');
+    }
+  }
+
+// * upload categories
+  Future<void> uploadCategoriesWithImages() async {
+    try {
+      print('Uploading categories...');
+      await storageService.uploadCategoriesWithImages(DummyData.categories);
+      print('categories uploaded successfully!');
+    } catch (e) {
+      print('Error uploading categories: $e');
+    }
+  }
 
 // Future<void> uploadListBannersToFireStore() async {
 //  try{
@@ -53,29 +74,20 @@ Future<void> uploadCategoriesWithImages() async {
 //  }
 // }
 
+// * upload images
 
+  // Future<void> uploadImagesToFireStore() async {
+  //   try {
+  //     print('Uploading images...fffffffffffff');
+  //     List<String> imageUrls = await storageService
+  //         .uploadImageFileListFromAssets(imagePaths, 'images/');
+  //     print(imageUrls); // List of download URLs
+  //   } catch (e) {
+  //     print('Error uploading images: $e');
+  //   }
+  // }
 
-
-
-
-
-Future<void> uploadImagesToFireStore() async {
-  try {
-    print('Uploading images...fffffffffffff');
-      List<String> imageUrls = await storageService
-          .uploadImageFileListFromAssets(imagePaths, 'images/');
-      print(imageUrls); // List of download URLs
-    } catch (e) {
-      print('Error uploading images: $e');
-    }
-}
-
-
-
-  Future<void> uploadImageToFireStore(String assetPath ) async {
-
-   
-
+  Future<void> uploadImageToFireStore(String assetPath) async {
     try {
       Uint8List imageData =
           await storageService.getImageDataFromAssets(assetPath);
@@ -88,10 +100,5 @@ Future<void> uploadImagesToFireStore() async {
     } catch (e) {
       print('Error uploading image: $e');
     }
-
-
-
-
-
   }
 }

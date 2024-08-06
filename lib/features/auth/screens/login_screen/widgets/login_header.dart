@@ -21,7 +21,7 @@ class LoginScreenHeader extends StatelessWidget {
         Image(
           height: 150,
           image: AssetImage(
-            isDark ? CImages.whiteAppLogo : CImages.blackAppLogo,
+            isDark ? CImages.lightAppLogo : CImages.darkAppLogo,
           ),
         ),
         // * title 

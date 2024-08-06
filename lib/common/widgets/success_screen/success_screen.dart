@@ -31,7 +31,7 @@ class SuccessScreen extends StatelessWidget {
             children: [
                 Lottie.asset(
                   repeat: false , 
-                CImages.successAnimation,
+                CImages.staticSuccessIllustration,
                 width: MediaQuery.of(context).size.width * 0.8,
               ),
               // Image(

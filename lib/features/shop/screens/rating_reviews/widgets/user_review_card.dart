@@ -19,7 +19,7 @@ class UserReviewCard extends StatelessWidget {
         Row(
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage(CImages.reviewer3),
+              backgroundImage: AssetImage(CImages.userProfileImage3),
             ),
             const SizedBox(
               width: CSizes.spaceBetweenItems,

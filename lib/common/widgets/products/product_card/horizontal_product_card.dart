@@ -49,7 +49,7 @@ class HorizontalProductCard extends StatelessWidget {
                     width: 100,
                     height: 100,
                     child: RoundedImage(
-                      imageUrl: CImages.redShoes,
+                      imageUrl: CImages.productImage66,
                       // width: 100,
                       // height: 100,
                     ),

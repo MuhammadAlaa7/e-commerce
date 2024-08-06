@@ -26,9 +26,9 @@ final CategoryModel categoryTap ;
               // * Brands
               const BrandShowCase(
                 images: [
-                  CImages.jacket,
-                  CImages.redShoes,
-                  CImages.jacket,
+                  CImages.productImage64,
+                  CImages.productImage20,
+                  CImages.productImage26,
                 ],
               ),
               const SizedBox(height: CSizes.spaceBetweenSections),
