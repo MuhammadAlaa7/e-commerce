@@ -5,22 +5,22 @@ class ProductTitleText extends StatelessWidget {
   const ProductTitleText({
     super.key,
     required this.title,
-    this.textSize = TextSize.small,
+    this.textSize = TextSizes.small,
     this.textColor,
   });
 
   final String title;
-  final TextSize textSize;
+  final TextSizes textSize;
   final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
     return Text(title,
-        style: textSize == TextSize.small
+        style: textSize == TextSizes.small
             ? Theme.of(context).textTheme.labelMedium!.apply(color: textColor)
-            : textSize == TextSize.medium
+            : textSize == TextSizes.medium
                 ? Theme.of(context).textTheme.bodyLarge!.apply(color: textColor)
-                : textSize == TextSize.large
+                : textSize == TextSizes.large
                     ? Theme.of(context)
                         .textTheme
                         .titleLarge!

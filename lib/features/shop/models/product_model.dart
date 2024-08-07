@@ -14,7 +14,7 @@ class ProductModel {
   double salePrice;
    String thumbnail;
   bool? isFeatured;
-   BrandModel? brand;
+   BrandModel brand;
    String? description;
    String? categoryId;
    List<String>? images;
@@ -28,10 +28,10 @@ class ProductModel {
     required this.stock,
     required this.price,
     required this.thumbnail, 
+   required this.brand,
 
     required this.productType,
     this.sku,
-    this.brand,
     this.date,
     this.images,
     this.salePrice = 0,
@@ -51,6 +51,15 @@ class ProductModel {
       price: 0,
       thumbnail: '',
       productType: '',
+      brand: BrandModel.empty(),
+      date: DateTime.now(),
+      salePrice: 0,
+      isFeatured: false,
+      description: '',
+      categoryId: '',
+      images: [],
+      productAttributes: [],
+      productVariations: [],
     );
   }
 // to json 
@@ -91,7 +100,7 @@ class ProductModel {
       thumbnail: data['thumbnail'] ?? '',
       productType: data['productType'] ?? '',
       sku: data['sku'] ,
-      brand: data['brand'] != null ? BrandModel.fromJson(data['brand']) : null,
+      brand:  BrandModel.fromJson(data['brand']) ,
       date: data['date'],
       isFeatured: data['isFeatured'] ?? false,
       description: data['description'] ?? '',

@@ -10,11 +10,11 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
     super.key,
     required this.title,
     this.iconColor = CColors.primary,
-    this.textSize = TextSize.small,
+    this.textSize = TextSizes.small,
   });
   final String title;
   final Color iconColor;
-  final TextSize textSize;
+  final TextSizes textSize;
   @override
   Widget build(BuildContext context) {
     return Row(

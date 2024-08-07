@@ -49,7 +49,7 @@ class HorizontalProductCard extends StatelessWidget {
                     width: 100,
                     height: 100,
                     child: RoundedImage(
-                      imageUrl: CImages.productImage66,
+                      imageUrl: CImages.slipper_product_1,
                       // width: 100,
                       // height: 100,
                     ),
@@ -89,7 +89,7 @@ class HorizontalProductCard extends StatelessWidget {
                         children: [
                           ProductTitleText(
                             title: 'Nike Air Jordan shoes',
-                            textSize: TextSize.medium,
+                            textSize: TextSizes.medium,
                           ),
                           BrandTitleWithVerifiedIcon(
                             title: 'Nike',

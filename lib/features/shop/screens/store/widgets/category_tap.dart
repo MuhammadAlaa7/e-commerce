@@ -26,9 +26,9 @@ final CategoryModel categoryTap ;
               // * Brands
               const BrandShowCase(
                 images: [
-                  CImages.productImage64,
-                  CImages.productImage20,
-                  CImages.productImage26,
+                  CImages.leather_jacket_3,
+                  CImages.nikeBasketballShoeGreenBlack,
+                  CImages.baseball_bat,
                 ],
               ),
               const SizedBox(height: CSizes.spaceBetweenSections),

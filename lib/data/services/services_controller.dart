@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/data/services/firebase_storage_service.dart';
@@ -86,6 +88,21 @@ class ServicesController extends GetxController {
   //     print('Error uploading images: $e');
   //   }
   // }
+
+// * ************************ upload uploadProductsWithTheirImages ***************
+
+  Future<void> uploadProductsWithTheirImages() async {
+    try {
+      print('Uploading products...');
+      await storageService.uploadProductsWithImages(DummyData.products);
+      print('Products uploaded successfully!');
+    } catch (e) {
+      print('Error uploading products: $e');
+    }
+  }
+
+
+
 
   Future<void> uploadImageToFireStore(String assetPath) async {
     try {

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,6 +12,7 @@ import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/models/product_category_model.dart';
 
 import '../../features/shop/models/brand_category_model.dart';
+import '../../features/shop/models/product_model.dart';
 
 class CustomFirebaseStorageService extends GetxController {
   static CustomFirebaseStorageService get instance => Get.find();
@@ -91,6 +93,84 @@ class CustomFirebaseStorageService extends GetxController {
 
 
 
+/// * upload products with their images to firebase 
+
+//   Future<void> 
+//  uploadProductsWithTheirImages(List<ProductModel> products) async {
+//     for (final product in products) {
+//       // Upload product images to Firebase Storage
+//       List<String> imageUrls = [];
+
+//         final imageData = await rootBundle.load(product.thumbnail);
+//         final bytes = imageData.buffer.asUint8List();
+//         final storageRef = firebaseStorage.ref('product_images/${product.id}/${product.thumbnail.split('/').last}');
+//         final uploadTask = await storageRef.putData(bytes);
+//         final imageUrl = await uploadTask.ref.getDownloadURL();
+//         imageUrls.add(imageUrl);
+      
+
+//       // Create product document in Firestore
+//       final productRef = _firestore.collection('Products').doc(product.id);
+//       await productRef.set({
+//         'title': product.title,
+//         'stock': product.stock,
+//         'price': product.price,
+//         'isFeatured': product.isFeatured,
+//         'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
+//         'description': product.description,
+//         'brand': product.brand.toJson(), // Assuming BrandModel has a toJson() method
+//         'images': imageUrls,
+//         'salePrice': product.salePrice,
+//         'sku': product.sku,
+//         'categoryId': product.categoryId,
+//         'productAttributes': product.productAttributes,
+//         'productVariations': product.productVariations?.map((variation) => variation.toJson()).toList(), // Assuming ProductVariationModel has a toJson() method
+//         'productType': product.productType,
+//       });
+//     }
+//   }
+
+
+  Future<void> 
+ uploadProductsWithImages(List<ProductModel> products) async {
+    for (final product in products) {
+      log('Uploading product: ${product.id}');
+      // Create product document in Firestore (without images)
+      final productRef = _firestore.collection('Products').doc(product.id);
+
+      // Upload product images to Firebase Storage and update Firestore
+      List<String> imageUrls = [];
+      for (final imagePath in product.images!) {
+        final imageData = await rootBundle.load(imagePath);
+        final bytes = imageData.buffer.asUint8List();
+        final storageRef = firebaseStorage.ref('product_images/${product.id}/${imagePath.split('/').last}');
+        final uploadTask = await storageRef.putData(bytes);
+        final imageUrl = await uploadTask.ref.getDownloadURL();
+        imageUrls.add(imageUrl);
+      }
+
+      // Update product data in Firestore
+      await productRef.set({
+        'title': product.title,
+        'stock': product.stock,
+        'price': product.price,
+        'isFeatured': product.isFeatured,
+        'description': product.description,
+        'brand': product.brand.toJson(), // Assuming BrandModel has a toJson() method
+        'images': imageUrls,
+        'salePrice': product.salePrice,
+        'sku': product.sku,
+        'categoryId': product.categoryId,
+        'productAttributes': product.productAttributes?.map((attribute) => attribute.toJson()).toList() ?? [],
+        'productVariations': product.productVariations?.map((variation) => variation.toJson()).toList() ?? [], // Assuming ProductVariationModel has a toJson() method
+        'productType': product.productType,
+        'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
+        'brandId': product.brand.id,
+        'date': product.date,
+        
+      });
+    }
+  }
 
   
   Future<void> uploadCategoriesWithImages(

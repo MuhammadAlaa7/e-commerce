@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:store/data/repos/banner_repo.dart';
 import 'package:store/features/shop/models/banner_model.dart';
@@ -18,7 +20,7 @@ class BannerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
+    
     fetchBanners();
   }
 
@@ -35,15 +37,17 @@ class BannerController extends GetxController {
 
       isLoading.value = true;
 
+
+
       /// fetch banners from data source [ firebase , api , local ]
-
+   
       final banners = await bannerRepo.getAllBanners();
-
       /// update the banners list
 
       this.banners.assignAll(banners);
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      
     } finally {
       isLoading.value = false;
     }

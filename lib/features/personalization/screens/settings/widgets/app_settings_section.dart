@@ -31,11 +31,12 @@ class AppAccountSection extends StatelessWidget {
             //   controller.uploadImagesToFireStore();
             // DummyData.uploadDummyData();
             //  controller.uploadListBannersToFireStore();
-            //controller.uploadBannerWithImages();
+         //   controller.uploadBannerWithImages();
             // controller.uploadCategoriesWithImages();
             // controller.uploadBrandsWithImages();
             // controller.uploadBrandCategory();
-            controller.uploadProductCategory();
+            // controller.uploadProductCategory();
+             controller.uploadProductsWithTheirImages();
           },
         ),
         SettingsMenuTile(

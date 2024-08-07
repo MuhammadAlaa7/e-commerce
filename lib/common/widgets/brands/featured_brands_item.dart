@@ -52,7 +52,7 @@ class FeaturedBrandCard extends StatelessWidget {
                 children: [
                   BrandTitleWithVerifiedIcon(
                     title: brandTitle,
-                    textSize: TextSize.large,
+                    textSize: TextSizes.large,
                     iconColor: CColors.primary,
                   ),
                   Text(

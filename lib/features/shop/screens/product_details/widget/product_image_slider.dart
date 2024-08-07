@@ -29,7 +29,7 @@ class ProductImageSlider extends StatelessWidget {
                 padding: EdgeInsets.all(CSizes.lg * 1.5),
                 child: Center(
                   child: Image(
-                    image: AssetImage(CImages.productImage66),
+                    image: AssetImage(CImages.tracksuit_black),
                     height: 400,
                   ),
                 ),
@@ -63,7 +63,7 @@ class ProductImageSlider extends StatelessWidget {
                         width: 80,
                         height: 80,
                         padding: const EdgeInsets.all(CSizes.sm),
-                        imageUrl: CImages.productImage65,
+                        imageUrl: CImages.tshirt_blue_collar,
                       );
                     },
                     separatorBuilder: (_, __) {

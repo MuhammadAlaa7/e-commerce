@@ -31,7 +31,7 @@ class HomeBannerSection extends StatelessWidget {
       }
       if (bannerController.banners.isEmpty) {
         // no banners found
-        return const Text('No banners found');
+        return const SizedBox(height: 0,);
       } else {
         return Column(
           children: [
