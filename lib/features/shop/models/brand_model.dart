@@ -33,11 +33,11 @@ class BrandModel {
     if (data.isEmpty) return BrandModel.empty();
 
     return BrandModel(
-      id: data['Id'] ?? '',
-      name: data['Name'] ?? '',
-      image: data['Image'] ?? '',
-      productsCount: data['ProductsCount'] ?? 0,
-      isFeatured: data['IsFeatured'] ?? false,
+      id: data['id'] ?? '',
+      name: data['name'] ?? '',
+      image: data['image'] ?? '',
+      productsCount: data['productsCount'] ?? 0,
+      isFeatured: data['isFeatured'] ?? false,
     );
   }
 }

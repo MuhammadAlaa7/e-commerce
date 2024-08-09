@@ -9,7 +9,7 @@ class SaleContainer extends StatelessWidget {
     required this.sale,
   });
 
-  final int sale;
+  final String? sale;
 
   @override
   Widget build(BuildContext context) {

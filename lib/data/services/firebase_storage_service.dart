@@ -132,6 +132,38 @@ class CustomFirebaseStorageService extends GetxController {
 
 
   Future<void> 
+ removeFieldFromProducts(List<ProductModel> products) async {
+    for (final product in products) {
+      try {
+        await _firestore.collection('Products').doc(product.id).update({
+         'single': FieldValue.delete(),
+        });
+        print('Field removed from product ${product.id} successfully');
+      } catch (e) {
+        print('Error removing field from product ${product.id}: $e');
+      }
+    }
+  }
+
+// * update products fields in firebase
+
+  Future<void> 
+ updateProducts(List<ProductModel> products, ) async {
+    for (final product in products) {
+      try {
+        await _firestore.collection('Products').doc(product.id).update({
+          'productType' : product.productType,
+        });
+        print('Product ${product.id} updated successfully');
+      } catch (e) {
+        print('Error updating product ${product.id}: $e');
+      }
+    }
+  }
+
+
+
+  Future<void> 
  uploadProductsWithImages(List<ProductModel> products) async {
     for (final product in products) {
       log('Uploading product: ${product.id}');

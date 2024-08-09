@@ -36,7 +36,10 @@ class AppAccountSection extends StatelessWidget {
             // controller.uploadBrandsWithImages();
             // controller.uploadBrandCategory();
             // controller.uploadProductCategory();
-             controller.uploadProductsWithTheirImages();
+            // controller.uploadProductsWithTheirImages();
+            // controller.updateProductsFields();
+           // controller.deleteField();
+
           },
         ),
         SettingsMenuTile(

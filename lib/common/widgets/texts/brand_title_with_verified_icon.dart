@@ -21,10 +21,7 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
-          child: ProductTitleText(
-            title: title,
-            textSize: textSize,
-          ),
+          child: Text(title, style: Theme.of(context).textTheme.labelMedium),
         ),
         const SizedBox(width: CSizes.xs),
         Icon(

@@ -4,8 +4,12 @@ import 'package:store/common/widgets/custom_shapes/containers/sale_container.dar
 import 'package:store/common/widgets/icons/circular_icon.dart';
 import 'package:store/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
+import 'package:store/common/widgets/texts/product_title.dart';
+import 'package:store/features/shop/controllers/product_controller.dart';
+import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
 import 'package:store/utils/constants/colors.dart';
+import 'package:store/utils/constants/enums.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
@@ -16,12 +20,18 @@ import '../../images/rounded_image.dart';
 class VerticalProductCard extends StatelessWidget {
   const VerticalProductCard({
     super.key,
+    required this.product,
   });
 
 // TODO: MAKE THIS WIDGET WITH DYNAMIC DATA
 
+  final ProductModel product;
+
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final percentage =
+        controller.getSalePercentage(product.price, product.salePrice);
     final bool isDark = CHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
@@ -45,23 +55,26 @@ class VerticalProductCard extends StatelessWidget {
               padding: const EdgeInsets.all(CSizes.sm),
               backgroundColor:
                   isDark ? CColors.dark : CColors.lightProductThumbnailColor,
-              child: const Stack(
+              child: Stack(
                 children: [
                   // * --  thumbnail image
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: RoundedImage(imageUrl: CImages.nikeAirJOrdonWhiteRed),
+                    child: RoundedImage(
+                      imageUrl: product.thumbnail,
+                      isNetworkImage: true,
+                    ),
                   ),
 
                   // * -- sale
                   Positioned(
                     top: 12,
                     child: SaleContainer(
-                      sale: 15,
+                      sale: percentage,
                     ),
                   ),
                   // * -- favorite icon
-                  Positioned(
+                  const Positioned(
                     right: 0,
                     top: 0,
                     child: CircularIcon(
@@ -80,19 +93,15 @@ class VerticalProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: CSizes.spaceBetweenItems / 2),
-                  // * Product name
-                  Text(
-                    'Red Nike shoes',
-                    style: Theme.of(context).textTheme.titleSmall!,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                  ),
+                  // * Product title
+                  ProductTitleText(
+                      title: product.title, textSize: TextSizes.small),
+                
                   const SizedBox(height: CSizes.spaceBetweenItems / 2),
 
                   // * brand title with verified icon
-                  const BrandTitleWithVerifiedIcon(
-                      title: 'Nike Product', iconColor: CColors.primary),
+                  BrandTitleWithVerifiedIcon(
+                      title: product.brand.name, iconColor: CColors.primary),
                 ],
               ),
             ),
@@ -105,9 +114,31 @@ class VerticalProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '\$ 150.00',
-                    style: Theme.of(context).textTheme.titleLarge!.apply(),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // * old price with line through
+                        if (product.productType == ProductType.single.name &&
+                            product.salePrice > 0)
+                          Text(
+                            textAlign: TextAlign.left,
+                            '\$ ${product.price}',
+                            style:
+                                Theme.of(context).textTheme.labelMedium!.apply(
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
+                          ),
+
+                        Text(
+                          '\$ ${controller.getProductPrice(product)}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .apply(fontWeightDelta: 1),
+                        ),
+                      ],
+                    ),
                   ),
                   const AddToCartButton(),
                 ],

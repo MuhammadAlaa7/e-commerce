@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/images/rounded_image.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/common/widgets/loaders/verticatl_product_shimmer.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
+import '../../../controllers/product_controller.dart';
 import 'home_banners_section.dart';
 
 class HomeBody extends StatelessWidget {
@@ -16,6 +19,8 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
+
     // final isDark = CHelperFunctions.isDarkMode(context);
     return Padding(
       // *-- padding 16 pixels
@@ -23,9 +28,7 @@ class HomeBody extends StatelessWidget {
       child: Column(
         children: [
           // * -- banner section
-          const HomeBannerSection(
-           
-          ),
+          const HomeBannerSection(),
 
           const SizedBox(height: CSizes.spaceBetweenSections),
           // * -- popular products section
@@ -36,9 +39,22 @@ class HomeBody extends StatelessWidget {
             },
           ),
 
-          CustomGridView(
-            itemCount: 4,
-            itemBuilder: (_, index) => const VerticalProductCard(),
+          Obx(
+            () {
+              if (controller.isLoading.value == true) {
+                return const VerticalProductShimmer();
+              }
+              if (controller.featuredProducts.isEmpty == true) {
+                return const Text('No Products Found');
+              } else {
+                return CustomGridView(
+                  itemCount: 4,
+                  itemBuilder: (_, index) => VerticalProductCard(
+                    product: controller.featuredProducts[index],
+                  ),
+                );
+              }
+            },
           ),
           // ProductCardVertical(),
         ],

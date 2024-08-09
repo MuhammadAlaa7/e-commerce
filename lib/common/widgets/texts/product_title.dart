@@ -17,7 +17,7 @@ class ProductTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(title,
         style: textSize == TextSizes.small
-            ? Theme.of(context).textTheme.labelMedium!.apply(color: textColor)
+            ? Theme.of(context).textTheme.labelLarge!.apply(color: textColor)
             : textSize == TextSizes.medium
                 ? Theme.of(context).textTheme.bodyLarge!.apply(color: textColor)
                 : textSize == TextSizes.large

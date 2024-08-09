@@ -17,7 +17,7 @@ class ProductMetaData extends StatelessWidget {
       children: [
         const Row(
           children: [
-            SaleContainer(sale: 25),
+            SaleContainer(sale: '25'),
             SizedBox(
               width: 10,
             ),

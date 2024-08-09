@@ -48,10 +48,10 @@ class ProductVariationModel {
       sku: data['sku'] ?? '',
       image: data['image'] ?? '',
       description: data['description'] ?? '',
-      price: double.parse(data['price'] ?? 0.0 .toString()),
-      salePrice: double.parse(data['salePrice'] ?? 0.0 .toString()),
       stock: data['stock'],
       attributeValues: Map<String, String>.from(data['attributeValues']),
+      salePrice: data['salePrice'] ?? 0.0,
+      price: data['price'] ?? 0.0 ,
     );
   }
 }

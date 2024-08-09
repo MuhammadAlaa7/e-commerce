@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store/features/shop/controllers/product_controller.dart';
 import 'package:store/utils/constants/sizes.dart';
 
 class CustomGridView extends StatelessWidget {

@@ -69,7 +69,7 @@ class HorizontalProductCard extends StatelessWidget {
                     top: 12,
                     // left: 5,
                     child: SaleContainer(
-                      sale: 25,
+                      sale: '25',
                     ),
                   ),
                 ],

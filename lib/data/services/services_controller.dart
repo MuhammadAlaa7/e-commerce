@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/data/services/firebase_storage_service.dart';
 import 'package:store/dummy_data.dart';
+import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/utils/constants/image_strings.dart';
 
 class ServicesController extends GetxController {
@@ -89,6 +90,21 @@ class ServicesController extends GetxController {
   //   }
   // }
 
+
+// * ************************ upload uploadProductsWithTheirImages ***************
+
+  Future<void> deleteField() async {
+    try {
+      print('Uploading products...');
+      await storageService.removeFieldFromProducts(DummyData.products);
+      print('fields removed successfully!');
+    } catch (e) {
+      print('Error uploading products: $e');
+    }
+  }
+
+
+
 // * ************************ upload uploadProductsWithTheirImages ***************
 
   Future<void> uploadProductsWithTheirImages() async {
@@ -98,6 +114,21 @@ class ServicesController extends GetxController {
       print('Products uploaded successfully!');
     } catch (e) {
       print('Error uploading products: $e');
+    }
+  }
+
+// * ************************  update Products fields ***************
+
+  Future<void> updateProductsFields( ) async {
+    try {
+      print('updating products...');
+        
+                  await storageService.updateProducts( DummyData.products
+            );
+       
+      print('Products updated successfully!');
+    } catch (e) {
+      print('Error updating products: $e');
     }
   }
 
