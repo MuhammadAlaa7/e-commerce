@@ -5,7 +5,7 @@ import 'package:store/common/widgets/icons/circular_icon.dart';
 import 'package:store/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/common/widgets/texts/product_title.dart';
-import 'package:store/features/shop/controllers/product_controller.dart';
+import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
 import 'package:store/utils/constants/colors.dart';
@@ -35,7 +35,7 @@ class VerticalProductCard extends StatelessWidget {
     final bool isDark = CHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        CHelperFunctions.goTo(context, const ProductDetailsScreen());
+        CHelperFunctions.goTo(context,  ProductDetailsScreen(product: product,));
       },
       child: Container(
         padding: const EdgeInsets.all(1),

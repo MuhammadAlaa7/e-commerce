@@ -41,9 +41,9 @@ class BannerModel {
          
 
     return BannerModel(
-      imageUrl: data['imageUrl'] ?? '', 
-      targetScreen: data['targetScreen']?? '',
-      active: data['active']?? false,
+      imageUrl: data['imageUrl'] , 
+      targetScreen: data['targetScreen'],
+      active: data['active'] ,
     );
   }
   else 

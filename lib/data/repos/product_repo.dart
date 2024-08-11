@@ -16,7 +16,7 @@ class ProductRepository extends GetxController {
     try {
       // Get featured documents from the collection <products>
       final snapshot = await db
-          .collection('Products')
+          .collection('MyProducts')
           .where('isFeatured', isEqualTo: true)
           .limit(4)
           .get();

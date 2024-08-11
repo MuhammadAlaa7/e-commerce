@@ -1,35 +1,55 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/custom_shapes/containers/sale_container.dart';
+import 'package:store/common/widgets/loaders/shimmer_effect.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/common/widgets/texts/product_price_text.dart';
+import 'package:store/features/shop/controllers/product/product_controller.dart';
+import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class ProductMetaData extends StatelessWidget {
-  const ProductMetaData({super.key});
+  const ProductMetaData({
+    super.key,
+    required this.product,
+  });
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final price = controller.getProductPrice(product);
+    final salePercentage =
+        controller.getSalePercentage(product.price, product.salePrice);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+        Row(
           children: [
-            SaleContainer(sale: '25'),
-            SizedBox(
+            SaleContainer(sale: salePercentage),
+            const SizedBox(
               width: 10,
             ),
+            // see first if the product is single and has a sale price to show the old price with line through
+            if (product.productType == ProductType.single.name &&
+                product.salePrice > 0)
+              ProductPriceText(
+                price: product.price.toString(),
+                lineThrough: true,
+              ),
+            // make a space between the old price and the new price if the product is single and has a sale price
+            if (product.productType == ProductType.single.name &&
+                product.salePrice > 0)
+              const SizedBox(
+                width: 10,
+              ),
+            // * this the price after the sale if there is sale and if not , it will put the original price
             ProductPriceText(
-              price: '250',
-              lineThrough: true,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            ProductPriceText(
-              price: '170',
+              price: price,
               isLarge: true,
             ),
           ],
@@ -37,7 +57,7 @@ class ProductMetaData extends StatelessWidget {
         const SizedBox(
           height: CSizes.spaceBetweenItems,
         ),
-        const Text('black Nike Jacket'),
+        Text(product.title),
         const SizedBox(
           height: CSizes.spaceBetweenItems,
         ),
@@ -46,7 +66,7 @@ class ProductMetaData extends StatelessWidget {
             children: [
               const TextSpan(text: 'status    '),
               TextSpan(
-                  text: 'In Stock',
+                  text: controller.getProductStockStatus(product.stock),
                   style: Theme.of(context).textTheme.titleLarge),
             ],
           ),
@@ -54,18 +74,28 @@ class ProductMetaData extends StatelessWidget {
         const SizedBox(
           height: CSizes.spaceBetweenItems,
         ),
+        // * brand section
         Row(
           children: [
-            Image(
-              image: const AssetImage(CImages.clothIcon),
-              height: 20,
+            CachedNetworkImage(
               color: CHelperFunctions.isDarkMode(context)
                   ? Colors.white
                   : Colors.black,
+              imageUrl: product.brand.image,
+              width: 40,
+              height: 40,
+
+              //   fit: BoxFit.cover,
+              progressIndicatorBuilder: (context, url, progress) =>
+                  const CustomShimmerEffect(
+                height: 30,
+                width: 30,
+                radius: 10,
+              ),
             ),
             const SizedBox(width: 10),
-            const BrandTitleWithVerifiedIcon(
-              title: 'Nike',
+            BrandTitleWithVerifiedIcon(
+              title: product.brand.name,
               textSize: TextSizes.medium,
             ),
           ],

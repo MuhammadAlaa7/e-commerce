@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/custom_shapes/containers/circular_container.dart';
+import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class CChoiceChip extends StatelessWidget {
@@ -18,24 +19,28 @@ class CChoiceChip extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isColor = CHelperFunctions.getColor(text) != null;
     return ChoiceChip(
-      label: isColor ? const SizedBox() : Text(text),
+      label: isColor
+          ? const SizedBox()
+          : Text(
+              text,
+             
+            ),
       selected: isSelected,
       onSelected: onSelected,
       labelStyle: TextStyle(color: isSelected ? Colors.white : null),
-      color: isColor
-          ? MaterialStateProperty.all(CHelperFunctions.getColor(text))
-          : null,
+      backgroundColor: isColor ? CHelperFunctions.getColor(text) : null,
       avatar: isColor
-          ? const CircularContainer(
+          ? CircularContainer(
               width: 50,
               height: 50,
-              //  backgroundColor: Colors.red,
+              backgroundColor: CHelperFunctions.getColor(text)!,
             )
           : null,
-      //selectedColor: CHelperFunctions.getColor(text),
-      labelPadding: isColor ? EdgeInsets.zero : null,
-      shape: isColor ? const CircleBorder() : null,
-      //  backgroundColor: isColor ? CHelperFunctions.getColor(text) : null,
+      shape: isColor ? CircleBorder() : null,
+      labelPadding: isColor ? EdgeInsets.all(0) : null,
+      padding: isColor ? EdgeInsets.all(0) : null,
+      selectedColor:
+          isColor ? CHelperFunctions.getColor(text) : CColors.primary,
     );
   }
 }

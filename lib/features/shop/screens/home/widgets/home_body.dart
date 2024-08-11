@@ -9,7 +9,7 @@ import 'package:store/features/shop/screens/all_products/all_products_screen.dar
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
-import '../../../controllers/product_controller.dart';
+import '../../../controllers/product/product_controller.dart';
 import 'home_banners_section.dart';
 
 class HomeBody extends StatelessWidget {

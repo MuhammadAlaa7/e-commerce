@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/common/widgets/input_field/filter_input_field.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
-import 'package:store/features/shop/controllers/product_controller.dart';
+import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/utils/constants/sizes.dart';
 

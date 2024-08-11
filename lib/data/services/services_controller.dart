@@ -67,28 +67,6 @@ class ServicesController extends GetxController {
     }
   }
 
-// Future<void> uploadListBannersToFireStore() async {
-//  try{
-//   print('Uploading banners...');
-//   await storageService.uploadBanners(DummyData.banners);
-//   print('Banners uploaded successfully!');
-//  }catch(e){
-//   print('Error uploading banners: $e');
-//  }
-// }
-
-// * upload images
-
-  // Future<void> uploadImagesToFireStore() async {
-  //   try {
-  //     print('Uploading images...fffffffffffff');
-  //     List<String> imageUrls = await storageService
-  //         .uploadImageFileListFromAssets(imagePaths, 'images/');
-  //     print(imageUrls); // List of download URLs
-  //   } catch (e) {
-  //     print('Error uploading images: $e');
-  //   }
-  // }
 
 
 // * ************************ upload uploadProductsWithTheirImages ***************
@@ -105,7 +83,7 @@ class ServicesController extends GetxController {
 
 
 
-// * ************************ upload uploadProductsWithTheirImages ***************
+// * ************************  uploadProductsWithTheirImages ***************
 
   Future<void> uploadProductsWithTheirImages() async {
     try {
@@ -135,18 +113,4 @@ class ServicesController extends GetxController {
 
 
 
-  Future<void> uploadImageToFireStore(String assetPath) async {
-    try {
-      Uint8List imageData =
-          await storageService.getImageDataFromAssets(assetPath);
-      String uploadUrl = await storageService.uploadImageData(
-        'products/images/sports/', // Replace with your Firebase Storage path
-        imageData,
-        '1.png', // Choose a desired filename
-      );
-      print('Image uploaded! Download URL: $uploadUrl');
-    } catch (e) {
-      print('Error uploading image: $e');
-    }
-  }
 }

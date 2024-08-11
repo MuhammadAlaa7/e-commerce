@@ -20,49 +20,6 @@ import 'features/shop/models/product_variation_model.dart';
 class DummyData {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-//   static Future<void>
-//  uploadDummyData() async {
-//     // Sample dummy data
-//     final productsData = [
-//       {
-//         'Id': '1',
-//         'IsFeatured': true,
-//         'Name': 'Nike',
-//         'ProductsCount': 265,
-//         'CategoryId': '',
-//         'Description': 'Green Nike sports shoe',
-//         'Images': [
-//                       'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2FNikeAirJOrdonWhiteRed.png?alt=media&token=123092ce-71ba-4d19-8696-391a23026a83',
-//                       'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fnike-shoes.png?alt=media&token=35e6141d-d410-4eb5-a6bc-ce9fae757748',
-//                       'https://firebasestorage.googleapis.com/v0/b/ecommerce-d7adf.appspot.com/o/images%2Fproduct-jacket.png?alt=media&token=294480b4-ba85-4dc2-8e66-38d03759f547',
-
-//           ],
-//         'Price': 135,
-//         'ProductAttributes': [
-//           {
-//             'Name': 'Color',
-//             'Values': ['Green', 'Black', 'Red'],
-//           },
-//           {
-//             'Name': 'Size',
-//             'Values': ['EU 39'],
-//           },
-//         ],
-//       },
-//       // ... more products
-//     ];
-
-//     // Create a batch to improve performance
-//     final batch = FirebaseFirestore.instance.batch();
-
-//     for (final productData in productsData) {
-//       final productRef = _firestore.collection('Products').doc();
-//       batch.set(productRef, productData);
-//     }
-
-//     await batch.commit();
-//   }
-
   // Banners ---
 
   static final List<BannerModel> banners = [
@@ -76,36 +33,36 @@ class DummyData {
       targetScreen: Routes.cart,
       active: true,
     ),
-    BannerModel(
-      imageUrl: CImages.banner3,
-      targetScreen: Routes.settings,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner4,
-      targetScreen: Routes.userProfile,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner5,
-      targetScreen: Routes.allProducts,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner6,
-      targetScreen: Routes.productReview,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner7,
-      targetScreen: Routes.wishlist,
-      active: true,
-    ),
-    BannerModel(
-      imageUrl: CImages.banner8,
-      targetScreen: Routes.forgetPassword,
-      active: true,
-    ),
+    // BannerModel(
+    //   imageUrl: CImages.banner3,
+    //   targetScreen: Routes.settings,
+    //   active: true,
+    // ),
+    // BannerModel(
+    //   imageUrl: CImages.banner4,
+    //   targetScreen: Routes.userProfile,
+    //   active: true,
+    // ),
+    // BannerModel(
+    //   imageUrl: CImages.banner5,
+    //   targetScreen: Routes.allProducts,
+    //   active: true,
+    // ),
+    // BannerModel(
+    //   imageUrl: CImages.banner6,
+    //   targetScreen: Routes.productReview,
+    //   active: true,
+    // ),
+    // BannerModel(
+    //   imageUrl: CImages.banner7,
+    //   targetScreen: Routes.wishlist,
+    //   active: true,
+    // ),
+    // BannerModel(
+    //   imageUrl: CImages.banner8,
+    //   targetScreen: Routes.forgetPassword,
+    //   active: true,
+    // ),
   ];
 
 // single user --
@@ -296,66 +253,74 @@ class DummyData {
 
 // --------------- all brands --------------
   static final List<BrandModel> brands = [
+    // BrandModel(
+    //     id: '1',
+    //     image: CImages.nikeLogo,
+    //     name: 'Nike',
+    //     productsCount: 265,
+    //     isFeatured: true),
+    // BrandModel(
+    //     id: '2',
+    //     image: CImages.adidasLogo,
+    //     name: 'Adidas',
+    //     productsCount: 95,
+    //     isFeatured: true),
+    // BrandModel(
+    //     id: '8',
+    //     image: CImages.kenwoodLogo,
+    //     name: 'Kenwood',
+    //     productsCount: 36,
+    //     isFeatured: false),
+    // BrandModel(
+    //     id: '9',
+    //     image: CImages.ikeaLogo,
+    //     name: 'IKEA',
+    //     productsCount: 36,
+    //     isFeatured: false),
+    // BrandModel(
+    //     id: '5',
+    //     image: CImages.appleLogo,
+    //     name: 'Apple',
+    //     productsCount: 16,
+    //     isFeatured: true),
+    // BrandModel(
+    //     id: '10',
+    //     image: CImages.acerLogo,
+    //     name: 'Acer',
+    //     productsCount: 36,
+    //     isFeatured: false),
+    // BrandModel(
+    //     id: '3',
+    //     image: CImages.jordanLogo,
+    //     name: 'Jordan',
+    //     productsCount: 36,
+    //     isFeatured: true),
+    // BrandModel(
+    //     id: '4',
+    //     image: CImages.pumaLogo,
+    //     name: 'Puma',
+    //     productsCount: 65,
+    //     isFeatured: true),
+    // BrandModel(
+    //     id: '6',
+    //     image: CImages.zaraLogo,
+    //     name: 'ZARA',
+    //     productsCount: 36,
+    //     isFeatured: true),
+    // BrandModel(
+    //     id: '7',
+    //     image: CImages.electronicsIcon,
+    //     name: 'Samsung',
+    //     productsCount: 36,
+    //     isFeatured: false),
+
     BrandModel(
-        id: '1',
-        image: CImages.nikeLogo,
-        name: 'Nike',
-        productsCount: 265,
-        isFeatured: true),
-    BrandModel(
-        id: '2',
-        image: CImages.adidasLogo,
-        name: 'Adidas',
-        productsCount: 95,
-        isFeatured: true),
-    BrandModel(
-        id: '8',
-        image: CImages.kenwoodLogo,
-        name: 'Kenwood',
-        productsCount: 36,
-        isFeatured: false),
-    BrandModel(
-        id: '9',
-        image: CImages.ikeaLogo,
-        name: 'IKEA',
-        productsCount: 36,
-        isFeatured: false),
-    BrandModel(
-        id: '5',
-        image: CImages.appleLogo,
-        name: 'Apple',
-        productsCount: 16,
-        isFeatured: true),
-    BrandModel(
-        id: '10',
-        image: CImages.acerLogo,
-        name: 'Acer',
-        productsCount: 36,
-        isFeatured: false),
-    BrandModel(
-        id: '3',
-        image: CImages.jordanLogo,
-        name: 'Jordan',
-        productsCount: 36,
-        isFeatured: true),
-    BrandModel(
-        id: '4',
-        image: CImages.pumaLogo,
-        name: 'Puma',
-        productsCount: 65,
-        isFeatured: true),
-    BrandModel(
-        id: '6',
-        image: CImages.zaraLogo,
-        name: 'ZARA',
-        productsCount: 36,
-        isFeatured: true),
-    BrandModel(
-        id: '7',
-        image: CImages.electronicsIcon,
-        name: 'Samsung',
-        productsCount: 36,
-        isFeatured: false),
+      id: '11',
+      image: CImages.hermanMillerLogo,
+      name: 'Herman Miller',
+      productsCount: 36,
+      isFeatured: true,
+    ),
   ];
 
 // ------------ all brand category ------------
@@ -471,15 +436,9 @@ class DummyData {
     ProductCategoryModel(productId: '039', categoryId: '15'),
   ];
 
-
-
-
-
-
 // ****-------------------- All Products --------------------****
 
-
-static List<ProductModel> products = [
+  static List<ProductModel> products = [
     ProductModel(
       id: '001',
       title: 'Green Nike Sports Shoe',
@@ -626,7 +585,7 @@ static List<ProductModel> products = [
       isFeatured: false,
       description: 'Comfortable and durable blue jeans.',
       brand: BrandModel(
-        id: '3',
+        id: '6',
         image: CImages.zaraLogo,
         name: 'Zara',
         productsCount: 200,
@@ -659,7 +618,7 @@ static List<ProductModel> products = [
       isFeatured: true,
       description: 'Comfortable white t-shirt for everyday use.',
       brand: BrandModel(
-        id: '4',
+        id: '6',
         image: CImages.zaraLogo,
         name: 'Zara',
         productsCount: 300,
@@ -725,8 +684,8 @@ static List<ProductModel> products = [
       isFeatured: true,
       description: 'Acer laptop with powerful performance and sleek design.',
       brand: BrandModel(
-        id: '5',
-        image: CImages.electronicsIcon,
+        id: '10',
+        image: CImages.acerLogo,
         name: 'Acer',
         productsCount: 100,
         isFeatured: true,
@@ -765,69 +724,69 @@ static List<ProductModel> products = [
         ),
       ],
     ),
-   
 
- ProductModel(
-    id: '006',
-    title: 'iPhone 14 Pro',
-    stock: 25,
-    price: 999,
-    salePrice: 950,
-    thumbnail: CImages.iphone14_white,
-    productType: ProductType.variable.name,
-    sku: 'IPH2024',
-    categoryId: '2',
-    isFeatured: true,
-    description: 'Latest iPhone 14 Pro with advanced features and sleek design.',
-    brand: BrandModel(
-      id: '11',
-      image: CImages.appleLogo,
-      name: 'Apple',
-      productsCount: 150,
+    ProductModel(
+      id: '006',
+      title: 'iPhone 14 Pro',
+      stock: 25,
+      price: 999,
+      salePrice: 950,
+      thumbnail: CImages.iphone14_white,
+      productType: ProductType.variable.name,
+      sku: 'IPH2024',
+      categoryId: '2',
       isFeatured: true,
+      description:
+          'Latest iPhone 14 Pro with advanced features and sleek design.',
+      brand: BrandModel(
+        id: '5',
+        image: CImages.appleLogo,
+        name: 'Apple',
+        productsCount: 150,
+        isFeatured: true,
+      ),
+      images: [
+        CImages.iphone14_white,
+        CImages.iphone14_pro,
+        CImages.iphone13_pro,
+      ],
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Color',
+          values: ['Silver', 'Space Grey', 'Gold'],
+        ),
+        ProductAttributeModel(
+          name: 'Storage',
+          values: ['128GB', '256GB', '512GB'],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: '1',
+          stock: 10,
+          price: 999,
+          image: CImages.iphone14_pro,
+          attributeValues: {'Color': 'Silver', 'Storage': '128GB'},
+          description: 'iPhone 14 Pro - Silver - 128GB Storage.',
+        ),
+        ProductVariationModel(
+          id: '2',
+          stock: 8,
+          price: 1099,
+          image: CImages.iphone14_white,
+          attributeValues: {'Color': 'Space Grey', 'Storage': '256GB'},
+          description: 'iPhone 14 Pro - Space Grey - 256GB Storage.',
+        ),
+        ProductVariationModel(
+          id: '3',
+          stock: 7,
+          price: 1199,
+          image: CImages.iphone13_pro,
+          attributeValues: {'Color': 'Gold', 'Storage': '512GB'},
+          description: 'iPhone 14 Pro - Gold - 512GB Storage.',
+        ),
+      ],
     ),
-    images: [
-      CImages.iphone14_white,
-      CImages.iphone14_pro,
-      CImages.iphone13_pro,
-    ],
-    productAttributes: [
-      ProductAttributeModel(
-        name: 'Color',
-        values: ['Silver', 'Space Grey', 'Gold'],
-      ),
-      ProductAttributeModel(
-        name: 'Storage',
-        values: ['128GB', '256GB', '512GB'],
-      ),
-    ],
-    productVariations: [
-      ProductVariationModel(
-        id: '1',
-        stock: 10,
-        price: 999,
-        image: CImages.iphone14_pro,
-        attributeValues: {'Color': 'Silver', 'Storage': '128GB'},
-        description: 'iPhone 14 Pro - Silver - 128GB Storage.',
-      ),
-      ProductVariationModel(
-        id: '2',
-        stock: 8,
-        price: 1099,
-        image: CImages.iphone14_white,
-        attributeValues: {'Color': 'Space Grey', 'Storage': '256GB'},
-        description: 'iPhone 14 Pro - Space Grey - 256GB Storage.',
-      ),
-      ProductVariationModel(
-        id: '3',
-        stock: 7,
-        price: 1199,
-        image: CImages.iphone13_pro,
-        attributeValues: {'Color': 'Gold', 'Storage': '512GB'},
-        description: 'iPhone 14 Pro - Gold - 512GB Storage.',
-      ),
-    ],
-  ),
 
     ProductModel(
       id: '007',
@@ -842,7 +801,7 @@ static List<ProductModel> products = [
       isFeatured: false,
       description: 'Comfortable bedroom bed with modern design.',
       brand: BrandModel(
-        id: '7',
+        id: '9',
         image: CImages.ikeaLogo,
         name: 'Ikea',
         productsCount: 300,
@@ -895,7 +854,7 @@ static List<ProductModel> products = [
       isFeatured: true,
       description: 'Ergonomic office chair for comfortable seating.',
       brand: BrandModel(
-        id: '8',
+        id: '11',
         image: CImages.hermanMillerLogo,
         name: 'Herman Miller',
         productsCount: 100,
@@ -904,7 +863,6 @@ static List<ProductModel> products = [
       images: [
         CImages.office_chair_1,
         CImages.office_chair_2,
-       
       ],
       productAttributes: [
         ProductAttributeModel(
@@ -948,7 +906,7 @@ static List<ProductModel> products = [
       isFeatured: true,
       description: 'High-quality tennis racket for professional players.',
       brand: BrandModel(
-        id: '9',
+        id: '2',
         image: CImages.adidasLogo,
         name: 'Adidas',
         productsCount: 50,
@@ -991,7 +949,7 @@ static List<ProductModel> products = [
       isFeatured: false,
       description: 'Comfortable leather slippers for everyday use.',
       brand: BrandModel(
-        id: '10',
+        id: '1',
         image: CImages.nikeLogo,
         name: 'Nike',
         productsCount: 100,
@@ -1031,8 +989,8 @@ static List<ProductModel> products = [
         ),
       ],
     ),
- 
-   ProductModel(
+
+    ProductModel(
       id: '011',
       title: 'Modern Kitchen Counter',
       stock: 15,
@@ -1046,7 +1004,7 @@ static List<ProductModel> products = [
       description:
           'Stylish and durable kitchen counter, perfect for modern kitchens.',
       brand: BrandModel(
-        id: '13',
+        id: '9',
         image: CImages.ikeaLogo,
         name: 'Ikea',
         productsCount: 300,
@@ -1057,7 +1015,6 @@ static List<ProductModel> products = [
       ],
     ),
 
-    
     ProductModel(
       id: '012',
       title: 'Stainless Steel Refrigerator',
@@ -1072,7 +1029,7 @@ static List<ProductModel> products = [
       description:
           'High-capacity stainless steel refrigerator with energy-saving technology.',
       brand: BrandModel(
-        id: '14',
+        id: '8',
         image: CImages.kenwoodLogo,
         name: 'Kenwood',
         productsCount: 150,
@@ -1083,9 +1040,6 @@ static List<ProductModel> products = [
       ],
     ),
 
-
-  
-   
     ProductModel(
       id: '013',
       title: 'Adidas Football',
@@ -1099,7 +1053,7 @@ static List<ProductModel> products = [
       isFeatured: true,
       description: 'Official Adidas football for professional matches.',
       brand: BrandModel(
-        id: '15',
+        id: '2',
         image: CImages.adidasLogo,
         name: 'Adidas',
         productsCount: 250,
@@ -1109,8 +1063,7 @@ static List<ProductModel> products = [
         CImages.adidas_football,
       ],
     ),
- 
- 
+
     ProductModel(
       id: '014',
       title: 'Baseball Bat',
@@ -1124,7 +1077,7 @@ static List<ProductModel> products = [
       isFeatured: false,
       description: 'High-quality wooden baseball bat for professional play.',
       brand: BrandModel(
-        id: '16',
+        id: '2',
         image: CImages.adidasLogo,
         name: 'Adidas',
         productsCount: 120,
@@ -1134,7 +1087,6 @@ static List<ProductModel> products = [
         CImages.baseball_bat,
       ],
     ),
-
 
     // iPhone 12 Product
     ProductModel(
@@ -1151,7 +1103,7 @@ static List<ProductModel> products = [
       description:
           'iPhone 12 in black color with stunning display and camera quality.',
       brand: BrandModel(
-        id: '17',
+        id: '5',
         image: CImages.appleLogo,
         name: 'Apple',
         productsCount: 200,
@@ -1215,7 +1167,7 @@ static List<ProductModel> products = [
       description:
           'iPhone 13 Pro with enhanced performance and camera features.',
       brand: BrandModel(
-        id: '18',
+        id: '5',
         image: CImages.appleLogo,
         name: 'Apple',
         productsCount: 300,
@@ -1278,7 +1230,7 @@ static List<ProductModel> products = [
       isFeatured: false,
       description: 'Classic iPhone 8 with reliable performance and design.',
       brand: BrandModel(
-        id: '19',
+        id: '5',
         image: CImages.appleLogo,
         name: 'Apple',
         productsCount: 100,
@@ -1342,9 +1294,8 @@ static List<ProductModel> products = [
       isFeatured: true,
       description: 'Affordable iPhone SE with modern performance.',
       brand: BrandModel(
-        id: '20',
-        image: CImages
-            .appleLogo, // Assuming SE image is same as iPhone 8
+        id: '5',
+        image: CImages.appleLogo, // Assuming SE image is same as iPhone 8
         name: 'Apple',
         productsCount: 250,
         isFeatured: true,
@@ -1394,27 +1345,7 @@ static List<ProductModel> products = [
         ),
       ],
     ),
-
-  
-];
-
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  ];
 
 // List<ProductModel> products = [
 //     ProductModel(
@@ -1464,8 +1395,7 @@ static List<ProductModel> products = [
 //               'This is a product description for Green Nike sports shoe.',
 //           attributeValues: {'Color': 'Green', 'Size': 'EU 34'},
 //         ),
-      
-      
+
 //         // Other variations...
 //         ProductVariationModel(
 //           id: '2',
@@ -1506,7 +1436,6 @@ static List<ProductModel> products = [
 //           image: CImages.,
 //           attributeValues: {'Color': 'Red', 'Size': 'EU 32'},
 //         ),
-
 
 //       ],
 //     ),
@@ -1577,7 +1506,7 @@ static List<ProductModel> products = [
 //       ),
 //       images: [
 //         CImages.,
-      
+
 //       ],
 //       productAttributes: [
 //         ProductAttributeModel(
@@ -1589,9 +1518,9 @@ static List<ProductModel> products = [
 //           values: ['Blue', 'Black'],
 //         ),
 //       ],
-     
+
 //         // Other variations...
-    
+
 //     ),
 //     ProductModel(
 //       id: '004',
@@ -1839,12 +1768,11 @@ static List<ProductModel> products = [
 //           attributeValues: {'Flavor': 'Chicken', 'Size': '1kg'},
 //           description: 'TOMI Dog Food - Chicken Flavor, 1kg.',
 //         ),
-        
-     
+
 //       ],
 //     ),
 //     // Additional products would continue here, following the same pattern.
-      
+
 //       ProductModel(
 //       id: '008',
 //       title: 'Apple MacBook Pro 13"',
@@ -1901,7 +1829,7 @@ static List<ProductModel> products = [
 
 //       ],
 //     ),
-   
+
 //     ProductModel(
 //       id: '009',
 //       title: 'Adidas Running Shorts',
@@ -1954,12 +1882,10 @@ static List<ProductModel> products = [
 //           attributeValues: {'Color': 'Blue', 'Size': 'M'},
 //           description: 'Adidas Running Shorts - Medium Size, Blue.',
 //         ),
-         
-       
+
 //       ],
 //     ),
-   
-  
+
 //     ProductModel(
 //       id: '010',
 //       title: 'Nike Air Max 270',
@@ -2207,372 +2133,363 @@ static List<ProductModel> products = [
 //         ),
 //         // Other variations...
 //       ],
-    // ),
-    // ProductModel(
-    //   id: '021',
-    //   title: 'Samsung 55" QLED Smart TV',
-    //   stock: 8,
-    //   price: 1200,
-    //   salePrice: 1100,
-    //   thumbnail: CImages.productImage53,
-    //   productType: 'television',
-    //   sku: 'SMQ55',
-    //   categoryId: '21',
-    //   isFeatured: true,
-    //   description:
-    //       '4K UHD Smart TV with Quantum Dot technology and built-in Alexa.',
-    //   brand: BrandModel(
-    //     id: '15',
-    //     image: CImages.samsungLogo,
-    //     name: 'Samsung',
-    //     productsCount: 150,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage53,
-    //     CImages.productImage54,
-    //     CImages.productImage55,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Size',
-    //       values: ['55"', '65"'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 4,
-    //       price: 1100,
-    //       image: CImages.productImage53,
-    //       attributeValues: {'Size': '55"'},
-    //       description: 'Samsung 55" QLED Smart TV.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '022',
-    //   title: 'Herman Miller Aeron Chair',
-    //   stock: 5,
-    //   price: 1400,
-    //   salePrice: 1350,
-    //   thumbnail: CImages.productImage56,
-    //   productType: 'furniture',
-    //   sku: 'HMAERON',
-    //   categoryId: '22',
-    //   isFeatured: true,
-    //   description:
-    //       'Ergonomic office chair with adjustable lumbar support and breathable mesh.',
-    //   brand: BrandModel(
-    //     id: '19',
-    //     image: CImages.hermanmillerLogo,
-    //     name: 'Herman Miller',
-    //     productsCount: 30,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage56,
-    //     CImages.productImage57,
-    //     CImages.productImage58,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Size',
-    //       values: ['A', 'B', 'C'],
-    //     ),
-    //     ProductAttributeModel(
-    //       name: 'Color',
-    //       values: ['Graphite', 'Mineral'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 2,
-    //       price: 1350,
-    //       image: CImages.productImage56,
-    //       attributeValues: {'Size': 'B', 'Color': 'Graphite'},
-    //       description: 'Herman Miller Aeron Chair - Size B, Graphite.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '023',
-    //   title: 'Nintendo Switch',
-    //   stock: 25,
-    //   price: 300,
-    //   salePrice: 280,
-    //   thumbnail: CImages.productImage59,
-    //   productType: 'gaming',
-    //   sku: 'NINSWITCH',
-    //   categoryId: '23',
-    //   isFeatured: true,
-    //   description:
-    //       'Versatile gaming console with detachable Joy-Con controllers and a 6.2" display.',
-    //   brand: BrandModel(
-    //     id: '20',
-    //     image: CImages.nintendoLogo,
-    //     name: 'Nintendo',
-    //     productsCount: 70,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage59,
-    //     CImages.productImage60,
-    //     CImages.productImage61,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Color',
-    //       values: ['Neon Red/Blue', 'Gray'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 12,
-    //       price: 280,
-    //       image: CImages.productImage59,
-    //       attributeValues: {'Color': 'Neon Red/Blue'},
-    //       description: 'Nintendo Switch - Neon Red/Blue.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '024',
-    //   title: 'Logitech MX Master 3 Mouse',
-    //   stock: 20,
-    //   price: 100,
-    //   salePrice: 90,
-    //   thumbnail: CImages.productImage62,
-    //   productType: 'accessories',
-    //   sku: 'LGMX3',
-    //   categoryId: '24',
-    //   isFeatured: true,
-    //   description:
-    //       'Advanced wireless mouse with ergonomic design and customizable buttons.',
-    //   brand: BrandModel(
-    //     id: '21',
-    //     image: CImages.logitechLogo,
-    //     name: 'Logitech',
-    //     productsCount: 90,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage62,
-    //     CImages.productImage63,
-    //     CImages.productImage64,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Color',
-    //       values: ['Graphite', 'Midnight Teal'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 10,
-    //       price: 90,
-    //       image: CImages.productImage62,
-    //       attributeValues: {'Color': 'Graphite'},
-    //       description: 'Logitech MX Master 3 Mouse - Graphite.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '025',
-    //   title: 'Dell UltraSharp 27" Monitor',
-    //   stock: 10,
-    //   price: 500,
-    //   salePrice: 480,
-    //   thumbnail: CImages.productImage65,
-    //   productType: 'electronics',
-    //   sku: 'DULTR27',
-    //   categoryId: '25',
-    //   isFeatured: true,
-    //   description:
-    //       '27-inch 4K UHD monitor with IPS panel and wide color gamut.',
-    //   brand: BrandModel(
-    //     id: '22',
-    //     image: CImages.dellLogo,
-    //     name: 'Dell',
-    //     productsCount: 95,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage65,
-    //     CImages.productImage66,
-    //     CImages.productImage67,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Resolution',
-    //       values: ['3840 x 2160'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 5,
-    //       price: 480,
-    //       image: CImages.productImage65,
-    //       attributeValues: {'Resolution': '3840 x 2160'},
-    //       description: 'Dell UltraSharp 27" Monitor - 4K UHD.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '026',
-    //   title: 'Samsung Galaxy Watch 4',
-    //   stock: 15,
-    //   price: 250,
-    //   salePrice: 230,
-    //   thumbnail: CImages.productImage68,
-    //   productType: 'wearable',
-    //   sku: 'SGWATCH4',
-    //   categoryId: '26',
-    //   isFeatured: true,
-    //   description:
-    //       'Smartwatch with fitness tracking, ECG, and body composition analysis.',
-    //   brand: BrandModel(
-    //     id: '15',
-    //     image: CImages.samsungLogo,
-    //     name: 'Samsung',
-    //     productsCount: 150,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage68,
-    //     CImages.productImage69,
-    //     CImages.productImage70,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Size',
-    //       values: ['40mm', '44mm'],
-    //     ),
-    //     ProductAttributeModel(
-    //       name: 'Color',
-    //       values: ['Black', 'Silver'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 6,
-    //       price: 230,
-    //       image: CImages.productImage68,
-    //       attributeValues: {'Size': '44mm', 'Color': 'Black'},
-    //       description: 'Samsung Galaxy Watch 4 - 44mm, Black.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '027',
-    //   title: 'Sonos One Smart Speaker',
-    //   stock: 20,
-    //   price: 200,
-    //   salePrice: 180,
-    //   thumbnail: CImages.productImage71,
-    //   productType: 'home audio',
-    //   sku: 'SNSONE',
-    //   categoryId: '27',
-    //   isFeatured: true,
-    //   description:
-    //       'Smart speaker with Alexa and Google Assistant integration, rich sound, and compact design.',
-    //   brand: BrandModel(
-    //     id: '23',
-    //     image: CImages.sonosLogo,
-    //     name: 'Sonos',
-    //     productsCount: 55,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage71,
-    //     CImages.productImage72,
-    //     CImages.productImage73,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Color',
-    //       values: ['Black', 'White'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 10,
-    //       price: 180,
-    //       image: CImages.productImage71,
-    //       attributeValues: {'Color': 'Black'},
-    //       description: 'Sonos One Smart Speaker - Black.',
-    //     ),
-    //     // Other variations...
-    //   ],
-    // ),
-    // ProductModel(
-    //   id: '028',
-    //   title: 'Microsoft Surface Laptop 4',
-    //   stock: 10,
-    //   price: 1000,
-    //   salePrice: 950,
-    //   thumbnail: CImages.productImage74,
-    //   productType: 'laptop',
-    //   sku: 'MSLPT4',
-    //   categoryId: '28',
-    //   isFeatured: true,
-    //   description:
-    //       'Lightweight laptop with 13.5-inch touchscreen, Intel Core i5, and 8GB RAM.',
-    //   brand: BrandModel(
-    //     id: '24',
-    //     image: CImages.microsoftLogo,
-    //     name: 'Microsoft',
-    //     productsCount: 85,
-    //     isFeatured: true,
-    //   ),
-    //   images: [
-    //     CImages.productImage74,
-    //     CImages.productImage75,
-    //     CImages.productImage76,
-    //   ],
-    //   productAttributes: [
-    //     ProductAttributeModel(
-    //       name: 'Storage',
-    //       values: ['256GB', '512GB'],
-    //     ),
-    //     ProductAttributeModel(
-    //       name: 'Color',
-    //       values: ['Platinum', 'Matte Black'],
-    //     ),
-    //   ],
-    //   productVariations: [
-    //     ProductVariationModel(
-    //       id: '1',
-    //       stock: 4,
-    //       price: 950,
-    //       image: CImages.productImage74,
-    //       attributeValues: {'Storage': '256GB', 'Color': 'Platinum'},
-    //       description: 'Microsoft Surface Laptop 4 - 256GB, Platinum.',
-    //     ),
-    //     // Other variations...
-    //   ],
-   // ), 
-       
- //];
+  // ),
+  // ProductModel(
+  //   id: '021',
+  //   title: 'Samsung 55" QLED Smart TV',
+  //   stock: 8,
+  //   price: 1200,
+  //   salePrice: 1100,
+  //   thumbnail: CImages.productImage53,
+  //   productType: 'television',
+  //   sku: 'SMQ55',
+  //   categoryId: '21',
+  //   isFeatured: true,
+  //   description:
+  //       '4K UHD Smart TV with Quantum Dot technology and built-in Alexa.',
+  //   brand: BrandModel(
+  //     id: '15',
+  //     image: CImages.samsungLogo,
+  //     name: 'Samsung',
+  //     productsCount: 150,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage53,
+  //     CImages.productImage54,
+  //     CImages.productImage55,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Size',
+  //       values: ['55"', '65"'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 4,
+  //       price: 1100,
+  //       image: CImages.productImage53,
+  //       attributeValues: {'Size': '55"'},
+  //       description: 'Samsung 55" QLED Smart TV.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '022',
+  //   title: 'Herman Miller Aeron Chair',
+  //   stock: 5,
+  //   price: 1400,
+  //   salePrice: 1350,
+  //   thumbnail: CImages.productImage56,
+  //   productType: 'furniture',
+  //   sku: 'HMAERON',
+  //   categoryId: '22',
+  //   isFeatured: true,
+  //   description:
+  //       'Ergonomic office chair with adjustable lumbar support and breathable mesh.',
+  //   brand: BrandModel(
+  //     id: '19',
+  //     image: CImages.hermanmillerLogo,
+  //     name: 'Herman Miller',
+  //     productsCount: 30,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage56,
+  //     CImages.productImage57,
+  //     CImages.productImage58,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Size',
+  //       values: ['A', 'B', 'C'],
+  //     ),
+  //     ProductAttributeModel(
+  //       name: 'Color',
+  //       values: ['Graphite', 'Mineral'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 2,
+  //       price: 1350,
+  //       image: CImages.productImage56,
+  //       attributeValues: {'Size': 'B', 'Color': 'Graphite'},
+  //       description: 'Herman Miller Aeron Chair - Size B, Graphite.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '023',
+  //   title: 'Nintendo Switch',
+  //   stock: 25,
+  //   price: 300,
+  //   salePrice: 280,
+  //   thumbnail: CImages.productImage59,
+  //   productType: 'gaming',
+  //   sku: 'NINSWITCH',
+  //   categoryId: '23',
+  //   isFeatured: true,
+  //   description:
+  //       'Versatile gaming console with detachable Joy-Con controllers and a 6.2" display.',
+  //   brand: BrandModel(
+  //     id: '20',
+  //     image: CImages.nintendoLogo,
+  //     name: 'Nintendo',
+  //     productsCount: 70,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage59,
+  //     CImages.productImage60,
+  //     CImages.productImage61,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Color',
+  //       values: ['Neon Red/Blue', 'Gray'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 12,
+  //       price: 280,
+  //       image: CImages.productImage59,
+  //       attributeValues: {'Color': 'Neon Red/Blue'},
+  //       description: 'Nintendo Switch - Neon Red/Blue.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '024',
+  //   title: 'Logitech MX Master 3 Mouse',
+  //   stock: 20,
+  //   price: 100,
+  //   salePrice: 90,
+  //   thumbnail: CImages.productImage62,
+  //   productType: 'accessories',
+  //   sku: 'LGMX3',
+  //   categoryId: '24',
+  //   isFeatured: true,
+  //   description:
+  //       'Advanced wireless mouse with ergonomic design and customizable buttons.',
+  //   brand: BrandModel(
+  //     id: '21',
+  //     image: CImages.logitechLogo,
+  //     name: 'Logitech',
+  //     productsCount: 90,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage62,
+  //     CImages.productImage63,
+  //     CImages.productImage64,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Color',
+  //       values: ['Graphite', 'Midnight Teal'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 10,
+  //       price: 90,
+  //       image: CImages.productImage62,
+  //       attributeValues: {'Color': 'Graphite'},
+  //       description: 'Logitech MX Master 3 Mouse - Graphite.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '025',
+  //   title: 'Dell UltraSharp 27" Monitor',
+  //   stock: 10,
+  //   price: 500,
+  //   salePrice: 480,
+  //   thumbnail: CImages.productImage65,
+  //   productType: 'electronics',
+  //   sku: 'DULTR27',
+  //   categoryId: '25',
+  //   isFeatured: true,
+  //   description:
+  //       '27-inch 4K UHD monitor with IPS panel and wide color gamut.',
+  //   brand: BrandModel(
+  //     id: '22',
+  //     image: CImages.dellLogo,
+  //     name: 'Dell',
+  //     productsCount: 95,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage65,
+  //     CImages.productImage66,
+  //     CImages.productImage67,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Resolution',
+  //       values: ['3840 x 2160'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 5,
+  //       price: 480,
+  //       image: CImages.productImage65,
+  //       attributeValues: {'Resolution': '3840 x 2160'},
+  //       description: 'Dell UltraSharp 27" Monitor - 4K UHD.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '026',
+  //   title: 'Samsung Galaxy Watch 4',
+  //   stock: 15,
+  //   price: 250,
+  //   salePrice: 230,
+  //   thumbnail: CImages.productImage68,
+  //   productType: 'wearable',
+  //   sku: 'SGWATCH4',
+  //   categoryId: '26',
+  //   isFeatured: true,
+  //   description:
+  //       'Smartwatch with fitness tracking, ECG, and body composition analysis.',
+  //   brand: BrandModel(
+  //     id: '15',
+  //     image: CImages.samsungLogo,
+  //     name: 'Samsung',
+  //     productsCount: 150,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage68,
+  //     CImages.productImage69,
+  //     CImages.productImage70,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Size',
+  //       values: ['40mm', '44mm'],
+  //     ),
+  //     ProductAttributeModel(
+  //       name: 'Color',
+  //       values: ['Black', 'Silver'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 6,
+  //       price: 230,
+  //       image: CImages.productImage68,
+  //       attributeValues: {'Size': '44mm', 'Color': 'Black'},
+  //       description: 'Samsung Galaxy Watch 4 - 44mm, Black.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '027',
+  //   title: 'Sonos One Smart Speaker',
+  //   stock: 20,
+  //   price: 200,
+  //   salePrice: 180,
+  //   thumbnail: CImages.productImage71,
+  //   productType: 'home audio',
+  //   sku: 'SNSONE',
+  //   categoryId: '27',
+  //   isFeatured: true,
+  //   description:
+  //       'Smart speaker with Alexa and Google Assistant integration, rich sound, and compact design.',
+  //   brand: BrandModel(
+  //     id: '23',
+  //     image: CImages.sonosLogo,
+  //     name: 'Sonos',
+  //     productsCount: 55,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage71,
+  //     CImages.productImage72,
+  //     CImages.productImage73,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Color',
+  //       values: ['Black', 'White'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 10,
+  //       price: 180,
+  //       image: CImages.productImage71,
+  //       attributeValues: {'Color': 'Black'},
+  //       description: 'Sonos One Smart Speaker - Black.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
+  // ProductModel(
+  //   id: '028',
+  //   title: 'Microsoft Surface Laptop 4',
+  //   stock: 10,
+  //   price: 1000,
+  //   salePrice: 950,
+  //   thumbnail: CImages.productImage74,
+  //   productType: 'laptop',
+  //   sku: 'MSLPT4',
+  //   categoryId: '28',
+  //   isFeatured: true,
+  //   description:
+  //       'Lightweight laptop with 13.5-inch touchscreen, Intel Core i5, and 8GB RAM.',
+  //   brand: BrandModel(
+  //     id: '24',
+  //     image: CImages.microsoftLogo,
+  //     name: 'Microsoft',
+  //     productsCount: 85,
+  //     isFeatured: true,
+  //   ),
+  //   images: [
+  //     CImages.productImage74,
+  //     CImages.productImage75,
+  //     CImages.productImage76,
+  //   ],
+  //   productAttributes: [
+  //     ProductAttributeModel(
+  //       name: 'Storage',
+  //       values: ['256GB', '512GB'],
+  //     ),
+  //     ProductAttributeModel(
+  //       name: 'Color',
+  //       values: ['Platinum', 'Matte Black'],
+  //     ),
+  //   ],
+  //   productVariations: [
+  //     ProductVariationModel(
+  //       id: '1',
+  //       stock: 4,
+  //       price: 950,
+  //       image: CImages.productImage74,
+  //       attributeValues: {'Storage': '256GB', 'Color': 'Platinum'},
+  //       description: 'Microsoft Surface Laptop 4 - 256GB, Platinum.',
+  //     ),
+  //     // Other variations...
+  //   ],
+  // ),
 
-
-
-
-
-
-
-
-
+  //];
 }

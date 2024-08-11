@@ -3,7 +3,7 @@ import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/utils/constants/sizes.dart';
 
-import '../../controllers/product_controller.dart';
+import '../../controllers/product/product_controller.dart';
 import 'widgets/wishlist_app_bar.dart';
 
 class WishlistScreen extends StatelessWidget {

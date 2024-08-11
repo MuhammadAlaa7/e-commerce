@@ -8,6 +8,7 @@ import 'package:store/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/common/widgets/texts/product_title.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/common/widgets/texts/product_price_text.dart';
+import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/enums.dart';
@@ -23,7 +24,7 @@ class HorizontalProductCard extends StatelessWidget {
     final isDark = CHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        CHelperFunctions.goTo(context, const ProductDetailsScreen());
+        CHelperFunctions.goTo(context,  ProductDetailsScreen( product: ProductModel.empty(),));
       },
       child: Container(
         width: 320,

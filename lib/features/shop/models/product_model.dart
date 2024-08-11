@@ -9,9 +9,9 @@ class ProductModel {
   int stock;
   String? sku;
   double price;
+  double salePrice;
   String title;
   DateTime? date;
-  double salePrice;
   String thumbnail;
   bool? isFeatured;
   BrandModel brand;
@@ -71,10 +71,11 @@ class ProductModel {
       'price': price,
       'thumbnail': thumbnail,
       'productType': productType,
-      'sku': sku,
+      'sku': sku ?? '',
       'brand': brand.toJson(),
+      'brandId': brand.id ,
       'date': date ?? DateTime.now(),
-      'salePrice': salePrice,
+      'salePrice': salePrice   ,
       'isFeatured': isFeatured,
       'description': description,
       'categoryId': categoryId,
@@ -98,13 +99,13 @@ class ProductModel {
     return ProductModel(
       id: document.id,
       title: data['title'],
-      stock: data['stock'] ?? 0,
-      thumbnail: data['thumbnail'] ?? '',
-      date: data['date'],
-      sku: data['sku'],
+      stock: data['stock'] ,
+      thumbnail: data['thumbnail'] ,
+      date: data['date'] ?? DateTime.now(),
+      sku: data['sku'] ?? '',
       isFeatured: data['isFeatured'] ?? false,
-      description: data['description'] ?? '',
-      productType: data['productType'] ?? '',
+      description: data['description'],
+      productType: data['productType'] ,
       categoryId: data['categoryId'] ?? '',
       brand: BrandModel.fromJson(data['brand']),
       images: data['images'] != null ? List<String>.from(data['images']) : [],
@@ -116,7 +117,7 @@ class ProductModel {
           ? List<ProductVariationModel>.from(data['productVariations']
               .map((e) => ProductVariationModel.fromJson(e)))
           : [],
-      price: double.parse((data['price'] ?? 0.0).toString()), 
+      price: double.parse(data['price'].toString()), 
       salePrice: data['salePrice'] ?? 0.0,
     );
   }

@@ -13,9 +13,9 @@ class ProductVariationModel {
     this.sku = '',
     this.image = '',
     this.description = '',
-    this.price = 8.0,
+    this.price = 0.0,
     this.salePrice = 0.0,
-    this.stock = 8,
+    this.stock = 0,
     required this.attributeValues,
   });
 

@@ -24,16 +24,25 @@ class CustomFirebaseStorageService extends GetxController {
 // * -------------------- Upload all banners , store their images first in the storage and then create banner document in firestore ------------------- *
   Future<void> uploadBannersWithImages(List<BannerModel> banners) async {
     for (final banner in banners) {
-      // Upload image to Firebase Storage
+      // Upload image to Firebase
+
+      // * Load the image data from the assets
       final imageData = await rootBundle.load(banner.imageUrl);
+      //* Convert the loaded image data into a byte array (Uint8List) for uploading
+      // * because this is the format that Firebase Storage expects for storing images
       final bytes = imageData.buffer.asUint8List();
+      //* Create a reference to Firebase Storage, specifying the path where the image will be stored
+      //* The image is stored in the 'banner_images' folder with its original filename
       final storageRef = firebaseStorage
           .ref('banner_images/${banner.imageUrl.split('/').last}');
+      // Upload the image bytes to the reference in Firebase Storage
       final uploadTask = await storageRef.putData(bytes);
+      //Once the upload is complete, retrieve the download URL for the uploaded image
       final imageUrl = await uploadTask.ref.getDownloadURL();
 
-      // Create banner document in Firestore
+      // Create banner document in Firestore database
       final bannerRef = _firestore.collection('Banners').doc();
+      // add a new document with the banner data in the collection
       await bannerRef.set({
         'imageUrl': imageUrl,
         'targetScreen': banner.targetScreen,
@@ -46,7 +55,6 @@ class CustomFirebaseStorageService extends GetxController {
 
   Future<void> uploadBrandsWithImages(List<BrandModel> brands) async {
     for (final brand in brands) {
-      
       // Upload image to Firebase Storage
       final imageData = await rootBundle.load(brand.image);
       final bytes = imageData.buffer.asUint8List();
@@ -65,9 +73,10 @@ class CustomFirebaseStorageService extends GetxController {
     }
   }
 
-// * -------------------- Upload all brand category models relationship , store their images first in the storage and then create banner document in firestore ------------------- *
- Future<void> 
- uploadBrandCategories(List<BrandCategoryModel> brandCategories) async {
+// * ------------ Upload all brand category models relationship , without images to be added in storage  ------------------- *
+// ? this is used when you want to make a collection of a list at once time
+  Future<void> uploadBrandCategories(
+      List<BrandCategoryModel> brandCategories) async {
     final batch = _firestore.batch();
 
     for (final brandCategory in brandCategories) {
@@ -79,64 +88,24 @@ class CustomFirebaseStorageService extends GetxController {
   }
 
 // * -------------------- Upload all brand product category models relationship , store their images first in the storage and then create banner document in firestore ------------------- *
- Future<void> 
- uploadProductCategories(List<ProductCategoryModel> productCategories) async {
+  Future<void> uploadProductCategories(
+      List<ProductCategoryModel> productCategories) async {
     final batch = _firestore.batch();
 
     for (final productCategory in productCategories) {
-      final productCategoryRef = _firestore.collection('ProductCategories').doc();
+      final productCategoryRef =
+          _firestore.collection('ProductCategories').doc();
       batch.set(productCategoryRef, productCategory.toJson());
     }
 
     await batch.commit();
   }
 
-
-
-/// * upload products with their images to firebase 
-
-//   Future<void> 
-//  uploadProductsWithTheirImages(List<ProductModel> products) async {
-//     for (final product in products) {
-//       // Upload product images to Firebase Storage
-//       List<String> imageUrls = [];
-
-//         final imageData = await rootBundle.load(product.thumbnail);
-//         final bytes = imageData.buffer.asUint8List();
-//         final storageRef = firebaseStorage.ref('product_images/${product.id}/${product.thumbnail.split('/').last}');
-//         final uploadTask = await storageRef.putData(bytes);
-//         final imageUrl = await uploadTask.ref.getDownloadURL();
-//         imageUrls.add(imageUrl);
-      
-
-//       // Create product document in Firestore
-//       final productRef = _firestore.collection('Products').doc(product.id);
-//       await productRef.set({
-//         'title': product.title,
-//         'stock': product.stock,
-//         'price': product.price,
-//         'isFeatured': product.isFeatured,
-//         'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
-//         'description': product.description,
-//         'brand': product.brand.toJson(), // Assuming BrandModel has a toJson() method
-//         'images': imageUrls,
-//         'salePrice': product.salePrice,
-//         'sku': product.sku,
-//         'categoryId': product.categoryId,
-//         'productAttributes': product.productAttributes,
-//         'productVariations': product.productVariations?.map((variation) => variation.toJson()).toList(), // Assuming ProductVariationModel has a toJson() method
-//         'productType': product.productType,
-//       });
-//     }
-//   }
-
-
-  Future<void> 
- removeFieldFromProducts(List<ProductModel> products) async {
+  Future<void> removeFieldFromProducts(List<ProductModel> products) async {
     for (final product in products) {
       try {
         await _firestore.collection('Products').doc(product.id).update({
-         'single': FieldValue.delete(),
+          'single': FieldValue.delete(),
         });
         print('Field removed from product ${product.id} successfully');
       } catch (e) {
@@ -147,12 +116,13 @@ class CustomFirebaseStorageService extends GetxController {
 
 // * update products fields in firebase
 
-  Future<void> 
- updateProducts(List<ProductModel> products, ) async {
+  Future<void> updateProducts(
+    List<ProductModel> products,
+  ) async {
     for (final product in products) {
       try {
         await _firestore.collection('Products').doc(product.id).update({
-          'productType' : product.productType,
+          'productType': product.productType,
         });
         print('Product ${product.id} updated successfully');
       } catch (e) {
@@ -161,25 +131,110 @@ class CustomFirebaseStorageService extends GetxController {
     }
   }
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+  // Future<void> uploadProductsWithImages(List<ProductModel> products) async {
+  //   for (final product in products) {
+  //     log('Uploading product: ${product.id}');
+  //     // Create product document in Firestore (without images)
+  //     final productRef = _firestore.collection('Prod').doc(product.id);
 
-  Future<void> 
- uploadProductsWithImages(List<ProductModel> products) async {
+  //     // Upload product images to Firebase Storage and update Firestore
+  //     List<String> imageUrls = [];
+  //     for (final imagePath in product.images!) {
+  //       final imageData = await rootBundle.load(imagePath);
+  //       final bytes = imageData.buffer.asUint8List();
+  //       final storageRef =
+  //           firebaseStorage.ref('p/${product.id}/${imagePath.split('/').last}');
+  //       final uploadTask = await storageRef.putData(bytes);
+  //       final imageUrl = await uploadTask.ref.getDownloadURL();
+  //       imageUrls.add(imageUrl);
+  //     }
+
+  //     // Update product data in Firestore
+  //     // await productRef.set(product.toJson());
+  //     await productRef.set({
+  //       'title': product.title,
+  //       'stock': product.stock,
+  //       'price': product.price,
+  //       'isFeatured': product.isFeatured,
+  //       'description': product.description,
+  //       // get the brand brand model from firebase collection
+  //       'brand':
+  //           await (_firestore.collection('Brands').doc(product.brand.id).get())
+  //               .then(
+  //         (value) {
+  //           return value.data() ;
+  //         },
+  //       ),
+  //       'images': imageUrls,
+  //       'salePrice': product.salePrice,
+  //       'sku': product.sku,
+  //       'categoryId': product.categoryId,
+  //       'productAttributes': product.productAttributes
+  //               ?.map((attribute) => attribute.toJson())
+  //               .toList() ??
+  //           [],
+  //       'productVariations': product.productVariations
+  //               ?.map((variation) => variation.toJson())
+  //               .toList() ??
+  //           [], // Assuming ProductVariationModel has a toJson() method
+  //       'productType': product.productType,
+  //       'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
+  //       'brandId': product.brand.id,
+  //       'date': product.date,
+  //     });
+  //   }
+  // }
+
+  Future<void> uploadProductsWithImages(List<ProductModel> products) async {
     for (final product in products) {
       log('Uploading product: ${product.id}');
       // Create product document in Firestore (without images)
-      final productRef = _firestore.collection('Products').doc(product.id);
+      final productRef = _firestore.collection('MyProducts').doc(product.id);
 
       // Upload product images to Firebase Storage and update Firestore
       List<String> imageUrls = [];
       for (final imagePath in product.images!) {
         final imageData = await rootBundle.load(imagePath);
         final bytes = imageData.buffer.asUint8List();
-        final storageRef = firebaseStorage.ref('product_images/${product.id}/${imagePath.split('/').last}');
+        final storageRef = firebaseStorage
+            .ref('my_products/${product.id}/${imagePath.split('/').last}');
         final uploadTask = await storageRef.putData(bytes);
         final imageUrl = await uploadTask.ref.getDownloadURL();
         imageUrls.add(imageUrl);
       }
+
+      // Process and upload images for product variations
+      List<Map<String, dynamic>> productVariationsData = [];
+      if(product.productVariations != null) {
+         for (final variation in product.productVariations!) {
+          log('Uploading product variation: ${variation.id}');
+          String? variationImageUrl;
+
+          if (variation.image.isNotEmpty) {
+            final imageData = await rootBundle.load(variation.image);
+            final bytes = imageData.buffer.asUint8List();
+            final storageRef = firebaseStorage.ref(
+                'my_products/${product.id}/variations/${variation.id}/${variation.image.split('/').last}');
+            final uploadTask = await storageRef.putData(bytes);
+            variationImageUrl = await uploadTask.ref.getDownloadURL();
+          }
+
+          // Update the variation data with the image URL
+          productVariationsData.add({
+            'id': variation.id,
+            'sku': variation.sku,
+            'image': variationImageUrl ?? '',
+            'description': variation.description,
+            'price': variation.price,
+            'salePrice': variation.salePrice,
+            'stock': variation.stock,
+            'attributeValues': variation.attributeValues,
+          });
+        }
+      }
+     
 
       // Update product data in Firestore
       await productRef.set({
@@ -188,23 +243,34 @@ class CustomFirebaseStorageService extends GetxController {
         'price': product.price,
         'isFeatured': product.isFeatured,
         'description': product.description,
-        'brand': product.brand.toJson(), // Assuming BrandModel has a toJson() method
+        // get the brand brand model from firebase collection
+        'brand':
+            await (_firestore.collection('Brands').doc(product.brand.id).get())
+                .then(
+          (value) {
+            return value.data();
+          },
+        ),
         'images': imageUrls,
         'salePrice': product.salePrice,
         'sku': product.sku,
         'categoryId': product.categoryId,
-        'productAttributes': product.productAttributes?.map((attribute) => attribute.toJson()).toList() ?? [],
-        'productVariations': product.productVariations?.map((variation) => variation.toJson()).toList() ?? [], // Assuming ProductVariationModel has a toJson() method
+        'productAttributes': product.productAttributes
+                ?.map((attribute) => attribute.toJson())
+                .toList() ??
+            [],
+        'productVariations': productVariationsData,
+        // Assuming ProductVariationModel has a toJson() method
         'productType': product.productType,
         'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
         'brandId': product.brand.id,
         'date': product.date,
-        
       });
     }
   }
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  
+// * ------------------ Upload all category models with their images ------------------- *
   Future<void> uploadCategoriesWithImages(
       List<CategoryModel> categories) async {
     for (final category in categories) {
@@ -224,94 +290,5 @@ class CustomFirebaseStorageService extends GetxController {
         'parentId': category.parentId,
       });
     }
-  }
-
-  Future<void> uploadBanners(List<BannerModel> banners) async {
-    final batch = _firestore.batch(); // Use batch for efficient writes
-
-    for (final banner in banners) {
-      final bannerRef = _firestore.collection('Banners').doc();
-      batch.set(bannerRef, banner.toJson()); // Convert model to a map
-    }
-
-    await batch.commit();
-  }
-
-// upload local assets from IDE
-// returns a Uint8List containing image data
-  Future<Uint8List> getImageDataFromAssets(String path) async {
-    try {
-      final byteData = await rootBundle.load(path);
-      final imageData = byteData.buffer
-          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
-      return imageData;
-    } catch (e) {
-      throw 'Error loading image data: $e';
-    }
-  }
-
-// Upload image using image data  on cloud firebase storage
-// returns the download url of the uploaded image
-  Future<String> uploadImageData(
-      String path, Uint8List image, String name) async {
-    try {
-      final ref = firebaseStorage.ref(path).child(name);
-      await ref.putData(image);
-      final url = await ref.getDownloadURL();
-      return url;
-    } catch (e) {
-      // Handle exceptions gracefully
-      if (e is FirebaseException) {
-        throw 'Firebase Exception: ${e.message}';
-      } else if (e is SocketException) {
-        throw 'Network Error: ${e.message}';
-      } else if (e is PlatformException) {
-        throw 'Platform Exception: ${e.message}';
-      } else {
-        throw 'Something Went Wrong! Please try again.';
-      }
-    }
-  }
-
-  // upload image on cloud firebase storage
-  // returns the download url of the uploaded image
-  Future<String> uploadImageFile(String path, XFile image) async {
-    try {
-      final ref = firebaseStorage.ref(path).child(image.name);
-      await ref.putFile(File(image.path));
-      final url = await ref.getDownloadURL();
-      return url;
-    } catch (e) {
-      // Handle exceptions gracefully
-      if (e is FirebaseException) {
-        throw 'Firebase Exception: ${e.message}';
-      } else if (e is SocketException) {
-        throw 'Network Error: ${e.message}';
-      } else if (e is PlatformException) {
-        throw 'Platform Exception: ${e.message}';
-      } else {
-        throw 'Something Went Wrong! Please try again.';
-      }
-    }
-  }
-
-  Future<List<String>> uploadImageFileListFromAssets(
-      List<String> imagePaths, String storagePath) async {
-    List<String> downloadUrls = [];
-
-    for (String imagePath in imagePaths) {
-      try {
-        final byteData = await rootBundle.load(imagePath);
-        final imageData = byteData.buffer.asUint8List();
-        final downloadUrl = await uploadImageData(
-            storagePath, imageData, imagePath.split('/').last);
-        downloadUrls.add(downloadUrl);
-      } catch (e) {
-        // Handle exceptions gracefully
-        print('Error uploading image: $e');
-      }
-    }
-
-    return downloadUrls;
   }
 }

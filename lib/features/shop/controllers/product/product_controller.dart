@@ -5,7 +5,7 @@ import 'package:store/data/repos/product_repo.dart';
 import 'package:store/utils/constants/enums.dart';
 import 'package:store/utils/popups/loaders.dart';
 
-import '../models/product_model.dart';
+import '../../models/product_model.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();
@@ -16,14 +16,28 @@ class ProductController extends GetxController {
   RxList<ProductModel> featuredProducts = <ProductModel>[].obs;
   RxBool isLoading = false.obs;
 
+// product details
+  // Selected indices
+  var selectedColor = 'red'.obs; // default selected color
+  var selectedSize = 'EU 34'.obs; // default selected size
 
+  // List of available colors and sizes
+  final List<String> colors = ["green", "red", "black"];
+  final List<String> sizes = ["EU 34", "EU 36", "EU 37"];
+
+  void selectColor(String color) {
+    selectedColor.value = color;
+  }
+
+  void selectSize(String size) {
+    selectedSize.value = size;
+  }
 
   @override
   void onInit() {
     fetchFeaturedProducts();
     super.onInit();
   }
-
 
   /// fetch featured products
   Future<void> fetchFeaturedProducts() async {
@@ -37,10 +51,10 @@ class ProductController extends GetxController {
       // update featured products
       featuredProducts.assignAll(products);
       log('products fetched successfully');
-    //  update(featuredProducts);
+      //  update(featuredProducts);
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
-        log('error in fetching products');
+      log('error in fetching products');
     } finally {
       isLoading.value = false;
     }
@@ -105,15 +119,15 @@ As you continue to loop through the variations, the function checks each variati
 
 // calculate the sale percentage of a product
 
-  String? getSalePercentage(
+  String getSalePercentage(
     double originalPrice,
     double? salePrice,
   ) {
     if (salePrice == null || salePrice <= 0) {
-      return null;
+      return '0';
     }
     if (originalPrice <= 0) {
-      return null;
+      return '0';
     }
     double percentage = ((originalPrice - salePrice) / originalPrice) * 100;
     // the percentage will be rounded to the nearest whole number and no decimal places will be shown in the string.

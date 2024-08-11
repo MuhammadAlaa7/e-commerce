@@ -17,11 +17,11 @@ class BrandModel {
   static BrandModel empty() => BrandModel(id: '', image: '', name: '');
 
   /// Convert model to Json structure so that you can store data in Firebase
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({String? image}) {
     return {
       'id': id,
       'name': name,
-      'image': image,
+      'image': image ?? this.image,
       'productsCount': productsCount,
       'isFeatured': isFeatured,
     };
@@ -34,10 +34,10 @@ class BrandModel {
 
     return BrandModel(
       id: data['id'] ?? '',
-      name: data['name'] ?? '',
+      name: data['name']??'', 
       image: data['image'] ?? '',
       productsCount: data['productsCount'] ?? 0,
-      isFeatured: data['isFeatured'] ?? false,
+      isFeatured: data['isFeatured'] ?? false ,
     );
   }
 }

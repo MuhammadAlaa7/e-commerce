@@ -5,6 +5,7 @@ class CategoryModel {
    String name;
    String image;
    bool isFeatured;
+   // if the parent category is null or empty it means that the category is a super category not a sub category
    String parentId;
 
   CategoryModel({
@@ -40,10 +41,10 @@ class CategoryModel {
 
         return CategoryModel(
           id: document.id,
-          name: data['name'] ?? '',
-          image: data['image'] ?? '',
-          isFeatured: data['isFeatured'] ?? false,
-          parentId: data['parentId'] ?? '',
+          name: data['name'] ,
+          image: data['image'] ,
+          isFeatured: data['isFeatured'] ,
+          parentId: data['parentId'] ,
         );
 
       } else {

@@ -30,13 +30,13 @@ class AppAccountSection extends StatelessWidget {
           onTap: () {
             //   controller.uploadImagesToFireStore();
             // DummyData.uploadDummyData();
-            //  controller.uploadListBannersToFireStore();
+            
          //   controller.uploadBannerWithImages();
             // controller.uploadCategoriesWithImages();
-            // controller.uploadBrandsWithImages();
+         //  controller.uploadBrandsWithImages();
             // controller.uploadBrandCategory();
             // controller.uploadProductCategory();
-            // controller.uploadProductsWithTheirImages();
+             controller.uploadProductsWithTheirImages();
             // controller.updateProductsFields();
            // controller.deleteField();
 
