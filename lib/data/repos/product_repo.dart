@@ -31,16 +31,40 @@ class ProductRepository extends GetxController {
         }
       }).toList();
 
-     
       return products;
     } on FirebaseException catch (e) {
-     
       throw CustomFirebaseException(e.code).message;
     } on PlatformException catch (e) {
-     
       throw CustomPlatformException(e.code).message;
     } catch (e) {
-     
+      throw 'Something went wrong, please try again later!';
+    }
+  }
+
+  Future<List<ProductModel>> getProductByQuery(Query? query) async {
+    try {
+      if (query == null) {
+        return [];
+      }
+      // Get featured documents from the collection <products>
+      final querySnapshot = await query.get();
+
+      final products = querySnapshot.docs.map((queryDocumentSnapshot) {
+        try {
+          return ProductModel.fromQuerySnapshot(queryDocumentSnapshot);
+        } catch (e) {
+          log('Error mapping document to ProductModel: ${queryDocumentSnapshot.id}, Error: $e');
+          // You could throw the error or return a default empty ProductModel
+          throw e; // or return ProductModel.empty();
+        }
+      }).toList();
+
+      return products;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
       throw 'Something went wrong, please try again later!';
     }
   }

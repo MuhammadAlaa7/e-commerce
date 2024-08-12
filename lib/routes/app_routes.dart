@@ -20,7 +20,7 @@ class AppRoutes{
         GetPage(name: Routes.forgetPassword, page: ()=>const ForgetPasswordScreen() ),
         GetPage(name: Routes.userProfile, page: ()=>const ProfileScreen() ),
         GetPage(name: Routes.productReview, page: ()=>const ProductReviewScreen() ),
-        GetPage(name: Routes.allProducts, page: ()=>const AllProductsScreen() ),
+      //  GetPage(name: Routes.allProducts, page: ()=>const AllProductsScreen() ),
         GetPage(name: Routes.userAddress, page: ()=>const AddressesScreen() ),
         GetPage(name: Routes.wishlist, page: ()=>const WishlistScreen() ),
        

@@ -56,7 +56,9 @@ class ProductDetailsScreen extends StatelessWidget {
 
                   // * checkout and reviews
 
-                  const CheckoutAndReviews(),
+                  CheckoutAndReviews(
+                    product: product,
+                  ),
                 ],
               ),
             ),

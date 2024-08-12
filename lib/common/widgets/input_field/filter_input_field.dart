@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:store/features/shop/controllers/product/all_products_controller.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class FilterField extends StatelessWidget {
@@ -27,7 +28,10 @@ class FilterField extends StatelessWidget {
                 child: Text(option.toString()),
               ))
           .toList(),
-      onChanged: (value) {},
+      value: AllProductsController.instance.selectedSortOption.value,
+      onChanged: (value) {
+        AllProductsController.instance.sortProducts(value.toString());
+      },
     );
   }
 }

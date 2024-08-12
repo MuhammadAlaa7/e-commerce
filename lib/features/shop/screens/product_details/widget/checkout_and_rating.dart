@@ -3,12 +3,18 @@ import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/texts/read_more_text.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class CheckoutAndReviews extends StatelessWidget {
-  const CheckoutAndReviews({super.key});
+  const CheckoutAndReviews({
+    super.key,
+    required this.product,
+  });
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +37,8 @@ class CheckoutAndReviews extends StatelessWidget {
         const SizedBox(
           height: CSizes.spaceBetweenItems,
         ),
-        const CustomReadMoreText(
-          text:
-              'this is the description of the product it can be up to 4 lines this is the description of the product it can be up to 4 lines',
+        CustomReadMoreText(
+          text: product.description ?? '',
         ),
         const Divider(),
         const SizedBox(

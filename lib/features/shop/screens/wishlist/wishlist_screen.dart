@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/common/widgets/loaders/verticatl_product_shimmer.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/utils/constants/sizes.dart';
 
@@ -11,17 +13,28 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        final controller = ProductController.instance;
+
     return Scaffold(
       appBar: const WishlistAppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(CSizes.sm),
-          child: CustomGridView(
-            itemCount: 8,
-            itemBuilder: (_, index) {
-              return  VerticalProductCard(
-                product: ProductController().featuredProducts[index],
-              );
+          child:    Obx(
+            () {
+              if (controller.isLoading.value == true) {
+                return const VerticalProductShimmer();
+              }
+              if (controller.featuredProducts.isEmpty == true) {
+                return const Text('No Products Found');
+              } else {
+                return CustomGridView(
+                  itemCount: 4,
+                  itemBuilder: (_, index) => VerticalProductCard(
+                    product: controller.featuredProducts[index],
+                  ),
+                );
+              }
             },
           ),
         ),

@@ -50,8 +50,8 @@ class ProductController extends GetxController {
 
       // update featured products
       featuredProducts.assignAll(products);
+
       log('products fetched successfully');
-      //  update(featuredProducts);
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
       log('error in fetching products');

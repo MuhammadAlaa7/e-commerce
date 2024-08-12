@@ -33,7 +33,7 @@ class BrandProductsScreen extends StatelessWidget {
               ),
 
               // * -- Brand Products
-              SortableProducts(),
+            //  SortableProducts(),
             ],
           ),
         ),
