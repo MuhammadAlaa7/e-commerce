@@ -71,15 +71,9 @@ class ProductRepository extends GetxController {
     }
   }
 
-
-
-
-
 //* get brand specific products by brand id
   Future<List<ProductModel>> getBrandProductsById(String brandId) async {
     try {
-     
-
       final snapshot = await db
           .collection('MyProducts')
           .where('brandId', isEqualTo: brandId)
@@ -88,10 +82,9 @@ class ProductRepository extends GetxController {
         final products = snapshot.docs.map((document) {
           return ProductModel.fromSnapshot(document);
         }).toList();
-      
+
         return products;
       } catch (e) {
-       
         rethrow;
       }
     } on FirebaseException catch (e) {
@@ -103,6 +96,32 @@ class ProductRepository extends GetxController {
     }
   }
 
+// * get products by category id
+  Future<List<ProductModel>> getProductsForCategory(
+      {required String categoryId, int limit = 4}) async {
+    try {
+      // limit -1 means there is no limit , so get all the products
+      final snapshot = limit == -1
+          ? await db
+              .collection('MyProducts')
+              .where('categoryId', isEqualTo: categoryId)
+              .get()
+          : await db
+              .collection('MyProducts')
+              .where('categoryId', isEqualTo: categoryId)
+              .limit(limit)
+              .get();
 
-
+      final products = snapshot.docs
+          .map((document) => ProductModel.fromSnapshot(document))
+          .toList();
+      return products;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong, please try again later!';
+    }
+  }
 }

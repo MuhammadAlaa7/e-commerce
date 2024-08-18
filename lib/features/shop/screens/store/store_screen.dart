@@ -80,7 +80,7 @@ class StoreScreen extends StatelessWidget {
                             itemBuilder: (_, index) {
                               return FeaturedBrandCard(
                                 
-                                brandId: brandController .featuredBrands[index].id,
+                                    
                                 onTap: () {
                                   Get.toNamed(
                                     Routes.brandProducts,
@@ -114,7 +114,7 @@ class StoreScreen extends StatelessWidget {
           // * The View Of The Tab Bar Above
           body: TabBarView(
             children: featuredCategories
-                .map((category) => CategoryTap(categoryTap: category))
+                .map((category) => CategoryTap(category: category))
                 .toList(),
           ),
         ),

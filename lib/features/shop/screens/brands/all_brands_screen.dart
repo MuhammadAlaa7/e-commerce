@@ -60,7 +60,6 @@ class AllBrandsScreen extends StatelessWidget {
                             controller.allBrands[index].productsCount,
                         brandTitle: controller.allBrands[index].name,
                         brandImage: controller.allBrands[index].image,
-                        brandId: controller.allBrands[index].id,
                       ),
                     );
                   }

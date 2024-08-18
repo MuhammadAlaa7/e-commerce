@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:store/data/repos/category_repo.dart';
+import 'package:store/data/repos/product_repo.dart';
 import 'package:store/features/shop/models/category_model.dart';
+import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/utils/popups/loaders.dart';
 
 class CategoryController extends GetxController {
@@ -47,4 +49,22 @@ class CategoryController extends GetxController {
       isLoading.value = false;
     }
   }
+
+
+
+
+  // * fetch the products for a specific category
+  Future<List<ProductModel>> fetchProductsForCategory(String  categoryId   , {int limit = 4}) async {
+
+    try {
+              final products = await  ProductRepository.instance.getProductsForCategory(categoryId: categoryId , limit: limit);
+              return products;
+    } catch (e) {
+      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      return [];
+    }
+  }
+
+
+
 }

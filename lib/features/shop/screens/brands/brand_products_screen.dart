@@ -39,7 +39,6 @@ class BrandProductsScreen extends StatelessWidget {
                 brandImage: brand.image,
                 showBorder: true,
                 productsCount: brand.productsCount,
-                brandId: brand.id,
               ),
 
               const SizedBox(

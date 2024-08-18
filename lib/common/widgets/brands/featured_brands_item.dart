@@ -13,7 +13,6 @@ class FeaturedBrandCard extends StatelessWidget {
   const FeaturedBrandCard({
     super.key,
     required this.brandTitle,
-    required this.brandId,
     this.brandImage,
     this.showBorder = false,
     this.productsCount = 0,
@@ -21,7 +20,6 @@ class FeaturedBrandCard extends StatelessWidget {
   });
 
   final String brandTitle;
-  final String brandId;
   final String? brandImage;
   final bool showBorder;
   final int? productsCount;

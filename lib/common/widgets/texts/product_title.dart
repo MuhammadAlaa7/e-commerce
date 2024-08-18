@@ -15,19 +15,22 @@ class ProductTitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title,
-        style: textSize == TextSizes.small
-            ? Theme.of(context).textTheme.labelLarge!.apply(color: textColor)
-            : textSize == TextSizes.medium
-                ? Theme.of(context).textTheme.bodyLarge!.apply(color: textColor)
-                : textSize == TextSizes.large
-                    ? Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .apply(color: textColor)
-                    : Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .apply(color: textColor));
+    return Text(
+      title,
+      style: textSize == TextSizes.small
+          ? Theme.of(context).textTheme.labelLarge!.apply(color: textColor)
+          : textSize == TextSizes.medium
+              ? Theme.of(context).textTheme.bodyLarge!.apply(color: textColor)
+              : textSize == TextSizes.large
+                  ? Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .apply(color: textColor)
+                  : Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .apply(color: textColor),
+      overflow: TextOverflow.ellipsis,
+    );
   }
 }

@@ -13,6 +13,7 @@ class BrandController extends GetxController {
   final brandRepo = Get.put(BrandRepository());
   final productRepo = ProductRepository.instance; 
   RxList<BrandModel> featuredBrands = <BrandModel>[].obs;
+  RxList<BrandModel> categoryBrands = <BrandModel>[].obs;
   RxList<BrandModel> allBrands = <BrandModel>[].obs;
   RxList<ProductModel> brandProducts = <ProductModel>[].obs;
 
@@ -68,12 +69,28 @@ class BrandController extends GetxController {
     try {
 
       final products = await productRepo.getBrandProductsById(brandId);
-      brandProducts.assignAll(products);
+      // brandProducts.assignAll(products);
       return products;
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
 
       log('error in fetching brand products$e');
+      return [];
+    }
+  }
+
+
+// * fetch category brands  by category id
+
+
+  Future<List<BrandModel>> fetchBrandsByCategory(String categoryId) async {
+    try {
+      final brands = await brandRepo.getBrandsByCategory(categoryId);
+      return brands;
+    } catch (e) {
+      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+
+    
       return [];
     }
   }

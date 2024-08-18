@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/loaders/verticatl_product_shimmer.dart';
 import 'package:store/common/widgets/products/sortable_products/sortable_products.dart';
 import 'package:store/features/shop/controllers/product/all_products_controller.dart';
