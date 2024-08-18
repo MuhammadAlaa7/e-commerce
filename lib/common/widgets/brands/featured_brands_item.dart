@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/common/widgets/images/custom_circular_image.dart';
+import 'package:store/common/widgets/loaders/shimmer_effect.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/enums.dart';
@@ -11,14 +13,18 @@ class FeaturedBrandCard extends StatelessWidget {
   const FeaturedBrandCard({
     super.key,
     required this.brandTitle,
-    required this.brandImage,
+    required this.brandId,
+    this.brandImage,
     this.showBorder = false,
+    this.productsCount = 0,
     this.onTap,
   });
 
   final String brandTitle;
-  final String brandImage;
+  final String brandId;
+  final String? brandImage;
   final bool showBorder;
+  final int? productsCount;
   final void Function()? onTap;
 
   @override
@@ -35,12 +41,24 @@ class FeaturedBrandCard extends StatelessWidget {
           children: [
             // * icon
             Flexible(
-              child: CustomCircularImage(
-                image: brandImage,
-                imageColor: CHelperFunctions.isDarkMode(context)
-                    ? Colors.white
-                    : Colors.black,
-              ),
+              child: brandImage == null
+                  ? const Icon(Icons.error)
+                  : CachedNetworkImage(
+                      color: CHelperFunctions.isDarkMode(context)
+                          ? Colors.white
+                          : Colors.black,
+                      imageUrl: brandImage!,
+                      width: 40,
+                      height: 40,
+
+                      //   fit: BoxFit.cover,
+                      progressIndicatorBuilder: (context, url, progress) =>
+                          const CustomShimmerEffect(
+                        height: 30,
+                        width: 30,
+                        radius: 10,
+                      ),
+                    ),
             ),
             const SizedBox(
               width: CSizes.spaceBetweenItems / 2,
@@ -56,7 +74,7 @@ class FeaturedBrandCard extends StatelessWidget {
                     iconColor: CColors.primary,
                   ),
                   Text(
-                    '260 Products',
+                    productsCount.toString(),
                     style: Theme.of(context).textTheme.labelMedium,
                     overflow: TextOverflow.ellipsis,
                   ),

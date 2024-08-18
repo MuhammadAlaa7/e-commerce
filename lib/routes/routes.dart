@@ -3,6 +3,8 @@ class Routes {
   static const String home = '/';
   static const String store = '/store';
   static const String favorites = '/favorites';
+  static const String allBrands = '/all-brands';
+  static const String brandProducts = '/brand-products';
   static const String cart = '/cart';
   static const String settings = '/settings';
   static const String subCategories = '/sub-categories';

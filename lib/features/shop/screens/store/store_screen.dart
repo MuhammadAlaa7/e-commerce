@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_tab_bar.dart';
 import 'package:store/common/widgets/custom_shapes/containers/searched_container.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
@@ -7,10 +8,13 @@ import 'package:store/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/screens/brands/all_brands_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_tap.dart';
+import 'package:store/routes/app_routes.dart';
+import 'package:store/routes/routes.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
+import '../../controllers/brand/brand_controller.dart';
 import 'widgets/store_app_bar.dart';
 
 class StoreScreen extends StatelessWidget {
@@ -19,6 +23,7 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final featuredCategories = CategoryController.instance.featuredCategories;
+    final brandController = Get.put(BrandController());
     return DefaultTabController(
       length: featuredCategories.length,
       child: Scaffold(
@@ -59,23 +64,40 @@ class StoreScreen extends StatelessWidget {
                         title: 'Featured Brands',
                         onPressed: () {
                           CHelperFunctions.goTo(
-                              context, const AllBrandsScreen());
+                            context,
+                            const AllBrandsScreen(),
+                          );
                         },
                       ),
                       const SizedBox(
                         height: CSizes.spaceBetweenSections / 2,
                       ),
-                      CustomGridView(
-                          mainAxisExtent: 80,
-                          mainAxisSpacing: CSizes.gridViewSpacing,
-                          itemCount: 4,
-                          itemBuilder: (_, index) {
-                            return const FeaturedBrandCard(
-                              brandTitle: 'Nike',
-                              brandImage: CImages.animalIcon,
-                              showBorder: true,
-                            );
-                          })
+                      Obx(
+                        () => CustomGridView(
+                            mainAxisExtent: 80,
+                            mainAxisSpacing: CSizes.gridViewSpacing,
+                            itemCount: brandController.featuredBrands.length,
+                            itemBuilder: (_, index) {
+                              return FeaturedBrandCard(
+                                
+                                brandId: brandController .featuredBrands[index].id,
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.brandProducts,
+                                    arguments:
+                                        brandController.featuredBrands[index],
+                                  );
+                                },
+                                brandTitle:
+                                    brandController.featuredBrands[index].name,
+                                brandImage:
+                                    brandController.featuredBrands[index].image,
+                                showBorder: true,
+                                productsCount: brandController
+                                    .featuredBrands[index].productsCount,
+                              );
+                            }),
+                      ),
                     ],
                   ),
                 ),
@@ -90,9 +112,10 @@ class StoreScreen extends StatelessWidget {
             ];
           },
           // * The View Of The Tab Bar Above
-          body:  TabBarView(
-            children: featuredCategories.map((category) => CategoryTap(categoryTap: category) ).toList(),
-            
+          body: TabBarView(
+            children: featuredCategories
+                .map((category) => CategoryTap(categoryTap: category))
+                .toList(),
           ),
         ),
       ),

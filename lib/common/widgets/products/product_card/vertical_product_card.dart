@@ -23,8 +23,6 @@ class VerticalProductCard extends StatelessWidget {
     required this.product,
   });
 
-// TODO: MAKE THIS WIDGET WITH DYNAMIC DATA
-
   final ProductModel product;
 
   @override
@@ -35,7 +33,11 @@ class VerticalProductCard extends StatelessWidget {
     final bool isDark = CHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        CHelperFunctions.goTo(context,  ProductDetailsScreen(product: product,));
+        CHelperFunctions.goTo(
+            context,
+            ProductDetailsScreen(
+              product: product,
+            ));
       },
       child: Container(
         padding: const EdgeInsets.all(1),
@@ -67,12 +69,12 @@ class VerticalProductCard extends StatelessWidget {
                   ),
 
                   // * -- sale
-                  Positioned(
-                    top: 12,
-                    child: SaleContainer(
-                      sale: percentage,
+                    Positioned(
+                      top: 12,
+                      child: SaleContainer(
+                        sale: percentage,
+                      ),
                     ),
-                  ),
                   // * -- favorite icon
                   const Positioned(
                     right: 0,
@@ -96,7 +98,7 @@ class VerticalProductCard extends StatelessWidget {
                   // * Product title
                   ProductTitleText(
                       title: product.title, textSize: TextSizes.small),
-                
+
                   const SizedBox(height: CSizes.spaceBetweenItems / 2),
 
                   // * brand title with verified icon

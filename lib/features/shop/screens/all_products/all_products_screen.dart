@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,6 +35,7 @@ class AllProductsScreen extends StatelessWidget {
             // it updates the UI with the new data by its own no need for Obx
             future: futureMethod ?? controller.fetchProductByQuery(query),
             builder: (_, snapshot) {
+              log('snapshot: ${snapshot.data}');
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const VerticalProductShimmer();
               }

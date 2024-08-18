@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:store/common/widgets/brands/brand_image.dart';
 import 'package:store/common/widgets/custom_shapes/containers/sale_container.dart';
 import 'package:store/common/widgets/loaders/shimmer_effect.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
@@ -77,22 +78,7 @@ class ProductMetaData extends StatelessWidget {
         // * brand section
         Row(
           children: [
-            CachedNetworkImage(
-              color: CHelperFunctions.isDarkMode(context)
-                  ? Colors.white
-                  : Colors.black,
-              imageUrl: product.brand.image,
-              width: 40,
-              height: 40,
-
-              //   fit: BoxFit.cover,
-              progressIndicatorBuilder: (context, url, progress) =>
-                  const CustomShimmerEffect(
-                height: 30,
-                width: 30,
-                radius: 10,
-              ),
-            ),
+            BrandImage(brandImage: product.brand.image),
             const SizedBox(width: 10),
             BrandTitleWithVerifiedIcon(
               title: product.brand.name,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
@@ -12,6 +14,7 @@ class BrandShowCase extends StatelessWidget {
     required this.images,
   });
   final List<String> images;
+
 
   Expanded brandTopProductImageWidget(BuildContext context, String image) {
     return Expanded(
@@ -32,6 +35,7 @@ class BrandShowCase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final BrandModel brand = Get.arguments as BrandModel ;
     return RoundedContainer(
       margin: const EdgeInsets.only(bottom: CSizes.spaceBetweenItems),
       padding: const EdgeInsets.all(CSizes.md),
@@ -42,9 +46,10 @@ class BrandShowCase extends StatelessWidget {
         //    mainAxisSize: MainAxisSize.min,
         children: [
           // * Brand with product count
-          const FeaturedBrandCard(
+           FeaturedBrandCard(
             brandTitle: 'Nike',
-            brandImage: CImages.clothIcon,
+            brandId: '',
+          
           ),
 
           // * Brand Top Three Products Images

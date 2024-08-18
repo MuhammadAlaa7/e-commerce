@@ -1,18 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
-import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
-import 'package:store/utils/constants/image_strings.dart';
+import 'package:store/features/shop/controllers/brand/brand_controller.dart';
+import 'package:store/routes/routes.dart';
+import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
 
 class AllBrandsScreen extends StatelessWidget {
   const AllBrandsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = BrandController.instance;
     return Scaffold(
       appBar: const CustomAppBar(
         title: Text('Brands'),
@@ -31,18 +35,36 @@ class AllBrandsScreen extends StatelessWidget {
               const SizedBox(
                 height: CSizes.spaceBetweenItems,
               ),
-              CustomGridView(
-                mainAxisExtent: 80,
-                mainAxisSpacing: CSizes.gridViewSpacing,
-                itemCount: 10,
-                itemBuilder: (_, index) => FeaturedBrandCard(
-                  onTap: () {
-                    CHelperFunctions.goTo(context, const BrandProductsScreen());
-                  },
-                  showBorder: true,
-                  brandTitle: 'Nike',
-                  brandImage: CImages.animalIcon,
-                ),
+              Obx(
+                () {
+                  if (controller.isLoading.value == true) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: CColors.primary,
+                    ));
+                  }
+                  if (controller.allBrands.isEmpty == true) {
+                    return const Text('No Brands Found');
+                  } else {
+                    return CustomGridView(
+                      mainAxisExtent: 80,
+                      mainAxisSpacing: CSizes.gridViewSpacing,
+                      itemCount: controller.allBrands.length,
+                      itemBuilder: (_, index) => FeaturedBrandCard(
+                        onTap: () {
+                          Get.toNamed(Routes.brandProducts,
+                              arguments: controller.allBrands[index]);
+                        },
+                        showBorder: true,
+                        productsCount:
+                            controller.allBrands[index].productsCount,
+                        brandTitle: controller.allBrands[index].name,
+                        brandImage: controller.allBrands[index].image,
+                        brandId: controller.allBrands[index].id,
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -51,3 +73,38 @@ class AllBrandsScreen extends StatelessWidget {
     );
   }
 }
+/* 
+FeaturedBrandCard(
+                                
+                                brandId: brandController .featuredBrands[index].id,
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.brandProducts,
+                                    arguments:
+                                        brandController.featuredBrands[index],
+                                  );
+                                },
+                                brandTitle:
+                                    brandController.featuredBrands[index].name,
+                                brandImage:
+                                    brandController.featuredBrands[index].image,
+                                showBorder: true,
+                                productsCount: brandController
+                                    .featuredBrands[index].productsCount,
+                              );
+
+
+
+                   FeaturedBrandCard(
+                        onTap: () {
+                          Get.toNamed(Routes.brandProducts);
+                        },
+                        showBorder: true,
+                        brandTitle: controller.allBrands[index].name,
+                        brandImage: controller.allBrands[index].image,
+                        brandId : controller.allBrands[index].id,
+                      ),           
+
+
+
+ */
