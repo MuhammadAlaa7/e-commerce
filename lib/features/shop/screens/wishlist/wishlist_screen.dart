@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/loaders/verticatl_product_shimmer.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
+import 'package:store/features/shop/controllers/product/favorite_controller.dart';
 import 'package:store/utils/constants/sizes.dart';
 
-import '../../controllers/product/product_controller.dart';
 import 'widgets/wishlist_app_bar.dart';
 
 class WishlistScreen extends StatelessWidget {
@@ -13,29 +12,33 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final controller = ProductController.instance;
-
+    final favController = FavoriteController.instance;
     return Scaffold(
       appBar: const WishlistAppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(CSizes.sm),
-          child:    Obx(
-            () {
-              if (controller.isLoading.value == true) {
-                return const VerticalProductShimmer();
-              }
-              if (controller.featuredProducts.isEmpty == true) {
-                return const Text('No Products Found');
-              } else {
+          child: Obx(
+            () => FutureBuilder(
+              future: favController.fetchFavoriteProducts(),
+              builder: (_, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child:  CircularProgressIndicator());
+                }
+                if (snapshot.hasError ||
+                    snapshot.data == null ||
+                    snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No Products Found'));
+                }
+                final products = snapshot.data!;
                 return CustomGridView(
-                  itemCount: 4,
+                  itemCount: products.length,
                   itemBuilder: (_, index) => VerticalProductCard(
-                    product: controller.featuredProducts[index],
+                    product: products[index],
                   ),
                 );
-              }
-            },
+              },
+            ),
           ),
         ),
       ),

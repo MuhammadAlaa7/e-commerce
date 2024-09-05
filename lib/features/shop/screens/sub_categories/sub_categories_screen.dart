@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/images/rounded_image.dart';
 import 'package:store/common/widgets/products/product_card/horizontal_product_card.dart';
@@ -11,6 +12,8 @@ class SubCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // receive the arguments from getx
+    final category = Get.arguments;
     return Scaffold(
       appBar: const CustomAppBar(
         title: Text('Sports'),

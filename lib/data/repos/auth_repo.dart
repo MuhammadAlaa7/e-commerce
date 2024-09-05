@@ -19,6 +19,7 @@ import 'package:store/utils/exceptions/platform_exceptions.dart';
 
 import '../../features/auth/screens/login_screen/login_screen.dart';
 import '../../features/auth/screens/onboarding_screen/onboarding_screen.dart';
+import '../../utils/local_storage/storage_util.dart';
 
 // The logic of the authentication process
 class AuthenticationRepository extends GetxController {
@@ -38,16 +39,15 @@ class AuthenticationRepository extends GetxController {
     redirectScreen();
   }
 
-  void redirectScreen() {
+  void redirectScreen() async {
     final user = currentAuthUser;
     if (user != null) {
       if (user.emailVerified) {
-        log('********************** user is verified ******************');
+      // initialize local storage for the user , and open a box for him
+      await CustomLocalStorage.init(user.uid);
         Get.offAll(() => const NavigationMenu());
       } else {
-        print(
-            '********************** user is not verified but is not null ******************');
-        // if the user is not verified
+         // if the user is not verified
         Get.offAll(
           () => VerifyEmailScreen(
             email: user.email,

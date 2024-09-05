@@ -16,6 +16,8 @@ import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
+import 'favorite_icon.dart';
+
 class HorizontalProductCard extends StatelessWidget {
   const HorizontalProductCard({super.key});
 
@@ -59,10 +61,8 @@ class HorizontalProductCard extends StatelessWidget {
                   Positioned(
                     right: 0,
                     top: 0,
-                    child: CircularIcon(
-                      icon: Iconsax.heart5,
-                      iconColor: Colors.red,
-                    ),
+                    // TODO: ADD THE PRODUCT ID 
+                    child: CustomFavoriteIcon(productId: '',),
                   ),
 
                   // * sale

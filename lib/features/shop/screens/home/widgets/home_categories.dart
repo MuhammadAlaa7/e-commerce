@@ -4,7 +4,7 @@ import 'package:store/common/widgets/images_with_text/vertical_image_text.dart';
 import 'package:store/common/widgets/loaders/category_shimmer.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/screens/sub_categories/sub_categories_screen.dart';
-import 'package:store/utils/constants/image_strings.dart';
+import 'package:store/routes/routes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class HomeCategoriesListView extends StatelessWidget {
@@ -46,7 +46,7 @@ class HomeCategoriesListView extends StatelessWidget {
                 title: category.name,
                 image: category.image, 
                 onTap: () {
-                  CHelperFunctions.goTo(context, const SubCategoriesScreen());
+                 Get.toNamed(Routes.subCategories , arguments: category);
                 },
               );
             },

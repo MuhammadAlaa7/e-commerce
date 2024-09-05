@@ -124,4 +124,35 @@ class ProductRepository extends GetxController {
       throw 'Something went wrong, please try again later!';
     }
   }
+
+
+
+
+// * get a list of products by a list of ids >>> take a list of ids and return a list of products with the same ids
+Future<List<ProductModel>> getFavoriteProducts(  List<String> productIds
+     ) async {
+    try {
+              // go to the collection <MyProducts> and get the documents that match the list of ids
+              // FieldPath.documentId >>> this is the id of each document in the collection <MyProducts>
+          final snapshot = await db.collection('MyProducts').where(FieldPath.documentId, whereIn: productIds).get();
+
+      final products = snapshot.docs
+          .map((document) => ProductModel.fromSnapshot(document))
+          .toList();
+      return products;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong, please try again later!';
+    }
+  }
+
+
+
+
+
+
+
 }

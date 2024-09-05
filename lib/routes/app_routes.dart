@@ -3,14 +3,14 @@ import 'package:store/features/auth/screens/password_configuration_screen/forget
 import 'package:store/features/personalization/screens/address/adress_screen.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
 import 'package:store/features/personalization/screens/settings/settings_screen.dart';
-import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
-import 'package:store/features/shop/screens/brands/all_brands_screen.dart';
 import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
 import 'package:store/features/shop/screens/home/home_screen.dart';
 import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
 import 'package:store/features/shop/screens/store/store_screen.dart';
 import 'package:store/features/shop/screens/wishlist/wishlist_screen.dart';
 import 'package:store/routes/routes.dart';
+
+import '../features/shop/screens/sub_categories/sub_categories_screen.dart';
 
 class AppRoutes {
   // pages for getx
@@ -28,5 +28,6 @@ class AppRoutes {
         name: Routes.brandProducts, page: () => const BrandProductsScreen()),
     GetPage(name: Routes.userAddress, page: () => const AddressesScreen()),
     GetPage(name: Routes.wishlist, page: () => const WishlistScreen()),
+    GetPage(name: Routes.subCategories, page: () => const SubCategoriesScreen()),
   ];
 }

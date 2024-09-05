@@ -19,8 +19,9 @@ void main() async {
   //  to get the directory where the application can store its documents.
   //This directory is specific to each application and is used to store
   // files that are not meant to be shared with other applications.
-  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);
+  final appDocumentDirectory = await path_provider.getApplicationDocumentsDirectory();
+  // give hive the path to the app directory to put its database into it 
+  Hive.init(appDocumentDirectory.path);
   await Hive.openBox('storage');
 
   //* Preserve splash screen >>>> indicating that the splash screen should be preserved until the necessary flutter initializations are complete.

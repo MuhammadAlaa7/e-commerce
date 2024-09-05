@@ -8,10 +8,10 @@ import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:store/common/widgets/icons/circular_icon.dart';
 import 'package:store/common/widgets/images/rounded_image.dart';
+import 'package:store/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/features/shop/controllers/product/product_images_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
@@ -59,13 +59,10 @@ class ProductImageSlider extends StatelessWidget {
             ),
 
             // * app bar
-            const CustomAppBar(
+             CustomAppBar(
               showBackArrow: true,
               actions: [
-                CircularIcon(
-                  icon: Iconsax.heart5,
-                  iconColor: Colors.red,
-                ),
+              CustomFavoriteIcon(productId: product.id,),
               ],
             ),
             // * Images slider

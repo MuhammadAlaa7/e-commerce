@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/custom_shapes/containers/sale_container.dart';
 import 'package:store/common/widgets/icons/circular_icon.dart';
 import 'package:store/common/widgets/products/cart/add_to_cart_button.dart';
+import 'package:store/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/common/widgets/texts/product_title.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
@@ -76,13 +77,10 @@ class VerticalProductCard extends StatelessWidget {
                       ),
                     ),
                   // * -- favorite icon
-                  const Positioned(
+                  Positioned(
                     right: 0,
                     top: 0,
-                    child: CircularIcon(
-                      icon: Iconsax.heart5,
-                      iconColor: Colors.red,
-                    ),
+                    child: CustomFavoriteIcon(productId: product.id,),
                   ),
                 ],
               ),
