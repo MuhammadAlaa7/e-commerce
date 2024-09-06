@@ -46,7 +46,7 @@ class SettingsHeader extends StatelessWidget {
                     title: userController.user.value.fullName,
                     subTitle: userController.user.value.email,
                     onPressed: () {
-                      CHelperFunctions.goTo(context, const ProfileScreen());
+                      CHelperFunctions.navigateToScreen(context, const ProfileScreen());
                     },
                   );
           }),

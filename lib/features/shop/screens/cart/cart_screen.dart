@@ -25,7 +25,7 @@ class CartScreen extends StatelessWidget {
         
         label: 'Checkout\t\t \$3805.0',
         onPressed: () {
-          CHelperFunctions.goTo(context, const CheckoutScreen());
+          CHelperFunctions.navigateToScreen(context, const CheckoutScreen());
         },
       ),
       body: const Padding(

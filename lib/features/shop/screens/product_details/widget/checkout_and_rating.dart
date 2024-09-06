@@ -55,7 +55,7 @@ class CheckoutAndReviews extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
-                  CHelperFunctions.goTo(context, const ProductReviewScreen());
+                  CHelperFunctions.navigateToScreen(context, const ProductReviewScreen());
                 },
                 icon: const Icon(Iconsax.arrow_right_3)),
           ],

@@ -16,17 +16,25 @@ import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
+import '../../../../features/shop/controllers/product/product_controller.dart';
 import 'favorite_icon.dart';
 
 class HorizontalProductCard extends StatelessWidget {
-  const HorizontalProductCard({super.key});
-
+  const HorizontalProductCard({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final percentage =
+        controller.getSalePercentage(product.price, product.salePrice);
     final isDark = CHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        CHelperFunctions.goTo(context,  ProductDetailsScreen( product: ProductModel.empty(),));
+        CHelperFunctions.navigateToScreen(
+            context,
+            ProductDetailsScreen(
+              product: product,
+            ));
       },
       child: Container(
         width: 320,
@@ -41,46 +49,48 @@ class HorizontalProductCard extends StatelessWidget {
           children: [
             const SizedBox(width: 2),
             // * thumbnail image , sale , favorite icon
-            RoundedContainer( 
+            RoundedContainer(
               padding: const EdgeInsets.all(CSizes.md),
               //width: 120,
               backgroundColor: isDark ? CColors.dark : CColors.light,
-              child: const Stack(
+              child: Stack(
                 children: [
                   // * thumbnail image
                   SizedBox(
                     width: 100,
                     height: 100,
                     child: RoundedImage(
-                      imageUrl: CImages.slipper_product_1,
-                      // width: 100,
-                      // height: 100,
+                      imageUrl: product.thumbnail,
+                      isNetworkImage: true,
+                      applyBorderRadius: true,
                     ),
                   ),
                   // * favorite icon
                   Positioned(
                     right: 0,
                     top: 0,
-                    // TODO: ADD THE PRODUCT ID 
-                    child: CustomFavoriteIcon(productId: '',),
+                    child: CustomFavoriteIcon(
+                      productId: product.id,
+                    ),
                   ),
 
                   // * sale
-                  Positioned(
-                    top: 12,
-                    // left: 5,
-                    child: SaleContainer(
-                      sale: '25',
+                  if (percentage != '0')
+                    Positioned(
+                      top: 12,
+                      // left: 5,
+                      child: SaleContainer(
+                        sale: percentage,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
             const SizedBox(width: CSizes.sm),
             // * product details
-            const Expanded(
+            Expanded(
               child: Padding(
-                padding: EdgeInsets.only(top: CSizes.sm, left: CSizes.sm),
+                padding: const EdgeInsets.only(top: CSizes.sm, left: CSizes.sm),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -89,24 +99,25 @@ class HorizontalProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ProductTitleText(
-                            title: 'Nike Air Jordan shoes',
+                            title: product.title,
                             textSize: TextSizes.medium,
                           ),
                           BrandTitleWithVerifiedIcon(
-                            title: 'Nike',
+                            title: product.brand.name,
                           ),
                         ],
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
-                          child: ProductPriceText(price: '250', isLarge: false),
+                          child: ProductPriceText(
+                              price: product.price.toString(), isLarge: false),
                         ),
-                        AddToCartButton(),
+                        const AddToCartButton(),
                       ],
                     ),
                   ],

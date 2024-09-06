@@ -52,7 +52,7 @@ class HomeAppBar extends StatelessWidget {
       actions: [
         CounterIcon(
           onPressed: () {
-            CHelperFunctions.goTo(context, const CartScreen());
+            CHelperFunctions.navigateToScreen(context, const CartScreen());
           },
           icon: Iconsax.shopping_bag,
           color: Colors.white,

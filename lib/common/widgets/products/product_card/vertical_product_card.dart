@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/custom_shapes/containers/sale_container.dart';
-import 'package:store/common/widgets/icons/circular_icon.dart';
 import 'package:store/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
@@ -11,7 +9,6 @@ import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
@@ -34,7 +31,7 @@ class VerticalProductCard extends StatelessWidget {
     final bool isDark = CHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        CHelperFunctions.goTo(
+        CHelperFunctions.navigateToScreen(
             context,
             ProductDetailsScreen(
               product: product,
@@ -70,6 +67,7 @@ class VerticalProductCard extends StatelessWidget {
                   ),
 
                   // * -- sale
+                  if (percentage != '0')
                     Positioned(
                       top: 12,
                       child: SaleContainer(
@@ -80,7 +78,9 @@ class VerticalProductCard extends StatelessWidget {
                   Positioned(
                     right: 0,
                     top: 0,
-                    child: CustomFavoriteIcon(productId: product.id,),
+                    child: CustomFavoriteIcon(
+                      productId: product.id,
+                    ),
                   ),
                 ],
               ),

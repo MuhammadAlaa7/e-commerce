@@ -42,7 +42,7 @@ final String? email  ;
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image(
-                  width: CHelperFunctions.screenWidth(context) * 0.6,
+                  width: CHelperFunctions.screenWidth() * 0.6,
                   image: AssetImage(CImages.deliveredEmailIllustration),
                 ),
                 const SizedBox(

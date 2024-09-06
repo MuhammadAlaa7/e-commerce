@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -27,6 +29,7 @@ class CategoryRepository extends GetxController {
     } on PlatformException catch (e) {
       throw CustomPlatformException(e.code).message;
     } catch (e) {
+      log(e.toString());
       throw 'Something went wrong , please try again later!';
     }
   }

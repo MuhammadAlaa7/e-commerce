@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
@@ -80,17 +81,14 @@ class CheckoutScreen extends StatelessWidget {
       bottomNavigationBar: DefaultButton(
         label: 'Checkout\t\t \$3805.0',
         onPressed: () {
-          CHelperFunctions.goTo(
+          CHelperFunctions.navigateToScreen(
             context,
             SuccessScreen(
               title: 'Payment Success !',
               subTitle: 'Your item will be shipped soon !',
               image: CImages.paymentSuccessfulAnimation,
               onPressed: () {
-                CHelperFunctions.goAndReplaceAll(
-                  context,
-                  const NavigationMenu(),
-                );
+              Get.offAll( const NavigationMenu());
               },
               //  buttonLabel: '',
             ),

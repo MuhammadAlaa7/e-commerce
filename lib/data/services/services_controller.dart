@@ -1,11 +1,6 @@
-import 'dart:developer';
-
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/data/services/firebase_storage_service.dart';
 import 'package:store/dummy_data.dart';
-import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/image_strings.dart';
 
 class ServicesController extends GetxController {
   static ServicesController get to => Get.find();
@@ -69,7 +64,7 @@ class ServicesController extends GetxController {
 
 
 
-// * ************************ upload uploadProductsWithTheirImages ***************
+// * ************************ update uploadProductsWithTheirImages ***************
 
   Future<void> deleteField() async {
     try {
@@ -83,7 +78,7 @@ class ServicesController extends GetxController {
 
 
 
-// * ************************  uploadProductsWithTheirImages ***************
+// ! ************************  uploadProductsWithTheirImages ***************
 
   Future<void> uploadProductsWithTheirImages() async {
     try {
@@ -94,7 +89,7 @@ class ServicesController extends GetxController {
       print('Error uploading products: $e');
     }
   }
-
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // * ************************  update Products fields ***************
 
   Future<void> updateProductsFields( ) async {

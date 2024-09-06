@@ -3,6 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:store/authentication_cubit.dart';
 import 'package:store/features/auth/controllers/onboarding/onboarding_states.dart';
@@ -59,10 +60,7 @@ class OnBoardingCubit extends Cubit<OnboardingStates> {
         print('${box.get('isFirstTime')}');
       }
       // * go to login screen
-      CHelperFunctions.goAndReplaceAll(
-        context,
-        const LoginScreen(),
-      );
+          Get.offAll(const LoginScreen());
     } else {
       // add 1 to the current page index ==>> because this is the page I want to move to
       // current index is the current page so I want to move to the next page so we add 1 to the current index

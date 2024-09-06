@@ -36,7 +36,7 @@ class HomeBody extends StatelessWidget {
           HeadingSection(
             title: 'Popular Products',
             onPressed: () {
-              CHelperFunctions.goTo(
+              CHelperFunctions.navigateToScreen(
                 context,
                 AllProductsScreen(
                   title: 'Popular Products',

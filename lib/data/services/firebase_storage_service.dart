@@ -133,60 +133,6 @@ class CustomFirebaseStorageService extends GetxController {
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  // Future<void> uploadProductsWithImages(List<ProductModel> products) async {
-  //   for (final product in products) {
-  //     log('Uploading product: ${product.id}');
-  //     // Create product document in Firestore (without images)
-  //     final productRef = _firestore.collection('Prod').doc(product.id);
-
-  //     // Upload product images to Firebase Storage and update Firestore
-  //     List<String> imageUrls = [];
-  //     for (final imagePath in product.images!) {
-  //       final imageData = await rootBundle.load(imagePath);
-  //       final bytes = imageData.buffer.asUint8List();
-  //       final storageRef =
-  //           firebaseStorage.ref('p/${product.id}/${imagePath.split('/').last}');
-  //       final uploadTask = await storageRef.putData(bytes);
-  //       final imageUrl = await uploadTask.ref.getDownloadURL();
-  //       imageUrls.add(imageUrl);
-  //     }
-
-  //     // Update product data in Firestore
-  //     // await productRef.set(product.toJson());
-  //     await productRef.set({
-  //       'title': product.title,
-  //       'stock': product.stock,
-  //       'price': product.price,
-  //       'isFeatured': product.isFeatured,
-  //       'description': product.description,
-  //       // get the brand brand model from firebase collection
-  //       'brand':
-  //           await (_firestore.collection('Brands').doc(product.brand.id).get())
-  //               .then(
-  //         (value) {
-  //           return value.data() ;
-  //         },
-  //       ),
-  //       'images': imageUrls,
-  //       'salePrice': product.salePrice,
-  //       'sku': product.sku,
-  //       'categoryId': product.categoryId,
-  //       'productAttributes': product.productAttributes
-  //               ?.map((attribute) => attribute.toJson())
-  //               .toList() ??
-  //           [],
-  //       'productVariations': product.productVariations
-  //               ?.map((variation) => variation.toJson())
-  //               .toList() ??
-  //           [], // Assuming ProductVariationModel has a toJson() method
-  //       'productType': product.productType,
-  //       'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
-  //       'brandId': product.brand.id,
-  //       'date': product.date,
-  //     });
-  //   }
-  // }
-
   Future<void> uploadProductsWithImages(List<ProductModel> products) async {
     for (final product in products) {
       log('Uploading product: ${product.id}');

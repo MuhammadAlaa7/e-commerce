@@ -25,7 +25,7 @@ class SearchContainer extends StatelessWidget {
       padding: padding ,
       child: Container(
         padding: const EdgeInsets.all(CSizes.md),
-        width: CHelperFunctions.screenWidth(context),
+        width: CHelperFunctions.screenWidth(),
         decoration: BoxDecoration(
           color: showBackgroundColor
               ? isDark

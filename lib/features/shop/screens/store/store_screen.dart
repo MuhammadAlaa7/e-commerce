@@ -37,7 +37,7 @@ class StoreScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                expandedHeight: CHelperFunctions.screenHeight(context) * 0.5,
+                expandedHeight: CHelperFunctions.screenHeight() * 0.5,
                 backgroundColor: CHelperFunctions.isDarkMode(context)
                     ? CColors.dark
                     : CColors.light,
@@ -63,7 +63,7 @@ class StoreScreen extends StatelessWidget {
                       HeadingSection(
                         title: 'Featured Brands',
                         onPressed: () {
-                          CHelperFunctions.goTo(
+                          CHelperFunctions.navigateToScreen(
                             context,
                             const AllBrandsScreen(),
                           );

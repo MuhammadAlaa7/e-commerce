@@ -95,7 +95,7 @@ class LoginForm extends StatelessWidget {
                 CustomTextButton(
                   label: CTexts.forgetPassword,
                   onPressed: () {
-                    CHelperFunctions.goTo(
+                    CHelperFunctions.navigateToScreen(
                         context, const ForgetPasswordScreen());
                   },
                 ),
@@ -120,7 +120,7 @@ class LoginForm extends StatelessWidget {
               label: CTexts.createAccount,
               onPressed: () {
                 // * navigate to sign up screen
-                CHelperFunctions.goTo(
+                CHelperFunctions.navigateToScreen(
                   context,
                   const SignUpScreen(),
                 );

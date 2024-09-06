@@ -20,7 +20,7 @@ class AddressesScreen extends StatelessWidget {
         backgroundColor: CColors.primary,
         foregroundColor: Colors.white,
         onPressed: () {
-          CHelperFunctions.goTo(context, const AddNewAddressScreen());
+          CHelperFunctions.navigateToScreen(context, const AddNewAddressScreen());
         },
         child: const Icon(Icons.add),
       ),
