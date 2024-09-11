@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +13,7 @@ import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/personalization/screens/profile/widgets/re_auth_user_login_form.dart';
 import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/manager/network_manger.dart';
+import 'package:store/utils/helper/network_manager.dart';
 import 'package:store/utils/popups/full_screen_loader.dart';
 import 'package:store/utils/popups/loaders.dart';
 
@@ -79,9 +78,6 @@ class UserController extends GetxController {
             email: userCredential.user!.email ?? '',
             phoneNumber: userCredential.user!.phoneNumber ?? '',
             profilePicture: userCredential.user!.photoURL ?? '',
-
-          
-            
           );
           // Save user data
           await UserRepository.instance.saveUserDataToFirebase(user);
@@ -248,14 +244,11 @@ class UserController extends GetxController {
       } else {
         // if there is no image selected , remove the loader  and by default it will show the previous image.
         profileLoading.value = false;
-      
       }
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
-
-
 
 // log out the user
 
@@ -282,6 +275,4 @@ class UserController extends GetxController {
       CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
-
-
 }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/password_reset_screen.dart';
 import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/manager/network_manger.dart';
+import 'package:store/utils/helper/network_manager.dart';
 import 'package:store/utils/popups/full_screen_loader.dart';
 import 'package:store/utils/popups/loaders.dart';
 

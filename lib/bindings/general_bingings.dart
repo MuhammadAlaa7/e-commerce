@@ -3,8 +3,7 @@ import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/controllers/signup/signup_controller.dart';
 import 'package:store/features/auth/controllers/verify_email/verify_email_controller.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/manager/network_manger.dart';
+import 'package:store/utils/helper/network_manager.dart';
 
 class GeneralBingings extends Bindings {
   /*
