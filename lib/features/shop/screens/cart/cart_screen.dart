@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
+import 'package:store/common/widgets/loaders/animated_loader.dart';
+import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/screens/checkout/checkout_screen.dart';
+import 'package:store/navigation_menu.dart';
+import 'package:store/utils/constants/image_strings.dart';
 
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
@@ -13,6 +18,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartItemController.instance;
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(
@@ -21,17 +27,38 @@ class CartScreen extends StatelessWidget {
         ),
         showBackArrow: true,
       ),
-      bottomNavigationBar: DefaultButton(
-        
-        label: 'Checkout\t\t \$3805.0',
-        onPressed: () {
-          CHelperFunctions.navigateToScreen(context, const CheckoutScreen());
-        },
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(CSizes.md),
-        child: CartItems(),
-      ),
+      body: Obx(() {
+        final emptyWidget = AnimationLoaderWidget(
+          text: 'Opps ! Your cart is empty',
+          animationImage: CImages.cartAnimation,
+          showAction: true,
+          actionText: 'let\'s fill it',
+          onActionPressed: () {
+            Get.off(() => const NavigationMenu());
+          },
+        );
+        if (cartController.cartItems.isEmpty) {
+          return emptyWidget;
+        }
+        return const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(CSizes.md),
+            child: CartItems(),
+          ),
+        );
+      }),
+      bottomNavigationBar: Obx(() {
+        if (cartController.cartItems.isEmpty) {
+          return const SizedBox();
+        }
+        return DefaultButton(
+          label:
+              'Checkout   \$ ${cartController.totalCartPrice.toStringAsFixed(2)}',
+          onPressed: () {
+            CHelperFunctions.navigateToScreen(context, const CheckoutScreen());
+          },
+        );
+      }),
     );
   }
 }

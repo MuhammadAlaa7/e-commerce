@@ -36,7 +36,7 @@ class CFullScreenLoader {
                   const SizedBox(
                     height: 250,
                   ),
-                  CAnimationLoaderWidget(
+                  AnimationLoaderWidget(
                     animationImage: animationImage,
                     text: text,
                   ),

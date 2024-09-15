@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:store/features/shop/controllers/product/variation_controller.dart';
 
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/widget/product_attributes.dart';
@@ -18,51 +21,63 @@ class ProductDetailsScreen extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CBottomNavAddToCart(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // * product image  (Header)
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (didPop) {
+        if (didPop) {
+          // we need to reset teh selected attributes when switching between products to avoid conflict
+          VariationController.instance.resetSelectedAttributes();
+          log('reset >> ${VariationController.instance.selectedAttributes}');
+        }
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // * product image  (Header)
 
-            ProductImageSlider(
-              product: product,
-            ),
-
-            // * product details (body)
-
-            Padding(
-              padding: const EdgeInsets.only(
-                left: CSizes.defaultSpace,
-                right: CSizes.defaultSpace,
-                bottom: CSizes.defaultSpace,
+              ProductImageSlider(
+                product: product,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // * rating and share
-                  const RatingShareWidget(),
-                  // * product meta data
-                  ProductMetaData(product: product),
-                  // * product attributes
-                  if (product.productType == ProductType.variable.name)
-                    ProductAttributes(
-                      product: product,
+
+              // * product details (body)
+
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: CSizes.defaultSpace,
+                  right: CSizes.defaultSpace,
+                  bottom: CSizes.defaultSpace,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // * rating and share
+                    const RatingShareWidget(),
+                    // * product meta data
+                    ProductMetaData(product: product),
+                    // * product attributes
+                    if (product.productType == ProductType.variable.name)
+                      ProductAttributes(
+                        product: product,
+                      ),
+
+                    const SizedBox(
+                      height: CSizes.spaceBetweenSections,
                     ),
 
-                  const SizedBox(
-                    height: CSizes.spaceBetweenSections,
-                  ),
+                    // * checkout and reviews
 
-                  // * checkout and reviews
-
-                  CheckoutAndReviews(
-                    product: product,
-                  ),
-                ],
+                    CheckoutAndReviews(
+                      product: product,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavAddToCart(
+          product: product,
         ),
       ),
     );

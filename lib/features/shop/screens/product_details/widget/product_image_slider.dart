@@ -27,7 +27,7 @@ class ProductImageSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageController = Get.put(ProductImagesController());
     final images = imageController.getAllImages(product);
-    log(images.toString());
+   
     final isDark = CHelperFunctions.isDarkMode(context);
     return CurvedEdgesWidget(
       child: Container(
@@ -61,6 +61,7 @@ class ProductImageSlider extends StatelessWidget {
             // * app bar
              CustomAppBar(
               showBackArrow: true,
+              
               actions: [
               CustomFavoriteIcon(productId: product.id,),
               ],

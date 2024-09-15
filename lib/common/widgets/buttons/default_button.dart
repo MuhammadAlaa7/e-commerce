@@ -19,7 +19,10 @@ class DefaultButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: style,
-        child: Text(label),
+        child: Text(
+          label,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

@@ -9,9 +9,8 @@ PreferredSizeWidget storeAppBar(BuildContext context) {
       'Store',
       style: Theme.of(context).textTheme.headlineMedium,
     ),
-    actions: [
+    actions: const [
       CounterIcon(
-        onPressed: () {},
         icon: Iconsax.shopping_bag,
       ),
     ],

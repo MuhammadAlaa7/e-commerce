@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/products/cart/add_remove_button.dart';
 import 'package:store/common/widgets/products/cart/cart_item.dart';
 import 'package:store/common/widgets/texts/product_price_text.dart';
+import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/utils/constants/sizes.dart';
 
 class CartItems extends StatelessWidget {
@@ -14,43 +16,52 @@ class CartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemBuilder: (_, index) {
-       
-        return Column(
-          children: [
-            // * cart image and title
-            const CartItem(),
-            if (showAddRemoveButton)
-              const SizedBox(height: CSizes.spaceBetweenItems),
+    final cartController = CartItemController.instance;
+    return Obx(
+      () => ListView.separated(
+        shrinkWrap: true,
+        itemBuilder: (_, index) {
+          final cartItem = cartController.cartItems[index];
 
-            // * add and remove button and price
-            if (showAddRemoveButton)
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 70,
-                      ),
-                      ProductQuantityWithAddRemoveButton(),
-                    ],
-                  ),
-                  ProductPriceText(
-                    price: '123',
-                    isLarge: false,
-                  ),
-                ],
-              ),
-          ],
-        );
-      },
-      separatorBuilder: (_, index) {
-        return const SizedBox(height: CSizes.md);
-      },
-      itemCount: 2,
+          return CartItem(
+            cartItem: cartItem,
+          );
+        },
+        separatorBuilder: (_, index) {
+          return const SizedBox(height: CSizes.md);
+        },
+        itemCount: cartController.cartItems.length,
+      ),
     );
   }
 }
+
+
+
+/* 
+
+ if (showAddRemoveButton)
+                const SizedBox(height: CSizes.spaceBetweenItems),
+      
+              // * add and remove button and price
+              if (showAddRemoveButton)
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 70,
+                        ),
+                        ProductQuantityWithAddRemoveButton(),
+                      ],
+                    ),
+                    ProductPriceText(
+                      price: '123',
+                      isLarge: false,
+                    ),
+                  ],
+                ),
+
+
+ */

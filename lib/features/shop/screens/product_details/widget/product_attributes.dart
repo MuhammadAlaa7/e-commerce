@@ -20,7 +20,7 @@ class ProductAttributes extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(VariationController());
+    final controller = VariationController.instance;
     return Obx(
       () => Column(
         children: [

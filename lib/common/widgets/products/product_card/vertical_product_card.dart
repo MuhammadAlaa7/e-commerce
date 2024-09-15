@@ -101,7 +101,7 @@ class VerticalProductCard extends StatelessWidget {
 
                   // * brand title with verified icon
                   BrandTitleWithVerifiedIcon(
-                      title: product.brand.name, iconColor: CColors.primary),
+                      title: product.brand?.name ?? '', iconColor: CColors.primary),
                 ],
               ),
             ),
@@ -140,7 +140,7 @@ class VerticalProductCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const AddToCartButton(),
+                   AddToCartButton(product: product,),
                 ],
               ),
             ),

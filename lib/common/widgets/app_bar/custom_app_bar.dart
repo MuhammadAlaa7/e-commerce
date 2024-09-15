@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.leading,
   });
-
+  
   final bool showBackArrow;
   final Widget? title;
   final List<Widget>? actions;

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/controllers/product/product_images_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 
@@ -31,7 +32,7 @@ By working on a copy first, the code ensures that changes are only applied once 
         Map<String, dynamic>.from(this.selectedAttributes);
     // update the copy with the new selection values  >> key : value >> e.g. ['Color' : 'Green']
     selectedAttributes[attributeName] = attributeValue;
-      // Assign the updated map back to the RxMap selectedAttributes to update the UI
+    // Assign the updated map back to the RxMap selectedAttributes to update the UI
 
     this.selectedAttributes[attributeName] = attributeValue;
 
@@ -52,6 +53,15 @@ By working on a copy first, the code ensures that changes are only applied once 
       ProductImagesController.instance.selectedProductImage.value =
           selectedVariation.image;
     }
+
+    // show selected variation quantity that already in the cart
+
+    if (selectedVariation.id.isNotEmpty) {
+      CartItemController.instance.productQuantityInCart.value =
+          CartItemController.instance
+              .getVariationQuantityInCart(product, selectedVariation);
+    }
+
     // assign selected variation as current selected variation
     this.selectedVariation.value = selectedVariation;
     log('selected variation: ${selectedVariation.attributeValues}');
@@ -111,11 +121,13 @@ Let's say you're looking at a shirt that comes in three colors: Red, Green, and 
     return availableVariationAttributeValues;
   }
 
-// get the variation price 
-String getVariationPrice() {
-  return (selectedVariation.value.salePrice > 0 ?  selectedVariation.value.salePrice : selectedVariation.value.price).toString();
-}
-
+// get the variation price
+  String getVariationPrice() {
+    return (selectedVariation.value.salePrice > 0
+            ? selectedVariation.value.salePrice
+            : selectedVariation.value.price)
+        .toString();
+  }
 
 // check product variation stock status
   void getProductVariationStockStatus() {

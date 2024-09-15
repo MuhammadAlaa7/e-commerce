@@ -103,7 +103,7 @@ class HorizontalProductCard extends StatelessWidget {
                             textSize: TextSizes.medium,
                           ),
                           BrandTitleWithVerifiedIcon(
-                            title: product.brand.name,
+                            title: product.brand?.name ?? '',
                           ),
                         ],
                       ),
@@ -117,7 +117,7 @@ class HorizontalProductCard extends StatelessWidget {
                           child: ProductPriceText(
                               price: product.price.toString(), isLarge: false),
                         ),
-                        const AddToCartButton(),
+                         AddToCartButton(product: product,),
                       ],
                     ),
                   ],

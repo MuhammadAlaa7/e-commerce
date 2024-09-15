@@ -14,7 +14,7 @@ class ProductModel {
   DateTime? date;
   String thumbnail;
   bool? isFeatured;
-  BrandModel brand;
+  BrandModel? brand;
   String? description;
   String? categoryId;
   List<String>? images;
@@ -72,8 +72,8 @@ class ProductModel {
       'thumbnail': thumbnail,
       'productType': productType,
       'sku': sku ?? '',
-      'brand': brand.toJson(),
-      'brandId': brand.id ,
+      'brand': brand?.toJson() ?? {},
+      'brandId': brand?.id ?? '',
       'date': date ?? DateTime.now(),
       'salePrice': salePrice   ,
       'isFeatured': isFeatured,

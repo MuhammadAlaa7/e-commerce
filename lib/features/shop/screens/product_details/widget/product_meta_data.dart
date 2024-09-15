@@ -78,10 +78,10 @@ class ProductMetaData extends StatelessWidget {
         // * brand section
         Row(
           children: [
-            BrandImage(brandImage: product.brand.image),
+            BrandImage(brandImage: product.brand?.image?? ''),
             const SizedBox(width: 10),
             BrandTitleWithVerifiedIcon(
-              title: product.brand.name,
+              title: product.brand?.name ?? '',
               textSize: TextSizes.medium,
             ),
           ],

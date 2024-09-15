@@ -3,6 +3,7 @@ import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/controllers/signup/signup_controller.dart';
 import 'package:store/features/auth/controllers/verify_email/verify_email_controller.dart';
+import 'package:store/features/shop/controllers/product/variation_controller.dart';
 import 'package:store/utils/helper/network_manager.dart';
 
 class GeneralBingings extends Bindings {
@@ -15,13 +16,14 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
   @override
   void dependencies() {
     // This means that NetworkManager can now be accessed from any part of the app using Get.find<NetworkManager>().
+
     Get.put(NetworkManager());
+    Get.lazyPut(() => VariationController());
 
-    Get.lazyPut(() => SignUpController());
-    Get.lazyPut(() => LogInController());
-    Get.lazyPut(() => UserRepository());
+    // Get.lazyPut(() => SignUpController());
+    // Get.lazyPut(() => LogInController());
+    // Get.lazyPut(() => UserRepository());
 
-
-    Get.lazyPut(() => VerifyEmailController());
+//    Get.lazyPut(() => VerifyEmailController());
   }
 }

@@ -191,7 +191,7 @@ class CustomFirebaseStorageService extends GetxController {
         'description': product.description,
         // get the brand brand model from firebase collection
         'brand':
-            await (_firestore.collection('Brands').doc(product.brand.id).get())
+            await (_firestore.collection('Brands').doc(product.brand?.id?? '').get())
                 .then(
           (value) {
             return value.data();
@@ -209,7 +209,7 @@ class CustomFirebaseStorageService extends GetxController {
         // Assuming ProductVariationModel has a toJson() method
         'productType': product.productType,
         'thumbnail': imageUrls.first, // Assuming the first image as thumbnail
-        'brandId': product.brand.id,
+        'brandId': product.brand?.id ?? '',
         'date': product.date,
       });
     }

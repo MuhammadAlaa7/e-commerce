@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/images/rounded_image.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
+import 'package:store/features/shop/models/cart_item_model.dart';
 import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/image_strings.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
+
+import '../../texts/product_price_text.dart';
+import 'add_remove_button.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
+    required this.cartItem,
   });
 
+  final CartItemModel cartItem;
   @override
   Widget build(BuildContext context) {
     final isDark = CHelperFunctions.isDarkMode(context);
@@ -20,7 +25,8 @@ class CartItem extends StatelessWidget {
         RoundedImage(
           height: 60,
           width: 60,
-          imageUrl: CImages.leather_jacket_2,
+          isNetworkImage: true,
+          imageUrl: cartItem.image ?? '',
           backgroundColor: isDark ? CColors.darkGrey : CColors.lightGrey,
         ),
         const SizedBox(width: CSizes.md),
@@ -29,35 +35,49 @@ class CartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BrandTitleWithVerifiedIcon(title: 'Nike'),
+              BrandTitleWithVerifiedIcon(title: cartItem.brandName ?? ''),
               //const SizedBox(height: CSizes.sm),
               Text(
-                'Red Nike Shoes',
+                cartItem.title,
                 maxLines: 1,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               // const SizedBox(height: CSizes.sm),
               Text.rich(
                 TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Color ',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    TextSpan(
-                      text: 'Green ',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    TextSpan(
-                      text: 'Size ',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    TextSpan(
-                      text: 'UK 08',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
+                  children: (cartItem.selectedVariation ?? {})
+                      .entries // * entries here means all the keys and values pairs in the map
+                      .map((entryPair) => TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: '${entryPair.key}: ',
+                                  style: Theme.of(context).textTheme.bodySmall),
+                              TextSpan(
+                                  text: '${entryPair.value}  ',
+                                  style: Theme.of(context).textTheme.bodyLarge),
+                            ],
+                          ))
+                      .toList(),
                 ),
+              ),
+              const SizedBox(height: CSizes.spaceBetweenItems),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      ProductQuantityWithAddRemoveButton(
+                        cartItem: cartItem,
+                      ),
+                    ],
+                  ),
+                  ProductPriceText(
+                    price: (cartItem.price * cartItem.quantity.toDouble())
+                        .toStringAsFixed(
+                            1), // * only one digit after decimal point
+                    isLarge: false,
+                  ),
+                ],
               ),
             ],
           ),

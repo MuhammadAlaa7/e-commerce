@@ -3,9 +3,9 @@ import 'package:lottie/lottie.dart';
 import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/image_strings.dart';
 
-class CAnimationLoaderWidget extends StatelessWidget {
+class AnimationLoaderWidget extends StatelessWidget {
   /// A widget for displaying an animated loader indicator with optional text and action button
-  /// 
+  ///
 
   /// Parameters:
   ///   - text: The text to be displayed below the animation
@@ -14,9 +14,8 @@ class CAnimationLoaderWidget extends StatelessWidget {
   ///   - actionText: The text to be displayed on the action button
   ///   - onActionPressed: callback function to be executed when the action button is pressed
 
-
-/// Default constructor for CAnimationLoaderWidget
-  const CAnimationLoaderWidget({
+  /// Default constructor for CAnimationLoaderWidget
+  const AnimationLoaderWidget({
     super.key,
     required this.text,
     required this.animationImage,
@@ -38,7 +37,7 @@ class CAnimationLoaderWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset(
-          animationImage,
+            animationImage,
             width: MediaQuery.of(context).size.width * 0.8,
           ),
           const SizedBox(height: 24),
