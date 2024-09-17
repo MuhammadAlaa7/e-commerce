@@ -6,8 +6,6 @@ import 'package:store/utils/constants/colors.dart';
 import 'package:store/utils/constants/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
-import '../../texts/product_price_text.dart';
-import 'add_remove_button.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
@@ -60,25 +58,7 @@ class CartItem extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              const SizedBox(height: CSizes.spaceBetweenItems),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      ProductQuantityWithAddRemoveButton(
-                        cartItem: cartItem,
-                      ),
-                    ],
-                  ),
-                  ProductPriceText(
-                    price: (cartItem.price * cartItem.quantity.toDouble())
-                        .toStringAsFixed(
-                            1), // * only one digit after decimal point
-                    isLarge: false,
-                  ),
-                ],
-              ),
+             
             ],
           ),
         ),

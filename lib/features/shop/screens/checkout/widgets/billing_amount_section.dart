@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/helper/pricing_calculator.dart';
 
 class BillingAmountSection extends StatelessWidget {
   const BillingAmountSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartItemController.instance;
+    final totalPrice = cartController.totalCartPrice.value;
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // * subtotal text
+            // * subtotal text   >>> only the product price without shipping fee or tax
             Text(
               'Subtotal',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text('\$1030.00', style: Theme.of(context).textTheme.bodyMedium),
+            Text('\$${totalPrice.toStringAsFixed(2)}',
+                style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(
@@ -30,7 +36,8 @@ class BillingAmountSection extends StatelessWidget {
               'Shipping Fee',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text('\$6.00', style: Theme.of(context).textTheme.bodyMedium),
+            Text('\$${PricingCalculator.getShippingCost('Egypt')}',
+                style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(
@@ -44,7 +51,9 @@ class BillingAmountSection extends StatelessWidget {
               'Tax Fee',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text('\$6.00', style: Theme.of(context).textTheme.bodyMedium),
+            Text(
+                '\$${PricingCalculator.calculateTax(totalPrice, 'Egypt')}',
+                style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(
@@ -58,7 +67,9 @@ class BillingAmountSection extends StatelessWidget {
               'Order Total',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text('\$106.00', style: Theme.of(context).textTheme.titleLarge),
+            Text(
+                '\$${PricingCalculator.calculateTotalPrice(totalPrice, 'Egypt')}',
+                style: Theme.of(context).textTheme.titleLarge),
           ],
         ),
         const SizedBox(

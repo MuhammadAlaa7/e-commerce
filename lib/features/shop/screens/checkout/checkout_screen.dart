@@ -5,6 +5,7 @@ import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/common/widgets/products/cart/coupon_code.dart';
 import 'package:store/common/widgets/success_screen/success_screen.dart';
+import 'package:store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -20,6 +21,7 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final checkoutController = Get.put(CheckoutController());
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(
@@ -88,7 +90,7 @@ class CheckoutScreen extends StatelessWidget {
               subTitle: 'Your item will be shipped soon !',
               image: CImages.paymentSuccessfulAnimation,
               onPressed: () {
-              Get.offAll( const NavigationMenu());
+                Get.offAll(const NavigationMenu());
               },
               //  buttonLabel: '',
             ),

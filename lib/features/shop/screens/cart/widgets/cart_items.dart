@@ -23,8 +23,37 @@ class CartItems extends StatelessWidget {
         itemBuilder: (_, index) {
           final cartItem = cartController.cartItems[index];
 
-          return CartItem(
-            cartItem: cartItem,
+          return Column(
+            children: [
+              CartItem(
+                cartItem: cartItem,
+              ),
+              
+
+              if (showAddRemoveButton)
+                const SizedBox(height: CSizes.spaceBetweenItems),
+
+              // * add and remove button and price
+              if (showAddRemoveButton)
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 70,
+                        ),
+                        ProductQuantityWithAddRemoveButton(cartItem: cartItem,),
+                      ],
+                    ),
+                    const ProductPriceText(
+                      price: '123',
+                      isLarge: false,
+                    ),
+                  ],
+                ),
+
+            ],
           );
         },
         separatorBuilder: (_, index) {
@@ -38,30 +67,5 @@ class CartItems extends StatelessWidget {
 
 
 
-/* 
-
- if (showAddRemoveButton)
-                const SizedBox(height: CSizes.spaceBetweenItems),
-      
-              // * add and remove button and price
-              if (showAddRemoveButton)
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 70,
-                        ),
-                        ProductQuantityWithAddRemoveButton(),
-                      ],
-                    ),
-                    ProductPriceText(
-                      price: '123',
-                      isLarge: false,
-                    ),
-                  ],
-                ),
 
 
- */
