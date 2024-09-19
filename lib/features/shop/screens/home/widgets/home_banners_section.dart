@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:store/common/widgets/images/rounded_image.dart';
-import 'package:store/common/widgets/loaders/shimmer_effect.dart';
+import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
 import 'package:store/features/shop/models/banner_model.dart';
 import 'package:store/features/shop/screens/store/store_screen.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class HomeBannerSection extends StatelessWidget {
   const HomeBannerSection({

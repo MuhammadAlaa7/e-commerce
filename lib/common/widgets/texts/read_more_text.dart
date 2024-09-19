@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import 'package:store/utils/constants/colors.dart';
+import 'package:store/utils/constants22/colors.dart';
 
 class CustomReadMoreText extends StatelessWidget {
   const CustomReadMoreText({

@@ -5,8 +5,8 @@ import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/data/services/services_controller.dart';
 import 'package:store/dummy_data.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class AppAccountSection extends StatelessWidget {
   const AppAccountSection({super.key});

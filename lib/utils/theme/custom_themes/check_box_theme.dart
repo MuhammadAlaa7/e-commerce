@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store/utils/constants/colors.dart';
+import 'package:store/utils/constants22/colors.dart';
 
 class CCheckBoxTheme {
   CCheckBoxTheme._();

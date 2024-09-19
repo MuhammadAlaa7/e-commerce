@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:store/data/repos/product_repo.dart';
-import 'package:store/utils/constants/enums.dart';
+import 'package:store/utils/constants22/enums.dart';
 import 'package:store/utils/popups/loaders.dart';
 
 import '../../models/product_model.dart';

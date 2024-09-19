@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/enums.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class AddToCartButton extends StatelessWidget {
@@ -46,8 +45,8 @@ class AddToCartButton extends StatelessWidget {
             ),
           ),
           child: SizedBox(
-            height: height * 0.04,
-            width: width * 0.07,
+            height: height * 0.03,
+            width: width * 0.06,
             child: Center(
               child: productQuantityInCart > 0
                   ? Text(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/common/widgets/custom_shapes/containers/searched_container.dart';
 import 'package:store/common/widgets/custom_shapes/primary_header_container.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'home_app_bar.dart';
 import 'home_categories.dart';
 

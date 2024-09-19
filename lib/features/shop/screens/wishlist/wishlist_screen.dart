@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/features/shop/controllers/product/favorite_controller.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 import 'widgets/wishlist_app_bar.dart';
 

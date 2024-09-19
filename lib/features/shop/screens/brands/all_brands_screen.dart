@@ -8,8 +8,8 @@ import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/brand/brand_controller.dart';
 import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class AllBrandsScreen extends StatelessWidget {
   const AllBrandsScreen({super.key});

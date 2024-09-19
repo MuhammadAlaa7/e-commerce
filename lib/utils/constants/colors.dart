@@ -1,44 +1,50 @@
 import 'package:flutter/material.dart';
 
 class CColors {
-  CColors._();
+  // App theme colors
+  static const Color primary = Color(0xFF4b68ff);
+  static const Color secondary = Color(0xFFFFE24B);
+  static const Color accent = Color(0xFFb0c7ff);
 
-// -- app basic colors
+  // Icon colors
+  static const Color iconPrimary = Color(0xFF8D8D8D);
 
-  static const Color primary = Color(0xff4b68ff);
-  static const Color secondary = Color(0xffffe24b);
-  static const Color accent = Color(0xffb0c7ff);
-
-// -- text colors
-
-  static const Color textPrimary = Color(0xff333333);
-  static const Color textSecondary = Color(0xff6c757d);
+  // Text colors
+  static const Color textPrimary = Color(0xFF272727);
+  static const Color textSecondary = Color(0xFF656565);
   static const Color textWhite = Colors.white;
 
-// -- borders colors
+  // Background colors
+  static const Color light = Color(0xFFF6F6F6);
+  static const Color dark = Color(0xFF272727);
+  static const Color primaryBackground = Color(0xFFF5F5F5);
 
-  static Color borderPrimary = Colors.grey.withOpacity(0.5);
+  // Background Container colors
+  static const Color lightContainer = Color(0xFFF6F6F6);
+  static Color darkContainer = CColors.white.withOpacity(0.1);
 
-  // -- background colors
-  static const Color light = Color.fromARGB(255, 236, 233, 233);
-  static const Color dark = Color(0xff100c08);
-  //static const Color dark = Color.fromARGB(255, 21, 21, 21);
-  static const Color primaryBackground = Color(0xfff3f5ff);
-  static const Color darkGrey = Color(0xff5A5A5A);
-  static const Color darkGrey2 = Color(0xff504A4B);
-  static Color lightGrey = Colors.grey.withOpacity(0.1);
-  static const Color lightDark = Color.fromARGB(255, 50, 48, 48);
-  static const Color lightProductThumbnailColor =
-      Color.fromARGB(255, 235, 232, 232);
+  // Button colors
+  static const Color buttonPrimary = Color(0xFF4b68ff);
+  static const Color buttonSecondary = Color(0xFF6C757D);
+  static const Color buttonDisabled = Color(0xFFC4C4C4);
 
-// -- background container colors
+  // Border colors
+  static const Color borderPrimary = Color(0xFFD9D9D9);
+  static const Color borderSecondary = Color(0xFF313131);
 
-  static const Color lightContainer = Color(0xfff6f6f6);
-  // static Color darkContainer = Colors.white.withOpacity(0.1);
+  // Error and validation colors
+  static const Color error = Color(0xFFD32F2F);
+  static const Color success = Color(0xFF388E3C);
+  static const Color warning = Color(0xFFF57C00);
+  static const Color info = Color(0xFF1976D2);
 
-// --button colors
+  // Neutral Shades
+  static const Color black = Color(0xFF232323);
+  static const Color darkerGrey = Color(0xFF4F4F4F);
+  static const Color darkGrey = Color(0xFF939393);
+  static const Color grey = Color(0xFFD9D9D9);
+  static const Color softGrey = Color(0xFFF4F4F4);
 
-  static const Color buttonPrimary = Color(0xff4b68ff);
-  static const Color buttonSecondary = Color(0xff6c757d);
-  static const Color buttonDisabled = Color(0xffc4c4c4);
+  static const Color lightGrey = Color(0xFFE0E0E0);
+  static const Color white = Color(0xFFFFFFFF);
 }

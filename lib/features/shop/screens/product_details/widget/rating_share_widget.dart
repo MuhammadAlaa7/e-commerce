@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class RatingShareWidget extends StatelessWidget {
   const RatingShareWidget({

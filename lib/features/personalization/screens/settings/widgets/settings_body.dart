@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 import 'account_settings_section.dart';
 import 'app_settings_section.dart';

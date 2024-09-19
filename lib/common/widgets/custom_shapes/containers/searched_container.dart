@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class SearchContainer extends StatelessWidget {

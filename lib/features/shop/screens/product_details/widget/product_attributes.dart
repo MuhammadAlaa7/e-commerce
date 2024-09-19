@@ -8,8 +8,8 @@ import 'package:store/common/widgets/texts/product_price_text.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/product/variation_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class ProductAttributes extends StatelessWidget {
@@ -31,7 +31,7 @@ class ProductAttributes extends StatelessWidget {
               // height: 60,
               padding: const EdgeInsets.all(CSizes.md),
               backgroundColor: CHelperFunctions.isDarkMode(context)
-                  ? CColors.darkGrey2.withOpacity(0.8)
+                  ? CColors.darkerGrey.withOpacity(0.8)
                   : Colors.grey.withOpacity(0.4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

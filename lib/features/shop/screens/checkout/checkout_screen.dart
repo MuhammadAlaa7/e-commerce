@@ -5,23 +5,24 @@ import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/common/widgets/products/cart/coupon_code.dart';
 import 'package:store/common/widgets/success_screen/success_screen.dart';
-import 'package:store/features/shop/controllers/product/checkout_controller.dart';
+import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
+import 'package:store/features/shop/controllers/product/order_controller.dart';
 import 'package:store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_amount_section.dart';
 import 'package:store/features/shop/screens/checkout/widgets/billing_payment_section.dart';
-import 'package:store/navigation_menu.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/utils/helper/pricing_calculator.dart';
+import 'package:store/utils/popups/loaders.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final checkoutController = Get.put(CheckoutController());
+    final totalAmount = CartItemController.instance.totalCartPrice.value;
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(
@@ -80,22 +81,19 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: DefaultButton(
-        label: 'Checkout\t\t \$3805.0',
-        onPressed: () {
-          CHelperFunctions.navigateToScreen(
-            context,
-            SuccessScreen(
-              title: 'Payment Success !',
-              subTitle: 'Your item will be shipped soon !',
-              image: CImages.paymentSuccessfulAnimation,
-              onPressed: () {
-                Get.offAll(const NavigationMenu());
-              },
-              //  buttonLabel: '',
-            ),
-          );
-        },
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: DefaultButton(
+          label:
+              'Checkout\t\t \$${PricingCalculator.calculateTotalPrice(totalAmount, 'Egypt')}',
+          onPressed: totalAmount > 0
+              ? () => OrderController.instance.processOrder(totalAmount)
+              : () {
+                  CLoaders.warningSnackBar(
+                      title: 'Empty Cart',
+                      message: 'Add items in the cart to proceed to proceed.');
+                },
+        ),
       ),
     );
   }

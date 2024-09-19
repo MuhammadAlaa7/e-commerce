@@ -4,7 +4,7 @@ import 'package:store/common/widgets/products/cart/add_remove_button.dart';
 import 'package:store/common/widgets/products/cart/cart_item.dart';
 import 'package:store/common/widgets/texts/product_price_text.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class CartItems extends StatelessWidget {
   const CartItems({
@@ -28,14 +28,13 @@ class CartItems extends StatelessWidget {
               CartItem(
                 cartItem: cartItem,
               ),
-              
 
               if (showAddRemoveButton)
                 const SizedBox(height: CSizes.spaceBetweenItems),
 
               // * add and remove button and price
               if (showAddRemoveButton)
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
@@ -43,16 +42,17 @@ class CartItems extends StatelessWidget {
                         const SizedBox(
                           width: 70,
                         ),
-                        ProductQuantityWithAddRemoveButton(cartItem: cartItem,),
+                        ProductQuantityWithAddRemoveButton(
+                          cartItem: cartItem,
+                        ),
                       ],
                     ),
-                    const ProductPriceText(
-                      price: '123',
+                    ProductPriceText(
+                      price: (cartItem.price * cartItem.quantity).toString(),
                       isLarge: false,
                     ),
                   ],
                 ),
-
             ],
           );
         },
@@ -64,8 +64,3 @@ class CartItems extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

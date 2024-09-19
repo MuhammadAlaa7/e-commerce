@@ -6,8 +6,8 @@ import 'package:store/features/shop/controllers/product/variation_controller.dar
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/widget/product_attributes.dart';
 import 'package:store/features/shop/screens/product_details/widget/rating_share_widget.dart';
-import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/enums.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'widget/bottom_nav_add_to_cart.dart';
 import 'widget/checkout_and_rating.dart';
 import 'widget/product_image_slider.dart';
@@ -25,7 +25,7 @@ class ProductDetailsScreen extends StatelessWidget {
       canPop: true,
       onPopInvoked: (didPop) {
         if (didPop) {
-          // we need to reset teh selected attributes when switching between products to avoid conflict
+          // to reset the selected attributes when switching between products to avoid conflict
           VariationController.instance.resetSelectedAttributes();
           log('reset >> ${VariationController.instance.selectedAttributes}');
         }

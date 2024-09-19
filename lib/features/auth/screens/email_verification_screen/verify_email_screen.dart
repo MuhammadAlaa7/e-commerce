@@ -6,9 +6,9 @@ import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/buttons/text_button.dart';
 
 import 'package:store/features/auth/controllers/verify_email/verify_email_controller.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/constants/text_strings.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/constants22/text_strings.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class VerifyEmailScreen extends StatelessWidget {

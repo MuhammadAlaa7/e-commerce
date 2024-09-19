@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/brands/brand_show_case.dart';
-import 'package:store/common/widgets/loaders/boxes_shimmer.dart';
-import 'package:store/common/widgets/loaders/list_tile_shimmer.dart';
+import 'package:store/common/widgets/shimmers/boxes_shimmer.dart';
+import 'package:store/common/widgets/shimmers/list_tile_shimmer.dart';
 import 'package:store/features/shop/controllers/brand/brand_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/routes/routes.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class ProductImagesController extends GetxController {
   static ProductImagesController get instance => Get.find();

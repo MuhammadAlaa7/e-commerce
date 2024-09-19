@@ -7,8 +7,8 @@ import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/common/widgets/products/sortable_products/sortable_products.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 import '../../controllers/brand/brand_controller.dart';
 

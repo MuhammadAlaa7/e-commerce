@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/bindings/general_bingings.dart';
 import 'package:store/routes/app_routes.dart';
-import 'package:store/utils/constants/colors.dart';
+import 'package:store/utils/constants22/colors.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 import 'package:store/utils/theme/theme.dart';

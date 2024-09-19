@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/brands/brand_image.dart';
 import 'package:store/common/widgets/custom_shapes/containers/sale_container.dart';
-import 'package:store/common/widgets/loaders/shimmer_effect.dart';
+import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/common/widgets/texts/product_price_text.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/enums.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class ProductMetaData extends StatelessWidget {

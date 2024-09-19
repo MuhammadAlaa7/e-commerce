@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'widgets/orders_list_item.dart';
+import 'package:store/common/widgets/loaders/animated_loader.dart';
+import 'package:store/common/widgets/shimmers/orders_shimmer.dart';
+import 'package:store/features/shop/controllers/product/order_controller.dart';
+import 'package:store/features/shop/models/order_model.dart';
+import 'package:store/features/shop/screens/orders/widgets/orders_list_item.dart';
+import 'package:store/navigation_menu.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/helper/cloud_helper_functions.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final orderController = OrderController.instance;
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(
@@ -15,17 +24,38 @@ class OrdersScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(CSizes.md),
-        child: ListView.separated(
-          itemBuilder: (_, index) {
-            return const OrdersListItem();
-          },
-          separatorBuilder: (_, index) {
-            return const SizedBox(height: CSizes.md);
-          },
-          itemCount: 10,
-        ),
+      body: FutureBuilder(
+        future: orderController.fetchAllUserOrders(),
+        builder: (context, snapshot) {
+          final emptyWidget = AnimationLoaderWidget(
+            text: 'Whoops! No Orders yet',
+            animationImage: CImages.emptyAnimation,
+            showAction: true,
+            actionText: 'Let\'s fill it up',
+            onActionPressed: () => Get.off(() => const HomeMenu()),
+          );
+          const loader = OrdersShimmer();
+          final widget = CustomCloudHelperFunctions.checkMultiRecordState(
+              snapshot: snapshot, loader: loader, nothingFound: emptyWidget);
+          if (widget != null) return widget;
+
+          final orders = snapshot.data as List<OrderModel>;
+
+          return Padding(
+            padding: const EdgeInsets.all(CSizes.md),
+            child: ListView.separated(
+              itemBuilder: (_, index) {
+                return OrderItem(
+                  order: orders[index],
+                );
+              },
+              separatorBuilder: (_, index) {
+                return const SizedBox(height: CSizes.md);
+              },
+              itemCount: orders.length,
+            ),
+          );
+        },
       ),
     );
   }

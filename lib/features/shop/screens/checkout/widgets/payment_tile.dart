@@ -5,8 +5,8 @@ import 'package:store/common/widgets/custom_shapes/containers/rounded_container.
 import 'package:store/common/widgets/images/rounded_image.dart';
 import 'package:store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:store/features/shop/models/payment_method.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 ///This list tile only to be shown in the bottom sheet when changing the payment method

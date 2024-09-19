@@ -4,8 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
 import 'package:store/features/personalization/models/address_model.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/formatter/formatter.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
@@ -33,7 +33,7 @@ class SingleAddress extends StatelessWidget {
         borderRadius: BorderRadius.circular(CSizes.md),
         child: RoundedContainer(
           showBorder: isAddressSelected ? false : true,
-          borderColor: isDark ? CColors.darkGrey2 : CColors.lightGrey,
+          borderColor: isDark ? CColors.darkerGrey : CColors.lightGrey,
           padding: const EdgeInsets.all(CSizes.md),
           // margin: const EdgeInsets.only(bottom: CSizes.spaceBetweenItems),
           backgroundColor: isAddressSelected

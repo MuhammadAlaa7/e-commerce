@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store/common/widgets/images/custom_circular_image.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class VerticalImageText extends StatelessWidget {

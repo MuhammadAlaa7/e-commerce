@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/common/widgets/products/ratings/rating_bar_indicator.dart';
 import 'package:store/common/widgets/texts/read_more_text.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class UserReviewCard extends StatelessWidget {
@@ -63,7 +63,7 @@ class UserReviewCard extends StatelessWidget {
         ),
         RoundedContainer(
           padding: const EdgeInsets.all(CSizes.md),
-          backgroundColor: isDark ? CColors.darkGrey2 : Colors.grey[400],
+          backgroundColor: isDark ? CColors.darkerGrey : Colors.grey[400],
           child: Column(
             children: [
               Row(

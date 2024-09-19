@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/models/payment_method.dart';
 import 'package:store/features/shop/screens/checkout/widgets/payment_tile.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class CheckoutController extends GetxController {
   static CheckoutController get instance => Get.find();

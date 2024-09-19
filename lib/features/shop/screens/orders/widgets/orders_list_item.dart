@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/features/shop/models/order_model.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
-class OrdersListItem extends StatelessWidget {
-  const OrdersListItem({
+class OrderItem extends StatelessWidget {
+  const OrderItem({
     super.key,
+    required this.order,
   });
-
+  final OrderModel order;
   @override
   Widget build(BuildContext context) {
     return RoundedContainer(
@@ -35,13 +37,13 @@ class OrdersListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Processing',
+                    order.orderStatusText,
                     style: Theme.of(context).textTheme.bodyLarge!.apply(
                           color: CColors.primary,
                           fontWeightDelta: 2,
                         ),
                   ),
-                  Text('01 sep 2024',
+                  Text(order.formattedOrderDate,
                       style: Theme.of(context).textTheme.headlineSmall),
                 ],
               ),
@@ -68,7 +70,7 @@ class OrdersListItem extends StatelessWidget {
                       children: [
                         Text('Order',
                             style: Theme.of(context).textTheme.labelMedium),
-                        Text('CWT001',
+                        Text(order.id,
                             style: Theme.of(context).textTheme.titleMedium),
                       ],
                     ),
@@ -88,7 +90,7 @@ class OrdersListItem extends StatelessWidget {
                       children: [
                         Text('Shipping Date',
                             style: Theme.of(context).textTheme.labelMedium),
-                        Text('05 oct 2024',
+                        Text(order.formattedDeliveryDate,
                             style: Theme.of(context).textTheme.titleMedium),
                       ],
                     ),

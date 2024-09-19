@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/pricing_calculator.dart';
 
 class BillingAmountSection extends StatelessWidget {
@@ -10,7 +9,7 @@ class BillingAmountSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartController = CartItemController.instance;
-    final totalPrice = cartController.totalCartPrice.value;
+    final totalCartPrice = cartController.totalCartPrice.value;
     return Column(
       children: [
         Row(
@@ -21,7 +20,7 @@ class BillingAmountSection extends StatelessWidget {
               'Subtotal',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text('\$${totalPrice.toStringAsFixed(2)}',
+            Text('\$${totalCartPrice.toStringAsFixed(2)}',
                 style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
@@ -52,7 +51,7 @@ class BillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-                '\$${PricingCalculator.calculateTax(totalPrice, 'Egypt')}',
+                '\$${PricingCalculator.calculateTax(totalCartPrice, 'Egypt')}',
                 style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
@@ -68,7 +67,7 @@ class BillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-                '\$${PricingCalculator.calculateTotalPrice(totalPrice, 'Egypt')}',
+                '\$${PricingCalculator.calculateTotalPrice(totalCartPrice, 'Egypt')}',
                 style: Theme.of(context).textTheme.titleLarge),
           ],
         ),

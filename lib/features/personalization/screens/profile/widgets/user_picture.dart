@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/buttons/text_button.dart';
 import 'package:store/common/widgets/images/custom_circular_image.dart';
-import 'package:store/common/widgets/loaders/shimmer_effect.dart';
+import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants/image_strings.dart';
+import 'package:store/utils/constants22/image_strings.dart';
 
 class UserPictureSection extends StatelessWidget {
   const UserPictureSection({

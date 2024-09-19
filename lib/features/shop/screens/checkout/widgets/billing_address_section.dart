@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/features/personalization/controllers/user/address_controller.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class BillingAddressSection extends StatelessWidget {
   const BillingAddressSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final addressController = AddressController.instance;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -14,47 +18,61 @@ class BillingAddressSection extends StatelessWidget {
         HeadingSection(
           buttonTitle: 'Change',
           title: 'Shipping Address',
-          onPressed: () {},
+          onPressed: () {
+            addressController.selectAddressPopup(context);
+          },
         ),
         const SizedBox(
           height: CSizes.spaceBetweenItems / 2,
         ),
-
-        Text(
-          'Muhammad Alaa',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
-        ),
-        Row(children: [
-          const Icon(Icons.phone, color: Colors.grey, size: 16),
-          const SizedBox(
-            width: CSizes.spaceBetweenItems,
-          ),
-          Text(
-            '+966 1234567890',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-        ]),
-        const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
-        ),
-        Row(
-          children: [
-            const Icon(Icons.location_history, color: Colors.grey, size: 16),
-            const SizedBox(
-              width: CSizes.spaceBetweenItems,
-            ),
-            Expanded(
-              // * make it expanded to prevent the overflow for the text
-              child: Text(
-                'Alaa Street, Alaa City, Alaa Country ',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ],
-        ),
+        //* only show the data of the address selected if there is one already selected
+        addressController.currentSelectedAddress.value.id.isNotEmpty
+            ? Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      addressController.currentSelectedAddress.value.name,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(
+                      height: CSizes.spaceBetweenItems / 2,
+                    ),
+                    Row(children: [
+                      const Icon(Icons.phone, color: Colors.grey, size: 16),
+                      const SizedBox(
+                        width: CSizes.spaceBetweenItems,
+                      ),
+                      Text(
+                        addressController
+                            .currentSelectedAddress.value.phoneNumber,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ]),
+                    const SizedBox(
+                      height: CSizes.spaceBetweenItems / 2,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.location_history,
+                            color: Colors.grey, size: 16),
+                        const SizedBox(
+                          width: CSizes.spaceBetweenItems,
+                        ),
+                        Expanded(
+                          // * make it expanded to prevent the overflow for the text
+                          child: Text(
+                            addressController.currentSelectedAddress.value
+                                .toString(),
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : const Text('select an address'),
       ],
     );
   }

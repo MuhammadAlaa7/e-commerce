@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:store/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/common/widgets/images/custom_circular_image.dart';
-import 'package:store/common/widgets/loaders/shimmer_effect.dart';
+import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class BrandShowCaseCard extends StatelessWidget {
@@ -43,7 +43,7 @@ class BrandShowCaseCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: CSizes.spaceBetweenItems),
       padding: const EdgeInsets.all(CSizes.md),
       backgroundColor: Colors.transparent,
-      borderColor: CColors.darkGrey2,
+      borderColor: CColors.darkerGrey,
       showBorder: true,
       child: Column(
         //    mainAxisSize: MainAxisSize.min,

@@ -6,9 +6,9 @@ import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/buttons/text_button.dart';
 import 'package:store/features/auth/controllers/forget_password/forget_password_controller.dart';
 import 'package:store/features/auth/screens/login_screen/login_screen.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/constants/text_strings.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/constants22/text_strings.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class ResetPasswordScreen extends StatelessWidget {

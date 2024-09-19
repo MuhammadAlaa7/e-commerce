@@ -46,6 +46,7 @@ class AddressModel {
 
   // to json
   Map<String, dynamic> toJson() => {
+        'id': id,
         'name': name,
         'phoneNumber': phoneNumber,
         'street': street,
@@ -60,7 +61,7 @@ class AddressModel {
 // from json
   factory AddressModel.fromJson(Map<String, dynamic> json) {
     return AddressModel(
-      id: json['id'] as String,
+      id: json['id'],
       name: json['name'],
       phoneNumber: json['phoneNumber'],
       street: json['street'],

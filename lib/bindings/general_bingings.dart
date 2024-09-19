@@ -3,8 +3,12 @@ import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/controllers/signup/signup_controller.dart';
 import 'package:store/features/auth/controllers/verify_email/verify_email_controller.dart';
+import 'package:store/features/personalization/controllers/user/address_controller.dart';
+import 'package:store/features/shop/controllers/product/order_controller.dart';
 import 'package:store/features/shop/controllers/product/variation_controller.dart';
 import 'package:store/utils/helper/network_manager.dart';
+
+import '../features/shop/controllers/product/checkout_controller.dart';
 
 class GeneralBingings extends Bindings {
   /*
@@ -18,7 +22,10 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
     // This means that NetworkManager can now be accessed from any part of the app using Get.find<NetworkManager>().
 
     Get.put(NetworkManager());
-    Get.lazyPut(() => VariationController());
+    Get.put(VariationController());
+    Get.lazyPut(() => AddressController());
+    Get.lazyPut(() => CheckoutController());
+    Get.lazyPut(() => OrderController());
 
     // Get.lazyPut(() => SignUpController());
     // Get.lazyPut(() => LogInController());

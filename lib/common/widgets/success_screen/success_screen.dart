@@ -3,9 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:store/common/styles/spacing_styles.dart';
 import 'package:store/common/styles/text_styles.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({
@@ -23,21 +21,18 @@ class SuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: CSpacingStyle.paddingWithAppBarHeight * 2,
-        child: Center(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: CSpacingStyle.paddingWithAppBarHeight * 2,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-                Lottie.asset(
-                  repeat: false , 
-                CImages.staticSuccessIllustration,
+              Lottie.asset(
+                image,
+                //  repeat: false,
                 width: MediaQuery.of(context).size.width * 0.8,
               ),
-              // Image(
-              //   width: CHelperFunctions.screenWidth(context) * 0.6,
-              //   image: AssetImage(image),
-              // ),
+
               const SizedBox(
                 height: CSizes.spaceBetweenSections,
               ),
@@ -56,12 +51,13 @@ class SuccessScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
-                height: CSizes.spaceBetweenSections * 2,
+                height: CSizes.spaceBetweenSections,
               ),
               //?
               // * continue button
               // ?
               DefaultButton(
+                width: MediaQuery.of(context).size.width * 0.6,
                 label: buttonLabel,
                 onPressed: onPressed,
               ),

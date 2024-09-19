@@ -4,7 +4,7 @@ import 'package:store/common/widgets/custom_shapes/containers/rounded_container.
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:store/features/shop/models/payment_method.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class BillingPaymentSection extends StatelessWidget {
   const BillingPaymentSection({super.key});

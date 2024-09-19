@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/features/personalization/screens/address/add_new_address_screen.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 import '../../../../utils/helper/cloud_helper_functions.dart';
 import '../../controllers/user/address_controller.dart';
@@ -41,7 +41,7 @@ class AddressesScreen extends StatelessWidget {
             () => FutureBuilder(
                 // to redraw the design when the data changes in the future
                 key: Key(addressController.refreshData.value.toString()),
-                future: addressController.fetchUserAddresses(),
+                future: addressController.fetchAllUserAddresses(),
                 builder: (context, snapshot) {
                   final widget =
                       CustomCloudHelperFunctions.checkMultiRecordState(
@@ -52,16 +52,14 @@ class AddressesScreen extends StatelessWidget {
                   // data found
                   final addresses = snapshot.data!;
                   return ListView.separated(
-                   
                     separatorBuilder: (_, index) => const SizedBox(
                       height: CSizes.spaceBetweenItems,
                     ),
                     itemCount: addresses.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                     itemBuilder: (_, index) => SingleAddress(
+                    itemBuilder: (_, index) => SingleAddress(
                       address: addresses[index],
-                   
                     ),
                   );
                 }),

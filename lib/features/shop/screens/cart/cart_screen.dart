@@ -6,9 +6,9 @@ import 'package:store/common/widgets/loaders/animated_loader.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/screens/checkout/checkout_screen.dart';
 import 'package:store/navigation_menu.dart';
-import 'package:store/utils/constants/image_strings.dart';
+import 'package:store/utils/constants22/image_strings.dart';
 
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 import 'widgets/cart_items.dart';
@@ -34,7 +34,7 @@ class CartScreen extends StatelessWidget {
           showAction: true,
           actionText: 'let\'s fill it',
           onActionPressed: () {
-            Get.off(() => const NavigationMenu());
+            Get.off(() => const HomeMenu());
           },
         );
         if (cartController.cartItems.isEmpty) {

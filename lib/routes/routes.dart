@@ -25,4 +25,5 @@ class Routes {
   static const String forgetPassword = '/forget-password';
   static const String onBoarding = '/on-boarding';
   static const String wishlist = '/wishlist';
+  static const String success = '/success';
 }

@@ -5,8 +5,8 @@ import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/icons/circular_icon.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class BottomNavAddToCart extends StatelessWidget {
@@ -27,7 +27,7 @@ class BottomNavAddToCart extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
           horizontal: CSizes.defaultSpace, vertical: CSizes.defaultSpace / 2),
       decoration: BoxDecoration(
-        color: isDark ? CColors.lightDark : CColors.light,
+        color: isDark ? CColors.lightGrey : CColors.light,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(CSizes.cardRadiusLg),
             topRight: Radius.circular(CSizes.cardRadiusLg)),

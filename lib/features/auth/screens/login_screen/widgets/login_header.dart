@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:store/common/styles/text_styles.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/constants/text_strings.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/constants22/text_strings.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class LoginScreenHeader extends StatelessWidget {

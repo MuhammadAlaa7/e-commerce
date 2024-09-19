@@ -10,10 +10,10 @@ import 'package:store/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/common/widgets/texts/product_price_text.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/enums.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 import '../../../../features/shop/controllers/product/product_controller.dart';
@@ -43,7 +43,7 @@ class HorizontalProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           //boxShadow: [CShadowStyles.horizontalProductShadow],
           borderRadius: BorderRadius.circular(CSizes.productImageRadius),
-          color: isDark ? CColors.darkGrey2 : CColors.lightContainer,
+          color: isDark ? CColors.darkerGrey : CColors.lightGrey,
         ),
         child: Row(
           children: [
@@ -117,7 +117,9 @@ class HorizontalProductCard extends StatelessWidget {
                           child: ProductPriceText(
                               price: product.price.toString(), isLarge: false),
                         ),
-                         AddToCartButton(product: product,),
+                        AddToCartButton(
+                          product: product,
+                        ),
                       ],
                     ),
                   ],

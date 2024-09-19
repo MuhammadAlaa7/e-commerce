@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:store/common/widgets/success_screen/success_screen.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/forget_password_screen.dart';
 import 'package:store/features/personalization/screens/address/adress_screen.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
@@ -32,6 +33,7 @@ class AppRoutes {
     GetPage(name: Routes.wishlist, page: () => const WishlistScreen()),
     GetPage(name: Routes.subCategories, page: () => const SubCategoriesScreen()),
     GetPage(name: Routes.cart, page: () => const CartScreen()),
+    
 
   ];
 }

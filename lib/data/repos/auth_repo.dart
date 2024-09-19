@@ -43,11 +43,11 @@ class AuthenticationRepository extends GetxController {
     final user = currentAuthUser;
     if (user != null) {
       if (user.emailVerified) {
-      // initialize local storage for the user , and open a box for him
-      await CustomLocalStorage.init(user.uid);
-        Get.offAll(() => const NavigationMenu());
+        // initialize local storage for the user , and open a box for him
+        await CustomLocalStorage.init(user.uid);
+        Get.offAll(() => const HomeMenu());
       } else {
-         // if the user is not verified
+        // if the user is not verified
         Get.offAll(
           () => VerifyEmailScreen(
             email: user.email,
@@ -135,13 +135,11 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-
-
   /// [EmailVerification] - forget password & reset password
 
-  Future<void> sendPasswordResetEmail(String email ) async {
+  Future<void> sendPasswordResetEmail(String email) async {
     try {
-      await _auth.sendPasswordResetEmail(email: email );
+      await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -155,21 +153,14 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-
-
-
 // ******************* log out user ****************** \\
 
   Future<void> logOut() async {
     try {
-      
-       FirebaseAuth.instance.signOut();
-    
-       GoogleSignIn().signOut();
-       GoogleSignIn().disconnect();
-      
-     
-     
+      FirebaseAuth.instance.signOut();
+
+      GoogleSignIn().signOut();
+      GoogleSignIn().disconnect();
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -217,17 +208,17 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
- // [re-authenticate ]  -- re-authenticate user
+  // [re-authenticate ]  -- re-authenticate user
 
-
-  Future<void> reAuthenticateUserWithEmailAndPassword(String email, String password) async {
+  Future<void> reAuthenticateUserWithEmailAndPassword(
+      String email, String password) async {
     try {
       // create a new credential
-      AuthCredential userCredential = EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential userCredential =
+          EmailAuthProvider.credential(email: email, password: password);
 
       // re-authenticate the user
       await _auth.currentUser?.reauthenticateWithCredential(userCredential);
-
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -241,12 +232,12 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-// [delete account]  -- remove user auth and firebase account 
+// [delete account]  -- remove user auth and firebase account
   Future<void> deleteAccount() async {
     try {
-          UserRepository.instance.removeUserData(_auth.currentUser!.uid);
+      UserRepository.instance.removeUserData(_auth.currentUser!.uid);
       await _auth.currentUser?.delete();
-    }  on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw CustomFirebaseException(e.code).message;

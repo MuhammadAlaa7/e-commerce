@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
-import 'package:store/utils/constants/image_strings.dart';
+import 'package:store/utils/constants22/image_strings.dart';
 import 'package:store/utils/helper/network_manager.dart';
 import 'package:store/utils/popups/full_screen_loader.dart';
 import 'package:store/utils/popups/loaders.dart';

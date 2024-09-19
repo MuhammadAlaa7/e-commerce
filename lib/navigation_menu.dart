@@ -4,17 +4,17 @@ import 'package:store/features/personalization/screens/settings/settings_screen.
 import 'package:store/features/shop/screens/home/home_screen.dart';
 import 'package:store/features/shop/screens/store/store_screen.dart';
 import 'package:store/features/shop/screens/wishlist/wishlist_screen.dart';
-import 'package:store/utils/constants/colors.dart';
+import 'package:store/utils/constants22/colors.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
-class NavigationMenu extends StatefulWidget {
-  const NavigationMenu({super.key});
+class HomeMenu extends StatefulWidget {
+  const HomeMenu({super.key});
 
   @override
-  State<NavigationMenu> createState() => _NavigationMenuState();
+  State<HomeMenu> createState() => _HomeMenuState();
 }
 
-class _NavigationMenuState extends State<NavigationMenu> {
+class _HomeMenuState extends State<HomeMenu> {
   int currentIndex = 0;
 
   final screens = const [

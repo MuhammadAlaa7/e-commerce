@@ -4,9 +4,15 @@ import 'package:get/get.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/buttons/outlined_button.dart';
 import 'package:store/common/widgets/buttons/text_button.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/common/widgets/success_screen/success_screen.dart';
+import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/features/personalization/screens/address/add_new_address_screen.dart';
+import 'package:store/features/personalization/screens/address/widgets/single_address.dart';
+import 'package:store/routes/routes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/helper/cloud_helper_functions.dart';
 import 'package:store/utils/helper/network_manager.dart';
 import 'package:store/utils/popups/full_screen_loader.dart';
 import 'package:store/utils/popups/loaders.dart';
@@ -36,7 +42,7 @@ class AddressController extends GetxController {
 
   //*****************         fetch user addresses        *****************
 
-  Future<List<AddressModel>> fetchUserAddresses() async {
+  Future<List<AddressModel>> fetchAllUserAddresses() async {
     try {
       final addresses = await addressRepo.getUserAddresses();
       // after getting hte addresses, check  which address is selected from them
@@ -251,13 +257,67 @@ class AddressController extends GetxController {
 
       Get.back();
 
-      // update the ui after deleting the address 
+      // update the ui after deleting the address
       refreshData.toggle();
 
       CLoaders.customToast(message: 'Address has been deleted successfully');
     } catch (e) {
       CLoaders.errorSnackBar(title: 'Error', message: 'something wrong wrong ');
     }
+  }
+
+  // show bottom sheet for changing the address in checkout screen
+  Future<dynamic> selectAddressPopup(BuildContext context) async {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(CSizes.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const HeadingSection(
+                    title: 'Select address ',
+                    showActionButton: false,
+                  ),
+                  const SizedBox(
+                    height: CSizes.spaceBetweenItems,
+                  ),
+                  FutureBuilder(
+                      future: fetchAllUserAddresses(),
+                      builder: (context, snapshot) {
+                        final widget =
+                            CustomCloudHelperFunctions.checkMultiRecordState(
+                                snapshot: snapshot,
+                                nothingFound: const Text('No addresses found'));
+                        if (widget != null) return widget;
+                        final addresses = snapshot.data!;
+
+                        return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (_, index) {
+                            return SingleAddress(address: addresses[index]);
+                          },
+                          itemCount: addresses.length,
+                        );
+                      }),
+                  const SizedBox(
+                    height: CSizes.spaceBetweenItems,
+                  ),
+                  DefaultButton(
+                    width: double.infinity,
+                    label: 'Add new address',
+                    onPressed: () {
+                      Get.to(() => const AddNewAddressScreen());
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   /// update selected address , by clearing the old and then assigning the new one to avoid the conflict with the old one

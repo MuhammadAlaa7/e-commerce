@@ -11,8 +11,8 @@ import 'package:store/common/widgets/images/rounded_image.dart';
 import 'package:store/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/features/shop/controllers/product/product_images_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class ProductImageSlider extends StatelessWidget {
@@ -27,11 +27,11 @@ class ProductImageSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageController = Get.put(ProductImagesController());
     final images = imageController.getAllImages(product);
-   
+
     final isDark = CHelperFunctions.isDarkMode(context);
     return CurvedEdgesWidget(
       child: Container(
-        color: isDark ? CColors.darkGrey2 : CColors.lightGrey.withOpacity(0.3),
+        color: isDark ? CColors.darkerGrey : CColors.lightGrey,
         child: Stack(
           children: [
             // * product main large image
@@ -47,7 +47,8 @@ class ProductImageSlider extends StatelessWidget {
                       onTap: () => imageController.showLargeImageDialog(image),
                       child: CachedNetworkImage(
                         imageUrl: image,
-                        progressIndicatorBuilder: (_, __, progress) => CircularProgressIndicator(
+                        progressIndicatorBuilder: (_, __, progress) =>
+                            CircularProgressIndicator(
                           value: progress.progress,
                           color: CColors.primary,
                         ),
@@ -59,11 +60,12 @@ class ProductImageSlider extends StatelessWidget {
             ),
 
             // * app bar
-             CustomAppBar(
+            CustomAppBar(
               showBackArrow: true,
-              
               actions: [
-              CustomFavoriteIcon(productId: product.id,),
+                CustomFavoriteIcon(
+                  productId: product.id,
+                ),
               ],
             ),
             // * Images slider

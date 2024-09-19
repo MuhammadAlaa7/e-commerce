@@ -5,7 +5,7 @@ import 'package:store/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/features/shop/controllers/product/all_products_controller.dart';
 
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 import '../product_card/vertical_product_card.dart';
 

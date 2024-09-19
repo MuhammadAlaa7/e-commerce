@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/loaders/shimmer_effect.dart';
+import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
 
 class BoxesShimmer extends StatelessWidget {
   const BoxesShimmer({super.key});

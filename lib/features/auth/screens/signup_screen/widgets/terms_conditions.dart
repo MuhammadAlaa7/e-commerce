@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/features/auth/controllers/signup/signup_controller.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/constants/text_strings.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/constants22/text_strings.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class TermsAndConditionsCheckBox extends StatelessWidget {

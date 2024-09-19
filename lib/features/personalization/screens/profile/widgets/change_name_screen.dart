@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/buttons/default_button.dart';
 import 'package:store/common/widgets/input_field/input_field.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/validators/custom_validator.dart';
 
 import '../../../../../common/widgets/app_bar/custom_app_bar.dart';

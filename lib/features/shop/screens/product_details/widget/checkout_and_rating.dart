@@ -5,7 +5,7 @@ import 'package:store/common/widgets/texts/read_more_text.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class CheckoutAndReviews extends StatelessWidget {

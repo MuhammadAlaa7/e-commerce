@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/loaders/shimmer_effect.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class HorizontalProductShimmer extends StatelessWidget {
   const HorizontalProductShimmer({

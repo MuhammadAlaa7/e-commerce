@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/images/rounded_image.dart';
-import 'package:store/common/widgets/loaders/horizontal_product_shimmer.dart';
+import 'package:store/common/widgets/shimmers/horizontal_product_shimmer.dart';
 import 'package:store/common/widgets/products/product_card/horizontal_product_card.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
-import 'package:store/utils/constants/image_strings.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/cloud_helper_functions.dart';
 
 import '../../models/product_model.dart';

@@ -3,7 +3,7 @@ import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/common/widgets/buttons/text_button.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'widgets/personal_information.dart';
 import 'widgets/profile_information.dart';
 import 'widgets/user_picture.dart';

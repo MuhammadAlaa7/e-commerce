@@ -7,9 +7,9 @@ import 'package:store/common/widgets/texts/product_title.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/enums.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 import '../../custom_shapes/containers/rounded_container.dart';
@@ -43,7 +43,7 @@ class VerticalProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           //  boxShadow: [CShadowStyles.verticalProductShadow],
           borderRadius: BorderRadius.circular(CSizes.productImageRadius),
-          color: isDark ? CColors.darkGrey2 : Colors.white,
+          color: isDark ? CColors.darkerGrey : Colors.white,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +53,7 @@ class VerticalProductCard extends StatelessWidget {
             RoundedContainer(
               height: 180,
               padding: const EdgeInsets.all(CSizes.sm),
-              backgroundColor:
-                  isDark ? CColors.dark : CColors.lightProductThumbnailColor,
+              backgroundColor: isDark ? CColors.dark : CColors.lightGrey,
               child: Stack(
                 children: [
                   // * --  thumbnail image
@@ -101,7 +100,8 @@ class VerticalProductCard extends StatelessWidget {
 
                   // * brand title with verified icon
                   BrandTitleWithVerifiedIcon(
-                      title: product.brand?.name ?? '', iconColor: CColors.primary),
+                      title: product.brand?.name ?? '',
+                      iconColor: CColors.primary),
                 ],
               ),
             ),
@@ -134,13 +134,15 @@ class VerticalProductCard extends StatelessWidget {
                           '\$ ${controller.getProductPrice(product)}',
                           style: Theme.of(context)
                               .textTheme
-                              .bodyMedium!
+                              .labelLarge!
                               .apply(fontWeightDelta: 1),
                         ),
                       ],
                     ),
                   ),
-                   AddToCartButton(product: product,),
+                  AddToCartButton(
+                    product: product,
+                  ),
                 ],
               ),
             ),

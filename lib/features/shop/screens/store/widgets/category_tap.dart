@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/loaders/verticatl_product_shimmer.dart';
+import 'package:store/common/widgets/shimmers/verticatl_product_shimmer.dart';
 import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
@@ -11,7 +11,7 @@ import 'package:store/features/shop/screens/all_products/all_products_screen.dar
 import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_brands.dart';
 import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 
 class CategoryTap extends StatelessWidget {
   const CategoryTap({

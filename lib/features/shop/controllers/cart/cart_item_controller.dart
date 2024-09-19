@@ -5,7 +5,7 @@ import 'package:store/features/shop/controllers/product/variation_controller.dar
 import 'package:store/features/shop/models/cart_item_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/models/product_variation_model.dart';
-import 'package:store/utils/constants/enums.dart';
+import 'package:store/utils/constants22/enums.dart';
 import 'package:store/utils/local_storage/storage_util.dart';
 import 'package:store/utils/popups/loaders.dart';
 
@@ -16,7 +16,8 @@ class CartItemController extends GetxController {
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   // variation controller
-  final variationController = VariationController.instance;
+   final variationController = VariationController.instance;
+  // final variationController = Get.put(VariationController());
 
 // initialization
   @override

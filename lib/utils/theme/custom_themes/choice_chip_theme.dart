@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store/utils/constants/colors.dart';
+import 'package:store/utils/constants22/colors.dart';
 
 class CChipTheme {
   CChipTheme._();
@@ -16,7 +16,7 @@ class CChipTheme {
   // dark theme
 
   static ChipThemeData darkChipTheme = const ChipThemeData(
-    disabledColor: CColors.darkGrey2,
+    disabledColor: CColors.darkerGrey,
     labelStyle: TextStyle(color: Colors.white),
     selectedColor: CColors.primary,
     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),

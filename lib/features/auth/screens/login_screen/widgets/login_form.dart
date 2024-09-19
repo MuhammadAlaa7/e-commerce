@@ -9,9 +9,9 @@ import 'package:store/common/widgets/input_field/input_field.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/forget_password_screen.dart';
 import 'package:store/features/auth/screens/signup_screen/signup_screen.dart';
-import 'package:store/utils/constants/colors.dart';
-import 'package:store/utils/constants/sizes.dart';
-import 'package:store/utils/constants/text_strings.dart';
+import 'package:store/utils/constants22/colors.dart';
+import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/utils/constants22/text_strings.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 import 'package:store/utils/validators/custom_validator.dart';
 

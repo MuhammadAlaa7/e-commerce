@@ -10,8 +10,8 @@ import 'package:store/features/shop/models/product_category_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/routes/app_routes.dart';
 import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants/enums.dart';
-import 'package:store/utils/constants/image_strings.dart';
+import 'package:store/utils/constants22/enums.dart';
+import 'package:store/utils/constants22/image_strings.dart';
 
 import 'features/shop/models/banner_model.dart';
 import 'features/shop/models/brand_category_model.dart';

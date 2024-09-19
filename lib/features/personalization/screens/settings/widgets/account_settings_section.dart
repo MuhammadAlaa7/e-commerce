@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/screens/address/adress_screen.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
+import 'package:store/features/shop/screens/cart/cart_screen.dart';
 import 'package:store/features/shop/screens/orders/orders_screen.dart';
-import 'package:store/utils/constants/sizes.dart';
+import 'package:store/utils/constants22/sizes.dart';
 import 'package:store/utils/helper/helper_functions.dart';
 
 class AccountSettingsSection extends StatelessWidget {
@@ -35,7 +37,9 @@ class AccountSettingsSection extends StatelessWidget {
           icon: Iconsax.shopping_cart,
           title: 'My Cart',
           subTitle: 'Add, or remove products and move to checkout',
-          onTap: () {},
+          onTap: () {
+            Get.to(() => const CartScreen());
+          },
         ),
         SettingsMenuTile(
           icon: Iconsax.bag_tick,
