@@ -1,9 +1,8 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class AllProductsController extends GetxController {
   static AllProductsController get instance => Get.find();
@@ -20,7 +19,7 @@ class AllProductsController extends GetxController {
       allProducts.assignAll(products);
       return products;
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Oppos!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oppos!', message: e.toString());
       return [];
     }
   }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/styles/text_styles.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/constants22/text_strings.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class LoginScreenHeader extends StatelessWidget {
   const LoginScreenHeader({
@@ -12,7 +11,7 @@ class LoginScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = CHelperFunctions.isDarkMode(context);
+    final bool isDark = AppHelperFunctions.isDarkMode(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,21 +20,21 @@ class LoginScreenHeader extends StatelessWidget {
         Image(
           height: 150,
           image: AssetImage(
-            isDark ? CImages.lightAppLogo : CImages.darkAppLogo,
+            isDark ? AppImages.lightAppLogo : AppImages.darkAppLogo,
           ),
         ),
-        // * title 
+        // * title
         Text(
-          CTexts.loginTitle,
-          style: CTextStyles.titleTextStyle(context),
+          AppTexts.loginTitle,
+          style: Theme.of(context).textTheme.titleLarge, 
         ),
         const SizedBox(
-          height: CSizes.sm,
+          height: AppSizes.sm,
         ),
         // * sub title
         Text(
-          CTexts.loginSubTitle,
-          style: CTextStyles.subTitleTextStyle(context),
+          AppTexts.loginSubTitle,
+          style: Theme.of(context).textTheme.bodyMedium,
         )
       ],
     );

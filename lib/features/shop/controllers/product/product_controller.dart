@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:store/data/repos/product_repo.dart';
-import 'package:store/utils/constants22/enums.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/enums.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 import '../../models/product_model.dart';
 
@@ -53,7 +53,7 @@ class ProductController extends GetxController {
 
       log('products fetched successfully');
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
       log('error in fetching products');
     } finally {
       isLoading.value = false;

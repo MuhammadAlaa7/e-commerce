@@ -4,8 +4,8 @@ import 'package:store/features/personalization/screens/settings/settings_screen.
 import 'package:store/features/shop/screens/home/home_screen.dart';
 import 'package:store/features/shop/screens/store/store_screen.dart';
 import 'package:store/features/shop/screens/wishlist/wishlist_screen.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({super.key});
@@ -26,7 +26,7 @@ class _HomeMenuState extends State<HomeMenu> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = CHelperFunctions.isDarkMode(context);
+    final bool isDark = AppHelperFunctions.isDarkMode(context);
     return Scaffold(
       body: screens[currentIndex],
 
@@ -42,7 +42,7 @@ class _HomeMenuState extends State<HomeMenu> {
         selectedIndex: currentIndex,
         height: 80,
         elevation: 0,
-        backgroundColor: isDark ? CColors.dark : Colors.white,
+        backgroundColor: isDark ? AppColors.dark : Colors.white,
         indicatorColor: isDark
             ? Colors.white.withOpacity(0.2)
             : Colors.black.withOpacity(0.2),

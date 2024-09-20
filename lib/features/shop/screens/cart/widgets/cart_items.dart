@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/products/cart/add_remove_button.dart';
-import 'package:store/common/widgets/products/cart/cart_item.dart';
-import 'package:store/common/widgets/texts/product_price_text.dart';
+import 'package:store/core/common/widgets/products/cart/add_remove_button.dart';
+import 'package:store/core/common/widgets/products/cart/cart_item.dart';
+import 'package:store/core/common/widgets/texts/product_price_text.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class CartItems extends StatelessWidget {
   const CartItems({
@@ -30,7 +30,7 @@ class CartItems extends StatelessWidget {
               ),
 
               if (showAddRemoveButton)
-                const SizedBox(height: CSizes.spaceBetweenItems),
+                const SizedBox(height: AppSizes.spaceBetweenItems),
 
               // * add and remove button and price
               if (showAddRemoveButton)
@@ -57,7 +57,7 @@ class CartItems extends StatelessWidget {
           );
         },
         separatorBuilder: (_, index) {
-          return const SizedBox(height: CSizes.md);
+          return const SizedBox(height: AppSizes.md);
         },
         itemCount: cartController.cartItems.length,
       ),

@@ -9,8 +9,8 @@
 // */
 
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class ColorsSelectionPallette extends StatefulWidget {
   const ColorsSelectionPallette({super.key});
@@ -87,7 +87,7 @@ class ColorItem extends StatelessWidget {
       showBorder: true,
       child: isSelected
           ? Icon(Icons.check,
-              color: CHelperFunctions.isDarkMode(context)
+              color: AppHelperFunctions.isDarkMode(context)
                   ? Colors.white
                   : Colors.black)
           : null,

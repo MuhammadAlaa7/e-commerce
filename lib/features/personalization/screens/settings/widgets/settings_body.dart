@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/common/widgets/buttons/outlined_button.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 import 'account_settings_section.dart';
 import 'app_settings_section.dart';
@@ -13,16 +13,16 @@ class SettingsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(CSizes.sm),
+      padding: const EdgeInsets.all(AppSizes.sm),
       child: Column(
         children: [
           const AccountSettingsSection(),
           const SizedBox(
-            height: CSizes.spaceBetweenSections,
+            height: AppSizes.spaceBetweenSections,
           ),
           const AppAccountSection(),
           const SizedBox(
-            height: CSizes.spaceBetweenSections,
+            height: AppSizes.spaceBetweenSections,
           ),
           CustomOutlinedButton(
             label: 'Logout',
@@ -31,7 +31,7 @@ class SettingsBody extends StatelessWidget {
             },
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenSections * 2.5,
+            height: AppSizes.spaceBetweenSections * 2.5,
           ),
         ],
       ),

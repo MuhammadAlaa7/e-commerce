@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
 import 'package:store/features/personalization/models/address_model.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/formatter/formatter.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/formatter/formatter.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class SingleAddress extends StatelessWidget {
   const SingleAddress({
@@ -19,7 +19,7 @@ class SingleAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = CHelperFunctions.isDarkMode(context);
+    final isDark = AppHelperFunctions.isDarkMode(context);
     final addressController = AddressController.instance;
     return Obx(() {
       // the id of the selected address [ the placeholder that holds the current selected address by the user ]
@@ -28,16 +28,17 @@ class SingleAddress extends StatelessWidget {
       // the address of that single address widget will be treated as selected if it has the same id as the selected address
       final bool isAddressSelected = currentSelectedAddressId == address.id;
       return InkWell(
-        onLongPress: () => addressController.deleteAddressWarningPopup(address.id),
+        onLongPress: () =>
+            addressController.deleteAddressWarningPopup(address.id),
         onTap: () => addressController.onSelectAddress(address),
-        borderRadius: BorderRadius.circular(CSizes.md),
+        borderRadius: BorderRadius.circular(AppSizes.md),
         child: RoundedContainer(
           showBorder: isAddressSelected ? false : true,
-          borderColor: isDark ? CColors.darkerGrey : CColors.lightGrey,
-          padding: const EdgeInsets.all(CSizes.md),
+          borderColor: isDark ? AppColors.darkerGrey : AppColors.lightGrey,
+          padding: const EdgeInsets.all(AppSizes.md),
           // margin: const EdgeInsets.only(bottom: CSizes.spaceBetweenItems),
           backgroundColor: isAddressSelected
-              ? CColors.primary.withOpacity(0.4)
+              ? AppColors.primary.withOpacity(0.4)
               : Colors.transparent,
           child: Stack(
             children: [
@@ -51,16 +52,16 @@ class SingleAddress extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
-                    height: CSizes.sm / 2,
+                    height: AppSizes.sm / 2,
                   ),
                   Text(
-                    CFormatter.formatPhoneNumber(
+                    AppFormatter.formatPhoneNumber(
                       address.phoneNumber,
                     ),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(
-                    height: CSizes.sm / 2,
+                    height: AppSizes.sm / 2,
                   ),
                   Text(
                     // it is a string extension to represent the full address

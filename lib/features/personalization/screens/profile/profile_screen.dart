@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/buttons/text_button.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/buttons/text_button.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 import 'widgets/personal_information.dart';
 import 'widgets/profile_information.dart';
 import 'widgets/user_picture.dart';
@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // UserController.instance;
+    // UserController.instance;
     return Scaffold(
       appBar: CustomAppBar(
         title:
@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(CSizes.md),
+          padding: const EdgeInsets.all(AppSizes.md),
           child: Column(
             children: [
               // * User Profile picture
@@ -31,38 +31,40 @@ class ProfileScreen extends StatelessWidget {
 
               // * User details
               const SizedBox(
-                height: CSizes.spaceBetweenSections / 2,
+                height: AppSizes.spaceBetweenSections / 2,
               ),
               const Divider(),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               const HeadingSection(
                   title: 'Profile Information', showActionButton: false),
               const ProfileInformationSection(),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               const Divider(),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               const HeadingSection(
                   title: 'Personal Information', showActionButton: false),
               const PersonalInformationSection(),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               const Divider(),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               CustomTextButton(
-                  label: 'Delete Account', onPressed: () {
+                  label: 'Delete Account',
+                  onPressed: () {
                     UserController.instance.deleteAccountWarningPopup();
-                  }, color: Colors.red),
+                  },
+                  color: Colors.red),
               const SizedBox(
-                height: CSizes.spaceBetweenSections * 2,
+                height: AppSizes.spaceBetweenSections * 2,
               ),
             ],
           ),
@@ -71,4 +73,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-

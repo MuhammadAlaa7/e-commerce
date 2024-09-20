@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/input_field/input_field.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/input_field/input_field.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/validators/custom_validator.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/validators/custom_validator.dart';
 
 class AddNewAddressScreen extends StatelessWidget {
   const AddNewAddressScreen({super.key});
@@ -21,7 +21,7 @@ class AddNewAddressScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(
-            CSizes.md,
+            AppSizes.md,
           ),
           child: Form(
             key: addressController.addressKey,
@@ -31,22 +31,22 @@ class AddNewAddressScreen extends StatelessWidget {
                   label: 'Name',
                   prefixIcon: Iconsax.user,
                   controller: addressController.name,
-                  validator: (value) => CValidator.validateEmptyText(
+                  validator: (value) => AppValidator.validateEmptyText(
                     fieldName: 'Name',
                     value: value,
                   ),
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenInputFields,
+                  height: AppSizes.spaceBetweenInputFields,
                 ),
                 InputField(
                   label: 'Phone Number',
                   prefixIcon: Iconsax.mobile,
                   controller: addressController.phoneNumber,
-                  validator: (value) => CValidator.validatePhoneNumber(value),
+                  validator: (value) => AppValidator.validatePhoneNumber(value),
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenInputFields,
+                  height: AppSizes.spaceBetweenInputFields,
                 ),
                 Row(
                   children: [
@@ -55,21 +55,21 @@ class AddNewAddressScreen extends StatelessWidget {
                         label: 'Street',
                         prefixIcon: Iconsax.building_44,
                         controller: addressController.street,
-                        validator: (value) => CValidator.validateEmptyText(
+                        validator: (value) => AppValidator.validateEmptyText(
                           fieldName: 'Street',
                           value: value,
                         ),
                       ),
                     ),
                     const SizedBox(
-                      width: CSizes.spaceBetweenInputFields,
+                      width: AppSizes.spaceBetweenInputFields,
                     ),
                     Expanded(
                       child: InputField(
                         label: 'Postal Code',
                         prefixIcon: Iconsax.code,
                         controller: addressController.postalCode,
-                        validator: (value) => CValidator.validateEmptyText(
+                        validator: (value) => AppValidator.validateEmptyText(
                           fieldName: 'Postal Code',
                           value: value,
                         ),
@@ -78,7 +78,7 @@ class AddNewAddressScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenInputFields,
+                  height: AppSizes.spaceBetweenInputFields,
                 ),
                 Row(
                   children: [
@@ -87,20 +87,20 @@ class AddNewAddressScreen extends StatelessWidget {
                       label: 'City',
                       prefixIcon: Iconsax.buildings,
                       controller: addressController.city,
-                      validator: (value) => CValidator.validateEmptyText(
+                      validator: (value) => AppValidator.validateEmptyText(
                         fieldName: 'City',
                         value: value,
                       ),
                     )),
                     const SizedBox(
-                      width: CSizes.spaceBetweenInputFields,
+                      width: AppSizes.spaceBetweenInputFields,
                     ),
                     Expanded(
                       child: InputField(
                         label: 'State',
                         prefixIcon: Iconsax.activity,
                         controller: addressController.state,
-                        validator: (value) => CValidator.validateEmptyText(
+                        validator: (value) => AppValidator.validateEmptyText(
                           fieldName: 'State',
                           value: value,
                         ),
@@ -109,22 +109,22 @@ class AddNewAddressScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenInputFields,
+                  height: AppSizes.spaceBetweenInputFields,
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenInputFields,
+                  height: AppSizes.spaceBetweenInputFields,
                 ),
                 InputField(
                   label: 'Country',
                   prefixIcon: Iconsax.global,
                   controller: addressController.country,
-                  validator: (value) => CValidator.validateEmptyText(
+                  validator: (value) => AppValidator.validateEmptyText(
                     fieldName: 'Country',
                     value: value,
                   ),
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems,
+                  height: AppSizes.spaceBetweenItems,
                 ),
                 DefaultButton(
                   label: 'Save',

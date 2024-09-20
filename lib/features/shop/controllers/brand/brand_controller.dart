@@ -5,21 +5,19 @@ import 'package:store/data/repos/brand_repo.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class BrandController extends GetxController {
   static BrandController get instance => Get.find();
 
   final brandRepo = Get.put(BrandRepository());
-  final productRepo = ProductRepository.instance; 
+  final productRepo = ProductRepository.instance;
   RxList<BrandModel> featuredBrands = <BrandModel>[].obs;
   RxList<BrandModel> categoryBrands = <BrandModel>[].obs;
   RxList<BrandModel> allBrands = <BrandModel>[].obs;
   RxList<ProductModel> brandProducts = <ProductModel>[].obs;
 
-
   final RxString selectedSortOption = 'Name'.obs;
-
 
   final RxBool isLoading = false.obs;
 
@@ -42,7 +40,7 @@ class BrandController extends GetxController {
 
       featuredBrands.assignAll(brands);
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -57,7 +55,7 @@ class BrandController extends GetxController {
 
       allBrands.assignAll(brands);
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -67,33 +65,27 @@ class BrandController extends GetxController {
 
   Future<List<ProductModel>> fetchBrandProducts(String brandId) async {
     try {
-
       final products = await productRepo.getBrandProductsById(brandId);
       // brandProducts.assignAll(products);
       return products;
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
 
       log('error in fetching brand products$e');
       return [];
     }
   }
 
-
 // * fetch category brands  by category id
-
 
   Future<List<BrandModel>> fetchBrandsByCategory(String categoryId) async {
     try {
       final brands = await brandRepo.getBrandsByCategory(categoryId);
       return brands;
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
 
-    
       return [];
     }
   }
-
-
 }

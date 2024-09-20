@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store/features/personalization/models/address_model.dart';
 import 'package:store/features/shop/models/cart_item_model.dart';
-import 'package:store/utils/constants22/enums.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/enums.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class OrderModel {
   final String id;
@@ -42,12 +42,12 @@ class OrderModel {
       );
 
   String get formattedOrderDate {
-    return CHelperFunctions.getFormattedDate(orderDate);
+    return AppHelperFunctions.getFormattedDate(orderDate);
   }
 
   String get formattedDeliveryDate {
     return deliveryDate != null
-        ? CHelperFunctions.getFormattedDate(deliveryDate!)
+        ? AppHelperFunctions.getFormattedDate(deliveryDate!)
         : '';
   }
 

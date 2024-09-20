@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
-import 'package:store/common/widgets/products/cart/cart_counter_icon.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/core/common/widgets/products/cart/cart_counter_icon.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/features/shop/screens/cart/cart_screen.dart';
-import 'package:store/utils/constants22/text_strings.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -23,7 +23,7 @@ class HomeAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            CTexts.homeAppBarTitle,
+            AppTexts.homeAppBarTitle,
             style: Theme.of(context).textTheme.labelMedium!.apply(
                   color: Colors.grey[400],
                 ),
@@ -42,15 +42,11 @@ class HomeAppBar extends StatelessWidget {
                     ),
               );
             }
-          }
-
-            
-              ),
+          }),
         ],
       ),
       actions: [
         CounterIcon(
-      
           icon: Iconsax.shopping_bag,
           color: Colors.white,
         ),

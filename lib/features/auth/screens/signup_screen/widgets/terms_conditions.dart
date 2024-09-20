@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/features/auth/controllers/signup/signup_controller.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/constants22/text_strings.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class TermsAndConditionsCheckBox extends StatelessWidget {
   const TermsAndConditionsCheckBox({
@@ -13,7 +13,7 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = CHelperFunctions.isDarkMode(context);
+    final bool isDark = AppHelperFunctions.isDarkMode(context);
     final controller = Get.find<SignUpController>();
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +26,7 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
             () => Checkbox(
               fillColor: MaterialStateProperty.all(
                   controller.privacyPolicy.value
-                      ? CColors.primary
+                      ? AppColors.primary
                       : Colors.transparent),
               value: controller.privacyPolicy.value,
               onChanged: (value) {
@@ -37,7 +37,7 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: CSizes.spaceBetweenItems,
+          width: AppSizes.spaceBetweenItems,
         ),
         // !Wrapping the text with flexible  allowing it to take the all available space in the row
         // !  to prevent the text overflow
@@ -47,16 +47,16 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: CTexts.iAgreeTo,
+                  text: AppTexts.iAgreeTo,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 TextSpan(
-                  text: CTexts.privacyPolicy,
+                  text: AppTexts.privacyPolicy,
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        color: CColors.primary,
+                        color: AppColors.primary,
                         decoration: TextDecoration.underline,
                         decorationColor:
-                            isDark ? Colors.white : CColors.primary,
+                            isDark ? Colors.white : AppColors.primary,
                       ),
                 ),
                 TextSpan(
@@ -64,13 +64,13 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 TextSpan(
-                  text: CTexts.termsOfUse,
+                  text: AppTexts.termsOfUse,
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
                         overflow: TextOverflow.ellipsis,
-                        color: CColors.primary,
+                        color: AppColors.primary,
                         decoration: TextDecoration.underline,
                         decorationColor:
-                            isDark ? Colors.white : CColors.primary,
+                            isDark ? Colors.white : AppColors.primary,
                       ),
                 ),
               ],

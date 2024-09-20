@@ -2,14 +2,13 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/password_reset_screen.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class ForgetPasswordController extends GetxController {
   static ForgetPasswordController get instance => Get.find();
-
 
   /// -------- variables -----------------
   ///
@@ -24,16 +23,16 @@ class ForgetPasswordController extends GetxController {
     try {
 // start loader
 
-      CFullScreenLoader.openLoadingDialog(
-          'Processing your request...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Processing your request...', AppImages.docerAnimation);
 
 // check internet connection
 
       final isConnected = await NetworkManager.instance.isConnected();
 
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Oops!', message: 'No Internet Connection !');
         return;
       }
@@ -43,8 +42,8 @@ class ForgetPasswordController extends GetxController {
       final isValid = forgetPasswordFormKey.currentState!.validate();
 
       if (!isValid) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(title: 'Oops!', message: 'All Fields Required');
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(title: 'Oops!', message: 'All Fields Required');
         return;
       }
 
@@ -54,37 +53,38 @@ class ForgetPasswordController extends GetxController {
           .sendPasswordResetEmail(email.text.trim());
 
       /// close the loader
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
 
       // show success message that the password reset email link has been sent
-      CLoaders.successSnackBar(
+      AppToasts.successSnackBar(
           title: 'Email Sent',
           message: 'Email link sent to reset your password.');
 
       // navigate to the next screen
-      Get.to(() =>  ResetPasswordScreen(email: email.text.trim(),));
+      Get.to(() => ResetPasswordScreen(
+            email: email.text.trim(),
+          ));
     } catch (e) {
-      CFullScreenLoader.closeLoadingDialog();
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 
   /// re-send the reset password email to the email box
-resendPasswordResetEmail(String email) async  {
-
+  resendPasswordResetEmail(String email) async {
     try {
 // start loader
 
-      CFullScreenLoader.openLoadingDialog(
-          'Processing your request...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Processing your request...', AppImages.docerAnimation);
 
 // check internet connection
 
       final isConnected = await NetworkManager.instance.isConnected();
 
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Oops!', message: 'No Internet Connection !');
         return;
       }
@@ -95,21 +95,15 @@ resendPasswordResetEmail(String email) async  {
           .sendPasswordResetEmail(email.trim());
 
       /// close the loader
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
 
       // show success message that the password reset email link has been sent
-      CLoaders.successSnackBar(
+      AppToasts.successSnackBar(
           title: 'Email Sent',
           message: 'Email link sent to reset your password.');
-
-    
     } catch (e) {
-      CFullScreenLoader.closeLoadingDialog();
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
-
-
-
-}
-
+  }
 }

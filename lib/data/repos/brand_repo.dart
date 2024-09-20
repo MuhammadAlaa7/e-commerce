@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/utils/exceptions/firebase_exceptions.dart';
-import 'package:store/utils/exceptions/platform_exceptions.dart';
+import 'package:store/core/utils/exceptions/firebase_exceptions.dart';
+import 'package:store/core/utils/exceptions/platform_exceptions.dart';
 
 class BrandRepository extends GetxController{
    static BrandRepository get instance => Get.find(); 

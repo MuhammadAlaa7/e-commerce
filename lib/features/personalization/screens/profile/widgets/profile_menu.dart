@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
@@ -21,7 +21,7 @@ class ProfileMenu extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: CSizes.md),
+        padding: const EdgeInsets.symmetric(vertical: AppSizes.md),
         child: Row(
           children: [
             Expanded(
@@ -44,7 +44,7 @@ class ProfileMenu extends StatelessWidget {
               child: Icon(
                 icon,
                 size: 22,
-                color: CHelperFunctions.isDarkMode(context)
+                color: AppHelperFunctions.isDarkMode(context)
                     ? Colors.white
                     : Colors.black,
               ),

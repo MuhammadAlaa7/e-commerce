@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/input_field/input_field.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/input_field/input_field.dart';
 import 'package:store/features/auth/controllers/signup/signup_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/constants22/text_strings.dart';
-import 'package:store/utils/validators/custom_validator.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/core/utils/validators/custom_validator.dart';
 
 import 'terms_conditions.dart';
 
@@ -28,64 +28,64 @@ class SignUpForm extends StatelessWidget {
                 // * firstName and lastName
                 child: InputField(
                   controller: signupController.firstName,
-                  validator: (value) =>
-                      CValidator.validateEmptyText(fieldName:  CTexts.firstName,value:  value),
-                  label: CTexts.firstName,
+                  validator: (value) => AppValidator.validateEmptyText(
+                      fieldName: AppTexts.firstName, value: value),
+                  label: AppTexts.firstName,
                   prefixIcon: Iconsax.user,
                 ),
               ),
               const SizedBox(
-                width: CSizes.spaceBetweenInputFields,
+                width: AppSizes.spaceBetweenInputFields,
               ),
               Expanded(
                 child: InputField(
                   controller: signupController.lastName,
-                  validator: (value) =>
-                      CValidator.validateEmptyText( fieldName: CTexts.lastName,value:  value),
-                  label: CTexts.lastName,
+                  validator: (value) => AppValidator.validateEmptyText(
+                      fieldName: AppTexts.lastName, value: value),
+                  label: AppTexts.lastName,
                   prefixIcon: Iconsax.user,
                 ),
               ),
             ],
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenInputFields,
+            height: AppSizes.spaceBetweenInputFields,
           ),
           InputField(
             controller: signupController.userName,
-            validator: (value) =>
-                CValidator.validateEmptyText(fieldName: CTexts.username,value: value),
-            label: CTexts.username,
+            validator: (value) => AppValidator.validateEmptyText(
+                fieldName: AppTexts.username, value: value),
+            label: AppTexts.username,
             prefixIcon: Iconsax.user_edit,
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenInputFields,
+            height: AppSizes.spaceBetweenInputFields,
           ),
           InputField(
             controller: signupController.email,
-            validator: (value) => CValidator.validateEmail(value),
-            label: CTexts.email,
+            validator: (value) => AppValidator.validateEmail(value),
+            label: AppTexts.email,
             prefixIcon: Iconsax.direct,
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenInputFields,
+            height: AppSizes.spaceBetweenInputFields,
           ),
           InputField(
             controller: signupController.phoneNumber,
-            validator: (value) => CValidator.validatePhoneNumber(value),
-            label: CTexts.phoneNumber,
+            validator: (value) => AppValidator.validatePhoneNumber(value),
+            label: AppTexts.phoneNumber,
             prefixIcon: Icons.call,
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenInputFields,
+            height: AppSizes.spaceBetweenInputFields,
           ),
           // * password
           // ****************** update any observed variables here ****************
           Obx(
             () => InputField(
               controller: signupController.password,
-              validator: (value) => CValidator.validatePassword(value),
-              label: CTexts.password,
+              validator: (value) => AppValidator.validatePassword(value),
+              label: AppTexts.password,
               prefixIcon: Iconsax.password_check,
               obscureText: signupController.hidePassword.value,
               suffixIcon: IconButton(
@@ -100,19 +100,19 @@ class SignUpForm extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenSections,
+            height: AppSizes.spaceBetweenSections,
           ),
 
-          // * terms and conditions with checkbox button 
+          // * terms and conditions with checkbox button
 
           const TermsAndConditionsCheckBox(),
 
           const SizedBox(
-            height: CSizes.spaceBetweenSections,
+            height: AppSizes.spaceBetweenSections,
           ),
           // * Sign Up button
           DefaultButton(
-              label: CTexts.createAccount,
+              label: AppTexts.createAccount,
               //* here we pass the signup method not execute it directly
               onPressed: signupController.signUp)
         ],

@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class LogInController extends GetxController {
   static LogInController instance = Get.find();
@@ -52,8 +52,8 @@ second : set the value of the remember_me to the value from the hive box to true
   Future<void> login() async {
     try {
       // Start loading
-      CFullScreenLoader.openLoadingDialog(
-          'We are logging you in ...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'We are logging you in ...', AppImages.docerAnimation);
 
       // Check internet connection     >> [ if there is no internet don't continue the login process ]
 
@@ -62,8 +62,8 @@ second : set the value of the remember_me to the value from the hive box to true
       log('Network connected: $isConnected'); // Debugging line
 
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Error', message: 'No internet connection');
         return;
       }
@@ -77,8 +77,8 @@ second : set the value of the remember_me to the value from the hive box to true
  */
       bool isFormValid = loginFormKey.currentState!.validate();
       if (isFormValid == false) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(title: 'Error', message: 'All fields required');
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(title: 'Error', message: 'All fields required');
         return;
       }
 
@@ -100,15 +100,15 @@ second : set the value of the remember_me to the value from the hive box to true
           .logInWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // stop loading
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
 
       // redirect to home page   if logged in successfully
 
       AuthenticationRepository.instance.redirectScreen();
     } catch (e) {
       // stop loading
-      CLoaders.errorSnackBar(title: 'Error', message: e.toString());
-      CFullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Error', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
       log('Error caught: $e'); // Debugging line
 
       // show error
@@ -120,15 +120,15 @@ second : set the value of the remember_me to the value from the hive box to true
   Future<void> googleSignIn() async {
     try {
       // start loading
-      CFullScreenLoader.openLoadingDialog(
-          'Logging you in ...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Logging you in ...', AppImages.docerAnimation);
 
       // check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       log('Network connected: $isConnected'); // Debugging line
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Error', message: 'No internet connection');
         return;
       }
@@ -141,13 +141,13 @@ second : set the value of the remember_me to the value from the hive box to true
       await userController.saveUserRecord(userCredential);
 
       /// stop loading
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
 
       // redirect to home page
 
       AuthenticationRepository.instance.redirectScreen();
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 

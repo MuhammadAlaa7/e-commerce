@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/data/services/services_controller.dart';
 import 'package:store/dummy_data.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class AppAccountSection extends StatelessWidget {
   const AppAccountSection({super.key});
@@ -21,7 +21,7 @@ class AppAccountSection extends StatelessWidget {
           showActionButton: false,
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems,
+          height: AppSizes.spaceBetweenItems,
         ),
         SettingsMenuTile(
           icon: Iconsax.document_upload,
@@ -30,16 +30,15 @@ class AppAccountSection extends StatelessWidget {
           onTap: () {
             //   controller.uploadImagesToFireStore();
             // DummyData.uploadDummyData();
-            
-         //   controller.uploadBannerWithImages();
+
+            //   controller.uploadBannerWithImages();
             // controller.uploadCategoriesWithImages();
-         //  controller.uploadBrandsWithImages();
+            //  controller.uploadBrandsWithImages();
             // controller.uploadBrandCategory();
             // controller.uploadProductCategory();
-             controller.uploadProductsWithTheirImages();
+            controller.uploadProductsWithTheirImages();
             // controller.updateProductsFields();
-           // controller.deleteField();
-
+            // controller.deleteField();
           },
         ),
         SettingsMenuTile(

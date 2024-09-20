@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/buttons/outlined_button.dart';
-import 'package:store/common/widgets/buttons/text_button.dart';
-import 'package:store/common/widgets/input_field/input_field.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/common/widgets/buttons/text_button.dart';
+import 'package:store/core/common/widgets/input_field/input_field.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/forget_password_screen.dart';
 import 'package:store/features/auth/screens/signup_screen/signup_screen.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/constants22/text_strings.dart';
-import 'package:store/utils/helper/helper_functions.dart';
-import 'package:store/utils/validators/custom_validator.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/validators/custom_validator.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -22,24 +22,24 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final controller = Get.put(LogInController());
+    final controller = Get.put(LogInController());
     return Form(
       key: controller.loginFormKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: CSizes.spaceBetweenSections,
+          vertical: AppSizes.spaceBetweenSections,
         ),
         child: Column(
           children: [
             // * email field
             InputField(
-              label: CTexts.email,
+              label: AppTexts.email,
               prefixIcon: Iconsax.direct,
               controller: controller.email,
-              validator: (value) => CValidator.validateEmail(value),
+              validator: (value) => AppValidator.validateEmail(value),
             ),
             const SizedBox(
-              height: CSizes.spaceBetweenInputFields,
+              height: AppSizes.spaceBetweenInputFields,
             ),
             // * password field
             // the validator here must not be to follow the password pattern but rather just not to be empty
@@ -47,10 +47,10 @@ class LoginForm extends StatelessWidget {
             Obx(
               () => InputField(
                 controller: controller.password,
-                validator: (value) =>
-                 CValidator.validateEmptyText(fieldName: CTexts.password,value:  value),
+                validator: (value) => AppValidator.validateEmptyText(
+                    fieldName: AppTexts.password, value: value),
                 //    CValidator.validatePassword(value),
-                label: CTexts.password,
+                label: AppTexts.password,
                 prefixIcon: Iconsax.password_check,
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -67,7 +67,7 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: CSizes.spaceBetweenInputFields / 2,
+              height: AppSizes.spaceBetweenInputFields / 2,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,51 +76,51 @@ class LoginForm extends StatelessWidget {
                 Obx(
                   () => Row(
                     children: [
-                     Checkbox(
+                      Checkbox(
                         fillColor: MaterialStateProperty.all(
                             controller.rememberMe.value
-                                ? CColors.primary
+                                ? AppColors.primary
                                 : Colors.transparent),
-                        value: controller.rememberMe.value, 
+                        value: controller.rememberMe.value,
                         onChanged: (value) {
                           controller.rememberMe.value =
                               !controller.rememberMe.value;
                         },
                       ),
-                      const Text(CTexts.rememberMe),
+                      const Text(AppTexts.rememberMe),
                     ],
                   ),
                 ),
                 // * forget password
                 CustomTextButton(
-                  label: CTexts.forgetPassword,
+                  label: AppTexts.forgetPassword,
                   onPressed: () {
-                    CHelperFunctions.navigateToScreen(
+                    AppHelperFunctions.navigateToScreen(
                         context, const ForgetPasswordScreen());
                   },
                 ),
               ],
             ),
             const SizedBox(
-              height: CSizes.spaceBetweenItems,
+              height: AppSizes.spaceBetweenItems,
             ),
             // * sign in button
             DefaultButton(
-              label: CTexts.signIn,
+              label: AppTexts.signIn,
               onPressed: () {
-              controller.login();
+                controller.login();
               },
             ),
             const SizedBox(
-              height: CSizes.spaceBetweenItems,
+              height: AppSizes.spaceBetweenItems,
             ),
             // * sign up button
 
             CustomOutlinedButton(
-              label: CTexts.createAccount,
+              label: AppTexts.createAccount,
               onPressed: () {
                 // * navigate to sign up screen
-                CHelperFunctions.navigateToScreen(
+                AppHelperFunctions.navigateToScreen(
                   context,
                   const SignUpScreen(),
                 );

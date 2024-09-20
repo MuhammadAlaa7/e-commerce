@@ -1,21 +1,21 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/buttons/outlined_button.dart';
-import 'package:store/common/widgets/buttons/text_button.dart';
-import 'package:store/common/widgets/success_screen/success_screen.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/common/widgets/buttons/text_button.dart';
+import 'package:store/core/common/widgets/success_screen/success_screen.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/screens/address/add_new_address_screen.dart';
 import 'package:store/features/personalization/screens/address/widgets/single_address.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/cloud_helper_functions.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/routes/routes.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/cloud_helper_functions.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 import '../../../../data/repos/address_repo.dart';
 import '../../models/address_model.dart';
@@ -55,7 +55,7 @@ class AddressController extends GetxController {
       return addresses;
     } catch (e) {
       // handing the error for the user to see
-      CLoaders.errorSnackBar(
+      AppToasts.errorSnackBar(
           title: 'Error', message: 'Cannot fetch your addresses');
       return [];
     }
@@ -66,9 +66,9 @@ class AddressController extends GetxController {
   Future<void> addNewAddress() async {
     try {
       // start loader
-      CFullScreenLoader.openLoadingDialog(
+      FullScreenLoader.openLoadingDialog(
         'Adding new address ...',
-        CImages.docerAnimation,
+        AppImages.docerAnimation,
       );
 
       // check for internet connection
@@ -76,8 +76,8 @@ class AddressController extends GetxController {
 
       // if not connected
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
           title: 'Error',
           message: 'No internet connection',
         );
@@ -87,7 +87,7 @@ class AddressController extends GetxController {
       // validate form
       // if not validation
       if (!addressKey.currentState!.validate()) {
-        CFullScreenLoader.closeLoadingDialog();
+        FullScreenLoader.closeLoadingDialog();
         return;
       }
 
@@ -113,9 +113,9 @@ class AddressController extends GetxController {
       currentSelectedAddress(address);
 
       // stop the loader
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
       // show success message
-      CLoaders.successSnackBar(
+      AppToasts.successSnackBar(
         title: 'Success',
         message: 'Address added successfully',
       );
@@ -131,9 +131,9 @@ class AddressController extends GetxController {
     } catch (e) {
       // stop the loader
       log(e.toString());
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
       // show error message
-      CLoaders.errorSnackBar(
+      AppToasts.errorSnackBar(
         title: 'Address not found!',
         message: e.toString(),
       );
@@ -162,7 +162,7 @@ class AddressController extends GetxController {
         Get.defaultDialog(
           title: '',
           content: const CircularProgressIndicator(
-            color: CColors.primary,
+            color: AppColors.primary,
           ),
 
           // prevents the user from popping the dialog when they press the back button
@@ -200,7 +200,7 @@ class AddressController extends GetxController {
         Get.back();
       }
     } catch (e) {
-      CLoaders.errorSnackBar(
+      AppToasts.errorSnackBar(
           title: 'Error in Selection ',
           message: 'Couldn\'t select the address ');
       Get.back();
@@ -209,7 +209,7 @@ class AddressController extends GetxController {
 
   void deleteAddressWarningPopup(String addressId) {
     Get.defaultDialog(
-      contentPadding: const EdgeInsets.all(CSizes.md),
+      contentPadding: const EdgeInsets.all(AppSizes.md),
       title: 'Delete Address',
       middleText:
           'Are you sure you want to delete your address permanently? This action is not reversible and all of your data will be removed permanently.',
@@ -241,7 +241,7 @@ class AddressController extends GetxController {
       Get.defaultDialog(
         title: '',
         content: const CircularProgressIndicator(
-          color: CColors.primary,
+          color: AppColors.primary,
         ),
 
         // prevents the user from popping the dialog when they press the back button
@@ -260,9 +260,10 @@ class AddressController extends GetxController {
       // update the ui after deleting the address
       refreshData.toggle();
 
-      CLoaders.customToast(message: 'Address has been deleted successfully');
+      AppToasts.customToast(message: 'Address has been deleted successfully');
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Error', message: 'something wrong wrong ');
+      AppToasts.errorSnackBar(
+          title: 'Error', message: 'something wrong wrong ');
     }
   }
 
@@ -273,7 +274,7 @@ class AddressController extends GetxController {
         builder: (_) {
           return SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.all(CSizes.lg),
+              padding: const EdgeInsets.all(AppSizes.lg),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -282,7 +283,7 @@ class AddressController extends GetxController {
                     showActionButton: false,
                   ),
                   const SizedBox(
-                    height: CSizes.spaceBetweenItems,
+                    height: AppSizes.spaceBetweenItems,
                   ),
                   FutureBuilder(
                       future: fetchAllUserAddresses(),
@@ -304,7 +305,7 @@ class AddressController extends GetxController {
                         );
                       }),
                   const SizedBox(
-                    height: CSizes.spaceBetweenItems,
+                    height: AppSizes.spaceBetweenItems,
                   ),
                   DefaultButton(
                     width: double.infinity,

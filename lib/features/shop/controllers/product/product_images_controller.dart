@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/common/widgets/buttons/outlined_button.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class ProductImagesController extends GetxController {
   static ProductImagesController get instance => Get.find();
@@ -33,7 +33,7 @@ class ProductImagesController extends GetxController {
       uniqueImages.addAll(
           product.productVariations!.map((variation) => variation.image));
     }
-  // convert set to list
+    // convert set to list
     return uniqueImages.toList();
   }
 
@@ -49,13 +49,13 @@ class ProductImagesController extends GetxController {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                  vertical: CSizes.defaultSpace * 2,
-                  horizontal: CSizes.defaultSpace),
+                  vertical: AppSizes.defaultSpace * 2,
+                  horizontal: AppSizes.defaultSpace),
               child: CachedNetworkImage(
                 imageUrl: image,
               ),
             ),
-            const SizedBox(height: CSizes.spaceBetweenSections),
+            const SizedBox(height: AppSizes.spaceBetweenSections),
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomOutlinedButton(

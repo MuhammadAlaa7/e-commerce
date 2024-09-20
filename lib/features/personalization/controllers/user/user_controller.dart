@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/buttons/outlined_button.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/personalization/screens/profile/widgets/re_auth_user_login_form.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 import '../../../auth/screens/login_screen/login_screen.dart';
 
@@ -84,7 +84,7 @@ class UserController extends GetxController {
         }
       }
     } catch (e) {
-      CLoaders.warningSnackBar(
+      AppToasts.warningSnackBar(
         title: 'Data not saved',
         message: '''Something went wrong while saving your information. 
             You can re-save your data in your profile.''',
@@ -97,7 +97,7 @@ class UserController extends GetxController {
 //[ 1 ] - delete user account warning popup
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
-      contentPadding: const EdgeInsets.all(CSizes.md),
+      contentPadding: const EdgeInsets.all(AppSizes.md),
       title: 'Delete Account',
       middleText:
           'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
@@ -120,8 +120,8 @@ class UserController extends GetxController {
   void deleteUserAccount() async {
     try {
       // start loading
-      CFullScreenLoader.openLoadingDialog(
-          'Processing...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Processing...', AppImages.docerAnimation);
 
       // first re-authenticate user
       final authRepo = AuthenticationRepository.instance;
@@ -143,19 +143,20 @@ class UserController extends GetxController {
           await authRepo.deleteAccount();
           GoogleSignIn().signOut();
           GoogleSignIn().disconnect();
-          CFullScreenLoader.closeLoadingDialog();
+          FullScreenLoader.closeLoadingDialog();
           Get.offAll(() => const LoginScreen());
         } else if (provider == 'password') {
-          CFullScreenLoader.closeLoadingDialog();
+          FullScreenLoader.closeLoadingDialog();
           Get.to(() => const ReAuthUserLoginForm());
         }
       } else {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(title: 'Oops!', message: 'Something went wrong');
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
+            title: 'Oops!', message: 'Something went wrong');
       }
     } catch (e) {
-      CFullScreenLoader.closeLoadingDialog();
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 
@@ -165,20 +166,20 @@ class UserController extends GetxController {
   void reAuthenticateUserWithEmailAndPassword() async {
     try {
       // start loading
-      CFullScreenLoader.openLoadingDialog(
-          'Processing...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Processing...', AppImages.docerAnimation);
 
       // check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.warningSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.warningSnackBar(
             title: 'Opps!', message: 'No internet connection');
         return;
       }
       // validate from
       if (!reAuthFormKey.currentState!.validate()) {
-        CFullScreenLoader.closeLoadingDialog();
+        FullScreenLoader.closeLoadingDialog();
         return;
       }
 
@@ -189,11 +190,11 @@ class UserController extends GetxController {
         verifyPassword.text.trim(),
       );
       await AuthenticationRepository.instance.deleteAccount();
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
       Get.offAll(() => const LoginScreen());
     } catch (e) {
-      CFullScreenLoader.closeLoadingDialog();
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 
@@ -238,7 +239,7 @@ class UserController extends GetxController {
         // show a success message to the user
         user.refresh();
         profileLoading.value = false;
-        CLoaders.successSnackBar(
+        AppToasts.successSnackBar(
             title: 'Congratulations!',
             message: 'Your profile picture has been updated successfully');
       } else {
@@ -246,7 +247,7 @@ class UserController extends GetxController {
         profileLoading.value = false;
       }
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 
@@ -255,24 +256,24 @@ class UserController extends GetxController {
   Future<void> logOut() async {
     try {
       // start loader
-      CFullScreenLoader.openLoadingDialog(
-          'Logging you out ...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Logging you out ...', AppImages.docerAnimation);
 
       // check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Error', message: 'No internet connection');
         return;
       }
       // logout
       await AuthenticationRepository.instance.logOut();
       // stop loader
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
       Get.offAll(() => const LoginScreen());
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Oops!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 }

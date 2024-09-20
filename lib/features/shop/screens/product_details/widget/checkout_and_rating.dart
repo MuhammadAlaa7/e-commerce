@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/texts/read_more_text.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/texts/read_more_text.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class CheckoutAndReviews extends StatelessWidget {
   const CheckoutAndReviews({
@@ -25,7 +25,7 @@ class CheckoutAndReviews extends StatelessWidget {
           onPressed: () {},
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenSections,
+          height: AppSizes.spaceBetweenSections,
         ),
 
         // * Description
@@ -35,14 +35,14 @@ class CheckoutAndReviews extends StatelessWidget {
           showActionButton: false,
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems,
+          height: AppSizes.spaceBetweenItems,
         ),
         CustomReadMoreText(
           text: product.description ?? '',
         ),
         const Divider(),
         const SizedBox(
-          height: CSizes.spaceBetweenItems,
+          height: AppSizes.spaceBetweenItems,
         ),
         // * Reviews
         Row(
@@ -55,7 +55,8 @@ class CheckoutAndReviews extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
-                  CHelperFunctions.navigateToScreen(context, const ProductReviewScreen());
+                  AppHelperFunctions.navigateToScreen(
+                      context, const ProductReviewScreen());
                 },
                 icon: const Icon(Iconsax.arrow_right_3)),
           ],

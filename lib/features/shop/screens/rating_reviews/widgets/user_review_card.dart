@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/common/widgets/products/ratings/rating_bar_indicator.dart';
-import 'package:store/common/widgets/texts/read_more_text.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/core/common/widgets/products/ratings/rating_bar_indicator.dart';
+import 'package:store/core/common/widgets/texts/read_more_text.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class UserReviewCard extends StatelessWidget {
   const UserReviewCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isDark = CHelperFunctions.isDarkMode(context);
+    final isDark = AppHelperFunctions.isDarkMode(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage(CImages.userProfileImage3),
+              backgroundImage: AssetImage(AppImages.userProfileImage3),
             ),
             const SizedBox(
-              width: CSizes.spaceBetweenItems,
+              width: AppSizes.spaceBetweenItems,
             ),
             Text(
               'Muhammad Alaa',
@@ -36,7 +36,7 @@ class UserReviewCard extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         // * review
         const Row(
@@ -46,24 +46,24 @@ class UserReviewCard extends StatelessWidget {
               itemSize: 15,
             ),
             SizedBox(
-              width: CSizes.spaceBetweenItems / 2,
+              width: AppSizes.spaceBetweenItems / 2,
             ),
             Text('01-Nov-2024'),
           ],
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         const CustomReadMoreText(
           text:
               'The user interface of the app is quite intuitive. I was able to navigate and make purchases seamlessly, Great Job! ',
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems,
+          height: AppSizes.spaceBetweenItems,
         ),
         RoundedContainer(
-          padding: const EdgeInsets.all(CSizes.md),
-          backgroundColor: isDark ? CColors.darkerGrey : Colors.grey[400],
+          padding: const EdgeInsets.all(AppSizes.md),
+          backgroundColor: isDark ? AppColors.darkerGrey : Colors.grey[400],
           child: Column(
             children: [
               Row(
@@ -80,7 +80,7 @@ class UserReviewCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               const CustomReadMoreText(
                 text:
@@ -90,7 +90,7 @@ class UserReviewCard extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenSections,
+          height: AppSizes.spaceBetweenSections,
         ),
       ],
     );

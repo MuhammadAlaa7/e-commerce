@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class UpdateNameController extends GetxController {
   static UpdateNameController get instance => Get.find();
@@ -32,14 +32,14 @@ class UpdateNameController extends GetxController {
   Future<void> updateName() async {
     try {
       // Start loading
-      CFullScreenLoader.openLoadingDialog(
-          'Updating your name ...', CImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Updating your name ...', AppImages.docerAnimation);
 
       // Check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (isConnected == false) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'No Internet', message: 'Please check your connection.');
         return;
       }
@@ -47,7 +47,7 @@ class UpdateNameController extends GetxController {
       // Form validation
       final bool isFormValid = updateNameFormKey.currentState!.validate();
       if (!isFormValid) {
-        CFullScreenLoader.closeLoadingDialog();
+        FullScreenLoader.closeLoadingDialog();
         return;
       }
 
@@ -64,7 +64,6 @@ class UpdateNameController extends GetxController {
       userController.user.value.lastName = lastName.text.trim();
       userController.user.update((value) {});
 
-
 /* 
 why you need to update the user values manually here ?
 by this line :  userController.user.update((value) {});
@@ -74,9 +73,9 @@ Complex Objects: For complex objects (like UserModel), changes within the object
 Complex objects require explicit signaling (using update()) to notify the reactive system of internal changes.
  */
       /// Remove loader
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
       // Show success message
-      CLoaders.successSnackBar(
+      AppToasts.successSnackBar(
           title: 'Congratulations',
           message: 'Your name has been updated successfully');
 
@@ -90,8 +89,8 @@ Complex objects require explicit signaling (using update()) to notify the reacti
       // Get.to(() => const ProfileScreen());
       //  Navigator.of(Get.context!).pop();
     } catch (e) {
-      CFullScreenLoader.closeLoadingDialog();
-      CLoaders.errorSnackBar(title: 'Oops', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Oops', message: e.toString());
     }
   }
 }

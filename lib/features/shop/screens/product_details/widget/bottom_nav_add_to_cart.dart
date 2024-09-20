@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/icons/circular_icon.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/icons/circular_icon.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class BottomNavAddToCart extends StatelessWidget {
   const BottomNavAddToCart({
@@ -15,22 +15,22 @@ class BottomNavAddToCart extends StatelessWidget {
     required this.product,
   });
 
-
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
     final controller = CartItemController.instance;
     //! this will automatically update the already added product count
     controller.updateAlreadyAddedProductCount(product);
-    final isDark = CHelperFunctions.isDarkMode(context);
+    final isDark = AppHelperFunctions.isDarkMode(context);
     return Container(
       padding: const EdgeInsets.symmetric(
-          horizontal: CSizes.defaultSpace, vertical: CSizes.defaultSpace / 2),
+          horizontal: AppSizes.defaultSpace,
+          vertical: AppSizes.defaultSpace / 2),
       decoration: BoxDecoration(
-        color: isDark ? CColors.lightGrey : CColors.light,
+        color: isDark ? AppColors.lightGrey : AppColors.light,
         borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(CSizes.cardRadiusLg),
-            topRight: Radius.circular(CSizes.cardRadiusLg)),
+            topLeft: Radius.circular(AppSizes.cardRadiusLg),
+            topRight: Radius.circular(AppSizes.cardRadiusLg)),
       ),
       child: Obx(
         () => Row(
@@ -53,12 +53,12 @@ class BottomNavAddToCart extends StatelessWidget {
                   backgroundColor: Colors.black,
                   iconColor: Colors.white,
                 ),
-                const SizedBox(width: CSizes.spaceBetweenItems),
+                const SizedBox(width: AppSizes.spaceBetweenItems),
                 Text(
                   controller.productQuantityInCart.value.toString(),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                const SizedBox(width: CSizes.spaceBetweenItems),
+                const SizedBox(width: AppSizes.spaceBetweenItems),
                 CircularIcon(
                   icon: Iconsax.add,
                   onPressed: () {
@@ -86,7 +86,7 @@ class BottomNavAddToCart extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   padding: const EdgeInsets.all(
-                    CSizes.md,
+                    AppSizes.md,
                   ),
                   side: const BorderSide(
                     color: Colors.black,

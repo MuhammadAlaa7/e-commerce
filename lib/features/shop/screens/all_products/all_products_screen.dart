@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/shimmers/verticatl_product_shimmer.dart';
-import 'package:store/common/widgets/products/sortable_products/sortable_products.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/shimmers/verticatl_product_shimmer.dart';
+import 'package:store/core/common/widgets/products/sortable_products/sortable_products.dart';
 import 'package:store/features/shop/controllers/product/all_products_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 import '../../models/product_model.dart';
 
@@ -21,14 +21,14 @@ class AllProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AllProductsController());
-    
+
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(title),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(CSizes.md),
+          padding: const EdgeInsets.all(AppSizes.md),
           child: FutureBuilder(
             // the data will come in the future and passed to snapshot
             // it updates the UI with the new data by its own no need for Obx

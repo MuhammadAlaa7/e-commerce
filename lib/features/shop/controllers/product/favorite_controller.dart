@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/local_storage/storage_util.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/local_storage/storage_util.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class FavoriteController extends GetxController {
   static FavoriteController get instance => Get.find();
@@ -22,11 +22,11 @@ class FavoriteController extends GetxController {
 // the data comes from hive will be map < string , dynamic > , so we need to convert it to map < string , bool >
 // * Get the favorite products from the hive box in local storage
   void initFavorites() {
-   // get the favorites data from storage which is in the form of map<string , dynamic >
+    // get the favorites data from storage which is in the form of map<string , dynamic >
     // and convert it to the form of map<string , bool >
-    
+
     final storedFavorites = Map<String, bool>.from(
-        CustomLocalStorage.instance().readData('favorites') ?? {});
+        AppLocalStorage.instance().readData('favorites') ?? {});
     // update the favorites with the stored favorites after converting its items
 
     // deal with the stored favorites as map<string , dynamic>
@@ -48,18 +48,18 @@ class FavoriteController extends GetxController {
         {productId: true},
       );
       // show a snack bar that the product is added to favorites
-      CLoaders.customToast(message: 'Product added to favorites');
+      AppToasts.customToast(message: 'Product added to favorites');
     } else {
       // if the product is in the favorites then remove it
       favorites.remove(productId);
 
       // show a snack bar that the product is removed from favorites
-      CLoaders.customToast(message: 'Product removed from favorites');
+      AppToasts.customToast(message: 'Product removed from favorites');
     }
     //* after the addition or removal of the product , save the favorites in the local storage
     // save the favorites to storage
     // * we store the data into the hive box here in the form of  [ map < string , map < string , bool > >  ]
-    CustomLocalStorage.instance().saveData('favorites', favorites);
+    AppLocalStorage.instance().saveData('favorites', favorites);
     // update the favorites by refreshing it
     favorites.refresh();
   }
@@ -67,20 +67,19 @@ class FavoriteController extends GetxController {
 // get the favorite products from firebase according to the favorites map here , to show them in the wishlist screen
   Future<List<ProductModel>> fetchFavoriteProducts() async {
     try {
-      // check first if the favorites map is not empty 
+      // check first if the favorites map is not empty
       // *don't make a firebase call if the favorites map is empty
       if (favorites.isNotEmpty) {
         // take the keys of the favorites and convert them to a list
         //and get the products from the firebase based on the this list of ids [ keys ]
         return await ProductRepository.instance
             .getFavoriteProducts(favorites.keys.toList());
-      }
-      else{
+      } else {
         return [];
       }
     } catch (e) {
       log(e.toString());
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
       return [];
     }
   }

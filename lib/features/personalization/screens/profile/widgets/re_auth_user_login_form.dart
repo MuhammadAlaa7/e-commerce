@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/buttons/default_button.dart';
-import 'package:store/common/widgets/input_field/input_field.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/constants22/text_strings.dart';
-import 'package:store/utils/validators/custom_validator.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/buttons/default_button.dart';
+import 'package:store/core/common/widgets/input_field/input_field.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/core/utils/validators/custom_validator.dart';
 
 import '../../../controllers/user/user_controller.dart';
 
@@ -24,7 +24,7 @@ class ReAuthUserLoginForm extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding:const  EdgeInsets.all(CSizes.md),
+        padding: const EdgeInsets.all(AppSizes.md),
         child: Form(
           key: userController.reAuthFormKey,
           child: Column(
@@ -33,19 +33,19 @@ class ReAuthUserLoginForm extends StatelessWidget {
                 controller: userController.verifyEmail,
                 label: 'Email',
                 prefixIcon: Iconsax.direct,
-                validator: (value) => CValidator.validateEmptyText(
+                validator: (value) => AppValidator.validateEmptyText(
                   fieldName: 'Email',
                   value: value,
                 ),
               ),
-              const SizedBox(height: CSizes.spaceBetweenInputFields),
-                   Obx(
+              const SizedBox(height: AppSizes.spaceBetweenInputFields),
+              Obx(
                 () => InputField(
                   controller: userController.verifyPassword,
-                  validator: (value) => CValidator.validateEmptyText(
-                      fieldName: CTexts.password, value: value),
+                  validator: (value) => AppValidator.validateEmptyText(
+                      fieldName: AppTexts.password, value: value),
                   //    CValidator.validatePassword(value),
-                  label: CTexts.password,
+                  label: AppTexts.password,
                   prefixIcon: Iconsax.password_check,
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -61,7 +61,7 @@ class ReAuthUserLoginForm extends StatelessWidget {
                   obscureText: userController.hidePassword.value,
                 ),
               ),
-              const SizedBox(height: CSizes.spaceBetweenSections),
+              const SizedBox(height: AppSizes.spaceBetweenSections),
               DefaultButton(
                 label: 'Verify',
                 onPressed: () {

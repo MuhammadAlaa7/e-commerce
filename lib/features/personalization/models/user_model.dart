@@ -1,7 +1,5 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:store/utils/formatter/formatter.dart';
+import 'package:store/core/utils/formatter/formatter.dart';
 
 class UserModel {
 // only make the unchanged variables final
@@ -28,7 +26,8 @@ class UserModel {
   String get fullName => '$firstName $lastName';
 
 // Helper function to format the phone number
-  String get formattedPhoneNumber => CFormatter.formatPhoneNumber(phoneNumber);
+  String get formattedPhoneNumber =>
+      AppFormatter.formatPhoneNumber(phoneNumber);
 
 // static function to split full name into first name and last name
 

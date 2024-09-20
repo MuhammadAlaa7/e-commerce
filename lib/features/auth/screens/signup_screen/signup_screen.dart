@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/styles/text_styles.dart';
-import 'package:store/common/widgets/login_signup/form_divider.dart';
-import 'package:store/common/widgets/login_signup/social_buttons.dart';
+import 'package:store/core/common/widgets/login_signup/form_divider.dart';
+import 'package:store/core/common/widgets/login_signup/social_buttons.dart';
 import 'package:store/features/auth/screens/signup_screen/widgets/signup_form.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/constants22/text_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/constants/text_strings.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -17,39 +16,39 @@ class SignUpScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-              left: CSizes.defaultSpace,
-              right: CSizes.defaultSpace,
+              left: AppSizes.defaultSpace,
+              right: AppSizes.defaultSpace,
               top: 0,
-              bottom: CSizes.defaultSpace,
+              bottom: AppSizes.defaultSpace,
             ),
             child: Column(
               children: [
                 /// * Title
 
                 Text(
-                  CTexts.signUpTitle,
-                  style: CTextStyles.titleTextStyle(context),
+                  AppTexts.signUpTitle,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenSections,
+                  height: AppSizes.spaceBetweenSections,
                 ),
                 // * sign up form
 
                 const SignUpForm(),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenSections,
+                  height: AppSizes.spaceBetweenSections,
                 ),
 
                 // * Divider
                 const FormDivider(
-                  dividerText: CTexts.orSignUpWith,
+                  dividerText: AppTexts.orSignUpWith,
                 ),
                 const SizedBox(
-                  height: CSizes.spaceBetweenSections,
+                  height: AppSizes.spaceBetweenSections,
                 ),
                 // * footer
-              const  SocialButtons(),
+                const SocialButtons(),
               ],
             ),
           ),

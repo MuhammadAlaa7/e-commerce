@@ -6,8 +6,8 @@ import 'package:store/features/shop/controllers/product/variation_controller.dar
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/widget/product_attributes.dart';
 import 'package:store/features/shop/screens/product_details/widget/rating_share_widget.dart';
-import 'package:store/utils/constants22/enums.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/enums.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 import 'widget/bottom_nav_add_to_cart.dart';
 import 'widget/checkout_and_rating.dart';
 import 'widget/product_image_slider.dart';
@@ -44,9 +44,9 @@ class ProductDetailsScreen extends StatelessWidget {
 
               Padding(
                 padding: const EdgeInsets.only(
-                  left: CSizes.defaultSpace,
-                  right: CSizes.defaultSpace,
-                  bottom: CSizes.defaultSpace,
+                  left: AppSizes.defaultSpace,
+                  right: AppSizes.defaultSpace,
+                  bottom: AppSizes.defaultSpace,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       ),
 
                     const SizedBox(
-                      height: CSizes.spaceBetweenSections,
+                      height: AppSizes.spaceBetweenSections,
                     ),
 
                     // * checkout and reviews

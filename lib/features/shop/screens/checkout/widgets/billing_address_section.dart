@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class BillingAddressSection extends StatelessWidget {
   const BillingAddressSection({super.key});
@@ -23,7 +23,7 @@ class BillingAddressSection extends StatelessWidget {
           },
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         //* only show the data of the address selected if there is one already selected
         addressController.currentSelectedAddress.value.id.isNotEmpty
@@ -36,12 +36,12 @@ class BillingAddressSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const SizedBox(
-                      height: CSizes.spaceBetweenItems / 2,
+                      height: AppSizes.spaceBetweenItems / 2,
                     ),
                     Row(children: [
                       const Icon(Icons.phone, color: Colors.grey, size: 16),
                       const SizedBox(
-                        width: CSizes.spaceBetweenItems,
+                        width: AppSizes.spaceBetweenItems,
                       ),
                       Text(
                         addressController
@@ -50,14 +50,14 @@ class BillingAddressSection extends StatelessWidget {
                       ),
                     ]),
                     const SizedBox(
-                      height: CSizes.spaceBetweenItems / 2,
+                      height: AppSizes.spaceBetweenItems / 2,
                     ),
                     Row(
                       children: [
                         const Icon(Icons.location_history,
                             color: Colors.grey, size: 16),
                         const SizedBox(
-                          width: CSizes.spaceBetweenItems,
+                          width: AppSizes.spaceBetweenItems,
                         ),
                         Expanded(
                           // * make it expanded to prevent the overflow for the text

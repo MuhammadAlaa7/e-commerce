@@ -2,15 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/chips/choice_chip.dart';
-import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/common/widgets/texts/product_price_text.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/chips/choice_chip.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/core/common/widgets/texts/product_price_text.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/product/variation_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class ProductAttributes extends StatelessWidget {
   const ProductAttributes({
@@ -27,11 +27,11 @@ class ProductAttributes extends StatelessWidget {
           // *selected prices
           if (controller.selectedVariation.value.id.isNotEmpty)
             RoundedContainer(
-              margin: const EdgeInsets.symmetric(vertical: CSizes.md),
+              margin: const EdgeInsets.symmetric(vertical: AppSizes.md),
               // height: 60,
-              padding: const EdgeInsets.all(CSizes.md),
-              backgroundColor: CHelperFunctions.isDarkMode(context)
-                  ? CColors.darkerGrey.withOpacity(0.8)
+              padding: const EdgeInsets.all(AppSizes.md),
+              backgroundColor: AppHelperFunctions.isDarkMode(context)
+                  ? AppColors.darkerGrey.withOpacity(0.8)
                   : Colors.grey.withOpacity(0.4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +44,7 @@ class ProductAttributes extends StatelessWidget {
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const SizedBox(
-                        width: CSizes.spaceBetweenItems,
+                        width: AppSizes.spaceBetweenItems,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class ProductAttributes extends StatelessWidget {
                                   style:
                                       Theme.of(context).textTheme.labelLarge),
                               const SizedBox(
-                                width: CSizes.spaceBetweenItems / 2,
+                                width: AppSizes.spaceBetweenItems / 2,
                               ),
                               // * if there is a sale put the price with line through
                               if (controller.selectedVariation.value.salePrice >
@@ -70,7 +70,7 @@ class ProductAttributes extends StatelessWidget {
                                       ),
                                 ),
                               const SizedBox(
-                                width: CSizes.spaceBetweenItems,
+                                width: AppSizes.spaceBetweenItems,
                               ),
                               const ProductPriceText(
                                 price: '134,00',
@@ -87,7 +87,7 @@ class ProductAttributes extends StatelessWidget {
                                 style: Theme.of(context).textTheme.labelLarge,
                               ),
                               const SizedBox(
-                                width: CSizes.spaceBetweenItems,
+                                width: AppSizes.spaceBetweenItems,
                               ),
                               Text(controller.variationStockStatus.value,
                                   style:
@@ -107,7 +107,7 @@ class ProductAttributes extends StatelessWidget {
               ),
             ),
           const SizedBox(
-            height: CSizes.spaceBetweenItems,
+            height: AppSizes.spaceBetweenItems,
           ),
 
           Column(
@@ -120,7 +120,7 @@ class ProductAttributes extends StatelessWidget {
                   HeadingSection(
                       title: attribute.name ?? '', showActionButton: false),
                   const SizedBox(
-                    height: CSizes.spaceBetweenItems,
+                    height: AppSizes.spaceBetweenItems,
                   ),
                   Obx(
                     () => Wrap(

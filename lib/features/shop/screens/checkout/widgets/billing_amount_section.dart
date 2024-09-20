@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/pricing_calculator.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/pricing_calculator.dart';
 
 class BillingAmountSection extends StatelessWidget {
   const BillingAmountSection({super.key});
@@ -25,7 +25,7 @@ class BillingAmountSection extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         // * shipping fee text
         Row(
@@ -40,7 +40,7 @@ class BillingAmountSection extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         // * tax fee text
         Row(
@@ -50,13 +50,12 @@ class BillingAmountSection extends StatelessWidget {
               'Tax Fee',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text(
-                '\$${PricingCalculator.calculateTax(totalCartPrice, 'Egypt')}',
+            Text('\$${PricingCalculator.calculateTax(totalCartPrice, 'Egypt')}',
                 style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         // * order total  text
         Row(
@@ -72,7 +71,7 @@ class BillingAmountSection extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
       ],
     );

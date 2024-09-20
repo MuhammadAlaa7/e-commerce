@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/brands/featured_brands_item.dart';
-import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/brands/featured_brands_item.dart';
+import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/brand/brand_controller.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/routes/routes.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class AllBrandsScreen extends StatelessWidget {
   const AllBrandsScreen({super.key});
@@ -24,7 +24,7 @@ class AllBrandsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(
-            CSizes.md,
+            AppSizes.md,
           ),
           child: Column(
             children: [
@@ -33,14 +33,14 @@ class AllBrandsScreen extends StatelessWidget {
                 showActionButton: false,
               ),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               Obx(
                 () {
                   if (controller.isLoading.value == true) {
                     return const Center(
                         child: CircularProgressIndicator(
-                      color: CColors.primary,
+                      color: AppColors.primary,
                     ));
                   }
                   if (controller.allBrands.isEmpty == true) {
@@ -48,7 +48,7 @@ class AllBrandsScreen extends StatelessWidget {
                   } else {
                     return CustomGridView(
                       mainAxisExtent: 80,
-                      mainAxisSpacing: CSizes.gridViewSpacing,
+                      mainAxisSpacing: AppSizes.gridViewSpacing,
                       itemCount: controller.allBrands.length,
                       itemBuilder: (_, index) => FeaturedBrandCard(
                         onTap: () {

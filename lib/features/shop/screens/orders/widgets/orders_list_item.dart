@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/features/shop/models/order_model.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem({
@@ -19,10 +19,10 @@ class OrderItem extends StatelessWidget {
       // borderColor: CHelperFunctions.isDarkMode(context)
       //     ? CColors.lightGrey
       //     : CColors.dark,
-      padding: const EdgeInsets.all(CSizes.md),
-      backgroundColor: CHelperFunctions.isDarkMode(context)
-          ? CColors.dark
-          : CColors.lightGrey,
+      padding: const EdgeInsets.all(AppSizes.md),
+      backgroundColor: AppHelperFunctions.isDarkMode(context)
+          ? AppColors.dark
+          : AppColors.lightGrey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -31,7 +31,7 @@ class OrderItem extends StatelessWidget {
               //* icon
               const Icon(Iconsax.ship),
               const SizedBox(
-                width: CSizes.spaceBetweenItems / 2,
+                width: AppSizes.spaceBetweenItems / 2,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class OrderItem extends StatelessWidget {
                   Text(
                     order.orderStatusText,
                     style: Theme.of(context).textTheme.bodyLarge!.apply(
-                          color: CColors.primary,
+                          color: AppColors.primary,
                           fontWeightDelta: 2,
                         ),
                   ),
@@ -53,7 +53,7 @@ class OrderItem extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: CSizes.spaceBetweenItems,
+            height: AppSizes.spaceBetweenItems,
           ),
           Row(
             children: [
@@ -63,7 +63,7 @@ class OrderItem extends StatelessWidget {
                     //* icon
                     const Icon(Iconsax.tag),
                     const SizedBox(
-                      width: CSizes.spaceBetweenItems / 2,
+                      width: AppSizes.spaceBetweenItems / 2,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +83,7 @@ class OrderItem extends StatelessWidget {
                     //* icon
                     const Icon(Iconsax.calendar),
                     const SizedBox(
-                      width: CSizes.spaceBetweenItems / 2,
+                      width: AppSizes.spaceBetweenItems / 2,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

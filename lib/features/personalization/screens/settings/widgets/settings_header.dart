@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/custom_shapes/primary_header_container.dart';
-import 'package:store/common/widgets/list_tiles/user_profile_tile.dart';
-import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/custom_shapes/primary_header_container.dart';
+import 'package:store/core/common/widgets/list_tiles/user_profile_tile.dart';
+import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 import '../../../controllers/user/user_controller.dart';
 
@@ -42,17 +42,18 @@ class SettingsHeader extends StatelessWidget {
                 : UserProfileTile(
                     image: userController.user.value.profilePicture.isNotEmpty
                         ? userController.user.value.profilePicture
-                        : CImages.userProfileImage1,
+                        : AppImages.userProfileImage1,
                     title: userController.user.value.fullName,
                     subTitle: userController.user.value.email,
                     onPressed: () {
-                      CHelperFunctions.navigateToScreen(context, const ProfileScreen());
+                      AppHelperFunctions.navigateToScreen(
+                          context, const ProfileScreen());
                     },
                   );
           }),
 
           const SizedBox(
-            height: CSizes.spaceBetweenSections,
+            height: AppSizes.spaceBetweenSections,
           )
         ],
       ),

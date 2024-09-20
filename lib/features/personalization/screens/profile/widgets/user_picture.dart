@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/buttons/text_button.dart';
-import 'package:store/common/widgets/images/custom_circular_image.dart';
-import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/core/common/widgets/buttons/text_button.dart';
+import 'package:store/core/common/widgets/images/custom_circular_image.dart';
+import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
-import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
 
 class UserPictureSection extends StatelessWidget {
   const UserPictureSection({
@@ -24,7 +24,7 @@ class UserPictureSection extends StatelessWidget {
               final networkImage = userController.user.value.profilePicture;
               // check if there is a picture in the user , if not show the default image
               final image =
-                  networkImage.isNotEmpty ? networkImage : CImages.user;
+                  networkImage.isNotEmpty ? networkImage : AppImages.user;
 
               return userController.profileLoading.value
                   ? const CustomShimmerEffect(

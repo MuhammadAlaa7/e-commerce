@@ -8,10 +8,10 @@ import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/models/product_attributes_model.dart';
 import 'package:store/features/shop/models/product_category_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/routes/app_routes.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants22/enums.dart';
-import 'package:store/utils/constants22/image_strings.dart';
+import 'package:store/core/routes/app_routes.dart';
+import 'package:store/core/routes/routes.dart';
+import 'package:store/core/utils/constants/enums.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
 
 import 'features/shop/models/banner_model.dart';
 import 'features/shop/models/brand_category_model.dart';
@@ -24,12 +24,12 @@ class DummyData {
 
   static final List<BannerModel> banners = [
     BannerModel(
-      imageUrl: CImages.banner1,
+      imageUrl: AppImages.banner1,
       targetScreen: Routes.store,
       active: true,
     ),
     BannerModel(
-      imageUrl: CImages.banner2,
+      imageUrl: AppImages.banner2,
       targetScreen: Routes.cart,
       active: true,
     ),
@@ -74,7 +74,7 @@ class DummyData {
     username: 'tprogramming',
     email: 'support@codingwitht.com',
     phoneNumber: '+14155552671',
-    profilePicture: CImages.userProfileImage1,
+    profilePicture: AppImages.userProfileImage1,
     //   addresses: [
     //     AddressModel(
     //       id: '1',
@@ -149,46 +149,46 @@ class DummyData {
   static final List<CategoryModel> categories = [
     CategoryModel(
       id: '1',
-      image: CImages.sportIcon,
+      image: AppImages.sportIcon,
       name: 'Sports',
       isFeatured: true,
     ),
     CategoryModel(
         id: '5',
-        image: CImages.furnitureIcon,
+        image: AppImages.furnitureIcon,
         name: 'Furniture',
         isFeatured: true),
     CategoryModel(
         id: '2',
-        image: CImages.electronicsIcon,
+        image: AppImages.electronicsIcon,
         name: 'Electronics',
         isFeatured: true),
     CategoryModel(
       id: '3',
-      image: CImages.clothIcon,
+      image: AppImages.clothIcon,
       name: 'Clothes',
       isFeatured: true,
     ),
     CategoryModel(
       id: '4',
-      image: CImages.animalIcon,
+      image: AppImages.animalIcon,
       name: 'Animals',
       isFeatured: true,
     ),
     CategoryModel(
       id: '6',
-      image: CImages.shoeIcon,
+      image: AppImages.shoeIcon,
       name: 'Shoes',
       isFeatured: true,
     ),
     CategoryModel(
         id: '7',
-        image: CImages.cosmeticsIcon,
+        image: AppImages.cosmeticsIcon,
         name: 'Cosmetics',
         isFeatured: true),
     CategoryModel(
         id: '14',
-        image: CImages.jeweleryIcon,
+        image: AppImages.jeweleryIcon,
         name: 'Jewelry',
         isFeatured: true),
   ];
@@ -199,19 +199,19 @@ class DummyData {
     ///subcategories
     CategoryModel(
         id: '8',
-        image: CImages.sportIcon,
+        image: AppImages.sportIcon,
         name: 'Sport Shoes',
         parentId: '1',
         isFeatured: false),
     CategoryModel(
         id: '9',
-        image: CImages.sportIcon,
+        image: AppImages.sportIcon,
         name: 'Track suits',
         parentId: '1',
         isFeatured: false),
     CategoryModel(
         id: '10',
-        image: CImages.sportIcon,
+        image: AppImages.sportIcon,
         name: 'Sports Equipments',
         parentId: '1',
         isFeatured: false),
@@ -219,19 +219,19 @@ class DummyData {
     //furniture
     CategoryModel(
         id: '11',
-        image: CImages.furnitureIcon,
+        image: AppImages.furnitureIcon,
         name: 'Bedroom furniture',
         parentId: '5',
         isFeatured: false),
     CategoryModel(
         id: '12',
-        image: CImages.furnitureIcon,
+        image: AppImages.furnitureIcon,
         name: 'Kitchen furniture',
         parentId: '5',
         isFeatured: false),
     CategoryModel(
         id: '13',
-        image: CImages.furnitureIcon,
+        image: AppImages.furnitureIcon,
         name: 'Office furniture',
         parentId: '5',
         isFeatured: false),
@@ -239,13 +239,13 @@ class DummyData {
     //electronics
     CategoryModel(
         id: '14',
-        image: CImages.electronicsIcon,
+        image: AppImages.electronicsIcon,
         name: 'Laptop',
         parentId: '2',
         isFeatured: false),
     CategoryModel(
         id: '15',
-        image: CImages.electronicsIcon,
+        image: AppImages.electronicsIcon,
         name: 'Mobile',
         parentId: '2',
         isFeatured: false),
@@ -316,7 +316,7 @@ class DummyData {
 
     BrandModel(
       id: '11',
-      image: CImages.hermanMillerLogo,
+      image: AppImages.hermanMillerLogo,
       name: 'Herman Miller',
       productsCount: 36,
       isFeatured: true,
@@ -517,7 +517,7 @@ class DummyData {
       stock: 12,
       price: 600,
       salePrice: 550,
-      thumbnail: CImages.acer_laptop_1,
+      thumbnail: AppImages.acer_laptop_1,
       productType: ProductType.single.name,
       sku: 'ASWIFT32024',
       categoryId: '10',
@@ -526,13 +526,13 @@ class DummyData {
           'Acer Swift 3 with an ultra-lightweight design, long battery life, and fast processing power.',
       brand: BrandModel(
         id: '10',
-        image: CImages.acerLogo,
+        image: AppImages.acerLogo,
         name: 'Acer',
         productsCount: 150,
         isFeatured: true,
       ),
       images: [
-        CImages.acer_laptop_1,
+        AppImages.acer_laptop_1,
       ],
     ),
 
@@ -543,7 +543,7 @@ class DummyData {
       stock: 10,
       price: 700,
       salePrice: 650,
-      thumbnail: CImages.acer_laptop_2,
+      thumbnail: AppImages.acer_laptop_2,
       productType: ProductType.single.name,
       sku: 'AASP52024',
       categoryId: '10',
@@ -552,13 +552,13 @@ class DummyData {
           'Acer Aspire 5 offers premium performance with a stunning full HD display, perfect for work and entertainment.',
       brand: BrandModel(
         id: '10',
-        image: CImages.acerLogo,
+        image: AppImages.acerLogo,
         name: 'Acer',
         productsCount: 150,
         isFeatured: true,
       ),
       images: [
-        CImages.acer_laptop_2,
+        AppImages.acer_laptop_2,
       ],
     ),
 
@@ -569,7 +569,7 @@ class DummyData {
       stock: 5,
       price: 1500,
       salePrice: 1400,
-      thumbnail: CImages.acer_laptop_3,
+      thumbnail: AppImages.acer_laptop_3,
       productType: ProductType.single.name,
       sku: 'APRED2024',
       categoryId: '10',
@@ -578,13 +578,13 @@ class DummyData {
           'Acer Predator Helios, engineered for gamers, comes with superior graphics and cooling technology for the ultimate gaming experience.',
       brand: BrandModel(
         id: '10',
-        image: CImages.acerLogo,
+        image: AppImages.acerLogo,
         name: 'Acer',
         productsCount: 150,
         isFeatured: true,
       ),
       images: [
-        CImages.acer_laptop_3,
+        AppImages.acer_laptop_3,
       ],
     ),
 
@@ -595,7 +595,7 @@ class DummyData {
       stock: 7,
       price: 1200,
       salePrice: 1150,
-      thumbnail: CImages.acer_laptop_4,
+      thumbnail: AppImages.acer_laptop_4,
       productType: ProductType.single.name,
       sku: 'ANITRO52024',
       categoryId: '10',
@@ -604,13 +604,13 @@ class DummyData {
           'Acer Nitro 5 offers smooth gameplay with high performance, immersive audio, and fast refresh rates for competitive gaming.',
       brand: BrandModel(
         id: '10',
-        image: CImages.acerLogo,
+        image: AppImages.acerLogo,
         name: 'Acer',
         productsCount: 150,
         isFeatured: true,
       ),
       images: [
-        CImages.acer_laptop_4,
+        AppImages.acer_laptop_4,
       ],
     ),
 // iPhone 12 Black
@@ -620,7 +620,7 @@ class DummyData {
       stock: 15,
       price: 850,
       salePrice: 800,
-      thumbnail: CImages.iphone12_black,
+      thumbnail: AppImages.iphone12_black,
       productType: ProductType.single.name,
       sku: 'IPH12BLK2024',
       categoryId: '11',
@@ -629,13 +629,13 @@ class DummyData {
           'iPhone 12 Black with powerful A14 Bionic chip, 5G capabilities, and stunning Super Retina XDR display.',
       brand: BrandModel(
         id: '11',
-        image: CImages.appleLogo,
+        image: AppImages.appleLogo,
         name: 'Apple',
         productsCount: 200,
         isFeatured: true,
       ),
       images: [
-        CImages.iphone12_black,
+        AppImages.iphone12_black,
       ],
     ),
 
@@ -646,7 +646,7 @@ class DummyData {
       stock: 12,
       price: 850,
       salePrice: 800,
-      thumbnail: CImages.iphone12_blue,
+      thumbnail: AppImages.iphone12_blue,
       productType: ProductType.single.name,
       sku: 'IPH12BLU2024',
       categoryId: '11',
@@ -655,13 +655,13 @@ class DummyData {
           'iPhone 12 Blue, featuring a sleek design, dual-camera system, and 5G support for faster browsing and streaming.',
       brand: BrandModel(
         id: '11',
-        image: CImages.appleLogo,
+        image: AppImages.appleLogo,
         name: 'Apple',
         productsCount: 200,
         isFeatured: true,
       ),
       images: [
-        CImages.iphone12_blue,
+        AppImages.iphone12_blue,
       ],
     ),
 
@@ -672,7 +672,7 @@ class DummyData {
       stock: 10,
       price: 1000,
       salePrice: 950,
-      thumbnail: CImages.iphone13_pro,
+      thumbnail: AppImages.iphone13_pro,
       productType: ProductType.single.name,
       sku: 'IPH13PRO2024',
       categoryId: '11',
@@ -681,13 +681,13 @@ class DummyData {
           'iPhone 13 Pro delivers advanced camera systems, 120Hz ProMotion display, and exceptional battery life for a premium experience.',
       brand: BrandModel(
         id: '11',
-        image: CImages.appleLogo,
+        image: AppImages.appleLogo,
         name: 'Apple',
         productsCount: 200,
         isFeatured: true,
       ),
       images: [
-        CImages.iphone13_pro,
+        AppImages.iphone13_pro,
       ],
     ),
 
@@ -698,7 +698,7 @@ class DummyData {
       stock: 8,
       price: 1200,
       salePrice: 1150,
-      thumbnail: CImages.iphone14_pro,
+      thumbnail: AppImages.iphone14_pro,
       productType: ProductType.single.name,
       sku: 'IPH14PRO2024',
       categoryId: '11',
@@ -707,13 +707,13 @@ class DummyData {
           'iPhone 14 Pro with a new Dynamic Island, enhanced Night mode, and cutting-edge safety features for the ultimate smartphone experience.',
       brand: BrandModel(
         id: '11',
-        image: CImages.appleLogo,
+        image: AppImages.appleLogo,
         name: 'Apple',
         productsCount: 200,
         isFeatured: true,
       ),
       images: [
-        CImages.iphone14_pro,
+        AppImages.iphone14_pro,
       ],
     ),
 
@@ -724,7 +724,7 @@ class DummyData {
       stock: 20,
       price: 400,
       salePrice: 350,
-      thumbnail: CImages.iphone8_mobile,
+      thumbnail: AppImages.iphone8_mobile,
       productType: ProductType.single.name,
       sku: 'IPH82024',
       categoryId: '11',
@@ -733,13 +733,13 @@ class DummyData {
           'iPhone 8 brings a familiar design with a powerful A11 chip and wireless charging capability, all at an affordable price.',
       brand: BrandModel(
         id: '11',
-        image: CImages.appleLogo,
+        image: AppImages.appleLogo,
         name: 'Apple',
         productsCount: 200,
         isFeatured: true,
       ),
       images: [
-        CImages.iphone8_mobile,
+        AppImages.iphone8_mobile,
       ],
     ),
   ];

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
+import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/features/shop/controllers/product/favorite_controller.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 import 'widgets/wishlist_app_bar.dart';
 
@@ -17,7 +17,7 @@ class WishlistScreen extends StatelessWidget {
       appBar: const WishlistAppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(CSizes.sm),
+          padding: const EdgeInsets.all(AppSizes.sm),
           child: Obx(
             () => FutureBuilder(
               future: favController.fetchFavoriteProducts(),

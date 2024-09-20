@@ -4,16 +4,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
-import 'package:store/common/widgets/icons/circular_icon.dart';
-import 'package:store/common/widgets/images/rounded_image.dart';
-import 'package:store/common/widgets/products/product_card/favorite_icon.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
+import 'package:store/core/common/widgets/icons/circular_icon.dart';
+import 'package:store/core/common/widgets/images/rounded_image.dart';
+import 'package:store/core/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/features/shop/controllers/product/product_images_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class ProductImageSlider extends StatelessWidget {
   const ProductImageSlider({
@@ -28,17 +28,17 @@ class ProductImageSlider extends StatelessWidget {
     final imageController = Get.put(ProductImagesController());
     final images = imageController.getAllImages(product);
 
-    final isDark = CHelperFunctions.isDarkMode(context);
+    final isDark = AppHelperFunctions.isDarkMode(context);
     return CurvedEdgesWidget(
       child: Container(
-        color: isDark ? CColors.darkerGrey : CColors.lightGrey,
+        color: isDark ? AppColors.darkerGrey : AppColors.lightGrey,
         child: Stack(
           children: [
             // * product main large image
             SizedBox(
               height: 400,
               child: Padding(
-                padding: const EdgeInsets.all(CSizes.lg * 1.5),
+                padding: const EdgeInsets.all(AppSizes.lg * 1.5),
                 child: Center(
                   child: Obx(() {
                     final image = imageController.selectedProductImage.value;
@@ -50,7 +50,7 @@ class ProductImageSlider extends StatelessWidget {
                         progressIndicatorBuilder: (_, __, progress) =>
                             CircularProgressIndicator(
                           value: progress.progress,
-                          color: CColors.primary,
+                          color: AppColors.primary,
                         ),
                       ),
                     );
@@ -87,18 +87,19 @@ class ProductImageSlider extends StatelessWidget {
                         border: Border.all(
                             color: imageController.selectedProductImage.value ==
                                     images[index]
-                                ? CColors.primary
+                                ? AppColors.primary
                                 : Colors.transparent),
-                        backgroundColor: isDark ? CColors.dark : CColors.light,
+                        backgroundColor:
+                            isDark ? AppColors.dark : AppColors.light,
                         width: 80,
                         height: 80,
-                        padding: const EdgeInsets.all(CSizes.sm),
+                        padding: const EdgeInsets.all(AppSizes.sm),
                         imageUrl: images[index],
                       ),
                     );
                   },
                   separatorBuilder: (_, __) {
-                    return const SizedBox(width: CSizes.md);
+                    return const SizedBox(width: AppSizes.md);
                   },
                   itemCount: images.length,
                 ),

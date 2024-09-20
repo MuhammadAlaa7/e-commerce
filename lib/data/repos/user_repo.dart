@@ -8,11 +8,11 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/personalization/models/user_model.dart';
-import 'package:store/utils/exceptions/firebase_exceptions.dart';
-import 'package:store/utils/exceptions/format_exceptions.dart';
-import 'package:store/utils/exceptions/platform_exceptions.dart';
+import 'package:store/core/utils/exceptions/firebase_exceptions.dart';
+import 'package:store/core/utils/exceptions/format_exceptions.dart';
+import 'package:store/core/utils/exceptions/platform_exceptions.dart';
 
-import '../../utils/exceptions/firebase_auth_exceptions.dart';
+import '../../core/utils/exceptions/firebase_auth_exceptions.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();

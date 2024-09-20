@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/models/payment_method.dart';
 import 'package:store/features/shop/screens/checkout/widgets/payment_tile.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class CheckoutController extends GetxController {
   static CheckoutController get instance => Get.find();
 
   Rx<PaymentMethod> selectedPaymentMethod =
-      PaymentMethod(image: CImages.paypal, name: 'Paypal').obs;
+      PaymentMethod(image: AppImages.paypal, name: 'Paypal').obs;
 
   // show the bottom sheet to select payment method
   Future<dynamic> selectPaymentMethod(BuildContext context) async {
@@ -19,7 +19,7 @@ class CheckoutController extends GetxController {
       builder: (_) {
         return SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(CSizes.lg),
+            padding: const EdgeInsets.all(AppSizes.lg),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,69 +29,69 @@ class CheckoutController extends GetxController {
                 ),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenSections,
+                  height: AppSizes.spaceBetweenSections,
                 ),
 
                 // * payment methods
                 PaymentTile(
                     paymentMethod:
-                        PaymentMethod(name: 'paypal', image: CImages.paypal)),
+                        PaymentMethod(name: 'paypal', image: AppImages.paypal)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod: PaymentMethod(
-                        name: 'Google Pay', image: CImages.googlePay)),
+                        name: 'Google Pay', image: AppImages.googlePay)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod: PaymentMethod(
-                        name: 'Apple Pay', image: CImages.applePay)),
+                        name: 'Apple Pay', image: AppImages.applePay)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod:
-                        PaymentMethod(name: 'VISA', image: CImages.visa)),
+                        PaymentMethod(name: 'VISA', image: AppImages.visa)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod: PaymentMethod(
-                        name: 'Master Card', image: CImages.masterCard)),
+                        name: 'Master Card', image: AppImages.masterCard)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod:
-                        PaymentMethod(name: 'Paytm', image: CImages.paytm)),
+                        PaymentMethod(name: 'Paytm', image: AppImages.paytm)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod: PaymentMethod(
-                        name: 'Paystack', image: CImages.paystack)),
+                        name: 'Paystack', image: AppImages.paystack)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
                 PaymentTile(
                     paymentMethod: PaymentMethod(
-                        name: 'Credit Card', image: CImages.creditCard)),
+                        name: 'Credit Card', image: AppImages.creditCard)),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenItems / 2,
+                  height: AppSizes.spaceBetweenItems / 2,
                 ),
 
                 const SizedBox(
-                  height: CSizes.spaceBetweenSections,
+                  height: AppSizes.spaceBetweenSections,
                 ),
               ],
             ),

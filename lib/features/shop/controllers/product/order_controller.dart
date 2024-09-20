@@ -2,19 +2,19 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/success_screen/success_screen.dart';
+import 'package:store/core/common/widgets/success_screen/success_screen.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/order_repo.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
 import 'package:store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:store/features/shop/models/order_model.dart';
 import 'package:store/navigation_menu.dart';
-import 'package:store/utils/constants22/enums.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/constants/enums.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
 
-import '../../../../utils/popups/loaders.dart';
+import '../../../../core/utils/popups/loaders.dart';
 import '../cart/cart_item_controller.dart';
 
 class OrderController extends GetxController {
@@ -33,7 +33,7 @@ class OrderController extends GetxController {
       final orders = await orderRepo.getAllUserOrders();
       return orders;
     } catch (e) {
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
       return [];
     }
   }
@@ -43,23 +43,23 @@ class OrderController extends GetxController {
   Future<void> processOrder(double totalAmount) async {
     try {
       // start loader
-      CFullScreenLoader.openLoadingDialog(
-          'Processing...', CImages.pencilAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'Processing...', AppImages.pencilAnimation);
 
       // check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
 
       if (!isConnected) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Opps!', message: 'No internet connection');
         return;
       }
       // get the user
       final userId = AuthenticationRepository.instance.currentAuthUser?.uid;
       if (userId!.isEmpty) {
-        CFullScreenLoader.closeLoadingDialog();
-        CLoaders.errorSnackBar(
+        FullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
             title: 'Opps!',
             message: 'Unable to find the user information , try again later.');
         return;
@@ -89,7 +89,7 @@ class OrderController extends GetxController {
       //  CFullScreenLoader.closeLoadingDialog();
 
       Get.off(() => SuccessScreen(
-            image: CImages.orderCompletedAnimation,
+            image: AppImages.orderCompletedAnimation,
             title: 'Payment Success!',
             subTitle:
                 'Your item has been placed successfully and will be shipped soon. ',
@@ -99,8 +99,8 @@ class OrderController extends GetxController {
           ));
     } catch (e) {
       log(e.toString());
-      CFullScreenLoader.closeLoadingDialog();
-      CLoaders.errorSnackBar(title: 'Opps!', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
     }
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/loaders/animated_loader.dart';
-import 'package:store/common/widgets/shimmers/orders_shimmer.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/loaders/animated_loader.dart';
+import 'package:store/core/common/widgets/shimmers/orders_shimmer.dart';
 import 'package:store/features/shop/controllers/product/order_controller.dart';
 import 'package:store/features/shop/models/order_model.dart';
 import 'package:store/features/shop/screens/orders/widgets/orders_list_item.dart';
 import 'package:store/navigation_menu.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/cloud_helper_functions.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/cloud_helper_functions.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -29,7 +29,7 @@ class OrdersScreen extends StatelessWidget {
         builder: (context, snapshot) {
           final emptyWidget = AnimationLoaderWidget(
             text: 'Whoops! No Orders yet',
-            animationImage: CImages.emptyAnimation,
+            animationImage: AppImages.emptyAnimation,
             showAction: true,
             actionText: 'Let\'s fill it up',
             onActionPressed: () => Get.off(() => const HomeMenu()),
@@ -42,7 +42,7 @@ class OrdersScreen extends StatelessWidget {
           final orders = snapshot.data as List<OrderModel>;
 
           return Padding(
-            padding: const EdgeInsets.all(CSizes.md),
+            padding: const EdgeInsets.all(AppSizes.md),
             child: ListView.separated(
               itemBuilder: (_, index) {
                 return OrderItem(
@@ -50,7 +50,7 @@ class OrdersScreen extends StatelessWidget {
                 );
               },
               separatorBuilder: (_, index) {
-                return const SizedBox(height: CSizes.md);
+                return const SizedBox(height: AppSizes.md);
               },
               itemCount: orders.length,
             ),

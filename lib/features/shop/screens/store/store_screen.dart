@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_tab_bar.dart';
-import 'package:store/common/widgets/custom_shapes/containers/searched_container.dart';
-import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
-import 'package:store/common/widgets/brands/featured_brands_item.dart';
+import 'package:store/core/common/widgets/app_bar/custom_tab_bar.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/searched_container.dart';
+import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/screens/brands/all_brands_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_tap.dart';
-import 'package:store/routes/app_routes.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/routes/app_routes.dart';
+import 'package:store/core/routes/routes.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 import '../../controllers/brand/brand_controller.dart';
 import 'widgets/store_app_bar.dart';
 
@@ -37,18 +37,18 @@ class StoreScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                expandedHeight: CHelperFunctions.screenHeight() * 0.5,
-                backgroundColor: CHelperFunctions.isDarkMode(context)
-                    ? CColors.dark
-                    : CColors.light,
+                expandedHeight: AppHelperFunctions.screenHeight() * 0.5,
+                backgroundColor: AppHelperFunctions.isDarkMode(context)
+                    ? AppColors.dark
+                    : AppColors.light,
                 flexibleSpace: Padding(
-                  padding: const EdgeInsets.all(CSizes.sm),
+                  padding: const EdgeInsets.all(AppSizes.sm),
                   child: ListView(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       const SizedBox(
-                        height: CSizes.spaceBetweenSections,
+                        height: AppSizes.spaceBetweenSections,
                       ),
                       // * -- Search bar
                       const SearchContainer(
@@ -57,30 +57,28 @@ class StoreScreen extends StatelessWidget {
                         showBackgroundColor: false,
                       ),
                       const SizedBox(
-                        height: CSizes.spaceBetweenSections,
+                        height: AppSizes.spaceBetweenSections,
                       ),
                       // * Featured Brands
                       HeadingSection(
                         title: 'Featured Brands',
                         onPressed: () {
-                          CHelperFunctions.navigateToScreen(
+                          AppHelperFunctions.navigateToScreen(
                             context,
                             const AllBrandsScreen(),
                           );
                         },
                       ),
                       const SizedBox(
-                        height: CSizes.spaceBetweenSections / 2,
+                        height: AppSizes.spaceBetweenSections / 2,
                       ),
                       Obx(
                         () => CustomGridView(
                             mainAxisExtent: 80,
-                            mainAxisSpacing: CSizes.gridViewSpacing,
+                            mainAxisSpacing: AppSizes.gridViewSpacing,
                             itemCount: brandController.featuredBrands.length,
                             itemBuilder: (_, index) {
                               return FeaturedBrandCard(
-                                
-                                    
                                 onTap: () {
                                   Get.toNamed(
                                     Routes.brandProducts,

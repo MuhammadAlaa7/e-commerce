@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:store/features/shop/models/payment_method.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class BillingPaymentSection extends StatelessWidget {
   const BillingPaymentSection({super.key});
@@ -23,7 +23,7 @@ class BillingPaymentSection extends StatelessWidget {
           },
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems / 2,
+          height: AppSizes.spaceBetweenItems / 2,
         ),
         Obx(
           () => PaymentWidget(
@@ -48,7 +48,7 @@ class PaymentWidget extends StatelessWidget {
         RoundedContainer(
           width: 60,
           height: 35,
-          padding: const EdgeInsets.all(CSizes.sm),
+          padding: const EdgeInsets.all(AppSizes.sm),
           backgroundColor: Colors.transparent,
           child: Image(
             fit: BoxFit.contain,
@@ -58,7 +58,7 @@ class PaymentWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: CSizes.spaceBetweenItems / 2,
+          width: AppSizes.spaceBetweenItems / 2,
         ),
         Text(
           paymentMethod.name,

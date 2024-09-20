@@ -1,25 +1,21 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/data/repos/user_repo.dart';
-import 'package:store/features/auth/controllers/onboarding/onboarding_cubit.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
 import 'package:store/navigation_menu.dart';
-import 'package:store/utils/exceptions/firebase_auth_exceptions.dart';
-import 'package:store/utils/exceptions/firebase_exceptions.dart';
-import 'package:store/utils/exceptions/format_exceptions.dart';
-import 'package:store/utils/exceptions/platform_exceptions.dart';
+import 'package:store/core/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:store/core/utils/exceptions/firebase_exceptions.dart';
+import 'package:store/core/utils/exceptions/format_exceptions.dart';
+import 'package:store/core/utils/exceptions/platform_exceptions.dart';
 
 import '../../features/auth/screens/login_screen/login_screen.dart';
-import '../../features/auth/screens/onboarding_screen/onboarding_screen.dart';
-import '../../utils/local_storage/storage_util.dart';
+import '../../features/on_boarding/screens/onboarding_screen/onboarding_screen.dart';
+import '../../core/utils/local_storage/storage_util.dart';
 
 // The logic of the authentication process
 class AuthenticationRepository extends GetxController {
@@ -44,7 +40,7 @@ class AuthenticationRepository extends GetxController {
     if (user != null) {
       if (user.emailVerified) {
         // initialize local storage for the user , and open a box for him
-        await CustomLocalStorage.init(user.uid);
+        await AppLocalStorage.init(user.uid);
         Get.offAll(() => const HomeMenu());
       } else {
         // if the user is not verified
@@ -64,10 +60,10 @@ class AuthenticationRepository extends GetxController {
       }
       box.get('isFirstTime')
           ? Get.offAll(
-              () => BlocProvider(
-                create: (context) => OnBoardingCubit(),
-                child: const OnBoardingScreen(),
-              ),
+              () => 
+               
+              const OnBoardingScreen(),
+          
             )
           : Get.offAll(() => const LoginScreen());
     }

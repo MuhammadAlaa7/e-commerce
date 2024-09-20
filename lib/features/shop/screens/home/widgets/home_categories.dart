@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/images_with_text/vertical_image_text.dart';
-import 'package:store/common/widgets/shimmers/category_shimmer.dart';
+import 'package:store/core/common/widgets/images_with_text/vertical_image_text.dart';
+import 'package:store/core/common/widgets/shimmers/category_shimmer.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/screens/sub_categories/sub_categories_screen.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/routes/routes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class HomeCategoriesListView extends StatelessWidget {
   const HomeCategoriesListView({

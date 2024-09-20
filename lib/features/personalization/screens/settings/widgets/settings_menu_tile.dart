@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:store/utils/constants22/colors.dart';
-
+import 'package:store/core/utils/constants/colors.dart';
 
 class SettingsMenuTile extends StatelessWidget {
   const SettingsMenuTile({
@@ -23,7 +21,7 @@ class SettingsMenuTile extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: CColors.primary,
+        color: AppColors.primary,
       ),
       title: Text(
         title,

@@ -2,18 +2,18 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/images/rounded_image.dart';
-import 'package:store/common/widgets/shimmers/horizontal_product_shimmer.dart';
-import 'package:store/common/widgets/products/product_card/horizontal_product_card.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/images/rounded_image.dart';
+import 'package:store/core/common/widgets/shimmers/horizontal_product_shimmer.dart';
+import 'package:store/core/common/widgets/products/product_card/horizontal_product_card.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/cloud_helper_functions.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/cloud_helper_functions.dart';
 
 import '../../models/product_model.dart';
 
@@ -31,13 +31,13 @@ class SubCategoriesScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(CSizes.md),
+          padding: const EdgeInsets.all(AppSizes.md),
           child: Column(
             children: [
               // * banner section
-              const RoundedImage(imageUrl: CImages.banner1),
+              const RoundedImage(imageUrl: AppImages.banner1),
               const SizedBox(
-                height: CSizes.spaceBetweenSections,
+                height: AppSizes.spaceBetweenSections,
               ),
 
               FutureBuilder(
@@ -117,7 +117,7 @@ class SubCategoryItem extends StatelessWidget {
                 },
               ),
               const SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               SizedBox(
                 height: 120,
@@ -132,14 +132,14 @@ class SubCategoryItem extends StatelessWidget {
                   },
                   separatorBuilder: (_, index) {
                     return const SizedBox(
-                      width: CSizes.sm,
+                      width: AppSizes.sm,
                     );
                   },
                   itemCount: 4,
                 ),
               ),
               const SizedBox(
-                height: CSizes.spaceBetweenSections / 2,
+                height: AppSizes.spaceBetweenSections / 2,
               ),
             ],
           );

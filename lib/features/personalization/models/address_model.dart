@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:store/utils/formatter/formatter.dart';
+import 'package:store/core/utils/formatter/formatter.dart';
 
 class AddressModel {
   String id;
@@ -29,7 +29,7 @@ class AddressModel {
 
 // get formatted phone number
   String get getFormattedPhoneNumber =>
-      CFormatter.formatPhoneNumber(phoneNumber);
+      AppFormatter.formatPhoneNumber(phoneNumber);
 
   // empty address
   static AddressModel empty() => AddressModel(

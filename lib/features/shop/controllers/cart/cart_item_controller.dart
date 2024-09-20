@@ -5,9 +5,9 @@ import 'package:store/features/shop/controllers/product/variation_controller.dar
 import 'package:store/features/shop/models/cart_item_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/models/product_variation_model.dart';
-import 'package:store/utils/constants22/enums.dart';
-import 'package:store/utils/local_storage/storage_util.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/enums.dart';
+import 'package:store/core/utils/local_storage/storage_util.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class CartItemController extends GetxController {
   static CartItemController get instance => Get.find();
@@ -16,7 +16,7 @@ class CartItemController extends GetxController {
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   // variation controller
-   final variationController = VariationController.instance;
+  final variationController = VariationController.instance;
   // final variationController = Get.put(VariationController());
 
 // initialization
@@ -70,7 +70,7 @@ class CartItemController extends GetxController {
         // remove the item from the cart
         cartItems.removeAt(index);
         updateCart();
-        CLoaders.customToast(message: 'product removed from the cart');
+        AppToasts.customToast(message: 'product removed from the cart');
         Get.back();
       },
       // * it will do nothing , it will just close the dialog
@@ -83,7 +83,7 @@ class CartItemController extends GetxController {
   void addToCart(ProductModel product) {
     // quantity check
     if (productQuantityInCart < 1) {
-      CLoaders.customToast(message: 'please enter quantity');
+      AppToasts.customToast(message: 'please enter quantity');
       return;
     }
 
@@ -92,19 +92,19 @@ class CartItemController extends GetxController {
         variationController.selectedVariation.value.id.isEmpty) {
       // it means that the current product has variations and the user must choose a variation from this product
       // variation here means : the product has many choices and the user must choose one of them
-      CLoaders.customToast(message: 'please select a variation');
+      AppToasts.customToast(message: 'please select a variation');
       return;
     }
     // check out of stock for both < single product and variable product >
     if (product.productType == ProductType.variable.name) {
       if (variationController.selectedVariation.value.stock == 0) {
-        CLoaders.warningSnackBar(title: 'Opps!', message: 'out of stock');
+        AppToasts.warningSnackBar(title: 'Opps!', message: 'out of stock');
         return;
       }
     } else {
       // single product
       if (product.stock == 0) {
-        CLoaders.warningSnackBar(title: 'Opps!', message: 'out of stock');
+        AppToasts.warningSnackBar(title: 'Opps!', message: 'out of stock');
         return;
       }
     }
@@ -136,7 +136,7 @@ class CartItemController extends GetxController {
     // 3. refresh the cart items list in the controller to update the UI
     updateCart();
 
-    CLoaders.customToast(message: 'Your product added to cart');
+    AppToasts.customToast(message: 'Your product added to cart');
   }
 
   // a function to convert the product model to cart item model
@@ -197,13 +197,13 @@ class CartItemController extends GetxController {
   void saveCartItems() {
     // make a list of map<String, dynamic> of cart items data [ json format ] to be stored in hive local storage
     final cartItemsJson = cartItems.map((item) => item.toJson()).toList();
-    CustomLocalStorage.instance().saveData('cartItems', cartItemsJson);
+    AppLocalStorage.instance().saveData('cartItems', cartItemsJson);
   }
 
   // load / get cart items from local storage to be shown in the ui once the cart screen is opened
   void loadCartItems() {
     final cartItemsJson =
-        CustomLocalStorage.instance().readData<List<dynamic>>('cartItems');
+        AppLocalStorage.instance().readData<List<dynamic>>('cartItems');
     // convert it to model
     if (cartItemsJson != null) {
       cartItems.assignAll(

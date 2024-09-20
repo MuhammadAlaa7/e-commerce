@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class RatingShareWidget extends StatelessWidget {
   const RatingShareWidget({
@@ -19,7 +19,7 @@ class RatingShareWidget extends StatelessWidget {
               color: Colors.amber,
               size: 24,
             ),
-            const SizedBox(width: CSizes.spaceBetweenItems / 2),
+            const SizedBox(width: AppSizes.spaceBetweenItems / 2),
             Text.rich(
               TextSpan(
                 children: [
@@ -37,7 +37,7 @@ class RatingShareWidget extends StatelessWidget {
           onPressed: () {},
           icon: const Icon(
             Icons.share,
-            size: CSizes.iconMd,
+            size: AppSizes.iconMd,
           ),
         ),
       ],

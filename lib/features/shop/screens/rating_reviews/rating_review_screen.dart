@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/products/ratings/rating_bar_indicator.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/products/ratings/rating_bar_indicator.dart';
 import 'package:store/features/shop/screens/rating_reviews/widgets/user_review_card.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 import 'widgets/overall_product_rating.dart';
 
 class ProductReviewScreen extends StatelessWidget {
@@ -16,14 +16,14 @@ class ProductReviewScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(CSizes.md),
+          padding: EdgeInsets.all(AppSizes.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                   'Ratings and reviews are verified and are from people who use the same type of device that you use '),
               SizedBox(
-                height: CSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenItems,
               ),
               // * overall product rating section
               OverallProductRatingSection(),
@@ -61,7 +61,7 @@ class OverallProductRatingSection extends StatelessWidget {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenSections,
+          height: AppSizes.spaceBetweenSections,
         ),
       ],
     );

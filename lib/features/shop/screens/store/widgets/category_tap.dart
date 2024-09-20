@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/shimmers/verticatl_product_shimmer.dart';
-import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/core/common/widgets/shimmers/verticatl_product_shimmer.dart';
+import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
 import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_brands.dart';
-import 'package:store/routes/routes.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/routes/routes.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class CategoryTap extends StatelessWidget {
   const CategoryTap({
@@ -26,14 +26,14 @@ class CategoryTap extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: [
         Padding(
-          padding: const EdgeInsets.all(CSizes.sm),
+          padding: const EdgeInsets.all(AppSizes.sm),
           child: Column(
             children: [
               // * category brands show cases
               CategoryBrandsSection(
                 category: category,
               ),
-              const SizedBox(height: CSizes.spaceBetweenSections),
+              const SizedBox(height: AppSizes.spaceBetweenSections),
               // * brand Products
               FutureBuilder(
                 future: CategoryController.instance
@@ -63,7 +63,7 @@ class CategoryTap extends StatelessWidget {
                           );
                         },
                       ),
-                      const SizedBox(height: CSizes.spaceBetweenSections),
+                      const SizedBox(height: AppSizes.spaceBetweenSections),
                       CustomGridView(
                         itemCount: snapshot.data?.length ?? 0,
                         itemBuilder: (_, index) => VerticalProductCard(

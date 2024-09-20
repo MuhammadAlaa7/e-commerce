@@ -1,14 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/custom_shapes/containers/circular_container.dart';
-import 'package:store/common/widgets/images/rounded_image.dart';
-import 'package:store/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/core/common/widgets/custom_shapes/containers/circular_container.dart';
+import 'package:store/core/common/widgets/images/rounded_image.dart';
+import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
 import 'package:store/features/shop/models/banner_model.dart';
 import 'package:store/features/shop/screens/store/store_screen.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 class HomeBannerSection extends StatelessWidget {
   const HomeBannerSection({
@@ -17,10 +17,6 @@ class HomeBannerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-
     final bannerController = Get.put(BannerController());
     return Obx(() {
       if (bannerController.isLoading.value == true) {
@@ -31,12 +27,13 @@ class HomeBannerSection extends StatelessWidget {
       }
       if (bannerController.banners.isEmpty) {
         // no banners found
-        return const SizedBox(height: 0,);
+        return const SizedBox(
+          height: 0,
+        );
       } else {
         return Column(
           children: [
             CarouselSlider(
-             
               items: bannerController.banners
                   .map((banner) => RoundedImage(
                         imageUrl: banner.imageUrl,
@@ -53,7 +50,7 @@ class HomeBannerSection extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: CSizes.spaceBetweenSections),
+            const SizedBox(height: AppSizes.spaceBetweenSections),
 
             // * -- banner indicators
 
@@ -67,7 +64,7 @@ class HomeBannerSection extends StatelessWidget {
                     width: 20,
                     backgroundColor:
                         bannerController.currentBannerIndex.value == i
-                            ? CColors.primary
+                            ? AppColors.primary
                             : Colors.grey[400]!,
                   ),
               ],

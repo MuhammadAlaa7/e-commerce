@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/images/rounded_image.dart';
-import 'package:store/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/common/widgets/shimmers/verticatl_product_shimmer.dart';
-import 'package:store/common/widgets/products/product_card/vertical_product_card.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/images/rounded_image.dart';
+import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
+import 'package:store/core/common/widgets/shimmers/verticatl_product_shimmer.dart';
+import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 import '../../../controllers/product/product_controller.dart';
 import 'home_banners_section.dart';
 
@@ -25,22 +25,24 @@ class HomeBody extends StatelessWidget {
     // final isDark = CHelperFunctions.isDarkMode(context);
     return Padding(
       // *-- padding 16 pixels
-      padding: const EdgeInsets.symmetric(horizontal: CSizes.sm),
+      padding: const EdgeInsets.symmetric(horizontal: AppSizes.sm),
       child: Column(
         children: [
           // * -- banner section
           const HomeBannerSection(),
 
-          const SizedBox(height: CSizes.spaceBetweenSections),
+          const SizedBox(height: AppSizes.spaceBetweenSections),
           // * -- popular products section
           HeadingSection(
             title: 'Popular Products',
             onPressed: () {
-              CHelperFunctions.navigateToScreen(
+              AppHelperFunctions.navigateToScreen(
                 context,
                 AllProductsScreen(
                   title: 'Popular Products',
-                  query:  FirebaseFirestore.instance.collection('MyProducts').limit(6),
+                  query: FirebaseFirestore.instance
+                      .collection('MyProducts')
+                      .limit(6),
                 ),
               );
             },

@@ -6,10 +6,10 @@ import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
-import 'package:store/utils/constants22/image_strings.dart';
-import 'package:store/utils/helper/network_manager.dart';
-import 'package:store/utils/popups/full_screen_loader.dart';
-import 'package:store/utils/popups/loaders.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/helper/network_manager.dart';
+import 'package:store/core/utils/popups/full_screen_loader.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
@@ -41,24 +41,25 @@ When a variable is marked as observable, any changes to its value will automatic
   Future<void> signUp() async {
     try {
       // Start loading
-      CFullScreenLoader.openLoadingDialog(
-          'We are processing your information...', CImages.loaderAnimation);
+      FullScreenLoader.openLoadingDialog(
+          'We are processing your information...', AppImages.loaderAnimation);
 
       // Check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       log('Network connected: $isConnected'); // Debugging line
       if (!isConnected) {
-        CLoaders.errorSnackBar(
+        AppToasts.errorSnackBar(
             title: 'Error', message: 'No internet connection');
-        CFullScreenLoader.closeLoadingDialog();
+        FullScreenLoader.closeLoadingDialog();
         return;
       }
 
       // Form validation
       bool isFormValid = signupFormKey.currentState!.validate();
       if (!isFormValid) {
-        CLoaders.errorSnackBar(title: 'Error', message: 'All fields required ');
-        CFullScreenLoader.closeLoadingDialog();
+        AppToasts.errorSnackBar(
+            title: 'Error', message: 'All fields required ');
+        FullScreenLoader.closeLoadingDialog();
         return;
       }
 
@@ -66,11 +67,11 @@ When a variable is marked as observable, any changes to its value will automatic
       // Add your privacy policy check here and log if necessary
 
       if (privacyPolicy.value == false) {
-        CLoaders.errorSnackBar(
+        AppToasts.errorSnackBar(
             title: 'Accept Privacy Policy',
             message:
                 'In order to create an account, you must accept our Privacy Policy and terms of use.');
-        CFullScreenLoader.closeLoadingDialog();
+        FullScreenLoader.closeLoadingDialog();
         return;
       }
 
@@ -92,25 +93,24 @@ When a variable is marked as observable, any changes to its value will automatic
         email: email.text.trim(),
         phoneNumber: phoneNumber.text.trim(),
         profilePicture: '',
-       
       );
 
       await UserRepository.instance.saveUserDataToFirebase(newUser);
 
       // Show a success message
 
-      CLoaders.successSnackBar(
+      AppToasts.successSnackBar(
           title: 'Congratulations!',
           message: 'Your account has been created! Verify email to continue.');
 
-      CFullScreenLoader.closeLoadingDialog();
+      FullScreenLoader.closeLoadingDialog();
       Get.to(() => VerifyEmailScreen(
             email: email.text.trim(),
           ));
     } catch (e) {
       log('Error caught: $e'); // Debugging line
-      CLoaders.errorSnackBar(title: 'Error', message: e.toString());
-      CFullScreenLoader.closeLoadingDialog();
+      AppToasts.errorSnackBar(title: 'Error', message: e.toString());
+      FullScreenLoader.closeLoadingDialog();
     }
   }
 }

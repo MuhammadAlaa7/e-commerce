@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class WishlistAppBar extends StatelessWidget implements PreferredSizeWidget {
   const WishlistAppBar({
@@ -19,7 +19,7 @@ class WishlistAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {},
           icon: Icon(
             Icons.add,
-            color: CHelperFunctions.isDarkMode(context)
+            color: AppHelperFunctions.isDarkMode(context)
                 ? Colors.white
                 : Colors.black,
           ),

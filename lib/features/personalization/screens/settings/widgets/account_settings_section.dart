@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/common/widgets/texts/section_heading.dart';
+import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/screens/address/adress_screen.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
 import 'package:store/features/shop/screens/cart/cart_screen.dart';
 import 'package:store/features/shop/screens/orders/orders_screen.dart';
-import 'package:store/utils/constants22/sizes.dart';
-import 'package:store/utils/helper/helper_functions.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class AccountSettingsSection extends StatelessWidget {
   const AccountSettingsSection({
@@ -23,14 +23,15 @@ class AccountSettingsSection extends StatelessWidget {
           showActionButton: false,
         ),
         const SizedBox(
-          height: CSizes.spaceBetweenItems,
+          height: AppSizes.spaceBetweenItems,
         ),
         SettingsMenuTile(
           icon: Iconsax.safe_home,
           title: 'My Addresses',
           subTitle: 'Set shopping delivery address',
           onTap: () {
-            CHelperFunctions.navigateToScreen(context, const AddressesScreen());
+            AppHelperFunctions.navigateToScreen(
+                context, const AddressesScreen());
           },
         ),
         SettingsMenuTile(
@@ -46,7 +47,7 @@ class AccountSettingsSection extends StatelessWidget {
           title: 'My Orders',
           subTitle: 'In-progress, completed, and canceled orders',
           onTap: () {
-            CHelperFunctions.navigateToScreen(context, const OrdersScreen());
+            AppHelperFunctions.navigateToScreen(context, const OrdersScreen());
           },
         ),
         SettingsMenuTile(

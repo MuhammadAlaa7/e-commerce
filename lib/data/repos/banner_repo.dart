@@ -3,9 +3,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:store/features/shop/models/banner_model.dart';
-import 'package:store/utils/exceptions/firebase_exceptions.dart';
-import 'package:store/utils/exceptions/format_exceptions.dart';
-import 'package:store/utils/exceptions/platform_exceptions.dart';
+import 'package:store/core/utils/exceptions/firebase_exceptions.dart';
+import 'package:store/core/utils/exceptions/format_exceptions.dart';
+import 'package:store/core/utils/exceptions/platform_exceptions.dart';
 
 class BannerRepository extends GetxController{
 

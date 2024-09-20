@@ -1,14 +1,11 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/common/widgets/brands/featured_brands_item.dart';
-import 'package:store/common/widgets/products/sortable_products/sortable_products.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/brands/featured_brands_item.dart';
+import 'package:store/core/common/widgets/products/sortable_products/sortable_products.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/utils/constants22/colors.dart';
-import 'package:store/utils/constants22/sizes.dart';
+import 'package:store/core/utils/constants/colors.dart';
+import 'package:store/core/utils/constants/sizes.dart';
 
 import '../../controllers/brand/brand_controller.dart';
 
@@ -29,7 +26,7 @@ class BrandProductsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(
-            CSizes.md,
+            AppSizes.md,
           ),
           child: Column(
             children: [
@@ -42,7 +39,7 @@ class BrandProductsScreen extends StatelessWidget {
               ),
 
               const SizedBox(
-                height: CSizes.spaceBetweenSections,
+                height: AppSizes.spaceBetweenSections,
               ),
 
               // * -- Brand Products
@@ -52,9 +49,12 @@ class BrandProductsScreen extends StatelessWidget {
                 future: controller.fetchBrandProducts(brand.id),
 
                 builder: (_, snapshot) {
-                
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator(color: CColors.primary,),);
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primary,
+                      ),
+                    );
                   }
 
                   if (snapshot.hasError) {
@@ -67,10 +67,9 @@ class BrandProductsScreen extends StatelessWidget {
                   }
 
                   final products = snapshot.data!;
-                     
+
                   return SortableProducts(
                     products: products,
-                  
                   );
                 },
               ),
