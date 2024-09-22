@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
-import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 

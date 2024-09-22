@@ -5,7 +5,7 @@ import 'package:store/data/repos/brand_repo.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class BrandController extends GetxController {
   static BrandController get instance => Get.find();

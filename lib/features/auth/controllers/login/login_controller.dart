@@ -7,7 +7,7 @@ import 'package:store/features/personalization/controllers/user/user_controller.
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class LogInController extends GetxController {
   static LogInController instance = Get.find();
@@ -44,8 +44,6 @@ second : set the value of the remember_me to the value from the hive box to true
 
   final RxBool hidePassword = true.obs;
   RxBool rememberMe = false.obs;
-
-  final userController = Get.put(UserController());
 
   // Login the user
 
@@ -114,42 +112,4 @@ second : set the value of the remember_me to the value from the hive box to true
       // show error
     }
   }
-
-  /// -------------------------- [Google Sign In ] --------------------------
-
-  Future<void> googleSignIn() async {
-    try {
-      // start loading
-      FullScreenLoader.openLoadingDialog(
-          'Logging you in ...', AppImages.docerAnimation);
-
-      // check internet connection
-      final isConnected = await NetworkManager.instance.isConnected();
-      log('Network connected: $isConnected'); // Debugging line
-      if (!isConnected) {
-        FullScreenLoader.closeLoadingDialog();
-        AppToasts.errorSnackBar(
-            title: 'Error', message: 'No internet connection');
-        return;
-      }
-
-      // Google Authentication
-      final userCredential =
-          await AuthenticationRepository.instance.signInWithGoogle();
-
-      //  save user record
-      await userController.saveUserRecord(userCredential);
-
-      /// stop loading
-      FullScreenLoader.closeLoadingDialog();
-
-      // redirect to home page
-
-      AuthenticationRepository.instance.redirectScreen();
-    } catch (e) {
-      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
-    }
-  }
-
-  /// -------------------------- [Facebook Sign In ] --------------------------
 }

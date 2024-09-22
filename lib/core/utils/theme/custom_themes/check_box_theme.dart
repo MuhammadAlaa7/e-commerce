@@ -6,15 +6,15 @@ class CustomCheckBoxTheme {
 //* light check box theme
 
   static CheckboxThemeData lightCheckBoxTheme = const CheckboxThemeData(
-    checkColor: MaterialStatePropertyAll(AppColors.light),
-    fillColor: MaterialStatePropertyAll(AppColors.primary),
+    checkColor: WidgetStatePropertyAll(AppColors.light),
+    fillColor: WidgetStatePropertyAll(AppColors.primary),
     side: BorderSide(color: AppColors.primary),
   );
 
 // * dark check box theme
   static CheckboxThemeData darkCheckBoxTheme = const CheckboxThemeData(
-    checkColor: MaterialStatePropertyAll(AppColors.light),
-    fillColor: MaterialStatePropertyAll(AppColors.primary),
+    checkColor: WidgetStatePropertyAll(AppColors.light),
+    fillColor: WidgetStatePropertyAll(AppColors.primary),
     side: BorderSide(color: AppColors.primary),
   );
 }

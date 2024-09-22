@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/core/utils/constants/enums.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 import '../../models/product_model.dart';
 

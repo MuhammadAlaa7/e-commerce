@@ -4,8 +4,8 @@ import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
-class LoginScreenHeader extends StatelessWidget {
-  const LoginScreenHeader({
+class LoginHeader extends StatelessWidget {
+  const LoginHeader({
     super.key,
   });
 
@@ -26,7 +26,7 @@ class LoginScreenHeader extends StatelessWidget {
         // * title
         Text(
           AppTexts.loginTitle,
-          style: Theme.of(context).textTheme.titleLarge, 
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(
           height: AppSizes.sm,

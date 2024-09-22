@@ -6,7 +6,7 @@ class InputField extends StatelessWidget {
     required this.label,
     required this.prefixIcon,
     this.controller,
-    this.validator,
+   required this.validator,
     this.suffixIcon,
     this.obscureText = false,
   });
@@ -15,7 +15,7 @@ class InputField extends StatelessWidget {
   final String label;
   final IconData prefixIcon;
   final Widget? suffixIcon;
-  final String? Function(String?)? validator;
+  final String? Function(String?) validator;
   final TextEditingController? controller;
 
   @override

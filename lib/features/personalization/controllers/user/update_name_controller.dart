@@ -6,7 +6,7 @@ import 'package:store/features/personalization/screens/profile/profile_screen.da
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class UpdateNameController extends GetxController {
   static UpdateNameController get instance => Get.find();

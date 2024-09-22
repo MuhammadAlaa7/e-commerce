@@ -1,14 +1,21 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/password_reset_screen.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class ForgetPasswordController extends GetxController {
   static ForgetPasswordController get instance => Get.find();
+
+@override
+  void onInit() {
+    email.text = ''; 
+    super.onInit();
+  }
 
   /// -------- variables -----------------
   ///

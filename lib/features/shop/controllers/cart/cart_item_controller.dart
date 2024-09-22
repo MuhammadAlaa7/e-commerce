@@ -7,7 +7,7 @@ import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/models/product_variation_model.dart';
 import 'package:store/core/utils/constants/enums.dart';
 import 'package:store/core/utils/local_storage/storage_util.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class CartItemController extends GetxController {
   static CartItemController get instance => Get.find();

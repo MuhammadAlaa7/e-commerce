@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
-import 'package:store/core/common/widgets/buttons/text_button.dart';
-import 'package:store/core/common/widgets/success_screen/success_screen.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 import 'package:store/features/personalization/screens/address/add_new_address_screen.dart';
 import 'package:store/features/personalization/screens/address/widgets/single_address.dart';
-import 'package:store/core/routes/routes.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/cloud_helper_functions.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 import '../../../../data/repos/address_repo.dart';
 import '../../models/address_model.dart';
@@ -156,24 +154,12 @@ class AddressController extends GetxController {
   /// selects the address that was selected by the user
   Future<void> onSelectAddress(AddressModel newSelectedAddress) async {
     try {
+      // start loader
+      AppLoaders.loadingOverLayDialog() ; 
       // check first if it is already selected
       if (currentSelectedAddress.value.id != newSelectedAddress.id) {
         // start loader while clearing the old selected address from the database and assigning the new one
-        Get.defaultDialog(
-          title: '',
-          content: const CircularProgressIndicator(
-            color: AppColors.primary,
-          ),
-
-          // prevents the user from popping the dialog when they press the back button
-          // this is done to prevent the user from interrupting the process of selecting a new address
-          onWillPop: () async {
-            return false;
-          },
-
-          barrierDismissible: false,
-          backgroundColor: Colors.transparent,
-        );
+        
 
         // first, check if the current selected address is not empty to not update null or empty address
         // if it is not empty , clear it >>>

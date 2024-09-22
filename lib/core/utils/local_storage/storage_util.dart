@@ -2,7 +2,13 @@ import 'package:hive/hive.dart';
 
 /// A singleton class using hive to store and retrieve data
 class AppLocalStorage {
-  late final Box _box;
+  Box? _box;
+  /* 
+   This way, the _box can be safely opened and closed, and there’s no risk 
+   of re-initialization errors.
+   It allows flexibility to handle multiple sessions
+   without running into conflicts with Hive’s initialization state.
+    */
 
   // Singleton instance  >> the only instance will be created
   static AppLocalStorage? _instance;
@@ -31,26 +37,26 @@ class AppLocalStorage {
 
   // Generic method to save data
   Future<void> saveData<T>(String key, T value) async {
-    await _box.put(key, value);
+    await _box?.put(key, value);
   }
 
   // Generic method to read data
   T? readData<T>(String key) {
-    return _box.get(key);
+    return _box?.get(key);
   }
 
   // Method to delete a specific key
   Future<void> deleteData(String key) async {
-    await _box.delete(key);
+    await _box?.delete(key);
   }
 
   // Method to clear all data from the box
   Future<void> clearAllData() async {
-    await _box.clear();
+    await _box?.clear();
   }
 
   // Method to close the box (useful when the app is shutting down)
   Future<void> closeBox() async {
-    await _box.close();
+    await _box?.close();
   }
 }

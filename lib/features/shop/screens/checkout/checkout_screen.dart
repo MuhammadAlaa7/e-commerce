@@ -15,7 +15,7 @@ import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 import 'package:store/core/utils/helper/pricing_calculator.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});

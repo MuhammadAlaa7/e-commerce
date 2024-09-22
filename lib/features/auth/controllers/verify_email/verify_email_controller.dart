@@ -6,7 +6,8 @@ import 'package:store/core/common/widgets/success_screen/success_screen.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
+import 'package:store/features/auth/screens/login_screen/login_screen.dart';
 
 class VerifyEmailController extends GetxController {
   static VerifyEmailController get instance => Get.find();
@@ -85,5 +86,6 @@ class VerifyEmailController extends GetxController {
     AuthenticationRepository.instance.logOut();
     AppToasts.warningSnackBar(
         title: 'Warning!', message: 'You have been logged out');
+    Get.offAll(() => const LoginScreen());
   }
 }

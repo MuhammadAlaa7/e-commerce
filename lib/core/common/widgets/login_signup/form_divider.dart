@@ -16,23 +16,23 @@ class FormDivider extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: Divider(
-            color: isDark ? AppColors.darkGrey : AppColors.lightGrey,
-            thickness: 0.5,
+            // color: isDark ? AppColors.darkGrey : AppColors.lightGrey,
+            //   thickness: 1.5,
             indent: 60,
-            endIndent: 5,
+            endIndent: 10,
           ),
         ),
         Text(
           dividerText,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        Expanded(
+        const Expanded(
           child: Divider(
-            color: isDark ? AppColors.darkGrey : AppColors.lightGrey,
-            thickness: 0.5,
-            indent: 5,
+            //   color: isDark ? AppColors.darkGrey : AppColors.lightGrey,
+            //  thickness: 0.5,
+            indent: 10,
             endIndent: 60,
           ),
         ),

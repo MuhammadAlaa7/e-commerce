@@ -14,7 +14,7 @@ import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
 
-import '../../../../core/utils/popups/loaders.dart';
+import '../../../../core/utils/popups/toasts.dart';
 import '../cart/cart_item_controller.dart';
 
 class OrderController extends GetxController {

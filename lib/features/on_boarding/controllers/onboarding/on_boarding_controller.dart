@@ -26,8 +26,6 @@ class OnBoardingController extends GetxController {
     pageController.jumpToPage(index);
   }
 
-
-
 //* the current index is connected here , the other functions update it to use it here
   void nextPage() {
     if (currentPageIndex.value != 2) {
@@ -37,24 +35,19 @@ class OnBoardingController extends GetxController {
       // jump to page ==> jumps to a particular page not only the next page , i can jump to the page 6 from index 1 for example
       pageController.jumpToPage(nextPage);
     } else {
-      // when the current index is 2 
+      // when the current index is 2
       final box = Hive.box('storage');
 
-   
       box.put('isFirstTime', false);
 
-     
       // * go to login screen
-      Get.offAll(const LoginScreen());
-     
+      Get.offAll(() => const LoginScreen());
     }
   }
 
-
-//* skip to the last page 
+//* skip to the last page
   void skipPage() {
     currentPageIndex.value = 2;
     pageController.jumpToPage(2);
-   
   }
 }

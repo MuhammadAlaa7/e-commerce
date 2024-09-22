@@ -36,8 +36,8 @@ class ResetPasswordScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(AppSizes.defaultSpace),
-        child: Center(
+        padding: const EdgeInsets.all(AppSizes.md),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -47,7 +47,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 image: AssetImage(AppImages.deliveredEmailIllustration),
               ),
               const SizedBox(
-                height: AppSizes.spaceBetweenSections,
+                height: AppSizes.spaceBetweenItems,
               ),
               // ********************* email - title - subtitle *****************
               Text(
@@ -74,7 +74,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
-                height: AppSizes.spaceBetweenSections * 2,
+                height: AppSizes.spaceBetweenSections,
               ),
 
               // *********************** Buttons ********************8

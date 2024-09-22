@@ -21,7 +21,6 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: AppColors.light,
-    
     textTheme: CustomTextTheme.lightTextTheme,
     elevatedButtonTheme: CustomElevatedButtonTheme.lightElevatedButtonTheme,
     appBarTheme: CustomAppBarTheme.lightAppBarTheme,
@@ -29,7 +28,7 @@ class AppTheme {
     inputDecorationTheme: CustomTextFieldTheme.lightInputDecorationTheme,
     checkboxTheme: CustomCheckBoxTheme.lightCheckBoxTheme,
     chipTheme: CustomChipTheme.lightChipTheme,
-    
+    dividerColor: AppColors.darkerGrey,
   );
 
 //* -- Dark Theme for the whole app
@@ -47,5 +46,6 @@ class AppTheme {
     inputDecorationTheme: CustomTextFieldTheme.darkInputDecorationTheme,
     checkboxTheme: CustomCheckBoxTheme.darkCheckBoxTheme,
     chipTheme: CustomChipTheme.darkChipTheme,
+    dividerColor: AppColors.darkerGrey,
   );
 }

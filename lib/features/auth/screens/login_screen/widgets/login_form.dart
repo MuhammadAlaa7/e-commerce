@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
@@ -22,9 +21,10 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LogInController());
+    // final controller = Get.put(LogInController());
+    final loginController = LogInController.instance;
     return Form(
-      key: controller.loginFormKey,
+      key: loginController.loginFormKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: AppSizes.spaceBetweenSections,
@@ -35,40 +35,47 @@ class LoginForm extends StatelessWidget {
             InputField(
               label: AppTexts.email,
               prefixIcon: Iconsax.direct,
-              controller: controller.email,
+              controller: loginController.email,
               validator: (value) => AppValidator.validateEmail(value),
             ),
             const SizedBox(
               height: AppSizes.spaceBetweenInputFields,
             ),
             // * password field
-            // the validator here must not be to follow the password pattern but rather just not to be empty
-            // so the login password only must not be empty
+            // the validator here must not be to follow the password pattern
+            // but rather just not to be empty
+            // so the login password only must not be empty unlike the sign up password
             Obx(
               () => InputField(
-                controller: controller.password,
+                controller: loginController.password,
                 validator: (value) => AppValidator.validateEmptyText(
-                    fieldName: AppTexts.password, value: value),
+                  fieldName: AppTexts.password,
+                  value: value,
+                ),
                 //    CValidator.validatePassword(value),
                 label: AppTexts.password,
+
                 prefixIcon: Iconsax.password_check,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    controller.hidePassword.value =
-                        !controller.hidePassword.value;
+                    // loginController.hidePassword.value =
+                    //     !loginController.hidePassword.value;
+                    loginController.hidePassword.toggle();
                   },
                   icon: Icon(
-                    controller.hidePassword.value
+                    loginController.hidePassword.value
                         ? Iconsax.eye
                         : Iconsax.eye_slash,
                   ),
                 ),
-                obscureText: controller.hidePassword.value,
+                obscureText: loginController.hidePassword.value,
               ),
             ),
             const SizedBox(
               height: AppSizes.spaceBetweenInputFields / 2,
             ),
+
+            //  * remember me and forget password section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -77,14 +84,14 @@ class LoginForm extends StatelessWidget {
                   () => Row(
                     children: [
                       Checkbox(
-                        fillColor: MaterialStateProperty.all(
-                            controller.rememberMe.value
-                                ? AppColors.primary
-                                : Colors.transparent),
-                        value: controller.rememberMe.value,
+                        fillColor: WidgetStateProperty.all(
+                          loginController.rememberMe.value
+                              ? AppColors.primary
+                              : Colors.transparent,
+                        ),
+                        value: loginController.rememberMe.value,
                         onChanged: (value) {
-                          controller.rememberMe.value =
-                              !controller.rememberMe.value;
+                          loginController.rememberMe.value = value!;
                         },
                       ),
                       const Text(AppTexts.rememberMe),
@@ -95,8 +102,9 @@ class LoginForm extends StatelessWidget {
                 CustomTextButton(
                   label: AppTexts.forgetPassword,
                   onPressed: () {
-                    AppHelperFunctions.navigateToScreen(
-                        context, const ForgetPasswordScreen());
+                    // You should navigate using Getx to inform it when the screen is closed from the stack 
+                    Get.to(() =>
+                        const ForgetPasswordScreen()); // forget password screen
                   },
                 ),
               ],
@@ -108,7 +116,7 @@ class LoginForm extends StatelessWidget {
             DefaultButton(
               label: AppTexts.signIn,
               onPressed: () {
-                controller.login();
+                loginController.login();
               },
             ),
             const SizedBox(
@@ -119,11 +127,7 @@ class LoginForm extends StatelessWidget {
             CustomOutlinedButton(
               label: AppTexts.createAccount,
               onPressed: () {
-                // * navigate to sign up screen
-                AppHelperFunctions.navigateToScreen(
-                  context,
-                  const SignUpScreen(),
-                );
+                Get.to(() => const SignUpScreen());
               },
             ),
           ],

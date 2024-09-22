@@ -9,7 +9,7 @@ import 'package:store/features/auth/screens/email_verification_screen/verify_ema
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
@@ -19,12 +19,12 @@ class SignUpController extends GetxController {
 /* 
 obs is used to make a variable observable. 
 When a variable is marked as observable, any changes to its value will automatically
- notify the widgets that are listening to it,
-  causing them to rebuild with the new value.
+ notify the widgets that are listening to it, >> Obx widgets
+  causing them to rebuild the new value.
  */
 
 // Observable variable  :: >>  a variable that will be change so it will be observed by the observer >>> OBX widget
-  Rx hidePassword = true.obs;
+  Rx isSecureText = true.obs;
   Rx privacyPolicy = false.obs;
 
   final email = TextEditingController();
@@ -34,7 +34,7 @@ When a variable is marked as observable, any changes to its value will automatic
   final userName = TextEditingController();
   final phoneNumber = TextEditingController();
 
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
 
   ///* signUp function
 
@@ -55,7 +55,7 @@ When a variable is marked as observable, any changes to its value will automatic
       }
 
       // Form validation
-      bool isFormValid = signupFormKey.currentState!.validate();
+      bool isFormValid = signUpFormKey.currentState!.validate();
       if (!isFormValid) {
         AppToasts.errorSnackBar(
             title: 'Error', message: 'All fields required ');

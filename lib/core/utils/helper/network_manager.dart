@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 
-import '../popups/loaders.dart';
+import '../popups/toasts.dart';
 
 /// Manages the network connectivity status and provides methods to check and handle connectivity changes.
 class NetworkManager extends GetxController {

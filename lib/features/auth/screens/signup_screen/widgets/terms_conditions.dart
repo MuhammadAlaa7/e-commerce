@@ -14,7 +14,7 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isDark = AppHelperFunctions.isDarkMode(context);
-    final controller = Get.find<SignUpController>();
+    final controller = SignUpController.instance ; 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,7 +24,7 @@ class TermsAndConditionsCheckBox extends StatelessWidget {
           width: 20.0,
           child: Obx(
             () => Checkbox(
-              fillColor: MaterialStateProperty.all(
+              fillColor: WidgetStateProperty.all(
                   controller.privacyPolicy.value
                       ? AppColors.primary
                       : Colors.transparent),

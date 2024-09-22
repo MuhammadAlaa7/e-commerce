@@ -13,30 +13,32 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: CSpacingStyle.paddingWithAppBarHeight,
-          child: Column(
-            children: [
-              //* -- Login Header
-              LoginScreenHeader(),
-
-              // * -- Login Form
-              LoginForm(),
-
-              //* Divider
-              FormDivider(
-                dividerText: AppTexts.orSignInWith,
-              ),
-
-              SizedBox(
-                height: AppSizes.spaceBetweenSections,
-              ),
-
-              // * Login Footer
-              SocialButtons(),
-            ],
+    return const SafeArea(
+      child:  Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: CSpacingStyle.paddingWithAppBarHeight,
+            child: Column(
+              children: [
+                //* -- Login screen Header [ image & title , subtitle  ]
+                LoginHeader(),
+      
+                // * -- Login form , email and password , remember me , forgot password , login buttons
+                LoginForm(),
+      
+                //* Divider with the text between 
+                FormDivider(
+                  dividerText: AppTexts.orSignInWith,
+                ),
+      
+                SizedBox(
+                  height: AppSizes.spaceBetweenSections,
+                ),
+      
+                // * Login Footer [ facebook , google  ] buttons
+                SocialButtons(),
+              ],
+            ),
           ),
         ),
       ),

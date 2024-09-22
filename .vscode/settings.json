@@ -1,4 +1,10 @@
 {
     "cSpell.language": "en,en-US",
-    "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe"
+    "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe",
+    "cSpell.words": [
+        "Cupertino",
+        "fenix",
+        "Getx"
+    ],
+    "cmake.ignoreCMakeListsMissing": true
 }

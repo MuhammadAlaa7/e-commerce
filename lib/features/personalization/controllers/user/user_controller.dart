@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/utils/local_storage/storage_util.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/models/user_model.dart';
@@ -15,7 +16,7 @@ import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 import '../../../auth/screens/login_screen/login_screen.dart';
 
@@ -269,6 +270,8 @@ class UserController extends GetxController {
       }
       // logout
       await AuthenticationRepository.instance.logOut();
+      await AppLocalStorage.instance().closeBox();
+     
       // stop loader
       FullScreenLoader.closeLoadingDialog();
       Get.offAll(() => const LoginScreen());

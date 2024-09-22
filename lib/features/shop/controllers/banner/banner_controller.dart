@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:store/data/repos/banner_repo.dart';
 import 'package:store/features/shop/models/banner_model.dart';
 
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class BannerController extends GetxController {
   static BannerController get instance => Get.find();

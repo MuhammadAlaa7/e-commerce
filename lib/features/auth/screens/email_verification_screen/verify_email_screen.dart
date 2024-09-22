@@ -17,11 +17,12 @@ class VerifyEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<VerifyEmailController>();
+    final controller = VerifyEmailController.instance ; 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
+          //* log out button 
           IconButton(
             onPressed: () {
               controller.logOut();
@@ -41,7 +42,7 @@ class VerifyEmailScreen extends StatelessWidget {
               children: [
                 Image(
                   width: AppHelperFunctions.screenWidth() * 0.6,
-                  image: AssetImage(AppImages.deliveredEmailIllustration),
+                  image: const AssetImage(AppImages.deliveredEmailIllustration),
                 ),
                 const SizedBox(
                   height: AppSizes.spaceBetweenSections,
@@ -80,7 +81,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 const SizedBox(
                   height: AppSizes.spaceBetweenItems,
                 ),
-                // *  text button
+                // *  text button  >>  resend email
                 CustomTextButton(
                   label: AppTexts.resendEmail,
                   onPressed: () {

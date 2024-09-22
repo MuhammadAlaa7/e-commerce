@@ -14,7 +14,7 @@ class OnboardingNextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = AppHelperFunctions.isDarkMode(context);
      final controller = OnBoardingController.instance; 
-    int currentPageIndex = controller.currentPageIndex.value;
+    
     return Positioned(
       bottom: kBottomNavigationBarHeight,
       right: AppSizes.defaultSpace,
@@ -28,7 +28,7 @@ class OnboardingNextButton extends StatelessWidget {
 
         child: Obx(
           () => Text(
-            currentPageIndex == 2
+             controller.currentPageIndex.value == 2
                 ? 'Get Started'
                 : 'Next',
           ),

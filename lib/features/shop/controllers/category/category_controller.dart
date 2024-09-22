@@ -3,7 +3,7 @@ import 'package:store/data/repos/category_repo.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/core/utils/popups/loaders.dart';
+import 'package:store/core/utils/popups/toasts.dart';
 
 class CategoryController extends GetxController {
   static CategoryController get instance => Get.find();

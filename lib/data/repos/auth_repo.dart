@@ -37,10 +37,16 @@ class AuthenticationRepository extends GetxController {
 
   void redirectScreen() async {
     final user = currentAuthUser;
+    // if the user is not null means the user is already logged in
     if (user != null) {
       if (user.emailVerified) {
-        // initialize local storage for the user , and open a box for him
+        // init the local storage for the user only for the first time
+
         await AppLocalStorage.init(user.uid);
+        // initialize local storage for the user , and open a box for him
+        AppLocalStorage.instance().readData('favorites');
+        AppLocalStorage.instance().readData('cartItems');
+
         Get.offAll(() => const HomeMenu());
       } else {
         // if the user is not verified
@@ -51,7 +57,7 @@ class AuthenticationRepository extends GetxController {
         );
       }
     } else {
-      log('********************** user is null ******************');
+      log('********************** user is new to the app ******************');
       // if the user is null <<< new >>>
 
       // check if the the box DOESN'T contain the key < isFirstTime >
@@ -60,10 +66,7 @@ class AuthenticationRepository extends GetxController {
       }
       box.get('isFirstTime')
           ? Get.offAll(
-              () => 
-               
-              const OnBoardingScreen(),
-          
+              () => const OnBoardingScreen(),
             )
           : Get.offAll(() => const LoginScreen());
     }
@@ -173,21 +176,23 @@ class AuthenticationRepository extends GetxController {
   /// *************************** Social Authentication  *************************** \\
 
 // [Google Authentication] - Sign In with Google
-  Future<UserCredential> signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
       // trigger the google authentication flow >>> This opens a dialog for the user to sign in with their Google account.
       final GoogleSignInAccount? googleUserAccount =
           await GoogleSignIn().signIn();
       // Obtain the auth details from the request   [ google account ]
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUserAccount?.authentication;
+
+      if (googleUserAccount == null) {
+        return null;
+      }
+      final GoogleSignInAuthentication googleAuth =
+          await googleUserAccount.authentication;
       // Create a new credential
 
-      // keep user
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+      OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
       // Once signed in, return the UserCredential
       return await _auth.signInWithCredential(credential);

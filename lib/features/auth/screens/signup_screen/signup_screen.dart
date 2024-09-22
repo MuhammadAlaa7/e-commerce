@@ -18,8 +18,8 @@ class SignUpScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
               left: AppSizes.defaultSpace,
               right: AppSizes.defaultSpace,
-              top: 0,
               bottom: AppSizes.defaultSpace,
+              top: 0,
             ),
             child: Column(
               children: [
@@ -47,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(
                   height: AppSizes.spaceBetweenSections,
                 ),
-                // * footer
+                // * footer 
                 const SocialButtons(),
               ],
             ),
