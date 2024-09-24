@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             // * blue container header with curved edges
+            // * -- Home header [ app bar , search bar , popular categories ]
             HomeHeader(),
 
             // * -- Home body

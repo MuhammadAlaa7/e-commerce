@@ -27,15 +27,14 @@ class AppHelperFunctions {
       return Colors.grey;
     }
   }
-
+/// this function is used to differentiate between attributes choice chips
+///  [ whether it is a colored circle or a rectangle ]
   static Color? getColor(String value) {
     /// Define your product specific colors here and it will match the attribute colors and show specific 🟠🟡🟢🔵🟣🟤
 
     if (value == 'Green') {
       return Colors.green;
-    } else if (value == 'Green') {
-      return Colors.green;
-    } else if (value == 'Red') {
+    }  else if (value == 'Red') {
       return Colors.red;
     } else if (value == 'Blue') {
       return Colors.blue;

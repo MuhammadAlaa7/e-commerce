@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/core/common/widgets/products/ratings/rating_bar_indicator.dart';
 import 'package:store/core/common/widgets/texts/read_more_text.dart';
-import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 
 class UserReviewCard extends StatelessWidget {
-  const UserReviewCard({super.key});
+  const UserReviewCard({
+    super.key,
+    required this.userName,
+    required this.userImage,
+    required this.date,
+  });
+
+  final String userName;
+  final String userImage;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
-    final isDark = AppHelperFunctions.isDarkMode(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage(AppImages.userProfileImage3),
+             CircleAvatar(
+              backgroundImage: AssetImage(userImage),
             ),
             const SizedBox(
               width: AppSizes.spaceBetweenItems,
             ),
             Text(
-              'Muhammad Alaa',
+              userName,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const Spacer(),
@@ -39,16 +44,16 @@ class UserReviewCard extends StatelessWidget {
           height: AppSizes.spaceBetweenItems / 2,
         ),
         // * review
-        const Row(
+         Row(
           children: [
-            CustomRatingBarIndicator(
-              rating: 4.5,
+            const CustomRatingBarIndicator(
+              ratingValue: 4.5,
               itemSize: 15,
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSizes.spaceBetweenItems / 2,
             ),
-            Text('01-Nov-2024'),
+            Text(date),
           ],
         ),
         const SizedBox(
@@ -61,7 +66,24 @@ class UserReviewCard extends StatelessWidget {
         const SizedBox(
           height: AppSizes.spaceBetweenItems,
         ),
-        RoundedContainer(
+
+        const SizedBox(
+          height: AppSizes.spaceBetweenSections,
+        ),
+      ],
+    );
+  }
+}
+
+
+
+// admin reply to the reviews 
+
+
+
+/* 
+
+  RoundedContainer(
           padding: const EdgeInsets.all(AppSizes.md),
           backgroundColor: isDark ? AppColors.darkerGrey : Colors.grey[400],
           child: Column(
@@ -89,10 +111,5 @@ class UserReviewCard extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: AppSizes.spaceBetweenSections,
-        ),
-      ],
-    );
-  }
-}
+
+ */

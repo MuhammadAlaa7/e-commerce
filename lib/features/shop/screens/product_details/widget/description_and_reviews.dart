@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/texts/read_more_text.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 
-class CheckoutAndReviews extends StatelessWidget {
-  const CheckoutAndReviews({
+class DescriptionAndReviews extends StatelessWidget {
+  const DescriptionAndReviews({
     super.key,
     required this.product,
   });
@@ -20,14 +19,6 @@ class CheckoutAndReviews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DefaultButton(
-          label: 'Checkout',
-          onPressed: () {},
-        ),
-        const SizedBox(
-          height: AppSizes.spaceBetweenSections,
-        ),
-
         // * Description
 
         const HeadingSection(
@@ -45,21 +36,14 @@ class CheckoutAndReviews extends StatelessWidget {
           height: AppSizes.spaceBetweenItems,
         ),
         // * Reviews
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            HeadingSection(
-              title: 'Reviews(199)',
-              showActionButton: false,
-              onPressed: () {},
-            ),
-            IconButton(
-                onPressed: () {
-                  AppHelperFunctions.navigateToScreen(
-                      context, const ProductReviewScreen());
-                },
-                icon: const Icon(Iconsax.arrow_right_3)),
-          ],
+        ListTile(
+          onTap: () => Get.to(() => const ProductReviewScreen()),
+          contentPadding: EdgeInsets.zero,
+          trailing: const Icon(Iconsax.arrow_right_3),
+          title: Text(
+            'Reviews(199)',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
         ),
       ],
     );

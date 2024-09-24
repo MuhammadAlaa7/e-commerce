@@ -4,8 +4,8 @@ import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
-class VerticalImageText extends StatelessWidget {
-  const VerticalImageText({
+class VerticalImageWithText extends StatelessWidget {
+  const VerticalImageWithText({
     super.key,
     required this.title,
     required this.image,
@@ -41,14 +41,12 @@ class VerticalImageText extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.spaceBetweenItems / 2),
             SizedBox(
-              width: 56,
+              // width: 56,
               child: Text(
                 title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: textColor,
-                ),
+                style: TextStyle(color: textColor, fontSize: 14),
               ),
             ),
           ],

@@ -1,7 +1,7 @@
 class AppSizes {
   // a private constructor to prevent making an instance of AppSizes class
   AppSizes._();
-   // Padding and margin sizes
+  // Padding and margin sizes
   static const double xs = 4.0;
   static const double sm = 8.0;
   static const double md = 16.0;
@@ -10,7 +10,7 @@ class AppSizes {
 
   // Icon sizes
   static const double iconXs = 12.0;
-  static const double iconSm = 16.0;
+  static const double iconSm = 18.0;
   static const double iconMd = 24.0;
   static const double iconLg = 32.0;
 
@@ -75,4 +75,3 @@ class AppSizes {
   static const int mobileScreenSize = 360;
   static const int customScreenSize = 1100;
 }
-

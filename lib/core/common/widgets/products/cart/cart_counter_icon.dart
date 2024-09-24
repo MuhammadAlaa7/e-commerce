@@ -14,7 +14,8 @@ class CounterIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController = Get.put(CartItemController());
+    // final cartController = Get.put(CartItemController());
+    final cartController = CartItemController.instance;
     final bool isDark = AppHelperFunctions.isDarkMode(context);
     return Stack(
       children: [

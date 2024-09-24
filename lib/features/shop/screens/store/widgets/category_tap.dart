@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/core/common/widgets/shimmers/verticatl_product_shimmer.dart';
+import 'package:store/core/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';

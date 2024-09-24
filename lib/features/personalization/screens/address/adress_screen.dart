@@ -24,8 +24,7 @@ class AddressesScreen extends StatelessWidget {
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         onPressed: () {
-          AppHelperFunctions.navigateToScreen(
-              context, const AddNewAddressScreen());
+          Get.to(const AddNewAddressScreen());
         },
         child: const Icon(Icons.add),
       ),

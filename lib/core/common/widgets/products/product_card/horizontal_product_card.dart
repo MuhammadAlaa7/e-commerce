@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/sale_container.dart';
@@ -30,11 +31,7 @@ class HorizontalProductCard extends StatelessWidget {
     final isDark = AppHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        AppHelperFunctions.navigateToScreen(
-            context,
-            ProductDetailsScreen(
-              product: product,
-            ));
+        Get.to(() => ProductDetailsScreen(product: product));
       },
       child: Container(
         width: 320,
@@ -70,6 +67,9 @@ class HorizontalProductCard extends StatelessWidget {
                     right: 0,
                     top: 0,
                     child: CustomFavoriteIcon(
+                      height: 32,
+                      width: 32,
+                      iconSize: 18,
                       productId: product.id,
                     ),
                   ),
@@ -77,8 +77,7 @@ class HorizontalProductCard extends StatelessWidget {
                   // * sale
                   if (percentage != '0')
                     Positioned(
-                      top: 12,
-                      // left: 5,
+                      top: 0,
                       child: SaleContainer(
                         sale: percentage,
                       ),

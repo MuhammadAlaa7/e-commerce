@@ -12,9 +12,9 @@ class CustomReadMoreText extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReadMoreText(
       text,
-      trimLines: 2,
+      trimLines: 2, // number of lines allowed to show before truncating or trimming
       trimMode: TrimMode
-          .Line, // you have to mention the mode so that the timelines works
+          .Line, // you have to mention the mode so that the trimLines works
       trimExpandedText: 'show less',
       trimCollapsedText: 'show more',
       moreStyle: const TextStyle(

@@ -53,7 +53,7 @@ class StoreScreen extends StatelessWidget {
                       // * -- Search bar
                       const SearchContainer(
                         text: 'Search in store',
-                        padding: EdgeInsets.zero,
+                        margin: EdgeInsets.zero,
                         showBackgroundColor: false,
                       ),
                       const SizedBox(
@@ -63,10 +63,7 @@ class StoreScreen extends StatelessWidget {
                       HeadingSection(
                         title: 'Featured Brands',
                         onPressed: () {
-                          AppHelperFunctions.navigateToScreen(
-                            context,
-                            const AllBrandsScreen(),
-                          );
+                          Get.to(() => const AllBrandsScreen());
                         },
                       ),
                       const SizedBox(

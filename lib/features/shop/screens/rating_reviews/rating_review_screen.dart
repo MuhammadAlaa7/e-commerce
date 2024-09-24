@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
-import 'package:store/core/common/widgets/products/ratings/rating_bar_indicator.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/features/shop/screens/rating_reviews/widgets/user_review_card.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'widgets/overall_product_rating.dart';
+import 'widgets/product_rating_section.dart';
 
 class ProductReviewScreen extends StatelessWidget {
   const ProductReviewScreen({super.key});
@@ -30,40 +30,25 @@ class ProductReviewScreen extends StatelessWidget {
 
               //  * user reviews list
 
-              UserReviewCard(),
-              UserReviewCard(),
+              UserReviewCard(
+                userName: 'Muhammad Alaa',
+                userImage: AppImages.userProfileImage2,
+                date: '01 Nov 2024',
+              ),
+              UserReviewCard(
+                userName: 'Khaled Ahmed',
+                userImage: AppImages.userProfileImage3,
+                date: '17 Oct 2024',
+              ),
+              UserReviewCard(
+                userName: 'Mariam Ali',
+                userImage: AppImages.userProfileImage1,
+                date: '07 Aug 2024',
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class OverallProductRatingSection extends StatelessWidget {
-  const OverallProductRatingSection({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        //* overall product Ratings
-
-        const OverallProductRating(),
-        const CustomRatingBarIndicator(
-          rating: 4.5,
-        ),
-        Text(
-          '11,333',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const SizedBox(
-          height: AppSizes.spaceBetweenSections,
-        ),
-      ],
     );
   }
 }

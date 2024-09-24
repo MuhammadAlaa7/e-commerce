@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
+/// A clickable image with rounded corners
 class RoundedImage extends StatelessWidget {
   const RoundedImage({
     super.key,
@@ -10,26 +12,28 @@ class RoundedImage extends StatelessWidget {
     this.height,
     required this.imageUrl,
     this.applyBorderRadius = true,
-    this.border,
-    this.fit = BoxFit.contain,
+    this.borderColor = AppColors.lightGrey,
+    this.fit = BoxFit.fill,
     this.isNetworkImage = false,
     this.onPressed,
     this.padding,
     this.backgroundColor,
     this.borderRadius = AppSizes.md,
+    this.borderThickness = 1,
   });
 
   final double? width;
   final double? height;
   final String imageUrl;
   final bool applyBorderRadius;
-  final BoxBorder? border;
+  final Color borderColor;
   final BoxFit? fit;
   final bool isNetworkImage;
   final VoidCallback? onPressed;
   final EdgeInsets? padding;
   final Color? backgroundColor;
   final double borderRadius;
+  final double borderThickness ;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,16 +45,16 @@ class RoundedImage extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(borderRadius),
-          border: border,
+          border: Border.all(color: borderColor, width: borderThickness),
         ),
         child: ClipRRect(
           borderRadius: applyBorderRadius
-              ? BorderRadius.circular(AppSizes.md)
+              ? BorderRadius.circular(borderRadius)
               : BorderRadius.zero,
           child: isNetworkImage
               ? CachedNetworkImage(
                   imageUrl: imageUrl,
-                  fit: BoxFit.contain,
+                  fit: fit,
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                   progressIndicatorBuilder: (context, url, progress) =>
                       const CustomShimmerEffect(
@@ -60,7 +64,7 @@ class RoundedImage extends StatelessWidget {
                 )
               : Image(
                   image: AssetImage(imageUrl),
-                  fit: BoxFit.contain,
+                  fit: fit,
                 ),
         ),
       ),

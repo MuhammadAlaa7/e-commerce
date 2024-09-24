@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/sale_container.dart';
 import 'package:store/core/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/core/common/widgets/products/product_card/favorite_icon.dart';
@@ -25,25 +26,24 @@ class VerticalProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// -- variables
     final controller = ProductController.instance;
     final percentage =
         controller.getSalePercentage(product.price, product.salePrice);
     final bool isDark = AppHelperFunctions.isDarkMode(context);
+
+    /// -- widget
     return GestureDetector(
       onTap: () {
-        AppHelperFunctions.navigateToScreen(
-            context,
-            ProductDetailsScreen(
-              product: product,
-            ));
+        Get.to(() => ProductDetailsScreen(product: product));
       },
+      // * main image container
       child: Container(
         padding: const EdgeInsets.all(1),
-        margin: const EdgeInsets.only(bottom: AppSizes.md),
         decoration: BoxDecoration(
           //  boxShadow: [CShadowStyles.verticalProductShadow],
           borderRadius: BorderRadius.circular(AppSizes.productImageRadius),
-          color: isDark ? AppColors.darkerGrey : Colors.white,
+          color: isDark ? AppColors.darkerGrey : AppColors.light,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +68,7 @@ class VerticalProductCard extends StatelessWidget {
                   // * -- sale
                   if (percentage != '0')
                     Positioned(
-                      top: 12,
+                      top: 5,
                       child: SaleContainer(
                         sale: percentage,
                       ),
@@ -76,23 +76,28 @@ class VerticalProductCard extends StatelessWidget {
                   // * -- favorite icon
                   Positioned(
                     right: 0,
-                    top: 0,
+                    top: 5,
                     child: CustomFavoriteIcon(
+                      height: 32,
+                      width: 32,
+                      iconSize: AppSizes.iconSm,
                       productId: product.id,
                     ),
                   ),
                 ],
               ),
             ),
+
             // * -- Details
 
+            // *[1] title and brand texts
             Padding(
               padding: const EdgeInsets.only(left: AppSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: AppSizes.spaceBetweenItems / 2),
-                  // * Product title
+
                   ProductTitleText(
                       title: product.title, textSize: TextSizes.small),
 
@@ -105,6 +110,7 @@ class VerticalProductCard extends StatelessWidget {
                 ],
               ),
             ),
+
             // * spacer for pushing the price and add button to the bottom of the card
             const Spacer(),
 
@@ -114,7 +120,8 @@ class VerticalProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
+                  Expanded(
+                    // to take all the available space in the row
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -132,10 +139,16 @@ class VerticalProductCard extends StatelessWidget {
 
                         Text(
                           '\$ ${controller.getProductPrice(product)}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge!
-                              .apply(fontWeightDelta: 1),
+                          style: Theme.of(context).textTheme.bodySmall!.apply(
+                                color: AppHelperFunctions.isDarkMode(context)
+                                    ? AppColors.white
+                                    : AppColors.black,
+                              ),
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),

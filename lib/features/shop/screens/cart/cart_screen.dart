@@ -55,8 +55,7 @@ class CartScreen extends StatelessWidget {
           label:
               'Checkout   \$ ${cartController.totalCartPrice.toStringAsFixed(2)}',
           onPressed: () {
-            AppHelperFunctions.navigateToScreen(
-                context, const CheckoutScreen());
+            Get.to(() => const CheckoutScreen());
           },
         );
       }),

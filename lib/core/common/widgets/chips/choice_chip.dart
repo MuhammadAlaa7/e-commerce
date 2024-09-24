@@ -3,8 +3,8 @@ import 'package:store/core/common/widgets/custom_shapes/containers/circular_cont
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
-class CChoiceChip extends StatelessWidget {
-  const CChoiceChip({
+class CustomChoiceChip extends StatelessWidget {
+  const CustomChoiceChip({
     super.key,
     required this.text,
     required this.isSelected,
@@ -28,16 +28,22 @@ class CChoiceChip extends StatelessWidget {
       onSelected: onSelected,
       labelStyle: TextStyle(color: isSelected ? Colors.white : null),
       backgroundColor: isColor ? AppHelperFunctions.getColor(text) : null,
+      //* to make all colored circles have the same size , because there is no padding 
+      // * and the only item that have avatar will get the size of that avatar 
+      // * so I fixed the avatar for all items
+      // * the avatar icon appears only for selected item 
       avatar: isColor
           ? CircularContainer(
               width: 50,
               height: 50,
               backgroundColor: AppHelperFunctions.getColor(text)!,
             )
-          : null,
-      shape: isColor ? CircleBorder() : null,
-      labelPadding: isColor ? EdgeInsets.all(0) : null,
-      padding: isColor ? EdgeInsets.all(0) : null,
+          : null,  
+      shape: isColor
+          ? const CircleBorder()
+          : null, // * null here will be the default chip shape
+      labelPadding: isColor ? const EdgeInsets.all(0) : null,
+      padding: isColor ? const EdgeInsets.all(0) : null,
       selectedColor:
           isColor ? AppHelperFunctions.getColor(text) : AppColors.primary,
     );

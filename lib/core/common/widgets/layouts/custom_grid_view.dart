@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 class CustomGridView extends StatelessWidget {
@@ -8,13 +6,14 @@ class CustomGridView extends StatelessWidget {
     super.key,
     required this.itemCount,
     this.mainAxisExtent = 300,
-    this.mainAxisSpacing,
+    this.mainAxisSpacing = AppSizes.gridViewSpacing,
+    this.crossAxisSpacing = AppSizes.gridViewSpacing,
     required this.itemBuilder,
   });
 
   final int itemCount;
   final double mainAxisExtent;
-  final double? mainAxisSpacing;
+  final double mainAxisSpacing, crossAxisSpacing;
   final Widget Function(BuildContext, int) itemBuilder;
 
   @override
@@ -25,10 +24,9 @@ class CustomGridView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       // * Delegate is the controller of the GridView to handle the spacing and size of the items
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        //  mainAxisSpacing: CSizes.gridViewSpacing / 2,
-        crossAxisSpacing: AppSizes.gridViewSpacing,
-        mainAxisSpacing: mainAxisSpacing ?? 0,
+        crossAxisCount: 2, // the number of items horizontally
+        crossAxisSpacing: crossAxisSpacing ,
+        mainAxisSpacing: mainAxisSpacing ,
         mainAxisExtent: mainAxisExtent,
       ),
       itemBuilder: itemBuilder,

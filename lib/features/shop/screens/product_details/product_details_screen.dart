@@ -1,17 +1,11 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:store/features/shop/controllers/product/variation_controller.dart';
 
-import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/features/shop/screens/product_details/widget/product_attributes.dart';
-import 'package:store/features/shop/screens/product_details/widget/rating_share_widget.dart';
-import 'package:store/core/utils/constants/enums.dart';
-import 'package:store/core/utils/constants/sizes.dart';
+import '../../models/product_model.dart';
 import 'widget/bottom_nav_add_to_cart.dart';
-import 'widget/checkout_and_rating.dart';
+import 'widget/product_details_section.dart';
 import 'widget/product_image_slider.dart';
-import 'widget/product_meta_data.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({
@@ -34,45 +28,15 @@ class ProductDetailsScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // * product image  (Header)
+              // * product images  (Header)
 
-              ProductImageSlider(
+              ProductImages(
                 product: product,
               ),
 
               // * product details (body)
 
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: AppSizes.defaultSpace,
-                  right: AppSizes.defaultSpace,
-                  bottom: AppSizes.defaultSpace,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // * rating and share
-                    const RatingShareWidget(),
-                    // * product meta data
-                    ProductMetaData(product: product),
-                    // * product attributes
-                    if (product.productType == ProductType.variable.name)
-                      ProductAttributes(
-                        product: product,
-                      ),
-
-                    const SizedBox(
-                      height: AppSizes.spaceBetweenSections,
-                    ),
-
-                    // * checkout and reviews
-
-                    CheckoutAndReviews(
-                      product: product,
-                    ),
-                  ],
-                ),
-              ),
+              ProductDetailsSection(product: product),
             ],
           ),
         ),

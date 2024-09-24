@@ -18,16 +18,19 @@ class BottomNavAddToCart extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    // -- variables
     final controller = CartItemController.instance;
     //! this will automatically update the already added product count
     controller.updateAlreadyAddedProductCount(product);
     final isDark = AppHelperFunctions.isDarkMode(context);
+
+// -- widget
     return Container(
       padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.defaultSpace,
           vertical: AppSizes.defaultSpace / 2),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.lightGrey : AppColors.light,
+        color: isDark ? AppColors.dark : AppColors.light,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(AppSizes.cardRadiusLg),
             topRight: Radius.circular(AppSizes.cardRadiusLg)),

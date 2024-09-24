@@ -43,7 +43,7 @@ class CustomCircularImage extends StatelessWidget {
                 fit: fit,
                 color: imageColor,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
-                progressIndicatorBuilder: (context, url, progress) =>
+                progressIndicatorBuilder: (_, __, ___) =>
                     const CustomShimmerEffect(
                   height: 56,
                   width: 56,

@@ -6,11 +6,11 @@ import 'package:store/core/utils/constants/colors.dart';
 class CustomRatingBarIndicator extends StatelessWidget {
   const CustomRatingBarIndicator({
     super.key,
-    required this.rating,
+    required this.ratingValue,
     this.itemSize = 20,
   });
 
-  final double rating;
+  final double ratingValue;
   final double itemSize;
 
   @override
@@ -18,7 +18,7 @@ class CustomRatingBarIndicator extends StatelessWidget {
     return RatingBarIndicator(
       itemCount: 5,
       itemSize: itemSize,
-      rating: rating,
+      rating: ratingValue,
       unratedColor: Colors.grey,
       itemBuilder: (_, __) {
         return const Icon(

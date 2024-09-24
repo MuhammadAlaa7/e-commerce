@@ -5,8 +5,6 @@ import 'package:store/core/common/widgets/custom_shapes/containers/circular_cont
 import 'package:store/core/common/widgets/images/rounded_image.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
-import 'package:store/features/shop/models/banner_model.dart';
-import 'package:store/features/shop/screens/store/store_screen.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
@@ -42,7 +40,8 @@ class HomeBannerSection extends StatelessWidget {
                       ))
                   .toList(),
               options: CarouselOptions(
-                // -- this is also responsible for separating the items in the slider with a space between them
+                // -- this is also responsible for separating the items in the slider
+                // with a space between them
                 enlargeCenterPage: true,
                 viewportFraction: 1,
                 onPageChanged: (index, _) {
@@ -50,9 +49,9 @@ class HomeBannerSection extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: AppSizes.spaceBetweenSections),
+            const SizedBox(height: AppSizes.spaceBetweenItems),
 
-            // * -- banner indicators
+            // * -- banners indicators
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +62,7 @@ class HomeBannerSection extends StatelessWidget {
                     height: 6,
                     width: 20,
                     backgroundColor:
-                        bannerController.currentBannerIndex.value == i
+                        i == bannerController.currentBannerIndex.value
                             ? AppColors.primary
                             : Colors.grey[400]!,
                   ),

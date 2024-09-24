@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/circular_container.dart';
-import 'package:store/core/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
+import 'package:store/core/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:store/core/utils/constants/colors.dart';
 
 class PrimaryHeaderContainer extends StatelessWidget {
@@ -12,10 +12,9 @@ class PrimaryHeaderContainer extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return ClipPath(
-      //* -- this is which clip the curves for the child below >>> [clipper]
-      clipper: CustomCurvedEdges(),
+    return CurvedEdgesWidget(
       child: Container(
+        padding: const EdgeInsets.only(bottom: 20),
         // * There is no height for this custom container in order to be custom for any content in it
         color: AppColors.primary,
         child: Stack(

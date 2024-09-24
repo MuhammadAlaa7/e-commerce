@@ -2,9 +2,16 @@
     "cSpell.language": "en,en-US",
     "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe",
     "cSpell.words": [
+        "Alaa",
+        "ARGB",
+        "autofocus",
+        "Bezier",
         "Cupertino",
         "fenix",
-        "Getx"
+        "firestore",
+        "fullscreen",
+        "Getx",
+        "Reclip"
     ],
     "cmake.ignoreCMakeListsMissing": true
 }

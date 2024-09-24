@@ -6,15 +6,25 @@ import 'package:store/features/shop/controllers/product/favorite_controller.dart
 import '../../icons/circular_icon.dart';
 
 class CustomFavoriteIcon extends StatelessWidget {
-  const CustomFavoriteIcon({super.key, required this.productId});
+  const CustomFavoriteIcon({
+    super.key,
+    required this.productId,
+    required this.height,
+    required this.width,
+    required this.iconSize , 
+  });
   final String productId;
+  final double height, width , iconSize;
   @override
   Widget build(BuildContext context) {
     // dependency injection approach
-    final favController = Get.put(FavoriteController());
+    final favController = FavoriteController.instance;
 
     return Obx(
       () => CircularIcon(
+        height: height,
+        width: width,
+        size: iconSize,
         icon: favController.isFavorite(productId)
             ? Iconsax.heart5
             : Iconsax.heart,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  // because the app bar in the scaffold is preferred sized widget 
   const CustomAppBar({
     super.key,
     this.showBackArrow = true,
@@ -31,6 +32,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   //  * -- this is the height of the app bar
   @override
-  // TODO: implement preferredSize
+
   Size get preferredSize => const Size.fromHeight(kToolbarHeight + 5);
 }

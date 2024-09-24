@@ -1,15 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/brands/brand_image.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/sale_container.dart';
-import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/core/common/widgets/texts/product_price_text.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/core/utils/constants/enums.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 
 class ProductMetaData extends StatelessWidget {
   const ProductMetaData({
@@ -62,6 +59,7 @@ class ProductMetaData extends StatelessWidget {
         const SizedBox(
           height: AppSizes.spaceBetweenItems,
         ),
+        // * status text 
         Text.rich(
           TextSpan(
             children: [
@@ -72,9 +70,11 @@ class ProductMetaData extends StatelessWidget {
             ],
           ),
         ),
+
         const SizedBox(
           height: AppSizes.spaceBetweenItems,
         ),
+        
         // * brand section
         Row(
           children: [

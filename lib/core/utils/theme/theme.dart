@@ -20,7 +20,7 @@ class AppTheme {
     fontFamily: 'Poppins',
     brightness: Brightness.light,
     primaryColor: Colors.blue,
-    scaffoldBackgroundColor: AppColors.light,
+    scaffoldBackgroundColor: AppColors.white,
     textTheme: CustomTextTheme.lightTextTheme,
     elevatedButtonTheme: CustomElevatedButtonTheme.lightElevatedButtonTheme,
     appBarTheme: CustomAppBarTheme.lightAppBarTheme,

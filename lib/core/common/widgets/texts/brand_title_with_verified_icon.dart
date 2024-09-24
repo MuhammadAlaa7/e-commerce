@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/core/common/widgets/texts/product_title.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/enums.dart';
 import 'package:store/core/utils/constants/sizes.dart';

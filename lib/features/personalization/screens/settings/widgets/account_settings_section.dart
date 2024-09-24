@@ -30,8 +30,7 @@ class AccountSettingsSection extends StatelessWidget {
           title: 'My Addresses',
           subTitle: 'Set shopping delivery address',
           onTap: () {
-            AppHelperFunctions.navigateToScreen(
-                context, const AddressesScreen());
+            Get.to(() => const AddressesScreen());
           },
         ),
         SettingsMenuTile(
@@ -47,7 +46,7 @@ class AccountSettingsSection extends StatelessWidget {
           title: 'My Orders',
           subTitle: 'In-progress, completed, and canceled orders',
           onTap: () {
-            AppHelperFunctions.navigateToScreen(context, const OrdersScreen());
+            Get.to(() => const OrdersScreen());
           },
         ),
         SettingsMenuTile(

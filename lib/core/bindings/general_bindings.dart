@@ -8,11 +8,15 @@ import 'package:store/features/auth/controllers/verify_email/verify_email_contro
 import 'package:store/features/on_boarding/controllers/onboarding/on_boarding_controller.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
 import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/controllers/product/order_controller.dart';
 import 'package:store/features/shop/controllers/product/variation_controller.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 
+import '../../features/shop/controllers/category/category_controller.dart';
 import '../../features/shop/controllers/product/checkout_controller.dart';
+import '../../features/shop/controllers/product/favorite_controller.dart';
+import '../../features/shop/controllers/product/product_controller.dart';
 
 class GeneralBindings extends Bindings {
   /*
@@ -35,8 +39,8 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
   @override
   void dependencies() {
     // This means that NetworkManager can now be accessed from any part of the app using Get.find<NetworkManager>().
-      // the user controller needs to be exist along the app is running 
-      // so if the user log out and log in , no issues happen
+    // the user controller needs to be exist along the app is running
+    // so if the user log out and log in , no issues happen
     Get.put(
       UserController(),
       permanent: true,
@@ -56,5 +60,9 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
     Get.lazyPut(() => SocialController(), fenix: true);
 
     Get.lazyPut(() => VerifyEmailController());
+    Get.lazyPut(() => CartItemController());
+    Get.lazyPut(() => CategoryController());
+    Get.lazyPut(() => ProductController());
+    Get.lazyPut(() => FavoriteController());
   }
 }

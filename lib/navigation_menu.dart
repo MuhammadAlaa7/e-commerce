@@ -33,6 +33,8 @@ class _HomeMenuState extends State<HomeMenu> {
       // ** -- Bottom Navigation Menu
 
       bottomNavigationBar: NavigationBar(
+        animationDuration: const Duration(milliseconds: 300),
+        
         destinations: const [
           NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
           NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
@@ -44,8 +46,8 @@ class _HomeMenuState extends State<HomeMenu> {
         elevation: 0,
         backgroundColor: isDark ? AppColors.dark : Colors.white,
         indicatorColor: isDark
-            ? Colors.white.withOpacity(0.2)
-            : Colors.black.withOpacity(0.2),
+            ? Colors.white.withOpacity(0.15)
+            : Colors.black.withOpacity(0.15),
         onDestinationSelected: (index) {
           setState(
             () {
@@ -60,20 +62,48 @@ class _HomeMenuState extends State<HomeMenu> {
 
 // * -- Another way to implement bottom navigation menu
 
-    // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: currentIndex,
-      //   onTap: (value) {
-      //     setState(() {
-      //       currentIndex = value;
-      //     });
-      //   },
-      //   elevation: 0,
-      //   backgroundColor: isDark ? Colors.black : Colors.white,
-      //   selectedItemColor: isDark ? Colors.blue : Colors.purple,
-      //   items: const [
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.home), label: 'Home'),
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.shop), label: 'Store'),
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.heart), label: 'Wishlist'),
-      //     BottomNavigationBarItem(icon: Icon(Iconsax.user), label: 'Profile'),
-      //   ],
-      // ),
+    /* 
+    bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (value) {
+          setState(() {
+            currentIndex = value;
+          });
+        },
+        elevation: 0,
+        backgroundColor: isDark ? Colors.black : Colors.white,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
+        selectedIconTheme: IconThemeData(
+          color: isDark ? Colors.blue : AppColors.primary,
+        ),
+        unselectedIconTheme: IconThemeData(
+          color: isDark ? Colors.white : Colors.black,
+        ),
+        selectedItemColor: isDark ? Colors.blue : Colors.purple,
+        
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Iconsax.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Iconsax.shop), label: 'Store'),
+          BottomNavigationBarItem(icon: Icon(Iconsax.heart), label: 'Wishlist'),
+          BottomNavigationBarItem(icon: Icon(Iconsax.user), label: 'Profile'),
+        ],
+      ),
+     */
+
+
+    /* 
+    
+    *the main differences between the bottom navigation bar and the navigation bar are:
+
+
+* Position: Bottom navigation bars are positioned at the bottom of the screen, 
+while navigation bars are typically positioned at the top.
+* Purpose: Bottom navigation bars are used for navigating between 
+a small set of top-level screens, while navigation bars serve a broader purpose, 
+providing navigation options, titles, and actions.
+* Flexibility: Bottom navigation bars are more specialized for specific use cases,
+ while navigation bars offer more flexibility and can be customized 
+ to suit different navigation requirements.
+
+     */
