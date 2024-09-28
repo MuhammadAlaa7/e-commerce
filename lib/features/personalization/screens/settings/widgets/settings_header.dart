@@ -10,8 +10,8 @@ import 'package:store/core/utils/constants/sizes.dart';
 
 import '../../../controllers/user/user_controller.dart';
 
-class SettingsHeader extends StatelessWidget {
-  const SettingsHeader({super.key});
+class AccountHeader extends StatelessWidget {
+  const AccountHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class SettingsHeader extends StatelessWidget {
           }),
 
           const SizedBox(
-            height: AppSizes.spaceBetweenSections,
+            height: AppSizes.spaceBetweenSections / 2,
           )
         ],
       ),

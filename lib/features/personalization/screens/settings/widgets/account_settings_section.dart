@@ -48,30 +48,6 @@ class AccountSettingsSection extends StatelessWidget {
             Get.to(() => const OrdersScreen());
           },
         ),
-        SettingsMenuTile(
-          icon: Iconsax.bank,
-          title: 'Bank Account',
-          subTitle: 'Withdraw balance to a registered bank account',
-          onTap: () {},
-        ),
-        SettingsMenuTile(
-          icon: Iconsax.discount_shape,
-          title: 'My Coupons',
-          subTitle: 'List of all discount coupons',
-          onTap: () {},
-        ),
-        SettingsMenuTile(
-          icon: Iconsax.notification,
-          title: 'Notifications',
-          subTitle: 'Set any kind of notification messages',
-          onTap: () {},
-        ),
-        SettingsMenuTile(
-          icon: Iconsax.security_card,
-          title: 'Account Privacy',
-          subTitle: 'Manage data usage and connected accounts',
-          onTap: () {},
-        ),
       ],
     );
   }

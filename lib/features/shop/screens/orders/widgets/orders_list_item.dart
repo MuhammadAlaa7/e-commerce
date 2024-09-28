@@ -16,13 +16,11 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return RoundedContainer(
       showBorder: true,
-      // borderColor: CHelperFunctions.isDarkMode(context)
-      //     ? CColors.lightGrey
-      //     : CColors.dark,
+
       padding: const EdgeInsets.all(AppSizes.md),
       backgroundColor: AppHelperFunctions.isDarkMode(context)
           ? AppColors.dark
-          : AppColors.lightGrey,
+          : AppColors.lightContainer,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -21,7 +21,7 @@ class _HomeMenuState extends State<HomeMenu> {
     HomeScreen(),
     StoreScreen(),
     WishlistScreen(),
-    SettingsScreen(),
+    AccountScreen(),
   ];
 
   @override
@@ -34,7 +34,6 @@ class _HomeMenuState extends State<HomeMenu> {
 
       bottomNavigationBar: NavigationBar(
         animationDuration: const Duration(milliseconds: 300),
-        
         destinations: const [
           NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
           NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),

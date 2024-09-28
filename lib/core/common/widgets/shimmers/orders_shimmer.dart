@@ -8,16 +8,21 @@ class OrdersShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // create the shimmer effect for a vertical boxes shimmer
-    return ListView.builder(
+    return ListView.separated(
+        separatorBuilder: (context, index) {
+          return const SizedBox(
+            height: 10,
+          );
+        },
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: 5,
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) {
           return const CustomShimmerEffect(
-            height: 100,
+            height: 150,
             width: double.infinity,
-            radius: 10,
+            radius: 20,
           );
         });
   }

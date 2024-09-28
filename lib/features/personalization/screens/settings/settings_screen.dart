@@ -3,8 +3,8 @@ import 'package:store/features/personalization/screens/settings/widgets/settings
 
 import 'widgets/settings_body.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class AccountScreen extends StatelessWidget {
+  const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             // * Header
-            SettingsHeader(),
+            AccountHeader(),
             //* Body
-            SettingsBody(),
+            AccountBody(),
           ],
         ),
       ),

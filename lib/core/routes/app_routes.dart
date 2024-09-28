@@ -22,7 +22,7 @@ class AppRoutes {
       transition: Transition.fadeIn,
     ),
     GetPage(name: Routes.store, page: () => const StoreScreen()),
-    GetPage(name: Routes.settings, page: () => const SettingsScreen()),
+    GetPage(name: Routes.settings, page: () => const AccountScreen()),
     GetPage(
         name: Routes.forgetPassword, page: () => const ForgetPasswordScreen()),
     GetPage(name: Routes.userProfile, page: () => const ProfileScreen()),
@@ -33,7 +33,6 @@ class AppRoutes {
       name: Routes.brandProducts,
       page: () => const BrandProductsScreen(),
       transition: Transition.fadeIn,
-     
     ),
     GetPage(name: Routes.userAddress, page: () => const AddressesScreen()),
     GetPage(name: Routes.wishlist, page: () => const WishlistScreen()),

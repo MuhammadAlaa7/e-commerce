@@ -6,8 +6,8 @@ import 'package:store/core/utils/constants/sizes.dart';
 import 'account_settings_section.dart';
 import 'app_settings_section.dart';
 
-class SettingsBody extends StatelessWidget {
-  const SettingsBody({super.key});
+class AccountBody extends StatelessWidget {
+  const AccountBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +15,20 @@ class SettingsBody extends StatelessWidget {
       padding: const EdgeInsets.all(AppSizes.sm),
       child: Column(
         children: [
+          // * [1] -- account settings section
           const AccountSettingsSection(),
           const SizedBox(
             height: AppSizes.spaceBetweenSections,
           ),
+
+          // * [2] -- app settings section
           const AppAccountSection(),
           const SizedBox(
             height: AppSizes.spaceBetweenSections,
           ),
           CustomOutlinedButton(
             label: 'Logout',
+            borderColor: Colors.red,
             onPressed: () {
               UserController.instance.logOut();
             },

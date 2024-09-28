@@ -22,43 +22,11 @@ class AppAccountSection extends StatelessWidget {
           height: AppSizes.spaceBetweenItems,
         ),
         SettingsMenuTile(
-          icon: Iconsax.document_upload,
-          title: 'Load Data',
-          subTitle: 'Upload data to you Cloud Storage',
-          onTap: () {
-            //   controller.uploadImagesToFireStore();
-            // DummyData.uploadDummyData();
-
-            //   controller.uploadBannerWithImages();
-            // controller.uploadCategoriesWithImages();
-            //  controller.uploadBrandsWithImages();
-            // controller.uploadBrandCategory();
-            // controller.uploadProductCategory();
-            controller.uploadProductsWithTheirImages();
-            // controller.updateProductsFields();
-            // controller.deleteField();
-          },
-        ),
-        SettingsMenuTile(
-          icon: Iconsax.location,
-          title: 'Location',
-          subTitle: 'Set recommendation based on location',
+          icon: Icons.brightness_4_outlined,
+          title: 'Dark Mode',
+          subTitle: 'Switch between light and dark mode',
           onTap: () {},
           trailing: Switch(value: true, onChanged: (value) {}),
-        ),
-        SettingsMenuTile(
-          icon: Iconsax.security_user,
-          title: 'Safe Mode',
-          subTitle: 'Search result is safe for all ages',
-          onTap: () {},
-          trailing: Switch(value: false, onChanged: (value) {}),
-        ),
-        SettingsMenuTile(
-          icon: Iconsax.image,
-          title: 'HD image quality',
-          subTitle: 'Set image quality to be seen',
-          onTap: () {},
-          trailing: Switch(value: false, onChanged: (value) {}),
         ),
       ],
     );
