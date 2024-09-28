@@ -11,7 +11,6 @@ import 'package:store/features/auth/screens/signup_screen/signup_screen.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 import 'package:store/core/utils/validators/custom_validator.dart';
 
 class LoginForm extends StatelessWidget {

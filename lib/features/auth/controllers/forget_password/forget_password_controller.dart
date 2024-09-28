@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/password_reset_screen.dart';

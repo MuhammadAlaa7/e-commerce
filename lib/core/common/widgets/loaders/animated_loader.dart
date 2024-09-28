@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:store/core/utils/constants/colors.dart';
-import 'package:store/core/utils/constants/image_strings.dart';
 
 class AnimationLoaderWidget extends StatelessWidget {
   /// A widget for displaying an animated loader indicator with optional text and action button

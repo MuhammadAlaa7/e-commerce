@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/data/services/services_controller.dart';
-import 'package:store/dummy_data.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
-import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 class AppAccountSection extends StatelessWidget {

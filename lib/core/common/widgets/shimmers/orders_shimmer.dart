@@ -1,5 +1,4 @@
 // order shimmer
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 

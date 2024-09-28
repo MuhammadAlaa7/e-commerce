@@ -13,7 +13,7 @@ class RoundedImage extends StatelessWidget {
     required this.imageUrl,
     this.applyBorderRadius = true,
     this.borderColor = AppColors.lightGrey,
-    this.fit = BoxFit.fill,
+    this.fit = BoxFit.contain,
     this.isNetworkImage = false,
     this.onPressed,
     this.padding,
@@ -33,7 +33,7 @@ class RoundedImage extends StatelessWidget {
   final EdgeInsets? padding;
   final Color? backgroundColor;
   final double borderRadius;
-  final double borderThickness ;
+  final double borderThickness;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/core/common/widgets/images/custom_circular_image.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/core/utils/constants/colors.dart';

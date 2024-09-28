@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/personalization/controllers/user/address_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/features/personalization/models/address_model.dart';
 
 class BillingAddressSection extends StatelessWidget {
   const BillingAddressSection({super.key});
@@ -10,7 +12,6 @@ class BillingAddressSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addressController = AddressController.instance;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,7 +27,7 @@ class BillingAddressSection extends StatelessWidget {
           height: AppSizes.spaceBetweenItems / 2,
         ),
         //* only show the data of the address selected if there is one already selected
-        addressController.currentSelectedAddress.value.id.isNotEmpty
+        addressController.currentSelectedAddress.value != AddressModel.empty()
             ? Obx(
                 () => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

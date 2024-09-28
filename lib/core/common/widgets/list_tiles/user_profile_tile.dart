@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/images/custom_circular_image.dart';
-import 'package:store/core/utils/constants/image_strings.dart';
 
 class UserProfileTile extends StatelessWidget {
   const UserProfileTile({

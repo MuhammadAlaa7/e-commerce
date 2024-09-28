@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/core/common/widgets/products/cart/add_remove_button.dart';
 import 'package:store/core/common/widgets/products/cart/cart_item.dart';
-import 'package:store/core/common/widgets/texts/product_price_text.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 class CartItems extends StatelessWidget {
   const CartItems({
     super.key,
-    this.showAddRemoveButton = true,
+    this.showButtonsAndPrice = true,
   });
-
-  final bool showAddRemoveButton;
-
+  final bool showButtonsAndPrice;
+  
   @override
   Widget build(BuildContext context) {
     final cartController = CartItemController.instance;
@@ -23,37 +20,9 @@ class CartItems extends StatelessWidget {
         itemBuilder: (_, index) {
           final cartItem = cartController.cartItems[index];
 
-          return Column(
-            children: [
-              CartItem(
-                cartItem: cartItem,
-              ),
-
-              if (showAddRemoveButton)
-                const SizedBox(height: AppSizes.spaceBetweenItems),
-
-              // * add and remove button and price
-              if (showAddRemoveButton)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 70,
-                        ),
-                        ProductQuantityWithAddRemoveButton(
-                          cartItem: cartItem,
-                        ),
-                      ],
-                    ),
-                    ProductPriceText(
-                      price: (cartItem.price * cartItem.quantity).toString(),
-                      isLarge: false,
-                    ),
-                  ],
-                ),
-            ],
+          return SingleCartItem(
+            cartItem: cartItem,
+            showButtonsAndPrice: showButtonsAndPrice,
           );
         },
         separatorBuilder: (_, index) {

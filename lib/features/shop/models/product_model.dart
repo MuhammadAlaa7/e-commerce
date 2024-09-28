@@ -89,6 +89,28 @@ class ProductModel {
     };
   }
 
+// from json 
+  static ProductModel fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'],
+      title: json['title'],
+      stock: json['stock'],
+      price: json['price'],
+      thumbnail: json['thumbnail'],
+      productType: json['productType'],
+      sku: json['sku'],
+      brand: BrandModel.fromJson(json['brand']),
+      date: json['date'],
+      salePrice: json['salePrice'] ?? 0,
+      isFeatured: json['isFeatured'] ?? false,
+      description: json['description'],
+      categoryId: json['categoryId'],
+      images: json['images'] != null ? List<String>.from(json['images']) : [],
+      productAttributes: json['productAttributes'] != null ? List<ProductAttributeModel>.from(json['productAttributes'].map((e) => ProductAttributeModel.fromJson(e))) : [],
+      productVariations: json['productVariations'] != null ? List<ProductVariationModel>.from(json['productVariations'].map((e) => ProductVariationModel.fromJson(e))) : [],
+    );}  
+
+
 // map json oriented document snapshot from firebase to model
   factory ProductModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:store/core/utils/popups/loaders.dart';
 import 'package:store/data/repos/product_repo.dart';
 import 'package:store/core/utils/constants/enums.dart';
 import 'package:store/core/utils/popups/toasts.dart';
@@ -57,6 +58,24 @@ class ProductController extends GetxController {
       log('error in fetching products');
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<ProductModel> fetchProductById(String productId) async {
+    try {
+      /// start loader
+      AppLoaders.loadingOverLayDialog();
+
+      // fetch featured products
+      final product = await productRepo.getProductById(productId);
+
+      return product;
+    } catch (e) {
+      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      log('error in fetching the product');
+      return ProductModel.empty();
+    } finally {
+      Get.back();
     }
   }
 

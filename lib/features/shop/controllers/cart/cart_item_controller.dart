@@ -109,7 +109,7 @@ class CartItemController extends GetxController {
       }
     }
 
-    // convert the product to cart item with the given quantity
+    //***** convert the product to cart item with the given quantity *****
     final selectedCartItem =
         convertProductToCartItem(product, productQuantityInCart.value);
 
@@ -158,10 +158,7 @@ class CartItemController extends GetxController {
             ? product.salePrice
             : product.price;
     // return cart item model if the whether the product is single or variation
-    log('product id : ${product.id}');
-    log('is variable : ${isVariation}');
-    log('variation id : ${variation.id}');
-    log('cart items count : ${cartItems.length}');
+   
     return CartItemModel(
       productId: product.id,
       quantity: quantity,

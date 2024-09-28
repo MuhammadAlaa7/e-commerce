@@ -4,6 +4,7 @@ import 'package:store/core/common/widgets/custom_shapes/containers/sale_containe
 import 'package:store/core/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/core/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
+import 'package:store/core/common/widgets/texts/price_and_add_button.dart';
 import 'package:store/core/common/widgets/texts/product_title.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
@@ -99,7 +100,9 @@ class VerticalProductCard extends StatelessWidget {
                   const SizedBox(height: AppSizes.spaceBetweenItems / 2),
 
                   ProductTitleText(
-                      title: product.title, textSize: TextSizes.small),
+                    title: product.title,
+                    textSize: TextSizes.medium,
+                  ),
 
                   const SizedBox(height: AppSizes.spaceBetweenItems / 2),
 
@@ -115,49 +118,8 @@ class VerticalProductCard extends StatelessWidget {
             const Spacer(),
 
             // * -- price and add button
-            Padding(
-              padding: const EdgeInsets.only(left: AppSizes.sm),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    // to take all the available space in the row
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // * old price with line through
-                        if (product.productType == ProductType.single.name &&
-                            product.salePrice > 0)
-                          Text(
-                            textAlign: TextAlign.left,
-                            '\$ ${product.price}',
-                            style:
-                                Theme.of(context).textTheme.labelMedium!.apply(
-                                      decoration: TextDecoration.lineThrough,
-                                    ),
-                          ),
-
-                        Text(
-                          '\$ ${controller.getProductPrice(product)}',
-                          style: Theme.of(context).textTheme.bodySmall!.apply(
-                                color: AppHelperFunctions.isDarkMode(context)
-                                    ? AppColors.white
-                                    : AppColors.black,
-                              ),
-                          textAlign: TextAlign.left,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-                  AddToCartButton(
-                    product: product,
-                  ),
-                ],
-              ),
+            PriceAndAddButton(
+              product: product,
             ),
           ],
         ),

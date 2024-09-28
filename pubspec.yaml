@@ -10,7 +10,7 @@ environment:
 dependencies:
   build_runner: ^2.4.9
   cached_network_image: ^3.3.1
-  carousel_slider: ^4.2.1
+  carousel_slider: ^5.0.0
   cloud_firestore: ^4.15.6
   connectivity_plus: ^5.0.1
   cupertino_icons: ^1.0.2

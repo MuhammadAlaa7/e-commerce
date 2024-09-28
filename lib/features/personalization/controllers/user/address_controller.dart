@@ -21,6 +21,12 @@ import '../../models/address_model.dart';
 class AddressController extends GetxController {
   static AddressController get instance => Get.find();
 
+  @override
+  void onInit() {
+    fetchAllUserAddresses();
+    super.onInit();
+  }
+
   final addressRepo = Get.put(AddressRepository());
   // selected address
   Rx<AddressModel> currentSelectedAddress = AddressModel.empty().obs;
@@ -49,6 +55,8 @@ class AddressController extends GetxController {
         (address) => address.isSelected == true,
         orElse: () => AddressModel.empty(),
       );
+         
+
 // return all address [ selected or not ]
       return addresses;
     } catch (e) {
@@ -155,11 +163,10 @@ class AddressController extends GetxController {
   Future<void> onSelectAddress(AddressModel newSelectedAddress) async {
     try {
       // start loader
-      AppLoaders.loadingOverLayDialog() ; 
+      AppLoaders.loadingOverLayDialog();
       // check first if it is already selected
       if (currentSelectedAddress.value.id != newSelectedAddress.id) {
         // start loader while clearing the old selected address from the database and assigning the new one
-        
 
         // first, check if the current selected address is not empty to not update null or empty address
         // if it is not empty , clear it >>>

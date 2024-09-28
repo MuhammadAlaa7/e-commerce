@@ -7,7 +7,6 @@ import 'package:store/features/personalization/screens/settings/widgets/settings
 import 'package:store/features/shop/screens/cart/cart_screen.dart';
 import 'package:store/features/shop/screens/orders/orders_screen.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 
 class AccountSettingsSection extends StatelessWidget {
   const AccountSettingsSection({

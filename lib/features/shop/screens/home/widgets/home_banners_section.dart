@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:store/core/common/widgets/images/rounded_image.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
@@ -34,6 +35,7 @@ class HomeBannerSection extends StatelessWidget {
             CarouselSlider(
               items: bannerController.banners
                   .map((banner) => RoundedImage(
+                        fit: BoxFit.fill,
                         imageUrl: banner.imageUrl,
                         isNetworkImage: true,
                         onPressed: () => Get.toNamed(banner.targetScreen),

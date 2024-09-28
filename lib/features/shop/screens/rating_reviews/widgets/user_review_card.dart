@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/products/ratings/rating_bar_indicator.dart';
 import 'package:store/core/common/widgets/texts/read_more_text.dart';
-import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 class UserReviewCard extends StatelessWidget {

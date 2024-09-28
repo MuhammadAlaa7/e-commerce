@@ -28,11 +28,36 @@ class ProductRepository extends GetxController {
         } catch (e) {
           log('Error mapping document to ProductModel: ${document.id}, Error: $e');
           // You could throw the error or return a default empty ProductModel
-          throw e; // or return ProductModel.empty();
+          rethrow; // or return ProductModel.empty();
         }
       }).toList();
 
       return products;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong, please try again later!';
+    }
+  }
+
+// * Get a product by its id
+  Future<ProductModel> getProductById(String productId) async {
+    try {
+      // Get featured documents from the collection <products>
+      final snapshot = await db.collection('MyProducts').doc(productId).get();
+
+      try {
+        final product = ProductModel.fromSnapshot(snapshot);
+         return product;
+      } catch (e) {
+        log('Error mapping document to ProductModel: ${snapshot.id}, Error: $e');
+        // You could throw the error or return a default empty ProductModel
+        rethrow; // or return ProductModel.empty();
+      }
+
+     
     } on FirebaseException catch (e) {
       throw CustomFirebaseException(e.code).message;
     } on PlatformException catch (e) {
@@ -57,7 +82,7 @@ class ProductRepository extends GetxController {
         } catch (e) {
           log('Error mapping document to ProductModel: ${queryDocumentSnapshot.id}, Error: $e');
           // You could throw the error or return a default empty ProductModel
-          throw e; // or return ProductModel.empty();
+          rethrow; // or return ProductModel.empty();
         }
       }).toList();
 
@@ -125,16 +150,16 @@ class ProductRepository extends GetxController {
     }
   }
 
-
-
-
 // * get a list of products by a list of ids >>> take a list of ids and return a list of products with the same ids
-Future<List<ProductModel>> getFavoriteProducts(  List<String> productIds
-     ) async {
+  Future<List<ProductModel>> getFavoriteProducts(
+      List<String> productIds) async {
     try {
-              // go to the collection <MyProducts> and get the documents that match the list of ids
-              // FieldPath.documentId >>> this is the id of each document in the collection <MyProducts>
-          final snapshot = await db.collection('MyProducts').where(FieldPath.documentId, whereIn: productIds).get();
+      // go to the collection <MyProducts> and get the documents that match the list of ids
+      // FieldPath.documentId >>> this is the id of each document in the collection <MyProducts>
+      final snapshot = await db
+          .collection('MyProducts')
+          .where(FieldPath.documentId, whereIn: productIds)
+          .get();
 
       final products = snapshot.docs
           .map((document) => ProductModel.fromSnapshot(document))
@@ -148,11 +173,4 @@ Future<List<ProductModel>> getFavoriteProducts(  List<String> productIds
       throw 'Something went wrong, please try again later!';
     }
   }
-
-
-
-
-
-
-
 }

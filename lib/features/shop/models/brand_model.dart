@@ -51,8 +51,7 @@ class BrandModel {
   factory BrandModel.fromQuerySnapshot(QueryDocumentSnapshot<Map<String, dynamic>> document) {
    // final data = document.data() as Map<String, dynamic>;
 
-    if (document.data() == null ) return BrandModel.empty();
-        final data = document.data()!; 
+    final data = document.data(); 
         return  BrandModel(
           id: document.id, 
           name: data['name']??'', 

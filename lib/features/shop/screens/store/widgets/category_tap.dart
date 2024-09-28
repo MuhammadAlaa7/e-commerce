@@ -8,9 +8,7 @@ import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
-import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_brands.dart';
-import 'package:store/core/routes/routes.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 class CategoryTap extends StatelessWidget {

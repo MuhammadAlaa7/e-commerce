@@ -9,7 +9,6 @@ import 'package:store/navigation_menu.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 
 import 'widgets/cart_items.dart';
 
@@ -51,12 +50,15 @@ class CartScreen extends StatelessWidget {
         if (cartController.cartItems.isEmpty) {
           return const SizedBox();
         }
-        return DefaultButton(
-          label:
-              'Checkout   \$ ${cartController.totalCartPrice.toStringAsFixed(2)}',
-          onPressed: () {
-            Get.to(() => const CheckoutScreen());
-          },
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: DefaultButton(
+            label:
+                'Checkout   \$ ${cartController.totalCartPrice.toStringAsFixed(2)}',
+            onPressed: () {
+              Get.to(() => const CheckoutScreen());
+            },
+          ),
         );
       }),
     );

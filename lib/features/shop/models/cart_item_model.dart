@@ -1,3 +1,4 @@
+
 class CartItemModel {
   String productId;
   String variationId;
@@ -7,6 +8,7 @@ class CartItemModel {
   String? brandName;
   double price;
   Map<String, String>? selectedVariation; // Placeholder for product variations
+  
 
   CartItemModel({
     required this.productId,
@@ -17,6 +19,7 @@ class CartItemModel {
     this.brandName,
     this.price = 0.0,
     this.selectedVariation,
+  
   });
 
 // Empty model
@@ -24,6 +27,7 @@ class CartItemModel {
     return CartItemModel(
       productId: '',
       quantity: 0,
+
     );
   }
 
@@ -54,6 +58,7 @@ class CartItemModel {
       selectedVariation: json['selectedVariation'] != null
           ? Map<String, String>.from(json['selectedVariation'])
           : null,
+    
     );
   }
 }

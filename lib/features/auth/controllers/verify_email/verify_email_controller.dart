@@ -59,8 +59,8 @@ class VerifyEmailController extends GetxController {
     Timer.periodic(const Duration(seconds: 2), (timer) async {
       final user = FirebaseAuth.instance.currentUser;
       log('user verified ? : ${user!.emailVerified}');
-      await user?.reload(); // Reload user to get the latest state
-      if (user != null && user.emailVerified) {
+      await user.reload(); // Reload user to get the latest state
+      if (user.emailVerified) {
         timer.cancel();
         navigateToSuccessScreen();
       }

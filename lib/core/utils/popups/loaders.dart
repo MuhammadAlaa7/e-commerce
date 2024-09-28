@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/utils/constants/colors.dart';
 
-class AppLoaders{
-
-  
+class AppLoaders {
   static void loadingOverLayDialog({String title = '', String message = ''}) {
     Get.defaultDialog(
       title: title,

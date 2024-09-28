@@ -36,6 +36,18 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
  * Get.lazyPut(() => the controller () , fenix : true )
  */
 
+
+/* 
+With fenix:
+When you use Get.lazyPut() with fenix: true, the controller is not immediately created
+Instead, it is lazily instantiated when it is first accessed. 
+The key feature of fenix is that even after the controller is deleted from memory 
+(for example, when navigating away from a page), it will be automatically recreated 
+the next time it is needed. This allows for a more seamless user experience, 
+as the controller is always available when required,
+
+ */
+
   @override
   void dependencies() {
     // This means that NetworkManager can now be accessed from any part of the app using Get.find<NetworkManager>().
@@ -45,12 +57,12 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
       UserController(),
       permanent: true,
     );
-    Get.put(NetworkManager());
+    Get.put(NetworkManager() ); // if the controller was deleted , it will not be automatically recreated
     Get.put(VariationController());
-    Get.lazyPut(() => AddressController());
-    Get.lazyPut(() => CheckoutController());
-    Get.lazyPut(() => OrderController());
-    Get.lazyPut(() => OnBoardingController());
+    Get.lazyPut(() => AddressController(), fenix: true);
+    Get.lazyPut(() => CheckoutController(), fenix: true);
+    Get.lazyPut(() => OrderController() , fenix: true);
+    Get.lazyPut(() => OnBoardingController(), fenix: true);
 
     Get.lazyPut(() => SignUpController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
@@ -59,10 +71,11 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
     Get.lazyPut(() => UserRepository(), fenix: true);
     Get.lazyPut(() => SocialController(), fenix: true);
 
-    Get.lazyPut(() => VerifyEmailController());
-    Get.lazyPut(() => CartItemController());
-    Get.lazyPut(() => CategoryController());
-    Get.lazyPut(() => ProductController());
-    Get.lazyPut(() => FavoriteController());
+    Get.lazyPut(() => VerifyEmailController(), fenix: true);
+    Get.lazyPut(() => CartItemController(), fenix: true);
+    Get.lazyPut(() => CategoryController(), fenix: true);
+    Get.lazyPut(() => ProductController(), fenix: true);
+    Get.lazyPut(() => FavoriteController(), fenix: true);
+    Get.lazyPut(() => OrderController(), fenix: true);
   }
 }

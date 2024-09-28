@@ -7,7 +7,6 @@ import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 
 import '../../../controllers/user/user_controller.dart';
 

@@ -1,21 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:store/features/personalization/models/address_model.dart';
 import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/features/shop/models/cart_item_model.dart';
-import 'package:store/features/shop/models/cart_model.dart';
 import 'package:store/features/shop/models/category_model.dart';
-import 'package:store/features/shop/models/product_attributes_model.dart';
 import 'package:store/features/shop/models/product_category_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/core/routes/app_routes.dart';
 import 'package:store/core/routes/routes.dart';
 import 'package:store/core/utils/constants/enums.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 
 import 'features/shop/models/banner_model.dart';
 import 'features/shop/models/brand_category_model.dart';
-import 'features/shop/models/product_variation_model.dart';
 
 class DummyData {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
