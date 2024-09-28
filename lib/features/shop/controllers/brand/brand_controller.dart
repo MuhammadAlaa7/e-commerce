@@ -37,7 +37,7 @@ class BrandController extends GetxController {
     try {
       isLoading.value = true;
       final brands = await brandRepo.getFeaturedBrands();
-
+      log('featured brands length ${brands.length}');
       featuredBrands.assignAll(brands);
     } catch (e) {
       AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());

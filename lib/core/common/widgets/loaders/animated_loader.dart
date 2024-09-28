@@ -33,8 +33,10 @@ class AnimationLoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 24),
           Lottie.asset(
             animationImage,
             width: MediaQuery.of(context).size.width * 0.8,
@@ -42,7 +44,7 @@ class AnimationLoaderWidget extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             text,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.headlineSmall,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),

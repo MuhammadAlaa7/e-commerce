@@ -27,12 +27,12 @@ class CategoryTap extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.sm),
           child: Column(
             children: [
-              // * category brands show cases
+              // * category brands show cases for all brands in that category
               CategoryBrandsSection(
                 category: category,
               ),
               const SizedBox(height: AppSizes.spaceBetweenSections),
-              // * brand Products
+              // * all category Products
               FutureBuilder(
                 future: CategoryController.instance
                     .fetchProductsForCategory(category.id, limit: -1),

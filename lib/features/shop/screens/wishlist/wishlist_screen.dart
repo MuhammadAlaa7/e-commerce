@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
-import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
-import 'package:store/features/shop/controllers/product/favorite_controller.dart';
-import 'package:store/core/utils/constants/sizes.dart';
 
-import 'widgets/wishlist_app_bar.dart';
+import 'package:store/core/common/widgets/loaders/animated_loader.dart';
+import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
+
+import 'package:store/core/utils/constants/image_strings.dart';
+import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/features/shop/controllers/product/favorite_controller.dart';
+
+import 'package:store/navigation_menu.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
@@ -14,7 +19,12 @@ class WishlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final favController = FavoriteController.instance;
     return Scaffold(
-      appBar: const WishlistAppBar(),
+      appBar: CustomAppBar(
+        title: Text(
+          'Wishlist',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.sm),
@@ -28,7 +38,7 @@ class WishlistScreen extends StatelessWidget {
                 if (snapshot.hasError ||
                     snapshot.data == null ||
                     snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No Products Found'));
+                  return emptyWidget;
                 }
                 final products = snapshot.data!;
                 return CustomGridView(
@@ -45,3 +55,8 @@ class WishlistScreen extends StatelessWidget {
     );
   }
 }
+
+final emptyWidget = AnimationLoaderWidget(
+  text: 'Opps! \n Your wishlist is empty',
+  animationImage: AppImages.emptyAnimation,
+);

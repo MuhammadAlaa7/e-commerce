@@ -17,25 +17,6 @@ class BrandShowCaseCard extends StatelessWidget {
   final List<String> images;
   final BrandModel brand;
 
-  Widget brandTopProductImageWidget(BuildContext context, String image) {
-    return RoundedContainer(
-      height: 100,
-      width: 100,
-      margin: const EdgeInsets.only(right: AppSizes.sm),
-      padding: const EdgeInsets.all(AppSizes.md),
-      backgroundColor: AppHelperFunctions.isDarkMode(context)
-          ? AppColors.darkGrey
-          : AppColors.lightGrey,
-      child: CachedNetworkImage(
-        imageUrl: image,
-        fit: BoxFit.contain,
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-        progressIndicatorBuilder: (context, url, progress) =>
-            const CustomShimmerEffect(height: 100, width: 100),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return RoundedContainer(
@@ -52,6 +33,7 @@ class BrandShowCaseCard extends StatelessWidget {
             brandTitle: brand.name,
             brandImage: brand.image,
             productsCount: brand.productsCount,
+            showBorder: false,
           ),
 
           // * Brand Top Three Products Images
@@ -65,4 +47,23 @@ class BrandShowCaseCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget brandTopProductImageWidget(BuildContext context, String image) {
+  return RoundedContainer(
+    height: 100,
+    width: 100,
+    margin: const EdgeInsets.only(right: AppSizes.sm),
+    padding: const EdgeInsets.all(AppSizes.md),
+    backgroundColor: AppHelperFunctions.isDarkMode(context)
+        ? AppColors.darkGrey
+        : AppColors.lightContainer,
+    child: CachedNetworkImage(
+      imageUrl: image,
+      fit: BoxFit.contain,
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+      progressIndicatorBuilder: (context, url, progress) =>
+          const CustomShimmerEffect(height: 100, width: 100),
+    ),
+  );
 }

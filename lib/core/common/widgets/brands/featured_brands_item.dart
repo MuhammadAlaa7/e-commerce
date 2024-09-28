@@ -45,8 +45,8 @@ class FeaturedBrandCard extends StatelessWidget {
                           ? Colors.white
                           : Colors.black,
                       imageUrl: brandImage!,
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
 
                       //   fit: BoxFit.cover,
                       progressIndicatorBuilder: (context, url, progress) =>
@@ -58,11 +58,12 @@ class FeaturedBrandCard extends StatelessWidget {
                     ),
             ),
             const SizedBox(
-              width: AppSizes.spaceBetweenItems / 2,
+              width: AppSizes.spaceBetweenItems,
             ),
             Flexible(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BrandTitleWithVerifiedIcon(

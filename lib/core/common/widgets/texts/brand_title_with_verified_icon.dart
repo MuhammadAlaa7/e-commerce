@@ -22,7 +22,9 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
         Flexible(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.labelMedium,
+            style: textSize == TextSizes.large
+                ? Theme.of(context).textTheme.titleMedium
+                : Theme.of(context).textTheme.labelMedium,
             overflow: TextOverflow.ellipsis,
           ),
         ),

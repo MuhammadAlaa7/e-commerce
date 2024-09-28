@@ -43,11 +43,13 @@ class HomeAppBar extends StatelessWidget {
           }),
         ],
       ),
-      actions: const [
+      actions: [
         CounterIcon(
-          icon: Iconsax.shopping_bag,
-          color: Colors.white,
-        ),
+            icon: Iconsax.shopping_bag,
+            color: Colors.white,
+            onPressed: () {
+              Get.toNamed('/cart');
+            }),
       ],
     );
   }

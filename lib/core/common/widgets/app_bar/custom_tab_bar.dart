@@ -15,9 +15,7 @@ class CustomTapBar extends StatelessWidget implements PreferredSizeWidget {
     final isDark = AppHelperFunctions.isDarkMode(context);
     return Material(
       color: isDark ? AppColors.dark : AppColors.light,
-      // shadowColor: isDark ? Colors.green : Colors.green,
       elevation: 2,
-
       child: TabBar(
         tabs: tabs,
         indicatorColor: AppColors.primary,
@@ -31,6 +29,5 @@ class CustomTapBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -16,7 +16,11 @@ import '../../features/shop/screens/sub_categories/sub_categories_screen.dart';
 class AppRoutes {
   // pages for getx
   static final pages = [
-    GetPage(name: Routes.home, page: () => const HomeScreen()),
+    GetPage(
+      name: Routes.home,
+      page: () => const HomeScreen(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(name: Routes.store, page: () => const StoreScreen()),
     GetPage(name: Routes.settings, page: () => const SettingsScreen()),
     GetPage(
@@ -26,12 +30,15 @@ class AppRoutes {
         name: Routes.productReview, page: () => const ProductReviewScreen()),
     //GetPage(name: Routes.allProducts, page: ()=>const AllProductsScreen() ),
     GetPage(
-        name: Routes.brandProducts, page: () => const BrandProductsScreen()),
+      name: Routes.brandProducts,
+      page: () => const BrandProductsScreen(),
+      transition: Transition.fadeIn,
+     
+    ),
     GetPage(name: Routes.userAddress, page: () => const AddressesScreen()),
     GetPage(name: Routes.wishlist, page: () => const WishlistScreen()),
-    GetPage(name: Routes.subCategories, page: () => const SubCategoriesScreen()),
+    GetPage(
+        name: Routes.subCategories, page: () => const SubCategoriesScreen()),
     GetPage(name: Routes.cart, page: () => const CartScreen()),
-    
-
   ];
 }

@@ -8,9 +8,11 @@ class CounterIcon extends StatelessWidget {
     super.key,
     this.color,
     required this.icon,
+    required this.onPressed,
   });
   final Color? color;
   final IconData icon;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,7 @@ class CounterIcon extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {
-            Get.toNamed('/cart');
-          },
+          onPressed: onPressed ,
           icon: Icon(
             icon,
             color: color ?? (isDark ? Colors.white : Colors.black),
