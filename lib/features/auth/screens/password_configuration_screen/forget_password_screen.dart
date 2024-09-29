@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/input_field/input_field.dart';
 import 'package:store/features/auth/controllers/forget_password/forget_password_controller.dart';
@@ -14,6 +15,9 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final forgetPassController = ForgetPasswordController.instance;
     return Scaffold(
+      appBar: const CustomAppBar(
+        showBackArrow: true,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.defaultSpace),

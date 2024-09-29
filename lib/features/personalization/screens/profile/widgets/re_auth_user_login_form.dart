@@ -8,7 +8,7 @@ import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
 import 'package:store/core/utils/validators/custom_validator.dart';
 
-import '../../../controllers/user/user_controller.dart';
+import '../../../controllers/user_controller.dart';
 
 class ReAuthUserLoginForm extends StatelessWidget {
   const ReAuthUserLoginForm({super.key});

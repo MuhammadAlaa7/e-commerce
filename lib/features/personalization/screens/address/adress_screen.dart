@@ -5,7 +5,7 @@ import 'package:store/features/personalization/screens/address/add_new_address_s
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import '../../../../core/utils/helper/cloud_helper_functions.dart';
-import '../../controllers/user/address_controller.dart';
+import '../../controllers/address_controller.dart';
 import 'widgets/single_address.dart';
 
 class AddressesScreen extends StatelessWidget {

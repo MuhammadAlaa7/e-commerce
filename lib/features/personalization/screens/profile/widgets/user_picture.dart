@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/buttons/text_button.dart';
 import 'package:store/core/common/widgets/images/custom_circular_image.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 
 class UserPictureSection extends StatelessWidget {

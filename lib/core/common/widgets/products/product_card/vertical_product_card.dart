@@ -61,6 +61,8 @@ class VerticalProductCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: RoundedImage(
+                      applyBorderRadius: false,
+                      borderColor: Colors.transparent,
                       imageUrl: product.thumbnail,
                       isNetworkImage: true,
                     ),
@@ -95,6 +97,7 @@ class VerticalProductCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: AppSizes.sm),
               child: Column(
+               
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: AppSizes.spaceBetweenItems / 2),
@@ -115,7 +118,7 @@ class VerticalProductCard extends StatelessWidget {
             ),
 
             // * spacer for pushing the price and add button to the bottom of the card
-            const Spacer(),
+                 const Spacer(),
 
             // * -- price and add button
             PriceAndAddButton(

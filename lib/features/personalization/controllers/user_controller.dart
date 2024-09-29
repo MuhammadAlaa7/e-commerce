@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
@@ -18,7 +19,7 @@ import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
 import 'package:store/core/utils/popups/toasts.dart';
 
-import '../../../auth/screens/login_screen/login_screen.dart';
+import '../../auth/screens/login_screen/login_screen.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
@@ -32,13 +33,14 @@ class UserController extends GetxController {
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final reAuthFormKey = GlobalKey<FormState>();
-
+  RxBool isDarkMode =  false.obs;
   @override
   void onInit() {
     super.onInit();
     fetchUserRecord();
   }
 
+  
   // Fetch user record from Firebase
   Future<void> fetchUserRecord() async {
     try {
@@ -271,7 +273,7 @@ class UserController extends GetxController {
       // logout
       await AuthenticationRepository.instance.logOut();
       await AppLocalStorage.instance().closeBox();
-     
+
       // stop loader
       FullScreenLoader.closeLoadingDialog();
       Get.offAll(() => const LoginScreen());

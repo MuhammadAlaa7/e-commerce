@@ -7,7 +7,7 @@ import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/validators/custom_validator.dart';
 
 import '../../../../../core/common/widgets/app_bar/custom_app_bar.dart';
-import '../../../controllers/user/update_name_controller.dart';
+import '../../../controllers/update_name_controller.dart';
 
 class ChangeNameScreen extends StatelessWidget {
   const ChangeNameScreen({super.key});

@@ -12,6 +12,8 @@ import 'package:store/features/auth/screens/login_screen/login_screen.dart';
 class VerifyEmailController extends GetxController {
   static VerifyEmailController get instance => Get.find();
 
+  Timer? _timerInstance; // Store the timer instance to be used in two methods [timeToRedirect] and [logOut]
+
   @override
   void onInit() {
     super.onInit();
@@ -19,18 +21,30 @@ class VerifyEmailController extends GetxController {
     timeToRedirect();
   }
 
-  // void timeToRedirect() {
-  //   //This stream is listening for any updates in the user's data
-  //   //if the user's email has been verified and redirecting to the "SuccessScreen" if it is.
+  // Send email verification link
+  void sendEmailVerification() {
+    try {
+      AuthenticationRepository.instance.sendEmailVerification();
+    } catch (e) {
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
+    }
+  }
 
-  //   FirebaseAuth.instance.authStateChanges().listen((user) async {
-  //     log('user: ${user!.emailVerified}');
-  //     if ( user.emailVerified) {
-  //        await user.reload(); // Reload user to get the latest state
-  //       navigateToSuccessScreen();
-  //     }
-  //   });
-  // }
+  /// Time to automatically redirect user to success screen on email verification
+  void timeToRedirect() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      _timerInstance = Timer.periodic(const Duration(seconds: 4), (timer) async {
+        log('user verified ? : ${user.emailVerified}');
+        await user.reload(); // Reload user to get the latest state
+        if (user.emailVerified) {
+          timer.cancel();
+          _timerInstance = null; // Clear the timer reference
+          navigateToSuccessScreen();
+        }
+      });
+    }
+  }
 
   // Navigate to success screen
   void navigateToSuccessScreen() {
@@ -40,31 +54,6 @@ class VerifyEmailController extends GetxController {
           subTitle: AppTexts.yourAccountCreatedSubTitle,
           onPressed: () => AuthenticationRepository.instance.redirectScreen(),
         ));
-  }
-
-  // Send email verification link
-  void sendEmailVerification() {
-    try {
-      AuthenticationRepository.instance.sendEmailVerification();
-      AppToasts.successSnackBar(
-          title: 'Email sent',
-          message: 'Please check your inbox and verify your email');
-    } catch (e) {
-      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
-    }
-  }
-
-  // Time to automatically redirect on email verification
-  void timeToRedirect() {
-    Timer.periodic(const Duration(seconds: 2), (timer) async {
-      final user = FirebaseAuth.instance.currentUser;
-      log('user verified ? : ${user!.emailVerified}');
-      await user.reload(); // Reload user to get the latest state
-      if (user.emailVerified) {
-        timer.cancel();
-        navigateToSuccessScreen();
-      }
-    });
   }
 
   // Manually check if email is verified or not by pressing the 'continue' button
@@ -82,7 +71,9 @@ class VerifyEmailController extends GetxController {
   }
 
   // Log out the user if back arrow is pressed from the verification email screen
-  logOut() {
+  void logOut() {
+    _timerInstance?.cancel(); // Stop the timer if it's running
+    _timerInstance = null; // Clear the timer reference
     AuthenticationRepository.instance.logOut();
     AppToasts.warningSnackBar(
         title: 'Warning!', message: 'You have been logged out');

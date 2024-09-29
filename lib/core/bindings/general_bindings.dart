@@ -6,8 +6,8 @@ import 'package:store/features/auth/controllers/signup/signup_controller.dart';
 import 'package:store/features/auth/controllers/social_controller.dart';
 import 'package:store/features/auth/controllers/verify_email/verify_email_controller.dart';
 import 'package:store/features/on_boarding/controllers/onboarding/on_boarding_controller.dart';
-import 'package:store/features/personalization/controllers/user/address_controller.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/address_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/controllers/product/order_controller.dart';
 import 'package:store/features/shop/controllers/product/variation_controller.dart';
@@ -36,7 +36,6 @@ Use Get.lazyPut for objects that can be instantiated on-demand.
  * Get.lazyPut(() => the controller () , fenix : true )
  */
 
-
 /* 
 With fenix:
 When you use Get.lazyPut() with fenix: true, the controller is not immediately created
@@ -57,16 +56,17 @@ as the controller is always available when required,
       UserController(),
       permanent: true,
     );
-    Get.put(NetworkManager() ); // if the controller was deleted , it will not be automatically recreated
+    Get.put(
+        NetworkManager()); // if the controller was deleted , it will not be automatically recreated
     Get.put(VariationController());
     Get.lazyPut(() => AddressController(), fenix: true);
     Get.lazyPut(() => CheckoutController(), fenix: true);
-    Get.lazyPut(() => OrderController() , fenix: true);
+    Get.lazyPut(() => OrderController(), fenix: true);
     Get.lazyPut(() => OnBoardingController(), fenix: true);
 
     Get.lazyPut(() => SignUpController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
-    Get.lazyPut(() => LogInController(), fenix: true);
+    Get.lazyPut(() => LoginController(), fenix: true);
 
     Get.lazyPut(() => UserRepository(), fenix: true);
     Get.lazyPut(() => SocialController(), fenix: true);

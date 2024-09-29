@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:store/core/common/widgets/products/cart/cart_counter_icon.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
 
 class HomeAppBar extends StatelessWidget {

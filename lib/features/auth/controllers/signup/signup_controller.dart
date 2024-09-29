@@ -42,11 +42,13 @@ When a variable is marked as observable, any changes to its value will automatic
     try {
       // Start loading
       FullScreenLoader.openLoadingDialog(
-          'We are processing your information...', AppImages.loaderAnimation);
+        'We are processing your information...',
+        AppImages.loaderAnimation,
+      );
 
       // Check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
-      log('Network connected: $isConnected'); // Debugging line
+
       if (!isConnected) {
         AppToasts.errorSnackBar(
             title: 'Error', message: 'No internet connection');
@@ -79,9 +81,11 @@ When a variable is marked as observable, any changes to its value will automatic
       // Add your registration code here and log progress
 
       // trim() removes any leading or trailing spaces
-      final userCredential = await AuthenticationRepository.instance
-          .registerWithEmailAndPassword(
-              email.text.trim(), password.text.trim());
+      final userCredential =
+          await AuthenticationRepository.instance.registerWithEmailAndPassword(
+        email.text.trim(),
+        password.text.trim(),
+      );
 
       // Save authenticated user data [ which returned from registration ] in Firebase store database
 
@@ -104,12 +108,14 @@ When a variable is marked as observable, any changes to its value will automatic
           message: 'Your account has been created! Verify email to continue.');
 
       FullScreenLoader.closeLoadingDialog();
-      Get.to(() => VerifyEmailScreen(
+      Get.offAll(() => VerifyEmailScreen(
             email: email.text.trim(),
           ));
     } catch (e) {
-      log('Error caught: $e'); // Debugging line
-      AppToasts.errorSnackBar(title: 'Error', message: e.toString());
+      AppToasts.errorSnackBar(
+          title: 'Registration Failed',
+          message:
+              'Something went wrong while signing up. Please try again later.');
       FullScreenLoader.closeLoadingDialog();
     }
   }

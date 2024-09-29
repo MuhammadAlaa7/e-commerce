@@ -20,8 +20,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(LogInController());
-    final loginController = LogInController.instance;
+    final loginController = LoginController.instance;
     return Form(
       key: loginController.loginFormKey,
       child: Padding(
@@ -101,7 +100,7 @@ class LoginForm extends StatelessWidget {
                 CustomTextButton(
                   label: AppTexts.forgetPassword,
                   onPressed: () {
-                    // You should navigate using Getx to inform it when the screen is closed from the stack 
+                    // You should navigate using Getx to inform it when the screen is closed from the stack
                     Get.to(() =>
                         const ForgetPasswordScreen()); // forget password screen
                   },

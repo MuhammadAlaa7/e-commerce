@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/utils/constants/sizes.dart';
+import 'package:store/core/utils/helper/cloud_helper_functions.dart';
+import 'package:store/core/utils/helper/helper_functions.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton({
@@ -7,12 +9,11 @@ class CustomOutlinedButton extends StatelessWidget {
     required this.label,
     this.onPressed,
     this.width = double.infinity,
-    this.borderColor = Colors.black,
   });
   final String label;
   final double width;
   final void Function()? onPressed;
-  final Color borderColor ;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,9 +21,14 @@ class CustomOutlinedButton extends StatelessWidget {
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.all(16),
-          side:  BorderSide(
-            color: borderColor ,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          side: BorderSide(
             width: 1.5,
+            color: AppHelperFunctions.isDarkMode(context)
+                ? Colors.white
+                : Colors.black,
             style: BorderStyle.solid,
           ),
         ),

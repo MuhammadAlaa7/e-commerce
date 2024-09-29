@@ -31,42 +31,44 @@ class AnimationLoaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 24),
-          Lottie.asset(
-            animationImage,
-            width: MediaQuery.of(context).size.width * 0.8,
-          ),
-          const SizedBox(height: 24),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.headlineSmall,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-          showAction
-              ? SizedBox(
-                  width: 250,
-                  child: OutlinedButton(
-                    onPressed: onActionPressed,
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: AppColors.dark,
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //   const SizedBox(height: 24),
+            Lottie.asset(
+              animationImage,
+              width: MediaQuery.of(context).size.width * 0.8,
+            ),
+            const SizedBox(height: 24),
+            Text(
+              text,
+              style: Theme.of(context).textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            showAction
+                ? SizedBox(
+                    width: 250,
+                    child: OutlinedButton(
+                      onPressed: onActionPressed,
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: AppColors.dark,
+                      ),
+                      child: Text(
+                        actionText ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .apply(color: AppColors.light),
+                      ),
                     ),
-                    child: Text(
-                      actionText ?? '',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .apply(color: AppColors.light),
-                    ),
-                  ),
-                )
-              : const SizedBox(),
-        ],
+                  )
+                : const SizedBox(),
+          ],
+        ),
       ),
     );
   }

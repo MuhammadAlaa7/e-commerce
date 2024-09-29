@@ -35,12 +35,13 @@ class OnBoardingController extends GetxController {
       pageController.jumpToPage(nextPage);
     } else {
       // when the current index is 2
-      final box = Hive.box('storage');
+      final box = Hive.box('auth');
+      box.put('on_boarding_done', true );
 
-      box.put('isFirstTime', false);
+
 
       // * go to login screen
-      Get.offAll(() => const LoginScreen());
+      Get.offAll(() => const LoginScreen(),);
     }
   }
 

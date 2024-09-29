@@ -26,7 +26,7 @@ class UserModel {
   String get fullName => '$firstName $lastName';
 
 // Helper function to format the phone number
-  String get formattedPhoneNumber =>
+  String get formattedPhoneNumber => 
       AppFormatter.formatPhoneNumber(phoneNumber);
 
 // static function to split full name into first name and last name
@@ -66,13 +66,13 @@ class UserModel {
 
 // convert json to model
   factory UserModel.fromJson(
-      DocumentSnapshot<Map<String, dynamic>> jsonDocument) {
-    if (jsonDocument.data() != null) {
-      final data = jsonDocument.data()!;
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
+      final data = document.data()!;
 
       return UserModel(
         // the id is not from data , it is outside the data itself like [ firstName and email ]
-        id: jsonDocument.id,
+        id: document.id,
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         username: data['username'] ?? '',

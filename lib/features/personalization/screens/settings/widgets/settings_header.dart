@@ -8,7 +8,7 @@ import 'package:store/features/personalization/screens/profile/profile_screen.da
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
-import '../../../controllers/user/user_controller.dart';
+import '../../../controllers/user_controller.dart';
 
 class AccountHeader extends StatelessWidget {
   const AccountHeader({super.key});

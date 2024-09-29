@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/data/repos/user_repo.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';

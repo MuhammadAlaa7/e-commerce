@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/buttons/text_button.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'widgets/personal_information.dart';
 import 'widgets/profile_information.dart';

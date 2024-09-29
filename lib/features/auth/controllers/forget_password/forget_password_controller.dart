@@ -49,7 +49,6 @@ class ForgetPasswordController extends GetxController {
 
       if (!isValid) {
         FullScreenLoader.closeLoadingDialog();
-        AppToasts.errorSnackBar(title: 'Oops!', message: 'All Fields Required');
         return;
       }
 

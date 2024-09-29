@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 import 'account_settings_section.dart';
@@ -28,7 +28,6 @@ class AccountBody extends StatelessWidget {
           ),
           CustomOutlinedButton(
             label: 'Logout',
-            borderColor: Colors.red,
             onPressed: () {
               UserController.instance.logOut();
             },

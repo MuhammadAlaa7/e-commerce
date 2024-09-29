@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
-import 'package:store/features/personalization/controllers/user/address_controller.dart';
+import 'package:store/features/personalization/controllers/address_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/features/personalization/models/address_model.dart';
 

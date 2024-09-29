@@ -5,7 +5,7 @@ import 'package:store/core/utils/popups/full_screen_loader.dart';
 import 'package:store/core/utils/popups/loaders.dart';
 import 'package:store/core/utils/popups/toasts.dart';
 import 'package:store/data/repos/auth_repo.dart';
-import 'package:store/features/personalization/controllers/user/user_controller.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 
 class SocialController extends GetxController {
   static SocialController get instance => Get.find();
@@ -32,16 +32,16 @@ class SocialController extends GetxController {
 
       if (userCredential == null) {
         return;
-      }
+      } 
 
-      //  save user record
+      // save user record
       await UserController.instance.saveUserRecord(userCredential);
 
       // redirect to home page
 
       AuthenticationRepository.instance.redirectScreen();
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Google failed', message: e.toString());
     } finally {
       /// stop loading
       FullScreenLoader.closeLoadingDialog();

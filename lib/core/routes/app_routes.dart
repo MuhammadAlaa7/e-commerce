@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/forget_password_screen.dart';
 import 'package:store/features/personalization/screens/address/adress_screen.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
-import 'package:store/features/personalization/screens/settings/settings_screen.dart';
+import 'package:store/features/personalization/screens/settings/account_screen.dart';
 import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
 import 'package:store/features/shop/screens/cart/cart_screen.dart';
 import 'package:store/features/shop/screens/home/home_screen.dart';

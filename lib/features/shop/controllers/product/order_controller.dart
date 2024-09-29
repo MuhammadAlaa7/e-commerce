@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/success_screen/success_screen.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/order_repo.dart';
-import 'package:store/features/personalization/controllers/user/address_controller.dart';
+import 'package:store/features/personalization/controllers/address_controller.dart';
 import 'package:store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:store/features/shop/models/order_model.dart';
 import 'package:store/navigation_menu.dart';

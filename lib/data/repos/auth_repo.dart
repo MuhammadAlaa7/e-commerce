@@ -21,17 +21,18 @@ import '../../core/utils/local_storage/storage_util.dart';
 class AuthenticationRepository extends GetxController {
   // * find the instance of the AuthenticationRepository that provided in the getx system to use it
   static AuthenticationRepository get instance => Get.find();
-
+  // this is the gate that you need to perform firebase authentication operations
   final _auth = FirebaseAuth.instance;
 
-  // Get authenticated user
+  // Get authenticated user >> the user that is currently logged in
   User? get currentAuthUser => _auth.currentUser;
 
-  final box = Hive.box('storage');
+//* Returns a previously opened box.
+  final box = Hive.box('auth');
 
   @override
   void onReady() {
-    FlutterNativeSplash.remove();
+  //  FlutterNativeSplash.remove();
     redirectScreen();
   }
 
@@ -57,30 +58,28 @@ class AuthenticationRepository extends GetxController {
         );
       }
     } else {
-      log('********************** user is new to the app ******************');
-      // if the user is null <<< new >>>
-
-      // check if the the box DOESN'T contain the key < isFirstTime >
-      if (!box.containsKey('isFirstTime')) {
-        box.put('isFirstTime', true);
+      if (box.containsKey('on_boarding_done')) {
+        Get.offAll(() => const LoginScreen());
+      } else {
+        // when tapping the next button on the onboarding screen
+        // the on_boarding_done key is set to true in the auth box
+        Get.offAll(() => const OnBoardingScreen());
       }
-      box.get('isFirstTime')
-          ? Get.offAll(
-              () => const OnBoardingScreen(),
-            )
-          : Get.offAll(() => const LoginScreen());
     }
   }
 
   // **********************  Email & password Authentication Process  **********************
-  /// [EmailAndPasswordAuthentication] - Sign In with email and password
-  Future<UserCredential> logInWithEmailAndPassword(
+
+  /// [EmailAndPasswordAuthentication] - login with email and password
+  /// ! you must enable email and password in firebase console before you can use this method
+  Future<UserCredential> signInWithEmailAndPassword(
       String email, String password) async {
     try {
-      log('Attempting to log in...');
       final userCredential = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      log('Logged in successfully');
+        email: email,
+        password: password,
+      );
+
       return userCredential;
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
@@ -99,7 +98,9 @@ class AuthenticationRepository extends GetxController {
 
 //* this function is used to register a user with email and password and give you a user credential
   Future<UserCredential> registerWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
       return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -178,24 +179,33 @@ class AuthenticationRepository extends GetxController {
 // [Google Authentication] - Sign In with Google
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      // trigger the google authentication flow >>> This opens a dialog for the user to sign in with their Google account.
+      // trigger the google authentication flow  >>>
+      //This opens a dialog for the user to sign in with their Google accounts.
       final GoogleSignInAccount? googleUserAccount =
           await GoogleSignIn().signIn();
+
       // Obtain the auth details from the request   [ google account ]
 
+      //* if the user dismissed the dialog, and chose no account
       if (googleUserAccount == null) {
         return null;
       }
+      // if there is an account selected from the dialog
+      // * this is a getter to return the token from the selected account email
+      // this object [GoogleSignInAuthentication] contains  information about the authentication process, such as the Google ID token and access token.
       final GoogleSignInAuthentication googleAuth =
           await googleUserAccount.authentication;
+
       // Create a new credential
 
       OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken, // represents the user's authorization to access Google services
+        idToken: googleAuth.idToken, // represents the user's identity and can be used to verify the user's authenticity.
       );
+
       // Once signed in, return the UserCredential
       return await _auth.signInWithCredential(credential);
+
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

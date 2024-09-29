@@ -54,7 +54,7 @@ class AppTexts {
 
   static const String confirmEmail = "Verify your email address !";
   static const String confirmEmailSubTitle =
-      "Congratulations! Your account awaits:\n Verify your email to start shopping";
+      "Congratulations! Your account awaits:\n Please check your inbox and verify your email";
 
   static const String emailNotReceivedMessage =
       "Didn't get the email? Check your junk/spam or resend it";

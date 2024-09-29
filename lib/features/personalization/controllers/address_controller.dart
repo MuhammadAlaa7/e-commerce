@@ -15,8 +15,8 @@ import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
 import 'package:store/core/utils/popups/toasts.dart';
 
-import '../../../../data/repos/address_repo.dart';
-import '../../models/address_model.dart';
+import '../../../data/repos/address_repo.dart';
+import '../models/address_model.dart';
 
 class AddressController extends GetxController {
   static AddressController get instance => Get.find();

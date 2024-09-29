@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
-import 'package:store/data/services/services_controller.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
 import 'package:store/core/utils/constants/sizes.dart';
+
+import '../../../controllers/theme_controller.dart';
 
 class AppAccountSection extends StatelessWidget {
   const AppAccountSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ServicesController());
+    final themeController = Get.put(ThemeController());
     return Column(
       children: [
         const HeadingSection(
@@ -25,8 +25,13 @@ class AppAccountSection extends StatelessWidget {
           icon: Icons.brightness_4_outlined,
           title: 'Dark Mode',
           subTitle: 'Switch between light and dark mode',
-          onTap: () {},
-          trailing: Switch(value: true, onChanged: (value) {}),
+          enableOnTap: true,
+          trailing: Obx(
+            () => Switch(
+              value: themeController.isDarkMode.value,
+              onChanged: (value) => themeController.toggleTheme(),
+            ),
+          ),
         ),
       ],
     );

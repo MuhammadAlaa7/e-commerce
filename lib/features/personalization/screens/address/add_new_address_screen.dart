@@ -3,7 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/input_field/input_field.dart';
-import 'package:store/features/personalization/controllers/user/address_controller.dart';
+import 'package:store/features/personalization/controllers/address_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/validators/custom_validator.dart';
 

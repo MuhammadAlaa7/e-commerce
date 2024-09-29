@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/features/personalization/screens/profile/widgets/change_name_screen.dart';
 
-import '../../../controllers/user/user_controller.dart';
+import '../../../controllers/user_controller.dart';
 import 'profile_menu.dart';
 
 class ProfileInformationSection extends StatelessWidget {
