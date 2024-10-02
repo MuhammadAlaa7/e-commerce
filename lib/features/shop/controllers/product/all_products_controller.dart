@@ -19,21 +19,22 @@ class AllProductsController extends GetxController {
       allProducts.assignAll(products);
       return products;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Oppos!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
       return [];
     }
   }
 
-// sort the products by the selected option
+/// sort the products by the selected option
   void sortProducts(String sortOption) {
     /* 
     a =>  is a placeholder for an element in the list 
     b =>  is a placeholder for the following element  for [ a ] in the list 
     compareTo => is a method that compares two elements and returns an integer : 
-    that tells the sort method how to reorder the list >> it returns -1 if a should be placed before b , 
-    0 if they are equal and 1 if b should be placed before a
+    that tells the sort method how to re-order the list >> it returns -1 if [a] should be placed before [b] , 
+    0 if they are equal and 1 if [b] should be placed before [a]
      */
     selectedSortOption.value = sortOption;
+    
     switch (sortOption) {
       case 'Name':
         allProducts.sort((a, b) => a.title.compareTo(b.title));

@@ -52,10 +52,8 @@ class ProductController extends GetxController {
       // update featured products
       featuredProducts.assignAll(products);
 
-      log('products fetched successfully');
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
-      log('error in fetching products');
+      AppToasts.errorSnackBar(title: 'Oops! No Featured Products Found', message: e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -71,7 +69,7 @@ class ProductController extends GetxController {
 
       return product;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
       log('error in fetching the product');
       return ProductModel.empty();
     } finally {

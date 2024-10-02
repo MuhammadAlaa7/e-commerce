@@ -1,5 +1,5 @@
+/// Custom exception class to handle various Firebase authentication-related errors.
 class CustomFireBaseAuthException implements Exception {
-// Custom exception class to handle various Firebase authentication-related errors.
 
   /// The error code associated with the exception.
   final String code;

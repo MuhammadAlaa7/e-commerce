@@ -12,9 +12,8 @@ class BrandController extends GetxController {
 
   final brandRepo = Get.put(BrandRepository());
   final productRepo = ProductRepository.instance;
-  RxList<BrandModel> featuredBrands = <BrandModel>[].obs;
   RxList<BrandModel> categoryBrands = <BrandModel>[].obs;
-  RxList<BrandModel> allBrands = <BrandModel>[].obs;
+  // RxList<BrandModel> allBrands = <BrandModel>[].obs;
   RxList<ProductModel> brandProducts = <ProductModel>[].obs;
 
   final RxString selectedSortOption = 'Name'.obs;
@@ -28,19 +27,18 @@ class BrandController extends GetxController {
     fetchFeaturedBrands();
     // you must make two controllers one for featured brands and one for all brands
     // to reduce the number of api calls
-    fetchAllBrands();
   }
 
 // fetch featured brands
 
-  Future<void> fetchFeaturedBrands() async {
+  Future<List<BrandModel>> fetchFeaturedBrands() async {
     try {
       isLoading.value = true;
       final brands = await brandRepo.getFeaturedBrands();
-      log('featured brands length ${brands.length}');
-      featuredBrands.assignAll(brands);
+      return brands;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
+      return [];
     } finally {
       isLoading.value = false;
     }
@@ -48,14 +46,15 @@ class BrandController extends GetxController {
 
 // fetch all brands
 
-  Future<void> fetchAllBrands() async {
+  Future<List<BrandModel>> fetchAllBrands() async {
     try {
       isLoading.value = true;
       final brands = await brandRepo.getAllBrands();
 
-      allBrands.assignAll(brands);
+      return brands;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
+      return [];
     } finally {
       isLoading.value = false;
     }
@@ -63,13 +62,13 @@ class BrandController extends GetxController {
 
 // fetch brand products
 
-  Future<List<ProductModel>> fetchBrandProducts(String brandId) async {
+  Future<List<ProductModel>> fetchProductsByBrandId(String brandId) async {
     try {
-      final products = await productRepo.getBrandProductsById(brandId);
+      final products = await productRepo.getProductsByBrandId(brandId);
       // brandProducts.assignAll(products);
       return products;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
 
       log('error in fetching brand products$e');
       return [];
@@ -78,12 +77,12 @@ class BrandController extends GetxController {
 
 // * fetch category brands  by category id
 
-  Future<List<BrandModel>> fetchBrandsByCategory(String categoryId) async {
+  Future<List<BrandModel>> fetchBrandsByCategoryId(String categoryId) async {
     try {
-      final brands = await brandRepo.getBrandsByCategory(categoryId);
+      final brands = await brandRepo.getBrandsByCategoryId(categoryId);
       return brands;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
 
       return [];
     }

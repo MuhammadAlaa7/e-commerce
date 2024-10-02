@@ -46,7 +46,7 @@ class BrandProductsScreen extends StatelessWidget {
               FutureBuilder(
                 // the data will come in the future and passed to snapshot
                 // it updates the UI with the new data by its own no need for Obx
-                future: controller.fetchBrandProducts(brand.id),
+                future: controller.fetchProductsByBrandId(brand.id),
 
                 builder: (_, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

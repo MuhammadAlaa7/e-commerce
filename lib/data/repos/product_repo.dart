@@ -28,7 +28,7 @@ class ProductRepository extends GetxController {
         } catch (e) {
           log('Error mapping document to ProductModel: ${document.id}, Error: $e');
           // You could throw the error or return a default empty ProductModel
-          rethrow; // or return ProductModel.empty();
+          rethrow; // it means to throw the exception  to the outer catch which is above
         }
       }).toList();
 
@@ -50,14 +50,12 @@ class ProductRepository extends GetxController {
 
       try {
         final product = ProductModel.fromSnapshot(snapshot);
-         return product;
+        return product;
       } catch (e) {
         log('Error mapping document to ProductModel: ${snapshot.id}, Error: $e');
         // You could throw the error or return a default empty ProductModel
         rethrow; // or return ProductModel.empty();
       }
-
-     
     } on FirebaseException catch (e) {
       throw CustomFirebaseException(e.code).message;
     } on PlatformException catch (e) {
@@ -97,7 +95,7 @@ class ProductRepository extends GetxController {
   }
 
 //* get brand specific products by brand id
-  Future<List<ProductModel>> getBrandProductsById(String brandId) async {
+  Future<List<ProductModel>> getProductsByBrandId(String brandId) async {
     try {
       final snapshot = await db
           .collection('MyProducts')

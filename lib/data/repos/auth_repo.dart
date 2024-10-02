@@ -32,7 +32,7 @@ class AuthenticationRepository extends GetxController {
 
   @override
   void onReady() {
-  //  FlutterNativeSplash.remove();
+    //  FlutterNativeSplash.remove();
     redirectScreen();
   }
 
@@ -199,13 +199,14 @@ class AuthenticationRepository extends GetxController {
       // Create a new credential
 
       OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken, // represents the user's authorization to access Google services
-        idToken: googleAuth.idToken, // represents the user's identity and can be used to verify the user's authenticity.
+        accessToken: googleAuth
+            .accessToken, // represents the user's authorization to access Google services
+        idToken: googleAuth
+            .idToken, // represents the user's identity and can be used to verify the user's authenticity.
       );
 
       // Once signed in, return the UserCredential
       return await _auth.signInWithCredential(credential);
-
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -220,9 +221,12 @@ class AuthenticationRepository extends GetxController {
   }
 
   // [re-authenticate ]  -- re-authenticate user
-
+   /// to re-authenticate the user [ auth for the second time ] 
+   /// used before update operations to ensure that the user is still authenticated
   Future<void> reAuthenticateUserWithEmailAndPassword(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     try {
       // create a new credential
       AuthCredential userCredential =
@@ -253,7 +257,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw CustomFirebaseException(e.code).message;
     } on FormatException catch (_) {
-      throw const CustomFormatException();
+      throw const CustomFormatException('');
     } on PlatformException catch (e) {
       throw CustomPlatformException(e.code).message;
     } catch (e) {
@@ -272,7 +276,7 @@ class AuthenticationRepository extends GetxController {
 //       return await _auth.createUserWithEmailAndPassword(
 //           email: email, password: password);
 //     } on FirebaseAuthException catch (e) {
-//       //! throw the only the message of that exception caught
+//       //! throw only the message of that exception caught
 //       throw FirebaseAuthException(code: e.code, message: e.message).message.toString();
 //     } on FirebaseException catch (e) {
 //       throw FirebaseException(

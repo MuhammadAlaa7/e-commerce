@@ -1,13 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/core/common/widgets/custom_shapes/containers/circular_container.dart';
-import 'package:store/core/common/widgets/images/rounded_image.dart';
 import 'package:store/core/common/widgets/shimmers/shimmer_effect.dart';
-import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
-import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
+
+import 'banner_carousel_slider.dart';
+import 'banner_indicators.dart';
 
 class HomeBannerSection extends StatelessWidget {
   const HomeBannerSection({
@@ -30,46 +28,14 @@ class HomeBannerSection extends StatelessWidget {
           height: 0,
         );
       } else {
-        return Column(
+        return const Column(
           children: [
-            CarouselSlider(
-              items: bannerController.banners
-                  .map((banner) => RoundedImage(
-                        fit: BoxFit.fill,
-                        imageUrl: banner.imageUrl,
-                        isNetworkImage: true,
-                        onPressed: () => Get.toNamed(banner.targetScreen),
-                      ))
-                  .toList(),
-              options: CarouselOptions(
-                // -- this is also responsible for separating the items in the slider
-                // with a space between them
-                enlargeCenterPage: true,
-                viewportFraction: 1,
-                onPageChanged: (index, _) {
-                  bannerController.changeBannerIndex(index);
-                },
-              ),
-            ),
-            const SizedBox(height: AppSizes.spaceBetweenItems),
+             BannerCarouselSlider(),
+             SizedBox(height: AppSizes.spaceBetweenItems),
 
             // * -- banners indicators
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < bannerController.banners.length; i++)
-                  CircularContainer(
-                    margin: const EdgeInsets.only(right: 10),
-                    height: 6,
-                    width: 20,
-                    backgroundColor:
-                        i == bannerController.currentBannerIndex.value
-                            ? AppColors.primary
-                            : Colors.grey[400]!,
-                  ),
-              ],
-            ),
+            BannerIndicators(),
           ],
         );
       }

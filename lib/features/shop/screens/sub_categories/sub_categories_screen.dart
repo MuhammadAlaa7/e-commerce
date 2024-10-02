@@ -43,10 +43,13 @@ class SubCategoriesScreen extends StatelessWidget {
                     /// widget here will be loading or error or data widget
                     final widget =
                         CustomCloudHelperFunctions.checkMultiRecordState(
-                            snapshot: snapshot, loader: loader);
+                      snapshot: snapshot,
+                      loader: loader,
+                    );
                     if (widget != null) return widget;
 
                     // data found
+                    // * the vertical list view of sub categories [ Main ]
                     final subCategories = snapshot.data as List<CategoryModel>;
                     return ListView.builder(
                         itemCount: subCategories.length,
@@ -55,6 +58,7 @@ class SubCategoriesScreen extends StatelessWidget {
                         itemBuilder: (_, index) {
                           // get sub category
                           final subCategory = subCategories[index];
+                          // * sub category products is the horizontal list view of products in that sub category
                           return SubCategoryProducts(
                             subCategory: subCategory,
                           );

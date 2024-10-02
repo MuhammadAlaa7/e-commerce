@@ -57,6 +57,6 @@ class WishlistScreen extends StatelessWidget {
 }
 
 final emptyWidget = AnimationLoaderWidget(
-  text: 'Opps! \n Your wishlist is empty',
+  text: 'Oops! \n Your wishlist is empty',
   animationImage: AppImages.emptyAnimation,
 );

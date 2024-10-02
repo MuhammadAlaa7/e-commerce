@@ -1,6 +1,6 @@
 // this model represents the relationship between brands and categories.
 // This suggests a many-to-many relationship between brands and categories.
-// In other words, a brand can belong to multiple categories, and a category can have multiple brands.
+//* In other words, a brand can belong to multiple categories, and a category can have multiple brands.
 
 // I made this model to get all the brands in one category
 

@@ -11,18 +11,19 @@ class CategoryController extends GetxController {
   final categoriesRepository = Get.put(CategoryRepository());
 
   final Rx<bool> isLoading = false.obs;
+
   final RxList<CategoryModel> allCategories = <CategoryModel>[].obs;
   final RxList<CategoryModel> featuredCategories = <CategoryModel>[].obs;
 
   @override
   void onInit() {
-    fetchCategories();
+    fetchAllCategories();
     super.onInit();
   }
 
 // load categories data
 
-  void fetchCategories() async {
+  Future<void> fetchAllCategories() async {
     try {
       // show loader while loading categories
       isLoading.value = true;
@@ -35,14 +36,16 @@ class CategoryController extends GetxController {
       allCategories.assignAll(categories);
 
       // filter featured categories
-      /// when the parentId is null or empty this means that the category is a parent category not a sub category
-      /// it is not following the parent category so it is a parent not a sub category
-      featuredCategories.assignAll(allCategories
+
+      final featureCats = allCategories
           .where((category) =>
               category.isFeatured == true && category.parentId.isEmpty)
-          .toList());
+          .toList();
+
+      // update the featured categories list
+      featuredCategories.assignAll(featureCats);
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops! ', message: e.toString());
     } finally {
       // close loader
 
@@ -51,6 +54,7 @@ class CategoryController extends GetxController {
   }
 
   // * fetch the products for a specific category
+  /// whether the category is base or sub category
   Future<List<ProductModel>> fetchProductsForCategory(String categoryId,
       {int limit = 4}) async {
     try {
@@ -58,20 +62,21 @@ class CategoryController extends GetxController {
           .getProductsForCategory(categoryId: categoryId, limit: limit);
       return products;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
       return [];
     }
   }
 
 // * fetch sub categories for a specific category
   Future<List<CategoryModel>> fetchSubCategoriesForCategory(
-      String categoryId) async {
+    String categoryId,
+  ) async {
     try {
       final subCategories =
           await categoriesRepository.getSubCategories(categoryId);
       return subCategories;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
       return [];
     }
   }

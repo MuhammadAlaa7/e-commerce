@@ -33,14 +33,13 @@ class UserController extends GetxController {
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final reAuthFormKey = GlobalKey<FormState>();
-  RxBool isDarkMode =  false.obs;
+  RxBool isDarkMode = false.obs;
   @override
   void onInit() {
     super.onInit();
     fetchUserRecord();
   }
 
-  
   // Fetch user record from Firebase
   Future<void> fetchUserRecord() async {
     try {
@@ -177,7 +176,7 @@ class UserController extends GetxController {
       if (!isConnected) {
         FullScreenLoader.closeLoadingDialog();
         AppToasts.warningSnackBar(
-            title: 'Opps!', message: 'No internet connection');
+            title: 'Oops!', message: 'No internet connection');
         return;
       }
       // validate from

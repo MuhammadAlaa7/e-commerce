@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:store/core/common/widgets/products/sortable_products/sortable_products.dart';
+import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/features/shop/controllers/product/all_products_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
@@ -34,9 +35,11 @@ class AllProductsScreen extends StatelessWidget {
             // it updates the UI with the new data by its own no need for Obx
             future: futureMethod ?? controller.fetchProductByQuery(query),
             builder: (_, snapshot) {
-              log('snapshot: ${snapshot.data}');
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const VerticalProductShimmer();
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: AppColors.primary,
+                ));
               }
 
               if (snapshot.hasError) {

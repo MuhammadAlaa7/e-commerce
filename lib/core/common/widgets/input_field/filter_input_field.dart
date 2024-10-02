@@ -18,6 +18,7 @@ class FilterField extends StatelessWidget {
         hintStyle: Theme.of(context).textTheme.bodySmall,
         prefixIcon: Icon(
           Iconsax.sort,
+          // * icon color
           color: AppHelperFunctions.isDarkMode(context)
               ? Colors.grey
               : Colors.black,

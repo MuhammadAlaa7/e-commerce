@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:store/data/repos/banner_repo.dart';
 import 'package:store/features/shop/models/banner_model.dart';
@@ -44,7 +43,7 @@ class BannerController extends GetxController {
 
       this.banners.assignAll(banners);
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     } finally {
       isLoading.value = false;
     }

@@ -19,45 +19,39 @@ class BrandModel {
   static BrandModel empty() => BrandModel(id: '', image: '', name: '');
 
   /// Convert model to Json structure so that you can store data in Firebase
-  Map<String, dynamic> toJson({String? image}) {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,
-      'image': image ?? this.image,
+      'image': image,
       'productsCount': productsCount,
       'isFeatured': isFeatured,
     };
   }
 
   /// Map Json oriented document snapshot from Firebase to UserModel
-  factory BrandModel.fromJson(Map<String, dynamic> document) {
-    final data = document;
-    if (data.isEmpty) return BrandModel.empty();
-
+  factory BrandModel.fromJson(Map<String, dynamic> json) {
     return BrandModel(
-    // the id of the ducment is the id of the brand
-    id : data['id'] ?? '', 
-      name: data['name']??'', 
-      image: data['image'] ?? '',
-      productsCount: data['productsCount'] ?? 0,
-      isFeatured: data['isFeatured'] ?? false ,
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      image: json['image'] ?? '',
+      productsCount: json['productsCount'] ?? 0,
+      isFeatured: json['isFeatured'] ?? false,
     );
   }
 
-
-
-
   // from query snapshot
-  factory BrandModel.fromQuerySnapshot(QueryDocumentSnapshot<Map<String, dynamic>> document) {
-   // final data = document.data() as Map<String, dynamic>;
-
-    final data = document.data(); 
-        return  BrandModel(
-          id: document.id, 
-          name: data['name']??'', 
-          image: data['image'] ?? '',
-          productsCount: data['productsCount'] ?? 0,
-          isFeatured: data['isFeatured'] ?? false ,
-        ); 
+  factory BrandModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    // final data = document.data() as Map<String, dynamic>;
+          if( document.data() == null) return BrandModel.empty();
+    final data = document.data()!;
+    return BrandModel(
+      id: document.id,
+      name: data['name'] ?? '',
+      image: data['image'] ?? '',
+      productsCount: data['productsCount'] ?? 0,
+      isFeatured: data['isFeatured'] ?? false,
+    );
   }
 }

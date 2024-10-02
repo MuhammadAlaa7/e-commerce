@@ -5,7 +5,7 @@ import 'product_attributes_model.dart';
 import 'product_variation_model.dart';
 
 class ProductModel {
-  String id;
+ final String id;
   int stock;
   String? sku;
   double price;

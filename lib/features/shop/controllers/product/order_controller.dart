@@ -33,7 +33,7 @@ class OrderController extends GetxController {
       final orders = await orderRepo.getAllUserOrders();
       return orders;
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
       return [];
     }
   }
@@ -52,7 +52,7 @@ class OrderController extends GetxController {
       if (!isConnected) {
         FullScreenLoader.closeLoadingDialog();
         AppToasts.errorSnackBar(
-            title: 'Opps!', message: 'No internet connection');
+            title: 'Oops!', message: 'No internet connection');
         return;
       }
       // get the user
@@ -60,7 +60,7 @@ class OrderController extends GetxController {
       if (userId!.isEmpty) {
         FullScreenLoader.closeLoadingDialog();
         AppToasts.errorSnackBar(
-            title: 'Opps!',
+            title: 'Oops!',
             message: 'Unable to find the user information , try again later.');
         return;
       }
@@ -100,7 +100,7 @@ class OrderController extends GetxController {
     } catch (e) {
       log(e.toString());
       FullScreenLoader.closeLoadingDialog();
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 }

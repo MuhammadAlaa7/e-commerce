@@ -8,7 +8,7 @@ class CustomCategoriesShimmer extends StatelessWidget {
     this.itemCount = 6,
   });
 
-  final itemCount;
+  final int itemCount;
 
   @override
   Widget build(BuildContext context) {

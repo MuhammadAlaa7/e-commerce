@@ -22,12 +22,14 @@ class PopularProductsSection extends StatelessWidget {
         HeadingSection(
           title: 'Popular Products',
           onPressed: () {
-            Get.to(() => AllProductsScreen(
+            Get.to(
+              () => AllProductsScreen(
                 title: 'Popular Products',
                 query: FirebaseFirestore.instance
                     .collection('MyProducts')
-                    .limit(6),
-              ),);
+                    .limit(10),
+              ),
+            );
           },
         ),
         Obx(
@@ -36,7 +38,7 @@ class PopularProductsSection extends StatelessWidget {
               return const VerticalProductShimmer();
             }
             if (controller.featuredProducts.isEmpty == true) {
-              return const Text('No Products Found');
+              return const Text('No Popular Products Found');
             } else {
               return CustomGridView(
                 itemCount: 4,

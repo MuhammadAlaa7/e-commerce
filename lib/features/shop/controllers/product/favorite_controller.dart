@@ -79,7 +79,7 @@ class FavoriteController extends GetxController {
       }
     } catch (e) {
       log(e.toString());
-      AppToasts.errorSnackBar(title: 'Opps!', message: e.toString());
+      AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
       return [];
     }
   }

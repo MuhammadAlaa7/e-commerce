@@ -98,13 +98,13 @@ class CartItemController extends GetxController {
     // check out of stock for both < single product and variable product >
     if (product.productType == ProductType.variable.name) {
       if (variationController.selectedVariation.value.stock == 0) {
-        AppToasts.warningSnackBar(title: 'Opps!', message: 'out of stock');
+        AppToasts.warningSnackBar(title: 'Oops!', message: 'out of stock');
         return;
       }
     } else {
       // single product
       if (product.stock == 0) {
-        AppToasts.warningSnackBar(title: 'Opps!', message: 'out of stock');
+        AppToasts.warningSnackBar(title: 'Oops!', message: 'out of stock');
         return;
       }
     }
@@ -158,7 +158,7 @@ class CartItemController extends GetxController {
             ? product.salePrice
             : product.price;
     // return cart item model if the whether the product is single or variation
-   
+
     return CartItemModel(
       productId: product.id,
       quantity: quantity,

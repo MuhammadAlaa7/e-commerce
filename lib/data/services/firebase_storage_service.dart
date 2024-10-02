@@ -19,6 +19,34 @@ class CustomFirebaseStorageService extends GetxController {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+// * ------------------ Upload all category models with their images ------------------- *
+  Future<void> uploadCategoriesWithImages(
+    List<CategoryModel> categories,
+  ) async {
+    // Loop through each category
+    for (final category in categories) {
+      // Upload image to Firebase Storage
+      final imageData = await rootBundle.load(category.image);
+        // the image raw data 
+      final bytes = imageData.buffer.asUint8List();
+      // make a reference to hold the image data 
+      final storageRef = firebaseStorage.ref('category_images/${category.id}');
+      // put / save the data in the reference
+      final uploadTask = await storageRef.putData(bytes);
+          // get the image url to be sent to the database
+      final imageUrl = await uploadTask.ref.getDownloadURL();
+
+      // Create category document in Firestore with specified ID
+      final categoryRef = _firestore.collection('Categories').doc(category.id);
+      await categoryRef.set({
+        'name': category.name,
+        'image': imageUrl,
+        'isFeatured': category.isFeatured,
+        'parentId': category.parentId,
+      });
+    }
+  }
+
 // * -------------------- Upload all banners , store their images first in the storage and then create banner document in firestore ------------------- *
   Future<void> uploadBannersWithImages(List<BannerModel> banners) async {
     for (final banner in banners) {
@@ -151,8 +179,8 @@ class CustomFirebaseStorageService extends GetxController {
 
       // Process and upload images for product variations
       List<Map<String, dynamic>> productVariationsData = [];
-      if(product.productVariations != null) {
-         for (final variation in product.productVariations!) {
+      if (product.productVariations != null) {
+        for (final variation in product.productVariations!) {
           log('Uploading product variation: ${variation.id}');
           String? variationImageUrl;
 
@@ -178,7 +206,6 @@ class CustomFirebaseStorageService extends GetxController {
           });
         }
       }
-     
 
       // Update product data in Firestore
       await productRef.set({
@@ -188,9 +215,11 @@ class CustomFirebaseStorageService extends GetxController {
         'isFeatured': product.isFeatured,
         'description': product.description,
         // get the brand brand model from firebase collection
-        'brand':
-            await (_firestore.collection('Brands').doc(product.brand?.id?? '').get())
-                .then(
+        'brand': await (_firestore
+                .collection('Brands')
+                .doc(product.brand?.id ?? '')
+                .get())
+            .then(
           (value) {
             return value.data();
           },
@@ -213,26 +242,4 @@ class CustomFirebaseStorageService extends GetxController {
     }
   }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// * ------------------ Upload all category models with their images ------------------- *
-  Future<void> uploadCategoriesWithImages(
-      List<CategoryModel> categories) async {
-    for (final category in categories) {
-      // Upload image to Firebase Storage
-      final imageData = await rootBundle.load(category.image);
-      final bytes = imageData.buffer.asUint8List();
-      final storageRef = firebaseStorage.ref('category_images/${category.id}');
-      final uploadTask = await storageRef.putData(bytes);
-      final imageUrl = await uploadTask.ref.getDownloadURL();
-
-      // Create category document in Firestore with specified ID
-      final categoryRef = _firestore.collection('Categories').doc(category.id);
-      await categoryRef.set({
-        'name': category.name,
-        'image': imageUrl,
-        'isFeatured': category.isFeatured,
-        'parentId': category.parentId,
-      });
-    }
-  }
 }

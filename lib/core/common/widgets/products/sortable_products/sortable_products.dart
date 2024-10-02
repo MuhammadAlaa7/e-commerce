@@ -11,12 +11,14 @@ import '../product_card/vertical_product_card.dart';
 
 class SortableProducts extends StatelessWidget {
   const SortableProducts({super.key, required this.products});
+
   final List<ProductModel> products;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AllProductsController());
     controller.assignAllProducts(products);
+    
     return Column(
       children: [
         // * -- filter field or sorting field

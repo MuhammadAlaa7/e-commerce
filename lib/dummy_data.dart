@@ -12,8 +12,6 @@ import 'features/shop/models/banner_model.dart';
 import 'features/shop/models/brand_category_model.dart';
 
 class DummyData {
-  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   // Banners ---
 
   static final List<BannerModel> banners = [
@@ -93,7 +91,7 @@ class DummyData {
     //   ],
   );
 
-// // Cart ---
+  //* Cart ---
 //   static final CartModel cart = CartModel(
 //     id: '001',
 //     items: [
@@ -120,7 +118,7 @@ class DummyData {
 //     ],
 //   );
 
-  // orders ---
+  //* orders ---
 
   // static final List<OrderModel> orders = [
   //   OrderModel(
@@ -139,7 +137,7 @@ class DummyData {
   //       items: items),
   // ];
 
-  /// List of all Categories
+  //* all Categories
   static final List<CategoryModel> categories = [
     CategoryModel(
       id: '1',
@@ -148,15 +146,11 @@ class DummyData {
       isFeatured: true,
     ),
     CategoryModel(
-        id: '5',
-        image: AppImages.furnitureIcon,
-        name: 'Furniture',
-        isFeatured: true),
-    CategoryModel(
-        id: '2',
-        image: AppImages.electronicsIcon,
-        name: 'Electronics',
-        isFeatured: true),
+      id: '2',
+      image: AppImages.electronicsIcon,
+      name: 'Electronics',
+      isFeatured: true,
+    ),
     CategoryModel(
       id: '3',
       image: AppImages.clothIcon,
@@ -170,21 +164,29 @@ class DummyData {
       isFeatured: true,
     ),
     CategoryModel(
+      id: '5',
+      image: AppImages.furnitureIcon,
+      name: 'Furniture',
+      isFeatured: true,
+    ),
+    CategoryModel(
       id: '6',
       image: AppImages.shoeIcon,
       name: 'Shoes',
       isFeatured: true,
     ),
     CategoryModel(
-        id: '7',
-        image: AppImages.cosmeticsIcon,
-        name: 'Cosmetics',
-        isFeatured: true),
+      id: '7',
+      image: AppImages.cosmeticsIcon,
+      name: 'Cosmetics',
+      isFeatured: true,
+    ),
     CategoryModel(
-        id: '14',
-        image: AppImages.jeweleryIcon,
-        name: 'Jewelry',
-        isFeatured: true),
+      id: '14',
+      image: AppImages.jeweleryIcon,
+      name: 'Jewelry',
+      isFeatured: true,
+    ),
   ];
 
 // list of all sub categories ---
@@ -323,33 +325,48 @@ class DummyData {
     BrandCategoryModel(brandId: '1', categoryId: '8'),
     BrandCategoryModel(brandId: '1', categoryId: '9'),
     BrandCategoryModel(brandId: '1', categoryId: '10'),
+
+    ///
     BrandCategoryModel(brandId: '2', categoryId: '1'),
     BrandCategoryModel(brandId: '2', categoryId: '8'),
     BrandCategoryModel(brandId: '2', categoryId: '9'),
     BrandCategoryModel(brandId: '2', categoryId: '10'),
+
+    ///
     BrandCategoryModel(brandId: '3', categoryId: '1'),
     BrandCategoryModel(brandId: '3', categoryId: '8'),
     BrandCategoryModel(brandId: '3', categoryId: '9'),
     BrandCategoryModel(brandId: '3', categoryId: '10'),
+
+    ///
     BrandCategoryModel(brandId: '4', categoryId: '1'),
     BrandCategoryModel(brandId: '4', categoryId: '8'),
     BrandCategoryModel(brandId: '4', categoryId: '9'),
     BrandCategoryModel(brandId: '4', categoryId: '10'),
+
+    ///
     BrandCategoryModel(brandId: '5', categoryId: '15'),
     BrandCategoryModel(brandId: '5', categoryId: '2'),
-    BrandCategoryModel(brandId: '10', categoryId: '2'),
-    BrandCategoryModel(brandId: '10', categoryId: '14'),
+
+    //
     BrandCategoryModel(brandId: '6', categoryId: '3'),
     BrandCategoryModel(brandId: '6', categoryId: '16'),
+    //
     BrandCategoryModel(brandId: '7', categoryId: '2'),
+    //
     BrandCategoryModel(brandId: '8', categoryId: '5'),
     BrandCategoryModel(brandId: '8', categoryId: '11'),
     BrandCategoryModel(brandId: '8', categoryId: '12'),
     BrandCategoryModel(brandId: '8', categoryId: '13'),
+    //
     BrandCategoryModel(brandId: '9', categoryId: '5'),
     BrandCategoryModel(brandId: '9', categoryId: '11'),
     BrandCategoryModel(brandId: '9', categoryId: '12'),
     BrandCategoryModel(brandId: '9', categoryId: '13'),
+
+    ///
+    BrandCategoryModel(brandId: '10', categoryId: '2'),
+    BrandCategoryModel(brandId: '10', categoryId: '14'),
   ];
 
 // ------------------- list of products categories relationship -------------------
