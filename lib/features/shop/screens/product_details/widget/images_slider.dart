@@ -3,27 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/images/rounded_image.dart';
 import 'package:store/features/shop/controllers/product/product_images_controller.dart';
-import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
 
 
+
 class ProductImagesSlider extends StatelessWidget {
   const ProductImagesSlider({
     super.key,
-    required this.product,
+    required this.images,
   });
 
-  final ProductModel product;
+  final List<String> images;
 
   @override
   Widget build(BuildContext context) {
-    // -- variables :
-    final imageController = ProductImagesController.instance;//
-    final images = imageController.getAllImages(product);
     final isDark = AppHelperFunctions.isDarkMode(context);
+    final imageController = ProductImagesController.instance;
+
     return Positioned(
       bottom: 30,
       right: 0,
@@ -36,13 +35,13 @@ class ProductImagesSlider extends StatelessWidget {
           itemBuilder: (_, index) {
             return Obx(
               () => RoundedImage(
-                onPressed: () {},
-                  //  imageController.selectedProductImage.value = images[index],
+                onPressed: () =>
+                    imageController.selectedProductImage.value = images[index],
                 isNetworkImage: true,
-                borderColor: AppColors.darkerGrey , 
-                    // imageController.selectedProductImage.value == images[index]
-                    //     ? AppColors.primary
-                    //     : Colors.transparent,
+                borderColor:
+                    imageController.selectedProductImage.value == images[index]
+                        ? AppColors.primary
+                        : Colors.transparent,
                 borderThickness: 1.5,
                 backgroundColor: isDark ? AppColors.dark : AppColors.light,
                 width: 80,

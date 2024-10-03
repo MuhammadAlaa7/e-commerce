@@ -5,8 +5,10 @@ import 'package:store/features/shop/controllers/product/product_images_controlle
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
-class ProductSelectedImage extends StatelessWidget {
-  const ProductSelectedImage({
+
+
+class ProductMainImage extends StatelessWidget {
+  const ProductMainImage({
     super.key,
   });
 
