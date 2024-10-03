@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/sale_container.dart';
-import 'package:store/core/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:store/core/common/widgets/products/product_card/favorite_icon.dart';
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/core/common/widgets/texts/price_and_add_button.dart';

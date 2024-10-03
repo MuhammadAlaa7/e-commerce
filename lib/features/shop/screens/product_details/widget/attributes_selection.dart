@@ -6,7 +6,7 @@ import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/features/shop/models/product_attributes_model.dart';
 
-import '../../../controllers/product/variation_controller.dart';
+import '../../../controllers/product/product_variation_controller.dart';
 import '../../../models/product_model.dart';
 
 class AttributesSelection extends StatelessWidget {
@@ -54,13 +54,13 @@ class AttributeItem extends StatelessWidget {
           //or unknown number of children , it handles the overflow by moving to the next line
           () => Wrap(
             spacing: 8,
-            children: attribute.values!.map((attributeValue) {
+            children: attribute.values.map((attributeValue) {
               final isSelected =
                   controller.selectedAttributes[attribute.name] ==
                       attributeValue;
               final isAvailable = controller
                   .getAttributesAvailabilityInVariation(
-                      product.productVariations!, attribute.name!)
+                      product.productVariations!, attribute.name)
                   .contains(attributeValue);
 
               return CustomChoiceChip(

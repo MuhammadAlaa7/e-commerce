@@ -27,10 +27,10 @@ class ProductDetailsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // * rating and share
+          // * [1] -- rating and share
           const RatingShareWidget(),
 
-          // * product meta data
+          // * [2] -- product meta data
           ProductMetaData(product: product),
 
           // * product attributes [ variation container if it is variable product  , attributes selection ]

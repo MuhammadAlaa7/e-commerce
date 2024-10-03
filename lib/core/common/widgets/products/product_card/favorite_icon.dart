@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:store/features/shop/controllers/product/favorite_controller.dart';
+import 'package:store/features/shop/controllers/product/favorite_product_controller.dart';
 
 import '../../icons/circular_icon.dart';
 

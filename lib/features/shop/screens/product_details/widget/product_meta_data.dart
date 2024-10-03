@@ -19,6 +19,7 @@ class ProductMetaData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
+    // -- variables
     final price = controller.getProductPrice(product);
     final salePercentage =
         controller.getSalePercentage(product.price, product.salePrice);

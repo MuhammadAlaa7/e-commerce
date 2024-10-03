@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:store/core/common/widgets/texts/product_price_text.dart';
-import 'package:store/features/shop/controllers/product/variation_controller.dart';
+import 'package:store/features/shop/controllers/product/product_variation_controller.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';

@@ -7,16 +7,22 @@ import 'package:store/core/utils/constants/sizes.dart';
 
 class ProductImagesController extends GetxController {
   static ProductImagesController get instance => Get.find();
-
+// -- variables : 
+    // currently selected image by the user 
   RxString selectedProductImage = ''.obs;
 
-// get all images from product and variations
+
+
+// -- methods :
+
+///* get all images from product 
 
   List<String> getAllImages(ProductModel product) {
     // make a list of only unique images , using set not a list
     Set<String> uniqueImages = {};
 
-    // load thumbnail images  as the first image
+    // load thumbnail images  as the first image 
+    // thumbnail is separated from other images in the product model 
     uniqueImages.add(product.thumbnail);
 
     // assign thumbnail as current selected image

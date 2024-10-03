@@ -1,13 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:store/core/common/widgets/brands/brand_show_case_card.dart';
 import 'package:store/core/common/widgets/shimmers/boxes_shimmer.dart';
 import 'package:store/core/common/widgets/shimmers/list_tile_shimmer.dart';
 import 'package:store/features/shop/controllers/brand/brand_controller.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/features/shop/models/category_model.dart';
-import 'package:store/core/routes/routes.dart';
 import 'package:store/features/shop/models/product_model.dart';
 
 

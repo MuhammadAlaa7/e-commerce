@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:store/features/shop/models/category_model.dart';
-import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_shocases.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 

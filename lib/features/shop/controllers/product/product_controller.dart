@@ -39,8 +39,8 @@ class ProductController extends GetxController {
     fetchFeaturedProducts();
     super.onInit();
   }
+  // * [1] Fetch Featured Products
 
-  /// fetch featured products
   Future<void> fetchFeaturedProducts() async {
     try {
       /// start loader
@@ -51,14 +51,15 @@ class ProductController extends GetxController {
 
       // update featured products
       featuredProducts.assignAll(products);
-
     } catch (e) {
-      AppToasts.errorSnackBar(title: 'Oops! No Featured Products Found', message: e.toString());
+      AppToasts.errorSnackBar(
+          title: 'Oops! No Featured Products Found', message: e.toString());
     } finally {
       isLoading.value = false;
     }
   }
 
+  // * [2] Fetch Product By Id
   Future<ProductModel> fetchProductById(String productId) async {
     try {
       /// start loader
@@ -79,9 +80,16 @@ class ProductController extends GetxController {
 
 // *************----------- Helper Functions -----------**************
 
-// Get the product price and price range for variations
+//* [3] Get the product price and price range for variations
 
   String getProductPrice(ProductModel product) {
+    // smallest and largest variables are placeholders
+    // we set the initial values to infinity and zero to sort prices in ascending order
+    // this way ensures that any small real price will be smaller than infinity and any large real price will be larger than zero
+    // this ensures that any small real price will be placed because any number is smaller than infinity and vice versa
+    //This is a common programming pattern when you need to
+// find the smallest and largest values in a list.
+
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
 
@@ -96,33 +104,27 @@ class ProductController extends GetxController {
       for (var variation in product.productVariations!) {
         // determine the price to consider ( either sale price or regular price )
 
-        double priceToConsider =
+        double singleVariationPrice =
             (variation.salePrice > 0 ? variation.salePrice : variation.price);
 
         // update the smallest and largest prices
 
-//This is a common programming pattern when you need to
-// find the smallest and largest values in a list.
-
-/* 
-What Happens During the Loop?
-When you start iterating through the variations, smallestPrice will quickly be set to the price of the first variation, because any real price will be less than infinity.
-Likewise, largestPrice will be set to the first variation’s price, because any real price will be greater than zero.
-As you continue to loop through the variations, the function checks each variation’s price and updates smallestPrice if it finds a lower price, and largestPrice if it finds a higher price.
-
- */
-
-        if (priceToConsider < smallestPrice) {
-          smallestPrice = priceToConsider;
+        // * *** for the first variation its price will be placed in both smallest and largest
+        // and the other variations will be compared to these two values [ real numbers ]
+        if (singleVariationPrice < smallestPrice) {
+          smallestPrice = singleVariationPrice;
         }
 
-        if (priceToConsider > largestPrice) {
-          largestPrice = priceToConsider;
+        if (singleVariationPrice > largestPrice) {
+          largestPrice = singleVariationPrice;
         }
+        // ---- end of the loop on variations
+        //
       }
+      
 
 //* determine the range of prices
-      // if the smallest and largest prices are the same , return the single price
+      // if the smallest and largest prices are the same , return only one of them
 
       if (smallestPrice.isEqual(largestPrice)) {
         // it means all variations have the same price,
@@ -134,7 +136,7 @@ As you continue to loop through the variations, the function checks each variati
     }
   }
 
-// calculate the sale percentage of a product
+//* [4] calculate the sale percentage of a product
 
   String getSalePercentage(
     double originalPrice,
@@ -145,7 +147,9 @@ As you continue to loop through the variations, the function checks each variati
     }
     if (originalPrice <= 0) {
       return '0';
-    }
+    } 
+    //* sale price is the price after the sale
+    // the percentage of the sale applied to make the original price reach the sale price 
     double percentage = ((originalPrice - salePrice) / originalPrice) * 100;
     // the percentage will be rounded to the nearest whole number and no decimal places will be shown in the string.
     return percentage.toStringAsFixed(0);

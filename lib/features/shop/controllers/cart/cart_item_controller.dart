@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:store/features/shop/controllers/product/variation_controller.dart';
+import 'package:store/features/shop/controllers/product/product_variation_controller.dart';
 import 'package:store/features/shop/models/cart_item_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/models/product_variation_model.dart';

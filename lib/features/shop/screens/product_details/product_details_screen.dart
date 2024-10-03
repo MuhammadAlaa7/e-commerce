@@ -1,11 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:store/features/shop/controllers/product/variation_controller.dart';
+import 'package:store/features/shop/controllers/product/product_variation_controller.dart';
 
 import '../../models/product_model.dart';
 import 'widget/bottom_nav_add_to_cart.dart';
 import 'widget/product_details_section.dart';
-import 'widget/product_image_slider.dart';
+import 'widget/product_images.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({
@@ -17,7 +17,7 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: true,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop , result) {
         if (didPop) {
           // to reset the selected attributes when switching between products to avoid conflict
           VariationController.instance.resetSelectedAttributes();
@@ -28,18 +28,19 @@ class ProductDetailsScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // * product images  (Header)
+              // * [ 1 ] -- product images  (Header)
 
               ProductImages(
                 product: product,
               ),
 
-              // * product details (body)
+              // *   [ 2 ] -- product details (body)
 
               ProductDetailsSection(product: product),
             ],
           ),
         ),
+         // * [ 3 ] -- bottom nav (footer)
         bottomNavigationBar: BottomNavAddToCart(
           product: product,
         ),

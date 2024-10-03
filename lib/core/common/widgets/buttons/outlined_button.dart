@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/cloud_helper_functions.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
 class CustomOutlinedButton extends StatelessWidget {

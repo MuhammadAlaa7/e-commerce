@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:store/features/shop/controllers/product/checkout_controller.dart';
+import 'package:store/features/shop/controllers/product/product_checkout_controller.dart';
 import 'package:store/features/shop/models/payment_method.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';

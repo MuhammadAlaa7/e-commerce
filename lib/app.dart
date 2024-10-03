@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/core/bindings/general_bindings.dart';
 import 'package:store/core/routes/app_routes.dart';
 import 'package:store/core/utils/constants/colors.dart';

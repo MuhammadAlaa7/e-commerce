@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
-import 'package:store/features/shop/controllers/product/checkout_controller.dart';
+import 'package:store/features/shop/controllers/product/product_checkout_controller.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 import 'payment_widget.dart';

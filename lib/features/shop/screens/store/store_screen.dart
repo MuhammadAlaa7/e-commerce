@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
-import 'package:store/features/shop/models/category_model.dart';
-import 'package:store/features/shop/screens/brands/all_brands_screen.dart';
 import 'package:store/features/shop/screens/store/widgets/category_tap.dart';
 
-import 'package:store/core/utils/constants/colors.dart';
-import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/core/utils/helper/helper_functions.dart';
 import 'package:store/features/shop/screens/store/widgets/custom_sliver_app_bar.dart';
-import '../../controllers/brand/brand_controller.dart';
 import 'widgets/store_app_bar.dart';
-import 'widgets/store_featured_brands.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});

@@ -8,9 +8,8 @@ import 'package:store/core/common/widgets/products/product_card/vertical_product
 
 import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/sizes.dart';
-import 'package:store/features/shop/controllers/product/favorite_controller.dart';
+import 'package:store/features/shop/controllers/product/favorite_product_controller.dart';
 
-import 'package:store/navigation_menu.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});

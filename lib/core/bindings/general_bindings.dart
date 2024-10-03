@@ -9,13 +9,14 @@ import 'package:store/features/on_boarding/controllers/onboarding/on_boarding_co
 import 'package:store/features/personalization/controllers/address_controller.dart';
 import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
-import 'package:store/features/shop/controllers/product/order_controller.dart';
-import 'package:store/features/shop/controllers/product/variation_controller.dart';
+import 'package:store/features/shop/controllers/product/product_images_controller.dart';
+import 'package:store/features/shop/controllers/product/product_order_controller.dart';
+import 'package:store/features/shop/controllers/product/product_variation_controller.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 
 import '../../features/shop/controllers/category/category_controller.dart';
-import '../../features/shop/controllers/product/checkout_controller.dart';
-import '../../features/shop/controllers/product/favorite_controller.dart';
+import '../../features/shop/controllers/product/product_checkout_controller.dart';
+import '../../features/shop/controllers/product/favorite_product_controller.dart';
 import '../../features/shop/controllers/product/product_controller.dart';
 
 class GeneralBindings extends Bindings {
@@ -77,5 +78,7 @@ as the controller is always available when required,
     Get.lazyPut(() => ProductController(), fenix: true);
     Get.lazyPut(() => FavoriteController(), fenix: true);
     Get.lazyPut(() => OrderController(), fenix: true);
+    Get.lazyPut(() => ProductImagesController(), fenix: true);
+
   }
 }

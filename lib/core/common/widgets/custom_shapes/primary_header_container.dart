@@ -12,7 +12,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return CurvedEdgesWidget(
+    return CustomClippedWidget(
       child: Container(
         padding: const EdgeInsets.only(bottom: 20),
         // * There is no height for this custom container in order to be custom for any content in it

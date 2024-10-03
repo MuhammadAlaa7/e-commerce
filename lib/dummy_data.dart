@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:store/features/personalization/models/user_model.dart';
 import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/features/shop/models/category_model.dart';

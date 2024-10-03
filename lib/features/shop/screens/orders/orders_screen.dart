@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/loaders/animated_loader.dart';
 import 'package:store/core/common/widgets/shimmers/orders_shimmer.dart';
-import 'package:store/features/shop/controllers/product/order_controller.dart';
+import 'package:store/features/shop/controllers/product/product_order_controller.dart';
 import 'package:store/features/shop/models/order_model.dart';
 import 'package:store/features/shop/screens/orders/widgets/orders_list_item.dart';
 import 'package:store/navigation_menu.dart';

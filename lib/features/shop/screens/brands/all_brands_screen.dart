@@ -6,10 +6,8 @@ import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/core/common/widgets/shimmers/brands/all_brands_shimmer.dart';
 import 'package:store/features/shop/controllers/brand/brand_controller.dart';
 import 'package:store/core/routes/routes.dart';
-import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/features/shop/models/brand_model.dart';
-import 'package:store/features/shop/screens/store/widgets/store_featured_brands.dart';
 
 import '../../../../core/utils/helper/cloud_helper_functions.dart';
 

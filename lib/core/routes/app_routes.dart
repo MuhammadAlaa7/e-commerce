@@ -11,7 +11,6 @@ import 'package:store/features/shop/screens/store/store_screen.dart';
 import 'package:store/features/shop/screens/wishlist/wishlist_screen.dart';
 import 'package:store/core/routes/routes.dart';
 
-import '../../features/shop/screens/all_products/all_products_screen.dart';
 import '../../features/shop/screens/sub_categories/sub_categories_screen.dart';
 
 class AppRoutes {

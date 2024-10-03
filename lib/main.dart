@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:store/app.dart';
 import 'package:store/data/repos/auth_repo.dart';
-import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/firebase_options.dart';
 
 void main() async {
