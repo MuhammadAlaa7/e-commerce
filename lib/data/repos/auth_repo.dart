@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -30,7 +31,7 @@ class AuthenticationRepository extends GetxController {
 
   @override
   void onReady() {
-    //  FlutterNativeSplash.remove();
+     FlutterNativeSplash.remove();
     redirectScreen();
   }
 
@@ -65,6 +66,55 @@ class AuthenticationRepository extends GetxController {
       }
     }
   }
+
+
+  
+  /// *************************** Social Authentication  *************************** \\
+
+// [Google Authentication] - Sign In with Google
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // trigger the google authentication flow  >>>
+      //This opens a dialog for the user to sign in with their Google accounts.
+      final GoogleSignInAccount? googleUserAccount =
+          await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request   [ google account ]
+
+      //* if the user dismissed the dialog, and chose no account
+      if (googleUserAccount == null) {
+        return null;
+      }
+      // if there is an account selected from the dialog
+      // * this is a getter to return the token from the selected account email
+      // this object [GoogleSignInAuthentication] contains  information about the authentication process, such as the Google ID token and access token.
+      final GoogleSignInAuthentication googleAuth =
+          await googleUserAccount.authentication;
+
+      // Create a new credential
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth
+            .accessToken, // represents the user's authorization to access Google services
+        idToken: googleAuth
+            .idToken, // represents the user's identity and can be used to verify the user's authenticity.
+      );
+
+      // Once signed in, return the UserCredential
+      return await _auth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw CustomFireBaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw CustomFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const CustomFormatException();
+    } on PlatformException catch (e) {
+      throw CustomPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong , please try again later!';
+    }
+  }
+
 
   // **********************  Email & password Authentication Process  **********************
 
@@ -156,55 +206,10 @@ class AuthenticationRepository extends GetxController {
   Future<void> logOut() async {
     try {
       FirebaseAuth.instance.signOut();
+      
 
       GoogleSignIn().signOut();
       GoogleSignIn().disconnect();
-    } on FirebaseAuthException catch (e) {
-      throw CustomFireBaseAuthException(e.code).message;
-    } on FirebaseException catch (e) {
-      throw CustomFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const CustomFormatException();
-    } on PlatformException catch (e) {
-      throw CustomPlatformException(e.code).message;
-    } catch (e) {
-      throw 'Something went wrong , please try again later!';
-    }
-  }
-
-  /// *************************** Social Authentication  *************************** \\
-
-// [Google Authentication] - Sign In with Google
-  Future<UserCredential?> signInWithGoogle() async {
-    try {
-      // trigger the google authentication flow  >>>
-      //This opens a dialog for the user to sign in with their Google accounts.
-      final GoogleSignInAccount? googleUserAccount =
-          await GoogleSignIn().signIn();
-
-      // Obtain the auth details from the request   [ google account ]
-
-      //* if the user dismissed the dialog, and chose no account
-      if (googleUserAccount == null) {
-        return null;
-      }
-      // if there is an account selected from the dialog
-      // * this is a getter to return the token from the selected account email
-      // this object [GoogleSignInAuthentication] contains  information about the authentication process, such as the Google ID token and access token.
-      final GoogleSignInAuthentication googleAuth =
-          await googleUserAccount.authentication;
-
-      // Create a new credential
-
-      OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth
-            .accessToken, // represents the user's authorization to access Google services
-        idToken: googleAuth
-            .idToken, // represents the user's identity and can be used to verify the user's authenticity.
-      );
-
-      // Once signed in, return the UserCredential
-      return await _auth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       throw CustomFireBaseAuthException(e.code).message;
     } on FirebaseException catch (e) {

@@ -34,7 +34,7 @@ class UserController extends GetxController {
   final reAuthFormKey = GlobalKey<FormState>();
   RxBool isDarkMode = false.obs;
   @override
-  void onInit() {
+  void onInit()  {
     super.onInit();
     fetchUserRecord();
   }
@@ -43,11 +43,13 @@ class UserController extends GetxController {
   Future<void> fetchUserRecord() async {
     try {
       profileLoading.value = true;
+      log('fetching user record');
       final user = await userRepository.fetchUserDataFromFirebase();
       this.user(user);
-      log('user is here >>>> : ${user.firstName}');
+      log('user email record fetched ${user.email}');
     } catch (e) {
       user(UserModel.empty());
+      log('error in fetching user record ${e.toString()}  ');
     } finally {
       profileLoading.value = false;
     }

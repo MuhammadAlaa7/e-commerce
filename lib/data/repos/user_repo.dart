@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,13 +47,20 @@ class UserRepository extends GetxController {
   //*************************** fetch user data from firebase ***********************
   Future<UserModel> fetchUserDataFromFirebase() async {
     try {
-      final documentSnapshot =
-          await _db.collection('users').doc(currentUserId).get();
+      final documentSnapshot = await _db
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .get();
+      // return the users in the collection
+      log(documentSnapshot.data().toString());
+      log('the user id is from the getter >>> ${currentUserId}');
+      log('the user id from fire base is ${documentSnapshot.id}');
 
-      if (documentSnapshot.exists) {
+      if (documentSnapshot.exists && documentSnapshot.data() != null) {
         return UserModel.fromJson(documentSnapshot);
       } else {
         // if there is no document return an empty model
+        log('user not found');
         return UserModel.empty();
       }
     } on FirebaseAuthException catch (e) {

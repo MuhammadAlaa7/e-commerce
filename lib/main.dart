@@ -53,9 +53,7 @@ void main() async {
       .then(
     (FirebaseApp firebaseResult) => Get.put(AuthenticationRepository()),
   );
-  // Remove the splash screen after initializations are complete
-  FlutterNativeSplash.remove();
-
+  
 
   runApp( StoreApp(isDarkMode: isDarkMode,));
 }

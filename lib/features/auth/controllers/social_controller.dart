@@ -36,6 +36,7 @@ class SocialController extends GetxController {
 
       // save user record
       await UserController.instance.saveUserRecord(userCredential);
+      await UserController.instance.fetchUserRecord(); ////////////////////////////////!!!!!
 
       // redirect to home page
 
