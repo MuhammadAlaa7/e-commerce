@@ -12,8 +12,16 @@ import 'package:store/features/personalization/controllers/user_controller.dart'
 class LoginController extends GetxController {
   static LoginController instance = Get.find();
 
+
+@override
+  void onReady() {
+
+    log('ready login controller');    
+    super.onReady();
+  }
   @override
   void onInit() {
+    log('init login controller');
     email.text = box.get('remember_me_email') ?? '';
 
     password.text = box.get('remember_me_password') ?? '';
@@ -75,7 +83,7 @@ class LoginController extends GetxController {
       if (rememberMe.value == true) {
         // save email and password in the hive storage for later use email and password keys
 
-        box.put('remember_me', rememberMe.value);
+        box.put('remember_me', true );
         box.put('remember_me_email', email.text.trim());
         box.put('remember_me_password', password.text.trim());
       } else {
@@ -89,7 +97,6 @@ class LoginController extends GetxController {
           .signInWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // stop loading
-      FullScreenLoader.closeLoadingDialog();
 
       await UserController.instance.fetchUserRecord();
 
@@ -99,6 +106,10 @@ class LoginController extends GetxController {
       // stop loading
       AppToasts.errorSnackBar(title: 'Sign in Failed', message: e.toString());
       FullScreenLoader.closeLoadingDialog();
+    }
+    finally{
+            FullScreenLoader.closeLoadingDialog();
+
     }
   }
 }

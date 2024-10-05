@@ -69,7 +69,7 @@ as the controller is always available when required,
 
     Get.lazyPut(() => SignUpController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
-    Get.lazyPut(() => LoginController(), fenix: true);
+    // Get.lazyPut(() => LoginController(), fenix: true);
 
     Get.lazyPut(() => UserRepository(), fenix: true);
     Get.lazyPut(() => SocialController(), fenix: true);

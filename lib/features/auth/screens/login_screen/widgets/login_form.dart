@@ -20,7 +20,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginController = LoginController.instance;
+    final loginController = Get.put(LoginController()) ; 
     return Form(
       key: loginController.loginFormKey,
       child: Padding(
