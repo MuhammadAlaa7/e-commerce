@@ -56,7 +56,7 @@ class UserRepository extends GetxController {
       log('the user id is from the getter >>> ${currentUserId}');
       log('the user id from fire base is ${documentSnapshot.id}');
 
-      if (documentSnapshot.exists && documentSnapshot.data() != null) {
+      if (documentSnapshot.exists ) {
         return UserModel.fromJson(documentSnapshot);
       } else {
         // if there is no document return an empty model

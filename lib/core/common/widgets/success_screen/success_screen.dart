@@ -24,7 +24,6 @@ class SuccessScreen extends StatelessWidget {
         child: Padding(
           padding: CSpacingStyle.paddingWithAppBarHeight * 2,
           child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Lottie.asset(
                 image,

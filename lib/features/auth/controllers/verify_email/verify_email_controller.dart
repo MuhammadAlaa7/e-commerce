@@ -8,11 +8,13 @@ import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
 import 'package:store/core/utils/popups/toasts.dart';
 import 'package:store/features/auth/screens/login_screen/login_screen.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 
 class VerifyEmailController extends GetxController {
   static VerifyEmailController get instance => Get.find();
 
-  Timer? _timerInstance; // Store the timer instance to be used in two methods [timeToRedirect] and [logOut]
+  Timer?
+      _timerInstance; // Store the timer instance to be used in two methods [timeToRedirect] and [logOut]
 
   @override
   void onInit() {
@@ -25,35 +27,44 @@ class VerifyEmailController extends GetxController {
   void sendEmailVerification() {
     try {
       AuthenticationRepository.instance.sendEmailVerification();
+      AppToasts.successSnackBar(
+          title: 'Email sent',
+          message: 'Please check your inbox and verify your email');
     } catch (e) {
       AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
 
+
+
   /// Time to automatically redirect user to success screen on email verification
   void timeToRedirect() {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      _timerInstance = Timer.periodic(const Duration(seconds: 4), (timer) async {
-        log('user verified ? : ${user.emailVerified}');
-        await user.reload(); // Reload user to get the latest state
-        if (user.emailVerified) {
+    _timerInstance = Timer.periodic(
+      const Duration(seconds: 2),
+      (timer) async {
+
+       // you must initialize the user variable in the timer function to get it each time 
+        final user = FirebaseAuth.instance.currentUser;
+        await user?.reload(); // Reload user state in the server side 
+        if (user != null && user.emailVerified) {
           timer.cancel();
-          _timerInstance = null; // Clear the timer reference
           navigateToSuccessScreen();
         }
-      });
-    }
+      },
+    );
   }
 
   // Navigate to success screen
   void navigateToSuccessScreen() {
     Get.offAll(() => SuccessScreen(
-          image: AppImages.staticSuccessIllustration,
+          image: AppImages.successfullyRegisterAnimation,
           title: AppTexts.yourAccountCreatedTitle,
           subTitle: AppTexts.yourAccountCreatedSubTitle,
-          onPressed: () => AuthenticationRepository.instance.redirectScreen(),
-        ));
+          onPressed: () async {
+                  await UserController.instance.fetchUserRecord();
+
+           AuthenticationRepository.instance.redirectScreen();
+   } ));
   }
 
   // Manually check if email is verified or not by pressing the 'continue' button

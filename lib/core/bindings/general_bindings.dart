@@ -57,6 +57,8 @@ as the controller is always available when required,
       UserController(),
       permanent: true,
     );
+
+  //  Get.lazyPut(() => UserController(), fenix: true);
     Get.put(
         NetworkManager()); // if the controller was deleted , it will not be automatically recreated
     Get.put(VariationController());

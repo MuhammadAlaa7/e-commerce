@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/core/common/styles/spacing_styles.dart';
 import 'package:store/core/common/widgets/login_signup/form_divider.dart';
 import 'package:store/core/common/widgets/login_signup/social_buttons.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 
 import 'widgets/login_form.dart';
 import 'widgets/login_header.dart';
@@ -13,6 +15,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return const SafeArea(
       child:  Scaffold(
         body: SingleChildScrollView(

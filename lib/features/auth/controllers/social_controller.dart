@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
@@ -10,6 +9,11 @@ import 'package:store/features/personalization/controllers/user_controller.dart'
 class SocialController extends GetxController {
   static SocialController get instance => Get.find();
 
+  @override
+  void onReady() {
+    super.onReady();
+    final controller = Get.put(UserController());
+  }
   /// -------------------------- [Google Sign In ] --------------------------
 
   Future<void> googleSignIn() async {
@@ -27,7 +31,7 @@ class SocialController extends GetxController {
       }
 
       // Google Authentication
-      UserCredential? userCredential =
+      final userCredential =
           await AuthenticationRepository.instance.signInWithGoogle();
 
       if (userCredential == null) {
@@ -36,7 +40,8 @@ class SocialController extends GetxController {
 
       // save user record
       await UserController.instance.saveUserRecord(userCredential);
-      await UserController.instance.fetchUserRecord(); ////////////////////////////////!!!!!
+      // fetch user record before redirecting 
+      await UserController.instance.fetchUserRecord();
 
       // redirect to home page
 

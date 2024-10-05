@@ -7,18 +7,17 @@ import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
 import 'package:store/core/utils/popups/toasts.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 
 class LoginController extends GetxController {
   static LoginController instance = Get.find();
 
   @override
   void onInit() {
-   email.text =
-       box.get('remember_me_email') ?? ''; 
-        
-    password.text = 
-       box.get('remember_me_password') ?? '';
-      
+    email.text = box.get('remember_me_email') ?? '';
+
+    password.text = box.get('remember_me_password') ?? '';
+
     rememberMe.value = box.get('remember_me') ?? false;
     super.onInit();
   }
@@ -76,7 +75,6 @@ class LoginController extends GetxController {
       if (rememberMe.value == true) {
         // save email and password in the hive storage for later use email and password keys
 
-
         box.put('remember_me', rememberMe.value);
         box.put('remember_me_email', email.text.trim());
         box.put('remember_me_password', password.text.trim());
@@ -93,16 +91,14 @@ class LoginController extends GetxController {
       // stop loading
       FullScreenLoader.closeLoadingDialog();
 
-     
-      // redirect the screen because the user may not be verified yet 
+      await UserController.instance.fetchUserRecord();
+
+      // redirect the screen because the user may not be verified yet
       AuthenticationRepository.instance.redirectScreen();
     } catch (e) {
       // stop loading
       AppToasts.errorSnackBar(title: 'Sign in Failed', message: e.toString());
       FullScreenLoader.closeLoadingDialog();
-      
-
-      
     }
   }
 }

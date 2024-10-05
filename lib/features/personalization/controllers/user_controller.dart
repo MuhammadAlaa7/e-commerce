@@ -33,11 +33,7 @@ class UserController extends GetxController {
   final verifyPassword = TextEditingController();
   final reAuthFormKey = GlobalKey<FormState>();
   RxBool isDarkMode = false.obs;
-  @override
-  void onInit()  {
-    super.onInit();
-    fetchUserRecord();
-  }
+
 
   // Fetch user record from Firebase
   Future<void> fetchUserRecord() async {
@@ -59,11 +55,12 @@ class UserController extends GetxController {
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
       // first refresh the user data to check if the user is already stored in the database
-      await fetchUserRecord();
+
+    //  await fetchUserRecord();
 
       // if the user is not already stored in the database, save it
-      if (user.value.id.isEmpty) {
-        if (userCredential != null) {
+    
+        if (userCredential != null ) {
           // Convert name to first and last name
           final nameParts =
               UserModel.nameSplitter(userCredential.user!.displayName ?? '');
@@ -85,7 +82,8 @@ class UserController extends GetxController {
           // Save user data
           await UserRepository.instance.saveUserDataToFirebase(user);
         }
-      }
+      
+  
     } catch (e) {
       AppToasts.warningSnackBar(
         title: 'Data not saved',
