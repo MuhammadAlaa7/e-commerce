@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/bindings/general_bindings.dart';
-import 'package:store/core/routes/app_routes.dart';
+import 'package:store/core/routes/app_pages.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
@@ -14,7 +14,7 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      getPages: AppRoutes.pages,
+      getPages: AppPages.pages,
       initialBinding: GeneralBindings(),
       debugShowCheckedModeBanner: false,
       themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,

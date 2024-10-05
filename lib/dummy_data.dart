@@ -3,7 +3,7 @@ import 'package:store/features/shop/models/brand_model.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/models/product_category_model.dart';
 import 'package:store/features/shop/models/product_model.dart';
-import 'package:store/core/routes/routes.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/core/utils/constants/enums.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
 
@@ -16,12 +16,12 @@ class DummyData {
   static final List<BannerModel> banners = [
     BannerModel(
       imageUrl: AppImages.banner1,
-      targetScreen: Routes.store,
+      targetScreen: AppRoutes.store,
       active: true,
     ),
     BannerModel(
       imageUrl: AppImages.banner2,
-      targetScreen: Routes.cart,
+      targetScreen: AppRoutes.cart,
       active: true,
     ),
     // BannerModel(

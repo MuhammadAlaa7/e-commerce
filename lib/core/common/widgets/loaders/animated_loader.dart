@@ -34,13 +34,14 @@ class AnimationLoaderWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //   const SizedBox(height: 24),
             Lottie.asset(
               animationImage,
               width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.4,
             ),
             const SizedBox(height: 24),
             Text(

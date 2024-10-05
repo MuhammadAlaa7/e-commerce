@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
@@ -13,7 +14,8 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final forgetPassController = ForgetPasswordController.instance;
+        final forgetPassController = Get.put(ForgetPasswordController());
+
     return Scaffold(
       appBar: const CustomAppBar(
         showBackArrow: true,

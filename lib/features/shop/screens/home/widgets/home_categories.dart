@@ -5,7 +5,7 @@ import 'package:store/core/common/widgets/shimmers/category_shimmer.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
-import 'package:store/core/routes/routes.dart';
+import 'package:store/core/routes/app_routes.dart';
 
 class HomePopularCategories extends StatelessWidget {
   const HomePopularCategories({
@@ -62,7 +62,7 @@ class HomePopularCategories extends StatelessWidget {
                     title: category.name,
                     image: category.image,
                     onTap: () {
-                      Get.toNamed(Routes.subCategories, arguments: category);
+                      Get.toNamed(AppRoutes.subCategories, arguments: category);
                     },
                   );
                 },

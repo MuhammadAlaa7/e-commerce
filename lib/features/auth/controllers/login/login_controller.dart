@@ -13,12 +13,7 @@ class LoginController extends GetxController {
   static LoginController instance = Get.find();
 
 
-@override
-  void onReady() {
 
-    log('ready login controller');    
-    super.onReady();
-  }
   @override
   void onInit() {
     log('init login controller');
@@ -48,6 +43,7 @@ class LoginController extends GetxController {
 
   Future<void> login() async {
     try {
+      log('login loader started');
       // Start loading
       FullScreenLoader.openLoadingDialog(
           'We are logging you in ...', AppImages.docerAnimation);
@@ -55,7 +51,7 @@ class LoginController extends GetxController {
       // Check internet connection     >> [ if there is no internet don't continue the login process ]
 
       final isConnected = await NetworkManager.instance.isConnected();
-
+       
       log('Network connected: $isConnected'); // Debugging line
 
       if (!isConnected) {
@@ -74,11 +70,9 @@ class LoginController extends GetxController {
  */
       bool isFormValid = loginFormKey.currentState!.validate();
       if (isFormValid == false) {
-        FullScreenLoader.closeLoadingDialog();
-
+      
         return;
       }
-
       //  check remember me
       if (rememberMe.value == true) {
         // save email and password in the hive storage for later use email and password keys
@@ -97,7 +91,6 @@ class LoginController extends GetxController {
           .signInWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // stop loading
-
       await UserController.instance.fetchUserRecord();
 
       // redirect the screen because the user may not be verified yet
@@ -105,7 +98,6 @@ class LoginController extends GetxController {
     } catch (e) {
       // stop loading
       AppToasts.errorSnackBar(title: 'Sign in Failed', message: e.toString());
-      FullScreenLoader.closeLoadingDialog();
     }
     finally{
             FullScreenLoader.closeLoadingDialog();

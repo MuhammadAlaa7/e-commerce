@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/text_button.dart';
 
@@ -10,12 +11,13 @@ import 'package:store/core/utils/constants/text_strings.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key, this.email});
+  const VerifyEmailScreen({super.key, });
 
-  final String? email;
 
   @override
   Widget build(BuildContext context) {
+    //* arguments is email
+    String? email = Get.arguments;
     final controller = VerifyEmailController.instance ; 
     return Scaffold(
       appBar: AppBar(

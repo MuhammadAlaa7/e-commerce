@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/core/utils/local_storage/storage_util.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
@@ -145,7 +146,8 @@ class UserController extends GetxController {
           GoogleSignIn().signOut();
           GoogleSignIn().disconnect();
           FullScreenLoader.closeLoadingDialog();
-          Get.offAll(() => const LoginScreen());
+                  Get.offAllNamed(AppRoutes.login); 
+
         } else if (provider == 'password') {
           FullScreenLoader.closeLoadingDialog();
           Get.to(() => const ReAuthUserLoginForm());
@@ -192,7 +194,8 @@ class UserController extends GetxController {
       );
       await AuthenticationRepository.instance.deleteAccount();
       FullScreenLoader.closeLoadingDialog();
-      Get.offAll(() => const LoginScreen());
+            Get.offAllNamed(AppRoutes.login); 
+
     } catch (e) {
       FullScreenLoader.closeLoadingDialog();
       AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
@@ -274,7 +277,8 @@ class UserController extends GetxController {
 
       // stop loader
       FullScreenLoader.closeLoadingDialog();
-      Get.offAll(() => const LoginScreen());
+              Get.offAllNamed(AppRoutes.login); 
+
     } catch (e) {
       AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }

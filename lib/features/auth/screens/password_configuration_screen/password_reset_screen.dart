@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/text_button.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/auth/controllers/forget_password/forget_password_controller.dart';
 import 'package:store/features/auth/screens/login_screen/login_screen.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
@@ -10,17 +11,16 @@ import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/constants/text_strings.dart';
 import 'package:store/core/utils/helper/helper_functions.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({
+class ResetPasswordSuccessScreen extends StatelessWidget {
+  const ResetPasswordSuccessScreen({
     super.key,
-    required this.email,
   });
-
-  final String email;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ForgetPasswordController());
+    final controller = ForgetPasswordController.instance;
+// arguments is email
+    final email = Get.arguments;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -81,7 +81,7 @@ class ResetPasswordScreen extends StatelessWidget {
               DefaultButton(
                 label: 'Done',
                 onPressed: () {
-                  Get.offAll(() => const LoginScreen());
+                  Get.offAllNamed(AppRoutes.login);
                 },
               ),
               const SizedBox(
@@ -97,16 +97,6 @@ class ResetPasswordScreen extends StatelessWidget {
           ),
         ),
       ),
-
-      // body: Center(
-      //   child: SuccessScreen(
-      //     image: CImages.deliveredEmailIllustration,
-      //     title: CTexts.changeYourPasswordTitle,
-      //     subTitle: CTexts.changeYourPasswordSubTitle,
-      //     buttonLabel: 'Done',
-      //     onPressed: () {},
-      //   ),
-      // ),
     );
   }
 }

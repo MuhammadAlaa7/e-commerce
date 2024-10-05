@@ -1,43 +1,32 @@
-import 'package:get/get.dart';
-import 'package:store/features/auth/screens/password_configuration_screen/forget_password_screen.dart';
-import 'package:store/features/personalization/screens/address/adress_screen.dart';
-import 'package:store/features/personalization/screens/profile/profile_screen.dart';
-import 'package:store/features/personalization/screens/settings/account_screen.dart';
-import 'package:store/features/shop/screens/brands/brand_products_screen.dart';
-import 'package:store/features/shop/screens/cart/cart_screen.dart';
-import 'package:store/features/shop/screens/home/home_screen.dart';
-import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
-import 'package:store/features/shop/screens/store/store_screen.dart';
-import 'package:store/features/shop/screens/wishlist/wishlist_screen.dart';
-import 'package:store/core/routes/routes.dart';
-
-import '../../features/shop/screens/sub_categories/sub_categories_screen.dart';
-
+// all the routes strings
 class AppRoutes {
-  // pages for getx
-  static final pages = [
-    GetPage(
-      name: Routes.home,
-      page: () => const HomeScreen(),
-      transition: Transition.fadeIn,
-    ),
-    GetPage(name: Routes.store, page: () => const StoreScreen()),
-    GetPage(name: Routes.settings, page: () => const AccountScreen()),
-    GetPage(
-        name: Routes.forgetPassword, page: () => const ForgetPasswordScreen()),
-    GetPage(name: Routes.userProfile, page: () => const ProfileScreen()),
-    GetPage(
-        name: Routes.productReview, page: () => const ProductReviewScreen()),
-    //GetPage(name: Routes.allProducts, page: ()=>const AllProductsScreen() ),
-    GetPage(
-      name: Routes.brandProducts,
-      page: () => const BrandProductsScreen(),
-      transition: Transition.fadeIn,
-    ),
-    GetPage(name: Routes.userAddress, page: () => const AddressesScreen()),
-    GetPage(name: Routes.wishlist, page: () => const WishlistScreen()),
-    GetPage(
-        name: Routes.subCategories, page: () => const SubCategoriesScreen()),
-    GetPage(name: Routes.cart, page: () => const CartScreen()),
-  ];
+// -- auth routes --
+  static const String onBoarding = '/on-boarding';
+  static const String login = '/login';
+  static const String signUp = '/signUp';
+  static const String signUpSuccess = '/signUp-success';
+  static const String forgetPassword = '/forget-password';
+  static const String resetPassword = '/reset-password';
+  static const String verifyEmail = '/verify-email';
+  static const String success = '/success';
+
+  static const String home = '/';
+  static const String store = '/store';
+  static const String favorites = '/favorites';
+  static const String allBrands = '/all-brands';
+  static const String brandProducts = '/brand-products';
+  static const String cart = '/cart';
+  static const String settings = '/settings';
+  static const String subCategories = '/sub-categories';
+  static const String search = '/search';
+  static const String productReview = '/product-review';
+  static const String productDetail = '/product-detail';
+  static const String order = '/order';
+  static const String checkout = '/checkout';
+  static const String brand = '/brand';
+  static const String allProducts = '/all-products';
+  static const String userProfile = '/user-profile';
+  static const String userAddress = '/user-address';
+
+  static const String wishlist = '/wishlist';
 }

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/models/user_model.dart';
@@ -58,8 +59,7 @@ When a variable is marked as observable, any changes to its value will automatic
       // Form validation
       bool isFormValid = signUpFormKey.currentState!.validate();
       if (!isFormValid) {
-        AppToasts.errorSnackBar(
-            title: 'Error', message: 'All fields required ');
+    
         FullScreenLoader.closeLoadingDialog();
         return;
       }
@@ -107,9 +107,7 @@ When a variable is marked as observable, any changes to its value will automatic
           message: 'Your account has been created! Verify email to continue.');
 
       FullScreenLoader.closeLoadingDialog();
-      Get.offAll(() => VerifyEmailScreen(
-            email: email.text.trim(),
-          ));
+      Get.offAllNamed(AppRoutes.verifyEmail , arguments:  email.text.trim() );
     } catch (e) {
       AppToasts.errorSnackBar(
           title: 'Registration Failed',

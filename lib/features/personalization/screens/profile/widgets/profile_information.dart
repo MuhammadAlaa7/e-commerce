@@ -10,6 +10,7 @@ class ProfileInformationSection extends StatelessWidget {
     super.key,
   });
 
+
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
@@ -20,7 +21,7 @@ class ProfileInformationSection extends StatelessWidget {
           title: 'Name',
           value: userController.user.value.fullName,
           onTap: () {
-            Get.to(()=> const ChangeNameScreen());
+            Get.to(() => const ChangeNameScreen());
           },
         ),
         ProfileMenu(
@@ -28,6 +29,10 @@ class ProfileInformationSection extends StatelessWidget {
           value: userController.user.value.username,
           onTap: () {},
         ),
+        ProfileMenu(
+            title: 'Email',
+            value: userController.user.value.email,
+            onTap: () {}),
       ],
     );
   }

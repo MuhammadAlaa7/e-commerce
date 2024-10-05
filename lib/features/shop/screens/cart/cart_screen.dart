@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
       ),
       body: Obx(() {
         final emptyWidget = AnimationLoaderWidget(
-          text: 'Opps ! Your cart is empty',
+          text: 'Oops! Your cart is empty',
           animationImage: AppImages.cartAnimation,
           showAction: true,
           actionText: 'let\'s fill it',

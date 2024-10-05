@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/data/repos/auth_repo.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/password_reset_screen.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
@@ -10,9 +11,9 @@ import 'package:store/core/utils/popups/toasts.dart';
 class ForgetPasswordController extends GetxController {
   static ForgetPasswordController get instance => Get.find();
 
-@override
+  @override
   void onInit() {
-    email.text = ''; 
+    email.text = '';
     super.onInit();
   }
 
@@ -66,14 +67,17 @@ class ForgetPasswordController extends GetxController {
           message: 'Email link sent to reset your password.');
 
       // navigate to the next screen
-      Get.to(() => ResetPasswordScreen(
-            email: email.text.trim(),
-          ));
+    Get.toNamed(AppRoutes.resetPassword, arguments: email.text.trim()) ;
+      
     } catch (e) {
       FullScreenLoader.closeLoadingDialog();
       AppToasts.errorSnackBar(title: 'Oops!', message: e.toString());
     }
   }
+
+//
+//
+//
 
   /// re-send the reset password email to the email box
   resendPasswordResetEmail(String email) async {

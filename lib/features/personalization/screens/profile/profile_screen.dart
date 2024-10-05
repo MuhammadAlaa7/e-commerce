@@ -25,6 +25,10 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.md),
           child: Column(
             children: [
+              const SizedBox(
+                height: AppSizes.spaceBetweenSections,
+              ),
+
               // * User Profile picture
 
               const UserPictureSection(),
@@ -43,29 +47,17 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: AppSizes.spaceBetweenItems,
               ),
-              const Divider(),
+
               const SizedBox(
-                height: AppSizes.spaceBetweenItems,
+                height: AppSizes.spaceBetweenSections,
               ),
-              const HeadingSection(
-                  title: 'Personal Information', showActionButton: false),
-              const PersonalInformationSection(),
-              const SizedBox(
-                height: AppSizes.spaceBetweenItems,
-              ),
-              const Divider(),
-              const SizedBox(
-                height: AppSizes.spaceBetweenItems,
-              ),
+
               CustomTextButton(
                   label: 'Delete Account',
                   onPressed: () {
                     UserController.instance.deleteAccountWarningPopup();
                   },
                   color: Colors.red),
-              const SizedBox(
-                height: AppSizes.spaceBetweenSections * 2,
-              ),
             ],
           ),
         ),

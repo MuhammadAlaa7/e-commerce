@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -5,6 +7,7 @@ import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
 import 'package:store/core/common/widgets/buttons/text_button.dart';
 import 'package:store/core/common/widgets/input_field/input_field.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/auth/controllers/login/login_controller.dart';
 import 'package:store/features/auth/screens/password_configuration_screen/forget_password_screen.dart';
 import 'package:store/features/auth/screens/signup_screen/signup_screen.dart';
@@ -56,8 +59,7 @@ class LoginForm extends StatelessWidget {
                 prefixIcon: Iconsax.password_check,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    // loginController.hidePassword.value =
-                    //     !loginController.hidePassword.value;
+           
                     loginController.hidePassword.toggle();
                   },
                   icon: Icon(
@@ -101,8 +103,7 @@ class LoginForm extends StatelessWidget {
                   label: AppTexts.forgetPassword,
                   onPressed: () {
                     // You should navigate using Getx to inform it when the screen is closed from the stack
-                    Get.to(() =>
-                        const ForgetPasswordScreen()); // forget password screen
+                  Get.toNamed(AppRoutes.forgetPassword); // forget password screen;
                   },
                 ),
               ],
@@ -114,6 +115,7 @@ class LoginForm extends StatelessWidget {
             DefaultButton(
               label: AppTexts.signIn,
               onPressed: () {
+                log('login pressed');
                 loginController.login();
               },
             ),
@@ -125,7 +127,7 @@ class LoginForm extends StatelessWidget {
             CustomOutlinedButton(
               label: AppTexts.createAccount,
               onPressed: () {
-                Get.to(() => const SignUpScreen());
+                Get.toNamed(AppRoutes.signUp);
               },
             ),
           ],

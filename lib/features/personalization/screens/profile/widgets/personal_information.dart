@@ -21,10 +21,7 @@ class PersonalInformationSection extends StatelessWidget {
           onTap: () {},
           icon: Iconsax.copy,
         ),
-        ProfileMenu(
-            title: 'Email',
-            value: userController.user.value.email,
-            onTap: () {}),
+       
         ProfileMenu(
             title: 'Phone Number',
             value: userController.user.value.phoneNumber,

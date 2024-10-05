@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
+import 'package:store/core/common/widgets/loaders/animated_loader.dart';
+import 'package:store/core/utils/constants/image_strings.dart';
 import 'package:store/features/personalization/screens/address/add_new_address_screen.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/sizes.dart';
@@ -41,9 +43,14 @@ class AddressesScreen extends StatelessWidget {
                 key: Key(addressController.refreshData.value.toString()),
                 future: addressController.fetchAllUserAddresses(),
                 builder: (context, snapshot) {
+                  final emptyWidget = AnimationLoaderWidget(
+                    text: 'There is no address yet\n Please add one',
+                    animationImage: AppImages.emptyAnimation,
+                  );
                   final widget =
                       CustomCloudHelperFunctions.checkMultiRecordState(
                     snapshot: snapshot,
+                    nothingFound: emptyWidget,
                   );
                   if (widget != null) return widget;
 

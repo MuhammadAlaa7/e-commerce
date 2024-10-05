@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/auth/screens/login_screen/login_screen.dart';
 
 class OnBoardingController extends GetxController {
@@ -41,7 +42,8 @@ class OnBoardingController extends GetxController {
 
 
       // * go to login screen
-      Get.offAll(() => const LoginScreen(),);
+              Get.offAllNamed(AppRoutes.login); 
+
     }
   }
 

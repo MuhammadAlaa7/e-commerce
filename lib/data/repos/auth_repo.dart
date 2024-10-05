@@ -4,6 +4,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:store/core/routes/app_pages.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
 import 'package:store/navigation_menu.dart';
@@ -50,19 +52,15 @@ class AuthenticationRepository extends GetxController {
         Get.offAll(() => const HomeMenu());
       } else {
         // if the user is not verified
-        Get.offAll(
-          () => VerifyEmailScreen(
-            email: user.email,
-          ),
-        );
+     Get.offAllNamed(AppRoutes.verifyEmail,arguments: user.email );
       }
     } else {
       if (box.containsKey('on_boarding_done')) {
-        Get.offAll(() => const LoginScreen());
+        Get.offAllNamed(AppRoutes.login); 
       } else {
         // when tapping the next button on the onboarding screen
         // the on_boarding_done key is set to true in the auth box
-        Get.offAll(() => const OnBoardingScreen());
+        Get.offAllNamed(AppRoutes.onBoarding); 
       }
     }
   }

@@ -4,7 +4,7 @@ import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/core/common/widgets/brands/featured_brands_item.dart';
 import 'package:store/core/common/widgets/shimmers/brands/featured_brands_shimmer.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
-import 'package:store/core/routes/routes.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/cloud_helper_functions.dart';
 import 'package:store/features/shop/models/brand_model.dart';
@@ -57,7 +57,7 @@ class StoreFeaturedBrands extends StatelessWidget {
                     return FeaturedBrandCard(
                       onTap: () {
                         Get.toNamed(
-                          Routes.brandProducts,
+                          AppRoutes.brandProducts,
                           arguments: featuredBrands[index],
                         );
                       },
