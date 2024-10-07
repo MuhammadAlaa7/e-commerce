@@ -163,6 +163,11 @@ class AppPages {
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
     ),
+    
+    
+
+
+    
     GetPage(
       name: AppRoutes.reAuthUser,
       page: () => const ReAuthUserLoginForm(),

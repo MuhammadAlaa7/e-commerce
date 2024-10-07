@@ -3,8 +3,8 @@ import 'package:store/core/common/widgets/custom_shapes/containers/searched_cont
 import 'package:store/core/utils/constants/sizes.dart';
 import 'store_featured_brands.dart';
 
-class StoreHeadingContent extends StatelessWidget {
-  const StoreHeadingContent({
+class SliverAppBarContent extends StatelessWidget {
+  const SliverAppBarContent({
     super.key,
   });
 
@@ -17,17 +17,17 @@ class StoreHeadingContent extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         children: const [
           // * [1]-- Search bar
-           SearchContainer(
+          SearchContainer(
             text: 'Search in store',
             margin: EdgeInsets.only(top: 10),
             showBackgroundColor: false,
           ),
-           SizedBox(
+          SizedBox(
             height: AppSizes.spaceBetweenItems,
           ),
           // * [2] -- Featured Brands
-     
-           StoreFeaturedBrands(),
+
+          StoreFeaturedBrands(),
         ],
       ),
     );

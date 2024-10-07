@@ -116,7 +116,8 @@ class AddressController extends GetxController {
       address.id = addressId;
       // put the new address in the current selected address
       currentSelectedAddress(address);
-
+      currentSelectedAddress.refresh();
+       
       // stop the loader
       FullScreenLoader.closeLoadingDialog();
       // show success message
