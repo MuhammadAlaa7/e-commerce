@@ -17,7 +17,9 @@ class SubCategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // receive the arguments from previous screen
     final CategoryModel category = Get.arguments as CategoryModel;
+
     final catController = CategoryController.instance;
+    //
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(category.name),

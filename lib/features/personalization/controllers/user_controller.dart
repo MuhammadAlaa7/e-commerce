@@ -19,7 +19,6 @@ import 'package:store/core/utils/helper/network_manager.dart';
 import 'package:store/core/utils/popups/full_screen_loader.dart';
 import 'package:store/core/utils/popups/toasts.dart';
 
-import '../../auth/screens/login_screen/login_screen.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
@@ -150,8 +149,8 @@ class UserController extends GetxController {
 
         } else if (provider == 'password') {
           FullScreenLoader.closeLoadingDialog();
-          Get.to(() => const ReAuthUserLoginForm());
-        }
+          Get.toNamed(AppRoutes.reAuthUser);
+     }
       } else {
         FullScreenLoader.closeLoadingDialog();
         AppToasts.errorSnackBar(

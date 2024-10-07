@@ -8,6 +8,7 @@ import 'package:store/core/routes/app_pages.dart';
 import 'package:store/core/routes/app_routes.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/auth/screens/email_verification_screen/verify_email_screen.dart';
+import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/navigation_menu.dart';
 import 'package:store/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:store/core/utils/exceptions/firebase_exceptions.dart';
@@ -32,8 +33,9 @@ class AuthenticationRepository extends GetxController {
   final box = Hive.box('auth');
 
   @override
-  void onReady() {
+  void onReady() async {
      FlutterNativeSplash.remove();
+    await UserController.instance.fetchUserRecord();
     redirectScreen();
   }
 

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/app_bar/custom_app_bar.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/loaders/animated_loader.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/screens/checkout/checkout_screen.dart';
 import 'package:store/navigation_menu.dart';
@@ -56,7 +57,7 @@ class CartScreen extends StatelessWidget {
             label:
                 'Checkout   \$ ${cartController.totalCartPrice.toStringAsFixed(2)}',
             onPressed: () {
-              Get.to(() => const CheckoutScreen());
+               Get.toNamed(AppRoutes.checkout);
             },
           ),
         );

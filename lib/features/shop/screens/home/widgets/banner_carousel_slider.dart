@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/images/rounded_image.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/banner/banner_controller.dart';
 
-import '../../all_products/all_products_screen.dart';
 
 class BannerCarouselSlider extends StatelessWidget {
   const BannerCarouselSlider({
@@ -21,12 +21,17 @@ class BannerCarouselSlider extends StatelessWidget {
                 fit: BoxFit.fill,
                 imageUrl: banner.imageUrl,
                 isNetworkImage: true,
-                onPressed: () => Get.to(
-                  () => AllProductsScreen(
-                      title: 'All Products',
-                      query:
-                          FirebaseFirestore.instance.collection('MyProducts')),
+                onPressed: () => Get.toNamed(
+                  AppRoutes.viewAllProducts,
+                  arguments: 
+                  {
+                   'title' : 'All Products',
+                  'query':   FirebaseFirestore.instance.collection('MyProducts'),
+                  'futureMethod': null,
+                  
+  } , 
                 ),
+              
               ))
           .toList(),
       options: CarouselOptions(

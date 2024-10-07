@@ -5,6 +5,7 @@ import 'package:store/core/common/widgets/products/product_card/favorite_icon.da
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:store/core/common/widgets/texts/price_and_add_button.dart';
 import 'package:store/core/common/widgets/texts/product_title.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
@@ -35,7 +36,7 @@ class VerticalProductCard extends StatelessWidget {
     /// -- widget
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailsScreen(product: product));
+       Get.toNamed(AppRoutes.productDetails, arguments: product);
       },
       // * main image container
       child: Container(

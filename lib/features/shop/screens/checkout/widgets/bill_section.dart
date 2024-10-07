@@ -35,10 +35,10 @@ class BillSection extends StatelessWidget {
           ),
           // * payment method
           BillingPaymentSection(),
-          // * Address
           SizedBox(
             height: AppSizes.spaceBetweenItems,
           ),
+          // * Address
           BillingAddressSection(),
         ],
       ),

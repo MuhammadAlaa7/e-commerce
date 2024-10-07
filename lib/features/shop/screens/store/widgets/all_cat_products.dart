@@ -1,14 +1,13 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/core/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
-import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
 import 'package:store/core/utils/constants/sizes.dart';
 
 
@@ -40,13 +39,18 @@ class AllCategoryProducts extends StatelessWidget {
             HeadingSection(
               title: 'You might like ',
               onPressed: () {
-                Get.to(
-                  () => AllProductsScreen(
-                      title: category.name,
-                      query: FirebaseFirestore.instance
-                          .collection('MyProducts')
-                          .where('categoryId', isEqualTo: category.id)),
+                
+                Get.toNamed(AppRoutes.viewAllProducts, arguments:
+                {
+                  'title': category.name,
+                  'query': null, 
+                  'futureMethod':  CategoryController.instance
+                      .fetchProductsForCategory(category.id, limit: -1),
+               
+                      }
+                
                 );
+
               },
             ),
             const SizedBox(height: AppSizes.spaceBetweenSections),

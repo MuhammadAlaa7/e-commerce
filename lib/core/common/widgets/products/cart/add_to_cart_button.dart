@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/cart/cart_item_controller.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
@@ -27,8 +28,9 @@ class AddToCartButton extends StatelessWidget {
           final cartItem = cartController.convertProductToCartItem(product, 1);
           cartController.addOneItemToCart(cartItem);
         } else {
+          Get.toNamed(AppRoutes.productDetails , arguments:product );
           // it is a variable product , so navigate to the product details screen
-          Get.to(() => ProductDetailsScreen(product: product));
+          
         }
       },
       child: Obx(() {

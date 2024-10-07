@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
@@ -27,54 +26,63 @@ class BillingAddressSection extends StatelessWidget {
           height: AppSizes.spaceBetweenItems / 2,
         ),
         //* only show the data of the address selected if there is one already selected
-        addressController.currentSelectedAddress.value != AddressModel.empty()
-            ? Obx(
-                () => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      addressController.currentSelectedAddress.value.name,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    const SizedBox(
-                      height: AppSizes.spaceBetweenItems / 2,
-                    ),
-                    Row(children: [
-                      const Icon(Icons.phone, color: Colors.grey, size: 16),
-                      const SizedBox(
-                        width: AppSizes.spaceBetweenItems,
-                      ),
-                      Text(
-                        addressController
-                            .currentSelectedAddress.value.phoneNumber,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ]),
-                    const SizedBox(
-                      height: AppSizes.spaceBetweenItems / 2,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(Icons.location_history,
-                            color: Colors.grey, size: 16),
-                        const SizedBox(
-                          width: AppSizes.spaceBetweenItems,
-                        ),
-                        Expanded(
-                          // * make it expanded to prevent the overflow for the text
-                          child: Text(
-                            addressController.currentSelectedAddress.value
-                                .toString(),
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
+        addressController.currentSelectedAddress.value.id.isNotEmpty
+            ? const AddressInformation()
             : const Text('select an address'),
       ],
+    );
+  }
+}
+
+class AddressInformation extends StatelessWidget {
+  const AddressInformation({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final addressController = AddressController.instance;
+    return Obx(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            addressController.currentSelectedAddress.value.name,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(
+            height: AppSizes.spaceBetweenItems / 2,
+          ),
+          Row(children: [
+            const Icon(Icons.phone, color: Colors.grey, size: 16),
+            const SizedBox(
+              width: AppSizes.spaceBetweenItems,
+            ),
+            Text(
+              addressController.currentSelectedAddress.value.phoneNumber,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ]),
+          const SizedBox(
+            height: AppSizes.spaceBetweenItems / 2,
+          ),
+          Row(
+            children: [
+              const Icon(Icons.location_history, color: Colors.grey, size: 16),
+              const SizedBox(
+                width: AppSizes.spaceBetweenItems,
+              ),
+              Expanded(
+                // * make it expanded to prevent the overflow for the text
+                child: Text(
+                  addressController.currentSelectedAddress.value.toString(),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

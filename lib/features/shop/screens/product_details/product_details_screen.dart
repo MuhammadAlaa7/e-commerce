@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/features/shop/controllers/product/product_variation_controller.dart';
 
 import '../../models/product_model.dart';
@@ -10,11 +11,12 @@ import 'widget/product_images.dart';
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({
     super.key,
-    required this.product,
+    
   });
-  final ProductModel product;
+  
   @override
   Widget build(BuildContext context) {
+    final product = Get.arguments as ProductModel;
     return PopScope(
       canPop: true,
       onPopInvokedWithResult: (didPop , result) {

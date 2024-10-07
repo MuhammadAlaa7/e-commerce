@@ -6,6 +6,7 @@ import 'package:store/core/common/widgets/images/rounded_image.dart';
 import 'package:store/core/common/widgets/texts/price_and_add_button.dart';
 import 'package:store/core/common/widgets/texts/product_title.dart';
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/product_details/product_details_screen.dart';
 import 'package:store/core/utils/constants/colors.dart';
@@ -30,7 +31,7 @@ class HorizontalProductCard extends StatelessWidget {
     // -- widget
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetailsScreen(product: product));
+      Get.toNamed(AppRoutes.productDetails, arguments: product);
       },
       child: Container(
         width: Get.width * 0.7,

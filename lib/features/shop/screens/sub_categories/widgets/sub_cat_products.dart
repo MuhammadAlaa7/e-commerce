@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/shimmers/horizontal_product_shimmer.dart';
 import 'package:store/core/common/widgets/products/product_card/horizontal_product_card.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/category/category_controller.dart';
 import 'package:store/features/shop/models/category_model.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
@@ -10,7 +12,6 @@ import 'package:store/core/utils/constants/sizes.dart';
 import 'package:store/core/utils/helper/cloud_helper_functions.dart';
 
 import '../../../models/product_model.dart';
-
 
 class SubCategoryProducts extends StatelessWidget {
   const SubCategoryProducts({
@@ -26,7 +27,6 @@ class SubCategoryProducts extends StatelessWidget {
         future:
             catController.fetchProductsForCategory(subCategory.id, limit: 4),
         builder: (_, snapshot) {
-         
           const loader = HorizontalProductShimmer();
           final widget = CustomCloudHelperFunctions.checkMultiRecordState(
               snapshot: snapshot, loader: loader);
@@ -42,15 +42,15 @@ class SubCategoryProducts extends StatelessWidget {
               HeadingSection(
                 title: subCategory.name,
                 onPressed: () {
-                  Get.to(
-                    () => AllProductsScreen(
-                        title: subCategory.name,
-                        futureMethod: catController.fetchProductsForCategory(
-                          subCategory.id,
-                          // limit -1 means no limit
-                          limit: -1,
-                        )),
-                  );
+                  Get.toNamed(AppRoutes.viewAllProducts, arguments: {
+                    'title': subCategory.name,
+                    'query': null,
+                    'futureMethod': catController.fetchProductsForCategory(
+                      subCategory.id,
+                      // limit -1 means no limit
+                      limit: -1,
+                    ),
+                  });
                 },
               ),
               const SizedBox(

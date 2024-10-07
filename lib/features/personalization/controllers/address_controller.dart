@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:store/core/common/widgets/buttons/default_button.dart';
 import 'package:store/core/common/widgets/buttons/outlined_button.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/core/utils/popups/loaders.dart';
-import 'package:store/features/personalization/screens/address/add_new_address_screen.dart';
 import 'package:store/features/personalization/screens/address/widgets/single_address.dart';
 import 'package:store/core/utils/constants/colors.dart';
 import 'package:store/core/utils/constants/image_strings.dart';
@@ -31,6 +31,9 @@ class AddressController extends GetxController {
   // selected address
   Rx<AddressModel> currentSelectedAddress = AddressModel.empty().obs;
 
+// refresh variable to redraw the design of the screen
+  RxBool refreshData = true.obs;
+
 //fields of the add new address screen
   final name = TextEditingController();
   final phoneNumber = TextEditingController();
@@ -40,9 +43,6 @@ class AddressController extends GetxController {
   final postalCode = TextEditingController();
   final country = TextEditingController();
   final addressKey = GlobalKey<FormState>();
-
-// refresh variable to redraw the design of the screen
-  RxBool refreshData = true.obs;
 
   //*****************         fetch user addresses        *****************
 
@@ -55,7 +55,6 @@ class AddressController extends GetxController {
         (address) => address.isSelected == true,
         orElse: () => AddressModel.empty(),
       );
-         
 
 // return all address [ selected or not ]
       return addresses;
@@ -188,15 +187,14 @@ class AddressController extends GetxController {
         // make the value of [isSelected] field of the new selected address to true in the database
 
         await addressRepo.updateIsSelectedField(newSelectedAddress.id, true);
-
-        // stop the loader
-        Get.back();
       }
+      // stop the loader
+      Get.back();
     } catch (e) {
+      Get.back();
       AppToasts.errorSnackBar(
           title: 'Error in Selection ',
           message: 'Couldn\'t select the address ');
-      Get.back();
     }
   }
 
@@ -220,10 +218,13 @@ class AddressController extends GetxController {
       ),
       //confirmTextColor: Colors.white,
       cancel: CustomOutlinedButton(
-        width: 120,
-        label: 'Cancel',
-        onPressed: () => Get.back(),
-      ),
+          width: 120,
+          label: 'Cancel',
+          onPressed: () {
+            Get.back();
+            // refresh the ui
+            refreshData.toggle();
+          }),
     );
   }
 
@@ -304,7 +305,7 @@ class AddressController extends GetxController {
                     width: double.infinity,
                     label: 'Add new address',
                     onPressed: () {
-                      Get.to(() => const AddNewAddressScreen());
+                      Get.toNamed(AppRoutes.newAddress);
                     },
                   ),
                 ],
@@ -313,34 +314,4 @@ class AddressController extends GetxController {
           );
         });
   }
-
-  /// update selected address , by clearing the old and then assigning the new one to avoid the conflict with the old one
-  ///
-  /// This function clears the field of selectedAddress of the current selected address from the firebase database
-  /// We update the field of the old selected address to false in the database because it is the reference
-  /// Then it makes the field of selectedAddress of the new selected address >> true
-  /// Then it puts the new selected address in the place holder [currentSelectedAddress] after assigning its field
-  /// finally, it uploads the new selected address in the remote database [updating it ]
-  // Future<void> updateSelectedAddress(AddressModel address) async {
-  //   try {
-  //     // clear the [ selected ] field of the current selected address model
-  //     // make the old address that in the place holder current selected address not selected [ selectedAddress = false ]
-  //     await addressRepo.updateIsSelectedField(
-  //       address.id,
-  //       false,
-  //     );
-  //     // assign selected address
-  //     address.isSelected = true;
-  //     currentSelectedAddress.value = address;
-  //     // update the selected address in the database [ remote ]
-  //     await addressRepo.updateIsSelectedField(
-  //       // the current selected address now holds the new selected address ,
-  //       // and we want to update it in the remote database as well as local controller
-  //       currentSelectedAddress.value.id, true,
-  //     );
-  //   } catch (e) {
-  //     CLoaders.errorSnackBar(
-  //         title: 'Error in selection', message: e.toString());
-  //   }
-  // }
 }

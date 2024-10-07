@@ -12,14 +12,16 @@ import '../../models/product_model.dart';
 
 class AllProductsScreen extends StatelessWidget {
   const AllProductsScreen(
-      {super.key, required this.title, this.query, this.futureMethod});
+      {super.key, });
 
-  final String title;
-  final Query? query;
-  final Future<List<ProductModel>>? futureMethod;
+  
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AllProductsController());
+  
+        final String title = Get.arguments?['title'] ?? 'All Products';
+    final Query? query = Get.arguments?['query'];
+    final Future<List<ProductModel>>? futureMethod = Get.arguments?['futureMethod'];
 
     return Scaffold(
       appBar: CustomAppBar(

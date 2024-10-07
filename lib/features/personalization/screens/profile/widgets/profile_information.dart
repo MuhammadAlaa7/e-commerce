@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/personalization/screens/profile/widgets/change_name_screen.dart';
 
 import '../../../controllers/user_controller.dart';
@@ -21,7 +22,7 @@ class ProfileInformationSection extends StatelessWidget {
           title: 'Name',
           value: userController.user.value.fullName,
           onTap: () {
-            Get.to(() => const ChangeNameScreen());
+            Get.toNamed(AppRoutes.changeName);
           },
         ),
         ProfileMenu(

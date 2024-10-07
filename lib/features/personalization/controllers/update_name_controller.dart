@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/data/repos/user_repo.dart';
 import 'package:store/features/personalization/controllers/user_controller.dart';
 import 'package:store/features/personalization/screens/profile/profile_screen.dart';
@@ -78,16 +79,11 @@ Complex objects require explicit signaling (using update()) to notify the reacti
       AppToasts.successSnackBar(
           title: 'Congratulations',
           message: 'Your name has been updated successfully');
+          // The first route in the navigation stack is kept, and the new route (ProfileScreen) is pushed on top of it.
+Get.offNamedUntil(AppRoutes.profile, (Route<dynamic> route) => route.isFirst);
 
-      Get.offUntil(
-        MaterialPageRoute(builder: (_) => const ProfileScreen()),
-        (route) => route.isFirst,
-      );
-      // Go back to user profile screen
-      // Get.offAll(() => const HomeScreen());
-      // Get.to(() => const SettingsScreen());
-      // Get.to(() => const ProfileScreen());
-      //  Navigator.of(Get.context!).pop();
+
+    
     } catch (e) {
       FullScreenLoader.closeLoadingDialog();
       AppToasts.errorSnackBar(title: 'Oops', message: e.toString());

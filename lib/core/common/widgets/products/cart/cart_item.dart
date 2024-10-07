@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/common/widgets/images/rounded_image.dart';
 import 'package:store/core/common/widgets/texts/brand_title_with_verified_icon.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/controllers/product/product_controller.dart';
 import 'package:store/features/shop/models/cart_item_model.dart';
 import 'package:store/core/utils/constants/colors.dart';
@@ -28,7 +29,7 @@ class SingleCartItem extends StatelessWidget {
         final product = await ProductController.instance
             .fetchProductById(cartItem.productId);
 
-        Get.to(() => ProductDetailsScreen(product: product));
+      Get.toNamed(AppRoutes.productDetails, arguments: product);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

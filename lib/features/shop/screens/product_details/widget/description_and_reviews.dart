@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/texts/read_more_text.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/models/product_model.dart';
 import 'package:store/features/shop/screens/rating_reviews/rating_review_screen.dart';
 import 'package:store/core/utils/constants/sizes.dart';
@@ -37,7 +38,7 @@ class DescriptionAndReviews extends StatelessWidget {
         ),
         // * Reviews
         ListTile(
-          onTap: () => Get.to(() => const ProductReviewScreen()),
+          onTap: () =>  Get.toNamed(AppRoutes.productReview),
           contentPadding: EdgeInsets.zero,
           trailing: const Icon(Iconsax.arrow_right_3),
           title: Text(

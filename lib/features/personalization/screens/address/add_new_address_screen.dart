@@ -129,7 +129,6 @@ class AddNewAddressScreen extends StatelessWidget {
                 DefaultButton(
                   label: 'Save',
                   onPressed: () async {
-                    //TODO: Call add new function here from controller
                     await addressController.addNewAddress();
                   },
                 ),

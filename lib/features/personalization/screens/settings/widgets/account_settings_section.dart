@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/personalization/screens/address/adress_screen.dart';
 import 'package:store/features/personalization/screens/settings/widgets/settings_menu_tile.dart';
 import 'package:store/features/shop/screens/cart/cart_screen.dart';
@@ -29,7 +30,7 @@ class AccountSettingsSection extends StatelessWidget {
           title: 'My Addresses',
           subTitle: 'Set shopping delivery address',
           onTap: () {
-            Get.to(() => const AddressesScreen());
+            Get.toNamed(AppRoutes.address);
           },
         ),
         SettingsMenuTile(
@@ -37,7 +38,7 @@ class AccountSettingsSection extends StatelessWidget {
           title: 'My Cart',
           subTitle: 'Add, or remove products and move to checkout',
           onTap: () {
-            Get.to(() => const CartScreen());
+          Get.toNamed(AppRoutes.cart);
           },
         ),
         SettingsMenuTile(
@@ -45,7 +46,7 @@ class AccountSettingsSection extends StatelessWidget {
           title: 'My Orders',
           subTitle: 'In-progress, completed, and canceled orders',
           onTap: () {
-            Get.to(() => const OrdersScreen());
+            Get.toNamed(AppRoutes.order);
           },
         ),
       ],

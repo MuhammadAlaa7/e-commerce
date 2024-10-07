@@ -33,12 +33,12 @@ class _HomeMenuState extends State<HomeMenu> {
       // ** -- Bottom Navigation Menu
 
       bottomNavigationBar: NavigationBar(
-        animationDuration: const Duration(milliseconds: 300),
+        animationDuration: const Duration(milliseconds: 200),
         destinations: const [
           NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
           NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
           NavigationDestination(icon: Icon(Iconsax.heart), label: 'Wishlist'),
-          NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
+          NavigationDestination(icon: Icon(Iconsax.user), label: 'Account'),
         ],
         selectedIndex: currentIndex,
         height: 80,

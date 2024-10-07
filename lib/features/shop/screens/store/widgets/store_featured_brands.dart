@@ -39,9 +39,7 @@ class StoreFeaturedBrands extends StatelessWidget {
               HeadingSection(
                 title: 'Featured Brands',
                 onPressed: () {
-                  Get.to(
-                    () => const AllBrandsScreen(),
-                  );
+                 Get.toNamed(AppRoutes.allBrands);
                 },
               ),
               const SizedBox(

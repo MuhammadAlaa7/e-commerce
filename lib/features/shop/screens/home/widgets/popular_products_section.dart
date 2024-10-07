@@ -5,6 +5,7 @@ import 'package:store/core/common/widgets/layouts/custom_grid_view.dart';
 import 'package:store/core/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:store/core/common/widgets/products/product_card/vertical_product_card.dart';
 import 'package:store/core/common/widgets/texts/section_heading.dart';
+import 'package:store/core/routes/app_routes.dart';
 import 'package:store/features/shop/screens/all_products/all_products_screen.dart';
 import '../../../controllers/product/product_controller.dart';
 
@@ -22,14 +23,20 @@ class PopularProductsSection extends StatelessWidget {
         HeadingSection(
           title: 'Popular Products',
           onPressed: () {
-            Get.to(
-              () => AllProductsScreen(
-                title: 'Popular Products',
-                query: FirebaseFirestore.instance
+
+                Get.toNamed( AppRoutes.viewAllProducts, arguments:
+                
+                {
+                  'title': 'Popular Products',
+                  'query':  FirebaseFirestore.instance
                     .collection('MyProducts')
-                    .limit(10),
-              ),
-            );
+                    .limit(10), 
+                    'futureMethod': null, 
+                }
+              ) ;
+
+          
+          
           },
         ),
         Obx(
