@@ -117,7 +117,7 @@ class AddressController extends GetxController {
       // put the new address in the current selected address
       currentSelectedAddress(address);
       currentSelectedAddress.refresh();
-       
+
       // stop the loader
       FullScreenLoader.closeLoadingDialog();
       // show success message
@@ -178,7 +178,7 @@ class AddressController extends GetxController {
             false,
           );
         }
-        // the new selected address is coming throw the listview index
+        // the new selected address is coming throw the list view index
         // assign the [isSelected] field of the new selected address to true
         newSelectedAddress.isSelected = true;
         // put the new selected address in the current selected address [ place holder]
@@ -262,8 +262,8 @@ class AddressController extends GetxController {
     }
   }
 
-  // show bottom sheet for changing the address in checkout screen
-  Future<dynamic> selectAddressPopup(BuildContext context) async {
+  //* show bottom sheet for changing the address in checkout screen
+  Future<dynamic> selectAddressBottomSheet(BuildContext context) async {
     showModalBottomSheet(
         context: context,
         builder: (_) {
@@ -280,25 +280,29 @@ class AddressController extends GetxController {
                   const SizedBox(
                     height: AppSizes.spaceBetweenItems,
                   ),
-                  FutureBuilder(
-                      future: fetchAllUserAddresses(),
-                      builder: (context, snapshot) {
-                        final widget =
-                            CustomCloudHelperFunctions.checkMultiRecordState(
-                                snapshot: snapshot,
-                                nothingFound: const Text('No addresses found'));
-                        if (widget != null) return widget;
-                        final addresses = snapshot.data!;
+                  Obx(
+                    () => FutureBuilder(
+                        key: Key(refreshData.value.toString()),
+                        future: fetchAllUserAddresses(),
+                        builder: (context, snapshot) {
+                          final widget =
+                              CustomCloudHelperFunctions.checkMultiRecordState(
+                                  snapshot: snapshot,
+                                  nothingFound:
+                                      const Text('No addresses found'));
+                          if (widget != null) return widget;
+                          final addresses = snapshot.data!;
 
-                        return ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (_, index) {
-                            return SingleAddress(address: addresses[index]);
-                          },
-                          itemCount: addresses.length,
-                        );
-                      }),
+                          return ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (_, index) {
+                              return SingleAddress(address: addresses[index]);
+                            },
+                            itemCount: addresses.length,
+                          );
+                        }),
+                  ),
                   const SizedBox(
                     height: AppSizes.spaceBetweenItems,
                   ),

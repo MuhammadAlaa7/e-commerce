@@ -136,7 +136,9 @@ class CartItemController extends GetxController {
     // 3. refresh the cart items list in the controller to update the UI
     updateCart();
 
-    AppToasts.customToast(message: 'Your product added to cart');
+    // AppToasts.customToast(message: 'Your product added to cart');
+    AppToasts.successSnackBar(
+        title: 'Product added', message: 'Check your cart');
   }
 
   // a function to convert the product model to cart item model
