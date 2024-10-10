@@ -48,42 +48,55 @@ After successfully setting up the project, here’s how you can use it:
 ### Screenshots
 
 # Screenshots
+# Screenshots
 
-| account.png  | add-new-address.png | addresses.png |
-|--------------|---------------------|---------------|
-| ![account](assets/images/screenshots/account.png) | ![add-new-address](assets/images/screenshots/add-new-address.png) | ![addresses](assets/images/screenshots/addresses.png) |
+## 1. Onboarding Screens
 
-| all-brands.png  | brand-products-dark.png | brand-products.png |
-|----------------|-------------------------|-------------------|
-| ![all-brands](assets/images/screenshots/all-brands.png) | ![brand-products-dark](assets/images/screenshots/brand-products-dark.png) | ![brand-products](assets/images/screenshots/brand-products.png) |
+| Onboarding 1  | Onboarding 2 | Onboarding 3 |
+|---------------|--------------|--------------|
+| ![Onboarding 1](assets/images/screenshots/onboarding1.png) | ![Onboarding 2](assets/images/screenshots/onboarding2.png) | ![Onboarding 3](assets/images/screenshots/onboarding3.png) |
 
-| cart.png  | category-products.png | category.png |
-|-----------|-----------------------|--------------|
-| ![cart](assets/images/screenshots/cart.png) | ![category-products](assets/images/screenshots/category-products.png) | ![category](assets/images/screenshots/category.png) |
+## 2. Auth Screens
 
-| change-name-dark.png  | finish-order.png | forgot-pass.png |
-|----------------------|------------------|-----------------|
-| ![change-name-dark](assets/images/screenshots/change-name-dark.png) | ![finish-order](assets/images/screenshots/finish-order.png) | ![forgot-pass](assets/images/screenshots/forgot-pass.png) |
+| Login  | Signup | Forgot Password |
+|--------|--------|-----------------|
+| ![Login](assets/images/screenshots/login.png) | ![Signup](assets/images/screenshots/signup.png) | ![Forgot Password](assets/images/screenshots/forgot-pass.png) |
 
-| furniture.png  | home.png | login.png |
-|----------------|----------|-----------|
-| ![furniture](assets/images/screenshots/furniture.png) | ![home](assets/images/screenshots/home.png) | ![login](assets/images/screenshots/login.png) |
+## 3. Home and Category
 
-| onboarding1.png  | onboarding2.png | onboarding3.png |
-|-----------------|-----------------|----------------|
-| ![onboarding1](assets/images/screenshots/onboarding1.png) | ![onboarding2](assets/images/screenshots/onboarding2.png) | ![onboarding3](assets/images/screenshots/onboarding3.png) |
+| Home  | Category | Category Products |
+|-------|----------|-------------------|
+| ![Home](assets/images/screenshots/home.png) | ![Category](assets/images/screenshots/category.png) | ![Category Products](assets/images/screenshots/category-products.png) |
 
-| order-review.png  | order-review2.png | orders.png |
-|------------------|-------------------|------------|
-| ![order-review](assets/images/screenshots/order-review.png) | ![order-review2](assets/images/screenshots/order-review2.png) | ![orders](assets/images/screenshots/orders.png) |
+## 4. Store Light and Dark and All Brands
 
-| profile-dark.png  | reviews.png | signup.png |
-|------------------|-------------|------------|
-| ![profile-dark](assets/images/screenshots/profile-dark.png) | ![reviews](assets/images/screenshots/reviews.png) | ![signup](assets/images/screenshots/signup.png) |
+| Store (Light)  | Store (Dark) | All Brands |
+|----------------|--------------|------------|
+| ![Store (Light)](assets/images/screenshots/store.png) | ![Store (Dark)](assets/images/screenshots/store-dark.png) | ![All Brands](assets/images/screenshots/all-brands.png) |
 
-| single-product-dark.png  | single-product-light.png |  |
-|-------------------------|-------------------------|--|
-| ![single-product-dark](assets/images/screenshots/single-product-dark.png) | ![single-product-light](assets/images/screenshots/single-product-light.png) |  |
+## 5. Brand Products and Category Products
+
+| Brand Products  | Brand Products (Dark) | Category Products |
+|-----------------|-----------------------|-------------------|
+| ![Brand Products](assets/images/screenshots/brand-products.png) | ![Brand Products (Dark)](assets/images/screenshots/brand-products-dark.png) | ![Category Products](assets/images/screenshots/category-products.png) |
+
+## 6. Product Single and Variable (Light and Dark)
+
+| Single Product (Light)  | Single Product (Dark) | Variable Product (Light) |
+|-------------------------|-----------------------|--------------------------|
+| ![Single Product (Light)](assets/images/screenshots/single-product-light.png) | ![Single Product (Dark)](assets/images/screenshots/single-product-dark.png) | ![Variable Product (Light)](assets/images/screenshots/variable-products-light.png) |
+
+## 7. Wishlist, Cart, and Address
+
+| Wishlist  | Cart | Address |
+|-----------|------|---------|
+| ![Wishlist](assets/images/screenshots/wishlist.png) | ![Cart](assets/images/screenshots/cart.png) | ![Address](assets/images/screenshots/addresses.png) |
+
+## 8. Order, Review, and Finish
+
+| Order Review  | Order Review 2 | Finish Order |
+|---------------|----------------|--------------|
+| ![Order Review](assets/images/screenshots/order-review.png) | ![Order Review 2](assets/images/screenshots/order-review2.png) | ![Finish Order](assets/images/screenshots/finish-order.png) |
 
 
 ## Contributing
