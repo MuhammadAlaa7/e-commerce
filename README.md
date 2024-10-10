@@ -47,9 +47,6 @@ After successfully setting up the project, here’s how you can use it:
 
 ### Screenshots
 
-# Screenshots
-# Screenshots
-
 ## 1. Onboarding Screens
 
 | Onboarding 1  | Onboarding 2 | Onboarding 3 |
